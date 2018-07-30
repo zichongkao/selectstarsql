@@ -47,9 +47,15 @@ function datatable (data) {
   var tbl = document.createElement("table");
   tbl.className = 'datatable'
   
+  var header_labels = Object.keys(data[0]);
+  for (var idx in header_labels) {
+    var col = document.createElement('col');
+    col.className = header_labels[idx];
+    tbl.appendChild(col);
+  }
+
   // create header row
   var thead = tbl.createTHead();
-  var header_labels = Object.keys(data[0]);
   var row = thead.insertRow(0); 
   for (var idx in header_labels) {    
     var cell = row.insertCell(idx);
@@ -69,7 +75,130 @@ function datatable (data) {
   return tbl;
 }
 
+
+//////////////////////////
+// SQL Quiz Component
+//////////////////////////
+
+function setdiff(a, b) { // https://stackoverflow.com/a/36504668
+  var seta = new Set(a);
+  var setb = new Set(b);
+  var res = new Set([...seta].filter(x => !setb.has(x)));
+  return res
+}
+
+class sqlQuizOption extends HTMLElement {
+  constructor() {
+    super();
+  }
+  
+  connectedCallback() {
+    var value = this.getAttribute('data-value') || ''
+    var statement = this.getAttribute('data-statement') || '';
+    var dataCorrect = this.getAttribute('data-correct') || false;
+    var hint = this.getAttribute('data-hint') || '';
+    
+    var quizoption = `
+    <div class='sqlOption'>
+      <div class="optionText">
+        <label>
+          <input type=checkbox name="input" 
+              data-correct=${dataCorrect} 
+              value=${value} />
+            <code>${statement}</code>
+        </label>
+      </div>
+      <div class="hintSpan">${hint}</div>
+    </div>
+    `
+    this.parentNode.querySelector('.sqlQuizOptions').innerHTML += quizoption;
+  }
+}
+
+customElements.define('sql-quiz-option', sqlQuizOption);
+
+
+class sqlQuiz extends HTMLElement {
+  constructor() {
+    super();
+  }
+  
+  connectedCallback() {
+    var title = this.getAttribute('data-title') || '';
+    var description = this.getAttribute('data-description') || '';
+    
+    var homeDiv = document.createElement('div');
+    homeDiv.className = 'sqlQuizHomeDiv';
+    
+    if (title) {
+      var caption = `<div class="sqlQuizTitle">${title}</div>`;
+      homeDiv.innerHTML += caption;
+    }
+
+    if (description) {
+      var commentbox = document.createElement('div');
+      commentbox.className = 'sqlQuizDescription';
+      commentbox.textContent = description;
+      homeDiv.appendChild(commentbox);
+    }
+    
+    var form = document.createElement('form');
+
+    // Input Area
+    var inputArea = document.createElement('div');
+    inputArea.className = 'sqlQuizInputArea';
+    
+    var options = document.createElement('div');
+    options.className = 'sqlQuizOptions';
+    inputArea.appendChild(options);
+    
+    var submitButton = document.createElement('input');
+    submitButton.type = 'submit';
+    submitButton.value = 'Submit';
+    inputArea.appendChild(submitButton);
+    
+    var hintButton = document.createElement('input');
+    hintButton.name = "hint";
+    hintButton.type = "button";
+    hintButton.value = "Show Hints";
+    hintButton.onclick = (e) => {
+      document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'inline');
+    };
+    inputArea.appendChild(hintButton);
+    form.appendChild(inputArea);
+    
+    // Output Area
+    var outputArea = document.createElement('div');
+    outputArea.className = 'sqlQuizOutputArea';
+    
+    var outputBox = document.createElement('output');
+    outputBox.name = 'output';
+    outputArea.appendChild(outputBox);
+    
+    // Link everything together
+    form.appendChild(outputArea); 
+    form['onsubmit'] = (e) => {
+      e && e.preventDefault();
+      var value = Array.prototype.filter.call(form.input, i => i.checked).map(i => i.value);
+      var correct = Array.prototype.filter.call(form.input, i => i.dataset.correct === "true").map(i => i.value);
+      console.log(form.input);
+      console.log(correct);
+      var mistakes = setdiff(correct, value).size + setdiff(value, correct).size;
+      var res = mistakes > 2 ? mistakes + " mistakes" : 
+          mistakes == 1 ? mistakes + " mistake" : "All correct!"  
+      form.output.innerHTML = `<div class='returnOkay'>${res}</div>`;
+    };  
+    
+    homeDiv.append(form);
+    this.append(homeDiv);
+    }
+}
+customElements.define('sql-quiz', sqlQuiz);
+
+//////////////////////////
 // SQL Exercise Component
+//////////////////////////
+
 class sqlExercise extends HTMLElement {
   constructor() {
     super();
@@ -115,7 +244,6 @@ class sqlExercise extends HTMLElement {
       smartIndent: true,
       lineNumbers: true,
       textWrapping: false,
-      autofocus: true,
       autoRefresh: true,    
       theme: 'neat',
       viewportMargin: Infinity

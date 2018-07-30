@@ -21,8 +21,25 @@ h3 {
     font-size: 1.17em;
 }
 
+h4 {
+    display: inline;
+    font-weight: 700;
+}
+
+p {
+    margin: 0.5em 0 0.5em 0;
+    line-height: 170%;
+}
+
 code {
     font-family: Consolas,monospace;
+    font-weight: 700;
+}
+
+.codeblock {
+    border: solid 1px lightgrey;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 /*hyperlinks*/
@@ -59,20 +76,28 @@ body #column {
     margin-left: 4rem;
     width: 40rem;
     margin-right: 4rem;
-    margin-below: 6rem;
+    margin-bottom: 6rem;
 }
 
 body {
     color: #1b1e23;
-    font: 20px/1.5 Lato,sans-serif;
+    font-size: 18px;
+    font-family: 'Libre Baskerville', serif;
     max-width: 1000px;
-    margin: 0;
     margin-left: auto;
     margin-right: auto;
 }
 @media (min-width: 1000px)
 html {
     font-size: 20px;
+}
+
+/* sideNote */
+.sideNote {
+    margin: 1em 0em;
+    padding-left: 1em;
+    font-size: 0.9em;
+    border-left: 2px solid grey;
 }
 
 /* datatable */
@@ -85,19 +110,80 @@ html {
     padding: 5px;
     border: solid 1px grey;
 }
+
 .datatable thead {
     background: lightgrey;
 }
 
+
+/* sql quiz component */
+sql-quiz .sqlQuizHomeDiv {
+    margin: 1em 0em;
+    font-family: Roboto, sans-serif;
+    background: #f9f9f9;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+sql-quiz .sqlQuizTitle {
+    font-weight: 700;
+}
+
+sql-quiz .sqlQuizDescription {
+    font-weight: 200;
+}
+
+sql-quiz .sqlQuizInputArea {
+    line-height: 130%;
+    min-width: 100%;
+}
+sql-quiz .sqlQuizInputArea .sqlOption {
+    min-width: 100%;
+    margin: 0.5em 0em;
+    display: flex;
+}
+
+sql-quiz input[type=checkbox] {
+  transform: scale(1.5);
+}
+
+sql-quiz .sqlOption .optionText {
+    flex-shrink: 0;
+    min-width: 10em;
+}
+
+sql-quiz .sqlOption .hintSpan {
+    display: none;
+    color: blue;
+    font-weight: 200;
+    margin-left: 1em
+}
+
+sql-quiz .sqlQuizInputArea input {
+    margin-right: 1em;
+    background: none;
+    border-radius: 4px;
+}
+
+sql-quiz .sqlQuizOutputArea .returnOkay {
+    margin-top: 0.5em;
+}
+
 /* sql exercise component */
 sql-exercise .sqlExHomeDiv{
-    width: 100%;
-    //background: pink;
+    margin: 1em 0em;
+    font-family: Roboto, sans-serif;
+    background: #f9f9f9;
+    padding: 6px;
+    border-radius: 6px;
 }
 
 sql-exercise .sqlExQuestion {
     font-weight: 700;
-    font-style: italic;
+}
+
+sql-exercise .sqlExComment {
+    font-weight: 200;
 }
 
 sql-exercise form {
@@ -105,15 +191,33 @@ sql-exercise form {
 }
 
 sql-exercise .sqlExInputArea {
+    line-height: 130%;
     min-width: 100%;
-    }
+}
 
 sql-exercise .sqlExOutputArea {
-    //background: green;
-    max-height:10em;
-    overflow: scroll;
+    max-height: 12em;
+    max-width: 52rem;
+    overflow: auto;
+    background: #f9f9f9;
+    border-radius: 6px;
+}
+
+sql-exercise .sqlExOutputArea .returnOkay {
+    margin-top: 0.5em;
 }
 
 sql-exercise .sqlExOutputArea .returnError {
+    margin-top: 0.5em;
     color: red;
+}
+
+sql-exercise .CodeMirror {
+    margin: 0.5em 0em;
+}
+
+sql-exercise .sqlExInputArea input {
+    margin-right: 1em;
+    background: none;
+    border-radius: 4px;
 }
