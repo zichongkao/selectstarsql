@@ -93,12 +93,23 @@ The `WHERE` block allows us to filter the table for rows that meet certain condi
 
 <sql-exercise
   data-question="Find the first and last names and ages of inmates 25 or younger at time of execution."
-  data-comment="Because the average time inmates spend on death row prior to execution is 10.26 years, only 6 inmates this young have been executed in Texas."
+  data-comment="Because the average time inmates spend on death row prior to execution is 10.26 years, only 6 inmates this young have been executed in Texas since 1976."
   data-default-text=""
   data-solution="SELECT first_name, last_name, age FROM executions WHERE age <= 25"></sql-exercise>
 
+It's clear how we can use arthmetic operators like `<` and `<=` to build clauses. There are a collection of string operators to work with strings too. 
 
+The <code>LIKE</code> operator allows us to use `%` as a wildcard to match any number of characters characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
 
+<sql-exercise
+    data-question="Find the execution_number of Raymond Landry."
+    data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find it."
+    data-default-text="SELECT execution_number FROM executions
+WHERE first_name = 'Raymond' AND last_name = 'Landry'"
+    data-solution="SELECT execution_number FROM executions WHERE first_name = 'Raymond' AND last_name LIKE '%Landry%'"></sql-exercise>
+
+Let's take a quick quiz to cement your understanding.
+ 
 <sql-quiz
   data-title="Select the <code>WHERE</code> blocks with valid clauses."
   data-description="These are tricky. Even if you've guessed correctly, read the hints to understand the reasoning.">
@@ -128,12 +139,23 @@ The `WHERE` block allows us to filter the table for rows that meet certain condi
     data-hint="SQL can evaluate the truth-value of almost anything. The 'age' column is filled with integers. The rule for integers is 0 is false and everything else is true, so only rows with non-zero ages will be returned."
     data-correct="true"
     ></sql-quiz-option>
+   <sql-quiz-option
+    data-value="like_order"
+    data-statement="WHERE '%obert%' LIKE first_name"
+    data-hint="More than one wildcard is fine. But the pattern always follows the LIKE operator."
+    data-correct="true"
+    ></sql-quiz-option>
     </sql-quiz>
 
+<div class="sideNote">
+  <h3>Quotes vs Backticks</h3>
+  <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. Imagine we had a table named 'where'. You would have to do <code>SELECT * FROM `where` WHERE ...</code>.</p>
+</div>
+    
 Now you have the tools you need to complete our project.
 <sql-exercise
   data-question="Find Napolean Beazley's last statement."
-  data-comment=""
+  data-comment="Recall that Beazley was only 25 when he made this statement."
   data-default-text=""
   data-solution="SELECT last_statement FROM executions WHERE first_name = 'Napoleon' AND last_name = 'Beazley'"></sql-exercise>
 

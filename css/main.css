@@ -26,7 +26,7 @@ h4 {
     font-weight: 700;
 }
 
-p, li {
+p {
     margin: 0.5em 0 0.5em 0;
     line-height: 170%;
 }
@@ -54,10 +54,10 @@ html {
 }
 
 body #column {
-    margin-left: 4rem;
     width: 40rem;
+    margin-left: 4rem;
     margin-right: 4rem;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 }
 
 body {
@@ -88,7 +88,13 @@ body {
     margin-top: 0.5em;
     /*border: solid 1px grey; */
 }
-    
+
+.footer {
+    margin-top: 6em;
+    font-family: 'Roboto',sans-serif;
+    color: #333;
+    font-weight: 200;
+}    
     
 /*hyperlinks*/
 a {

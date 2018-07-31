@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
-
-<a href="frontmatter.html">frontmatter</a>
-<a href="tutorialone.html">tutorialone</a>
+<div id="nav">
+  <ul class="siblinks">
+    <li><a href="frontmatter.html">Front Matter</a></li>
+    <li><a href="tutorialone.html">The Beazley Case</a></li>
+  </ul>
+</div>
