@@ -1,7 +1,17 @@
 ---
 layout: tutorial
 ---
+<div id="nav">
+  <ul class="siblinks">
+    <li><a href="#beazley_case">1. The Beazley Case</a></li>
+    <li><a href="#first">2. A First SQL Query</a></li>
+    <li><a href="#select">3. The SELECT Block</a></li>
+    <li><a href="#from">4. The FROM Block</a></li>
+    <li><a href="#where">5. The WHERE Block</a></li>
+  </ul>
+</div>
 
+<a name="beazley_case"></a>
 <h2>The Beazley Case</h2>
 In 1994, Napolean Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
 
@@ -10,6 +20,7 @@ The case was also notable because the victim was the father of a federal judge J
 Napolean Beazley made an impassionate last statement arguing that an eye for an eye does not constitute justice. Our task is to retrieve his statement from the database.
 
 <br>
+<a name="first"></a>
 <h2>A First SQL Query</h2>
 <sql-exercise
   data-question="Run this query to find the first 3 rows of the 'executions' table."
@@ -24,6 +35,7 @@ The SQL query may look like an ordinary sentence, but you should view it as thre
 As with Lego, each block has a fixed format and the different blocks have to fit together in particular ways.
 
 <br>
+<a name="select"></a>
 <h2>The SELECT Block</h2>
 The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column_name&gt;, &lt;column_name&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
 
@@ -38,6 +50,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
 </div>
 
 <br>
+<a name="from"></a>
 <h2>The FROM Block</h2>
 The <code>FROM</code> block specifies which table we're querying from. It's format is <code class="codeblock">FROM &lt;table_name&gt;</code>. It always comes *after* the <code>SELECT</code> block.
 
@@ -74,6 +87,7 @@ We don’t need the `FROM` block if we not using anything from a table.
   data-solution="SELECT first_name, last_name FROM executions WHERE execution_number = 145"></sql-exercise>
 
 <br>
+<a name="where"></a>
 <h2>The WHERE Block</h2>
 The `WHERE` block allows us to filter the table for rows that meet certain conditions. Its format is <code class='codeblock'>WHERE &lt;clause&gt;</code> and it always goes after the `FROM` block. Here, a clause refers to a logical operation that the computer can evaluate to be true or false like <code>execution_number = 145</code>. You can imagine that the computer will go through each row in the table checking if the clause is true, and if so, return the row.
 
@@ -104,14 +118,15 @@ The `WHERE` block allows us to filter the table for rows that meet certain condi
     data-hint="Multiple column names may be used in a clause."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
-    data-value="morethan_orequal"
+    data-value="greaterthan_orequal"
     data-statement="WHERE age => 62"
-    data-hint="The 'more than or equal to' operator is <code>>=</code>. The order of the symbols matches what you would say in English."
+    data-hint="The 'greater than or equal to' operator is <code>>=</code>. The order of the symbols matches what you would say in English."
     ></sql-quiz-option>    
   <sql-quiz-option
     data-value="int_column"
     data-statement="WHERE age"
     data-hint="SQL can evaluate the truth-value of almost anything. The 'age' column is filled with integers. The rule for integers is 0 is false and everything else is true, so only rows with non-zero ages will be returned."
+    data-correct="true"
     ></sql-quiz-option>
     </sql-quiz>
 
