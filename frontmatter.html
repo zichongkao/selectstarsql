@@ -7,7 +7,8 @@ layout: default
     <li><a href="#impetus">1. Impetus</a></li>
     <li><a href="#pedagogy">2. Pedagogy</a></li>
     <li><a href="#dataset">3. Dataset</a></li>
-    <li><a href="#contact">4. Contact</a></li>
+    <li><a href="#technicals">4. Technicals</a></li>
+    <li><a href="#contact">5. Contact</a></li>
   </ul>
 </div>
  
@@ -15,9 +16,8 @@ layout: default
   <div>
     <a name="impetus"></a>
     <h2>Impetus</h2>
-    <p>While working as a data scientist at Quora, I used to have people come to me all the time asking me for resources for learning SQL, but struggled to find something I could stand behind.</p>
-    <p>I was looking for something free, that doesn't require registration, and cares about pedagogy; something that genuinely cares about its users.</p>
-    <p>My hope is that like <a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> and <a href='https://beautifulracket.com'>Beautiful Racket</a> have done for Haskell and Racket, Select Star SQL will become the best place on the internet for learning SQL.    
+    <p>When I was a data scientist at Quora, I used to have people come to me asking for resources for learning SQL. I struggled to find something I could stand behind because I felt that a good resource had to be free, not require registration, and care about pedagogy. Basically, it had to genuinely care about its users and there was nothing like that around.</p>
+    <p>By overcoming some minor <a href="#technicals">technical hurdles</a>, I believe that Select Star SQL has met this standard. My hope is that like <a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> and <a href='https://beautifulracket.com'>Beautiful Racket</a> have done for Haskell and Racket, Select Star SQL will become the best place on the internet for learning SQL.    
     </div>
   
   <br>
@@ -54,8 +54,21 @@ layout: default
   
   <br>
   <div>
+    <a name="technicals"></a>
+    <h2>Technicals</h2>
+    <ul>
+      <li><p><strong>Alasql</strong>. One of the challenges to making this site free was to avoid paying for web hosting. But to give users a hands-on experience with a database (see <a href="#pedagogy">Pedagogy</a>), one would have to host and pay for a proper backend somewhere. Thankfully, client-side databases exist. This allows me to serve a static page from <a href="https://pages.github.com">Github Pages</a> for free. The page sets up and runs an <a href="https://github.com/agershun/alasql">Alasql</a> database on your browser. It's not really industrial strength, but does the job!</p></li>
+      <li><p><strong>Matthew Butterick</strong>. I met Matthew at the <a href="https://summer-school.racket-lang.org/2018/">Racket Summer School</a> and was blown away by the great work he's done on <a href="http://beautifulracket.com">Beautiful Racket</a> and <a href="http://practicaltypography.com">Practical Typography</a>. As you can tell, I borrowed a ton of design ideas from there.</p></li>
+      <li><p><strong>Jekyll</strong>. I don't know any fancy web technologies, so <a href="https://jekyllrb.com/">Jekyll</a> was the only thing that stopped me from having to write up all the html by hand. Thank goodness for Jekyll.</p></li>
+      <li><p><strong>Web Components</strong>. I was able to reuse a lot of code by writing the exercise and quiz components as <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">custom html tags</a>. It's a relatively new development as I understand, and I hope that W3C continues to push for broader adoption.</p></li>
+    </ul>
+  </div>
+
+  <br>
+  <div>
     <a name="contact"></a>
     <h2>Contact</h2>
     <p>For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com.</p>
+    <p>You can find out more about me at <a href="http://kaomorphism.com">Kaomorphism</a>.</p>
   </div>
 </div>

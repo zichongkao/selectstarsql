@@ -142,14 +142,14 @@ Let's take a quick quiz to cement your understanding.
    <sql-quiz-option
     data-value="like_order"
     data-statement="WHERE '%obert%' LIKE first_name"
-    data-hint="More than one wildcard is fine. But the pattern always follows the LIKE operator."
+    data-hint="More than one wildcard is fine. But the pattern has to come after the LIKE operator."
     data-correct="true"
     ></sql-quiz-option>
     </sql-quiz>
 
 <div class="sideNote">
   <h3>Quotes vs Backticks</h3>
-  <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. Imagine we had a table named 'where'. You would have to do <code>SELECT * FROM `where` WHERE ...</code>.</p>
+  <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. It's possible to have a database with a table named 'where' and a column named 'from'. (Who would be so cruel as to do this?!) You would have to do <code>SELECT `from` FROM `where` WHERE ...</code>. This is another example why capitalization of SQL commands helps.</p>
 </div>
     
 Now you have the tools you need to complete our project.
