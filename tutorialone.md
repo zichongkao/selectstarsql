@@ -1,23 +1,15 @@
 ---
 layout: tutorial
+title: The Napoleon Beazley Tutorial
 ---
-<div id="nav">
-  <ul class="siblinks">
-    <li><a href="#beazley_case">1. The Beazley Case</a></li>
-    <li><a href="#first">2. A First SQL Query</a></li>
-    <li><a href="#select">3. The SELECT Block</a></li>
-    <li><a href="#from">4. The FROM Block</a></li>
-    <li><a href="#where">5. The WHERE Block</a></li>
-  </ul>
-</div>
 
 <a name="beazley_case"></a>
 <h2>The Beazley Case</h2>
-In 1994, Napolean Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
+In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
 
 The case was also notable because the victim was the father of a federal judge John Michael Luttig. During the appeals to the Supreme court, three of the nine justices recused themselves because of their personal ties to Judge Luttig, leaving only six to review the case.
 
-Napolean Beazley made an impassionate last statement arguing that an eye for an eye does not constitute justice. Our task is to retrieve his statement from the database.
+Napoleon Beazley made an impassionate last statement arguing that an eye for an eye does not constitute justice. Our task is to retrieve his statement from the database.
 
 <br>
 <a name="first"></a>
@@ -83,13 +75,13 @@ We don’t need the `FROM` block if we not using anything from a table.
   data-comment="Karla Tucker was the first woman executed in Texas since the Civil War. She was put to death for killing two people during a 1983 robbery."
   data-default-text="   SeLeCt   first_name,last_name 
   fRoM      executions   
-           WhErE execution_number = 145"
-  data-solution="SELECT first_name, last_name FROM executions WHERE execution_number = 145"></sql-exercise>
+           WhErE ex_number = 145"
+  data-solution="SELECT first_name, last_name FROM executions WHERE ex_number = 145"></sql-exercise>
 
 <br>
 <a name="where"></a>
 <h2>The WHERE Block</h2>
-The `WHERE` block allows us to filter the table for rows that meet certain conditions. Its format is <code class='codeblock'>WHERE &lt;clause&gt;</code> and it always goes after the `FROM` block. Here, a clause refers to a logical operation that the computer can evaluate to be true or false like <code>execution_number = 145</code>. You can imagine that the computer will go through each row in the table checking if the clause is true, and if so, return the row.
+The `WHERE` block allows us to filter the table for rows that meet certain conditions. Its format is <code class='codeblock'>WHERE &lt;clause&gt;</code> and it always goes after the `FROM` block. Here, a clause refers to a Boolean statement that the computer can evaluate to be true or false like <code>ex_number = 145</code>. You can imagine that the computer will go through each row in the table checking if the clause is true, and if so, return the row.
 
 <sql-exercise
   data-question="Find the first and last names and ages of inmates 25 or younger at time of execution."
@@ -97,16 +89,29 @@ The `WHERE` block allows us to filter the table for rows that meet certain condi
   data-default-text=""
   data-solution="SELECT first_name, last_name, age FROM executions WHERE age <= 25"></sql-exercise>
 
-It's clear how we can use arthmetic operators like `<` and `<=` to build clauses. There are a collection of string operators to work with strings too. 
+It's clear how we can use arthmetic operators like `<` and `<=` to build clauses. There are also a collection of string operators to work with strings. 
 
-The <code>LIKE</code> operator allows us to use `%` as a wildcard to match any number of characters characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
+The most powerful of these is probably <code>LIKE</code>. It allows us to use wildcards such as `%` and `_` to match various characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
 
 <sql-exercise
-    data-question="Find the execution_number of Raymond Landry."
-    data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find it."
-    data-default-text="SELECT execution_number FROM executions
+    data-question="Find the execution number of Raymond Landry."
+    data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find the row."
+    data-default-text="SELECT ex_number FROM executions
 WHERE first_name = 'Raymond' AND last_name = 'Landry'"
-    data-solution="SELECT execution_number FROM executions WHERE first_name = 'Raymond' AND last_name LIKE '%Landry%'"></sql-exercise>
+    data-solution="SELECT ex_number FROM executions WHERE first_name = 'Raymond' AND last_name LIKE '%Landry%'"></sql-exercise>
+
+<div class="sideNote">
+  <h3>Quotes vs Backticks</h3>
+  <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. It's possible to have a database with a table named 'where' and a column named 'from'. (Who would be so cruel as to do this?!) You would have to do <code>SELECT `from` FROM `where` WHERE ...</code>. This is another example why capitalization of SQL commands helps.</p>
+</div>
+    
+As you've seen in the previous exercise, complex clauses can be made out of simple ones using Boolean operators like `NOT`, `AND` and `OR`. SQL gives most precedence to `NOT` and then `AND` and finally `OR`. But if, like me, you're too lazy to remember the order of precedence, you can use parenthesis to clarify the order you want.
+
+<sql-exercise
+    data-question="Insert a pair of parenthesis so that this statement returns false."
+    data-default-text="SELECT false AND false OR true"
+    data-solution="SELECT false AND (false OR true)"
+    ></sql-exercise>
 
 Let's take a quick quiz to cement your understanding.
  
@@ -116,7 +121,7 @@ Let's take a quick quiz to cement your understanding.
   <sql-quiz-option
     data-value="bool_literal"
     data-statement="WHERE false"
-    data-hint="<code>true</code> and <code>false</code> are the most basic logical clauses. This block guarantees that no rows will be returned."
+    data-hint="<code>true</code> and <code>false</code> are the most basic Boolean statements. This block guarantees that no rows will be returned."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="python_equal"
@@ -125,7 +130,7 @@ Let's take a quick quiz to cement your understanding.
     ></sql-quiz-option>
   <sql-quiz-option
     data-value="column_comparison"
-    data-statement="WHERE execution_number < age"
+    data-statement="WHERE ex_number < age"
     data-hint="Multiple column names may be used in a clause."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
@@ -146,16 +151,17 @@ Let's take a quick quiz to cement your understanding.
     data-correct="true"
     ></sql-quiz-option>
     </sql-quiz>
-
-<div class="sideNote">
-  <h3>Quotes vs Backticks</h3>
-  <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. It's possible to have a database with a table named 'where' and a column named 'from'. (Who would be so cruel as to do this?!) You would have to do <code>SELECT `from` FROM `where` WHERE ...</code>. This is another example why capitalization of SQL commands helps.</p>
-</div>
     
 Now you have the tools you need to complete our project.
 <sql-exercise
-  data-question="Find Napolean Beazley's last statement."
+  data-question="Find Napoleon Beazley's last statement."
   data-comment="Recall that Beazley was only 25 when he made this statement."
   data-default-text=""
   data-solution="SELECT last_statement FROM executions WHERE first_name = 'Napoleon' AND last_name = 'Beazley'"></sql-exercise>
 
+<br>
+<a name="#recap"></a>
+<h2>Recap</h2>
+The point of this tutorial has been to introduce the basic but powerful <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. It allows us to filter a table by having the computer go row by row and pick out those for which the `WHERE` clause is true. We've also learned how to put together fairly complex clauses that can operate on string, numeric and boolean-valued columns.
+
+Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next tutorial, we'll focus on aggregations which will allow us to understand system-level phenomena.

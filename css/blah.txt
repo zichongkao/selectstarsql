@@ -1,0 +1,37 @@
+task ideas
+----------
+find maximum time between executions
+(self join)
+
+SELECT 
+e2.execution_date AS start_date, 
+e1.execution_date AS end_date,
+DATEDIFF(day, e2.execution_date, e1.execution_date) AS delta
+FROM executions e1 JOIN executions e2
+ON e1.execution_number = e2.execution_number + 1
+ORDER BY delta desc 
+LIMIT 10
+
+race and time of offense to reception / time of reception to execution
+hypothesis that black inmates get fewer appeals that delay the process
+
+proportion executed inmates by county.
+harris
+nested queries
+aggregation
+
+TODO:
+-----
+check solution should have a flag to for order-sensitiveness
+datatable printout has  grey blob at bottom left corner
+add codemirror hints
+switch out WITH example in frontmatter
+navigation
+ - add contents file
+ - automatically generate contents o neach tutorial page
+ - automatically generate next page links at the btotom of each page
+error messages
+ - intercept when output is null and give better error msg than "Cannot convert undefined or null to object"
+ - fix grammar of "table doesnt exists" error
+shift enter automatically runs the focused cell
+length of null should return null

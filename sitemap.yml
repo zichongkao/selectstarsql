@@ -1,0 +1,38 @@
+contents:
+    - tutorial: The Napoleon Beazley Tutorial
+      url: tutorialone.html
+      sections:
+        - section: The Beazley Case
+          url: #beazley_case
+        - section: A first SQL Query
+          url: #first
+        - section: The SELECT Block
+          url: #select
+        - section: The FROM Block
+          url: #from
+        - section: The WHERE Block
+          url: #where
+        - section: Recap
+          url: #recap
+    - tutorial: The Harris County Tutorial
+      url: tutorialtwo.html
+      sections:
+        - section: Harris County
+          url: #harris
+        - section: Aggregations
+          url: #aggregations
+        - section: Group By
+          url: #groupby
+        - section: Nested Queries
+          url: #nested
+        - section: Recap
+          url: #recap
+    - tutorial: The Discontinuity Tutorial
+      url: tutorialthree.html
+      sections:
+        - section: Discontinuities
+          url: #discont
+        - section: Joins
+          url: #joins
+        - section: Recap
+          url: #recap

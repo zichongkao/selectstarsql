@@ -1,5 +1,33 @@
 ---
 layout: default
 ---
-
+<div class="section-nav">
+  <ul class="siblinks">
+    {% for tutorial in site.data.sitemap.contents %}
+    {% if tutorial.title == page.title %}
+      {% assign tutorial_index = forloop.index0 %}
+      {% assign content_length = forloop.length %}
+      {% for section in tutorial.sections %}
+      <li><a href="{{ section.url }}">{{ section.name }}</a></li>
+      {% endfor %}
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
 {{content}}
+
+<div class="tutorial-nav">
+{% assign previous = tutorial_index | minus: 1 %}
+{% if previous >= 0 %}
+{% assign previous_tutorial = site.data.sitemap.contents[previous] %}
+<div class="previous">Previous: <a href="{{ previous_tutorial.url }}">
+{{ previous_tutorial.title }}</a>
+</div>
+{% endif %}
+
+{% assign next = tutorial_index | plus: 1 %}
+{% if site.data.sitemap.contents[next].title %}
+{% assign next_tutorial = site.data.sitemap.contents[next] %}
+<div class="next">Next: <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a></div>
+{% endif %}
+</div>

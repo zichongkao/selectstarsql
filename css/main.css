@@ -29,6 +29,7 @@ h4 {
 p {
     margin: 0.5em 0 0.5em 0;
     line-height: 170%;
+    font-family: 'Libre Baskerville', serif;
 }
 
 ul li {
@@ -62,8 +63,8 @@ body #column {
 
 body {
     color: #1b1e23;
+    font-family: Roboto, sans-serif;
     font-size: 18px;
-    font-family: 'Libre Baskerville', serif;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -96,6 +97,20 @@ body {
     font-weight: 200;
 }    
     
+.tutorial-nav {
+    margin-top: 2em;
+}
+
+.tutorial-nav  .previous {
+    float: left;
+    max-width: 50%;
+}
+
+.tutorial-nav  .next {
+    float: right;
+    max-width: 50%;
+}
+
 /*hyperlinks*/
 a {
     color: #07a;
@@ -153,7 +168,6 @@ ul.siblinks a {
 /* sql quiz component */
 sql-quiz .sqlQuizHomeDiv {
     margin: 1em 0em;
-    font-family: Roboto, sans-serif;
     background: #f9f9f9;
     padding: 6px;
     border-radius: 6px;

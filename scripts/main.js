@@ -6,29 +6,31 @@ function loaddata() {
   DROP TABLE IF EXISTS executions;
 
   CREATE TABLE executions (
+    ex_number INT,
     first_name STRING,
     last_name STRING,
-    race STRING,
-    weight INT,
     age INT,
     race STRING,
-    execution_number INT,
-    execution_date DATE,
+    county STRING,
+    ex_date DATE,
     last_statement STRING
     );
 
   SELECT 
+    Execution AS ex_number,
     [First Name] AS first_name, 
     [Last Name] AS last_name, 
-    Race as race, 
-    Weight AS weight,
     [Age at Execution] AS age,
-    Race as race,
-    Execution AS execution_number,
-    [Execution Date] AS execution_date,
+    Race AS race,
+    County AS county,
+    [Execution Date] AS ex_date,
     [Last Statement] AS last_statement
   INTO executions
   FROM CSV("` + dataset_location + `", {headers:true, separator:","});
+  
+  -- For some reason the blank csv entries get read as empty strings.
+  UPDATE executions SET last_statement = NULL WHERE last_statement = '';
+  UPDATE executions SET age = NULL WHERE age = '';
   `)
   .then(function(data) {console.log(data[2] + " rows successfully loaded!");})
   .catch(function(err) {console.log("Error: " + err);})
@@ -221,10 +223,8 @@ class sqlExercise extends HTMLElement {
     }
     
     if (comment) {
-      var commentbox = document.createElement('div');
-      commentbox.className = 'sqlExComment';
-      commentbox.textContent = comment;
-      homeDiv.appendChild(commentbox);
+      var commentbox = `<div class = 'sqlExComment'>${comment}</div>`;
+      homeDiv.innerHTML += commentbox;
     }
     
     var form = document.createElement('form');
