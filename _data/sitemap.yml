@@ -1,9 +1,22 @@
 contents:
-- title: The Napoleon Beazley Tutorial
+- title: Front Matter
+  url: frontmatter.html
+  sections:
+  - name: Impetus
+    url: "#impetus"
+  - name: Pedagogy
+    url: "#pedagogy"
+  - name: Dataset
+    url: "#dataset"
+  - name: Technicals
+    url: "#technicals"
+  - name: Contact
+    url: "#contact"
+- title: Beazley's Last Statement
   url: tutorialone.html
   sections:
-  - name: The Beazley Case
-    url: "#beazley_case"
+  - name: Case File
+    url: "#casefile"
   - name: A first SQL Query
     url: "#first"
   - name: The SELECT Block

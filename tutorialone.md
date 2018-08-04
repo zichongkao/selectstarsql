@@ -1,10 +1,10 @@
 ---
 layout: tutorial
-title: The Napoleon Beazley Tutorial
+title: Beazley's Last Statement
 ---
 
-<a name="beazley_case"></a>
-<h2>The Beazley Case</h2>
+<a name="casefile"></a>
+<h2>Case File</h2>
 In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
 
 The case was also notable because the victim was the father of a federal judge John Michael Luttig. During the appeals to the Supreme court, three of the nine justices recused themselves because of their personal ties to Judge Luttig, leaving only six to review the case.
