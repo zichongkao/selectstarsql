@@ -52,24 +52,42 @@ Let's do a few more exercises.
   data-default-text=""
   data-solution="SELECT first_name, last_name FROM executions WHERE LEN(last_statement) = MAX(LEN(last_statement))"></sql-exercise>
 
-As I mentioned in <a href="frontmatter.html#pedagogy">Pedagogy</a>, learning SQL is primarily about learning a mental model of what the computer is doing with your query; and at the risk of belaboring the point, the crucial thing to visualize when thinking about aggregations is the computer taking a stack of rows and returning just *one*. Can you see why the following doesn't make sense? `SELECT first_name, COUNT(*) FROM executions`. 
+As I mentioned in <a href="frontmatter.html#pedagogy">Pedagogy</a>, learning SQL is primarily about learning a mental model of what the computer is doing with your query; and at the risk of belaboring the point, the crucial thing to visualize when thinking about aggregations is the computer taking a stack of rows and returning just *one*. Can you see why the following doesn't make sense? `SELECT first_name, COUNT(*) FROM executions`.
 
-`COUNT(*)` is trying to return a single entry consisting the length of the execution table. `first_name` is trying to return one entry for each row. Should the computer return one or multiple rows? If it returns one, which `first_name` should it pick? If it returns multiple, is it supposed to replicate the `COUNT(*)` result across all the rows? 
+`COUNT(*)` is trying to return a single entry consisting the length of the execution table. `first_name` is trying to return one entry for each row. Should the computer return one or multiple rows? If it returns one, which `first_name` should it pick? If it returns multiple, is it supposed to replicate the `COUNT(*)` result across all the rows?
 
 <sql-exercise
   data-question="See what happens when you run this strange query."
   data-comment="In practice, databases try to return something sensible even though you pass in rubbish. Different databases will handle this case differently so it's best not to write stuff like this in the first place."
   data-default-text="SELECT first_name, COUNT(*) FROM executions"
   data-solution="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
-  
+
 <a name="groupby"></a>
 <h2>Group By</h2>
-Moving on, let's find the second number: the execution counts by county. The naive way to do this is to run `SELECT COUNT(*) FROM executions WHERE county=<county>` for each county in Texas. Instead, we should use the `GROUP BY` block. It takes the form <code class="codeblock">GROUP BY &lt;column&gt;, &lt;column&gt;, ...</code> and comes after the `WHERE` block. 
+Moving on, let's find the second number: the execution counts by county. The naive way to do this is to run `SELECT COUNT(*) FROM executions WHERE county=<county>` for each county in Texas. Instead, we should use the `GROUP BY` block. Its most basic form is <code class="codeblock">GROUP BY &lt;column&gt;, &lt;column&gt;, ...</code> and comes after the `WHERE` block.
 
 <sql-exercise
-  data-question="Run this query to find the execution counts by county."
+  data-question="This query pulls the execution counts for each county."
   data-default-text="SELECT COUNT(*) FROM executions GROUP BY county"
   data-solution="SELECT COUNT(*) FROM executions GROUP BY county"></sql-exercise>
+
+At this point, you might be thinking: 'How do I know which count pertains to which county?' The solution is to insert `county` into the select block like so:
+
+<sql-exercise
+  data-default-text="SELECT county, COUNT(*) FROM executions GROUP BY county"
+  data-solution="SELECT county, COUNT(*) FROM executions GROUP BY county"></sql-exercise>
+
+If you were paying attention earlier, alarm bells would be going off in your head. "Didn't you just tell us not mix aggregated and non-aggregated columns?" The difference here is that we have groups. The computer will gather all the rows with the same values in their grouping column, for example those with county as 'Harris', and run the aggregate funtions. This guarantees no ambiguity about the value of the grouping column it should assign to the group.
+
+"Mark the statements that are true:<br>The query `SELECT county, race, COUNT(*) FROM executions GROUP BY county, race` ..."
+"will return as many rows as there are unique combinations of counties and races."
+"will have a different value of county for every row it returns."
+
+<sql-exercise
+  data-question="Find the average length of inmates' full names based on their race.""
+  data-default-text=""
+  data-solution="SELECT race, AVG(LEN(first_name) + LEN(last_name)) FROM executions GROUP BY race"></sql-exercise>
+
 
 Nested Queries
 
