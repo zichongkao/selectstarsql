@@ -3,8 +3,8 @@ layout: tutorial
 title: Beazley's Last Statement
 ---
 
-<a name="casefile"></a>
-<h2>Case File</h2>
+<a name="beazley_case"></a>
+<h2>The Beazley Case</h2>
 In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
 
 The case was also notable because the victim was the father of a federal judge John Michael Luttig. During the appeals to the Supreme court, three of the nine justices recused themselves because of their personal ties to Judge Luttig, leaving only six to review the case.
@@ -35,7 +35,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
   data-question="Edit the query to select first_name, last_name and last_statement columns."
   data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
-  
+
 <div class="sideNote">
   <h3>SQL Comments</h3>
   <p>Notice that clicking "Show Solution" appends the solution to the editor preceded by two dashes. The two dashes indicate that the rest of the line is a comment and shouldn't be run as code. It is useful for temporarily hiding code you don't want to run. To run the solution, simply comment out your code and uncomment the solution.</p>
@@ -51,7 +51,7 @@ The <code>FROM</code> block specifies which table we're querying from. It's form
   data-comment="Make it a habit to examine error messages when something goes wrong. Avoid debugging by gut feel or trial and error."
   data-default-text="SELECT first_name FROM execution LIMIT 3"
   data-solution="SELECT first_name FROM executions LIMIT 3"></sql-exercise>
-  
+
 We don’t need the `FROM` block if we not using anything from a table.
 
 <sql-exercise
@@ -59,7 +59,7 @@ We don’t need the `FROM` block if we not using anything from a table.
   data-comment="SQL supports all the usual arithmetic operations."
   data-default-text="SELECT 432 - 19, 5 / 2"
   data-solution="SELECT 7843 * 730, 7843 + 730"></sql-exercise>
-  
+
 <div class="sideNote">
   <h3>Capitalization</h3>
   <p>Even though we’ve capitalized <code>SELECT</code>, <code>FROM</code> and <code>LIMIT</code>, SQL commands are not case-sensitive. Nevertheless, I recommend capitalizing them to differentiate them from column names, table names and variables. Note that column names, table names and variables <i>are</i> case-sensitive though!</p>
@@ -73,8 +73,8 @@ We don’t need the `FROM` block if we not using anything from a table.
 <sql-exercise
   data-question="Verify that messing up capitalization and whitespace still gives a valid query."
   data-comment="Karla Tucker was the first woman executed in Texas since the Civil War. She was put to death for killing two people during a 1983 robbery."
-  data-default-text="   SeLeCt   first_name,last_name 
-  fRoM      executions   
+  data-default-text="   SeLeCt   first_name,last_name
+  fRoM      executions
            WhErE ex_number = 145"
   data-solution="SELECT first_name, last_name FROM executions WHERE ex_number = 145"></sql-exercise>
 
@@ -104,7 +104,7 @@ WHERE first_name = 'Raymond' AND last_name = 'Landry'"
   <h3>Quotes vs Backticks</h3>
   <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. It's possible to have a database with a table named 'where' and a column named 'from'. (Who would be so cruel as to do this?!) You would have to do <code>SELECT `from` FROM `where` WHERE ...</code>. This is another example why capitalization of SQL commands helps.</p>
 </div>
-    
+
 As you've seen in the previous exercise, complex clauses can be made out of simple ones using Boolean operators like `NOT`, `AND` and `OR`. SQL gives most precedence to `NOT` and then `AND` and finally `OR`. But if, like me, you're too lazy to remember the order of precedence, you can use parenthesis to clarify the order you want.
 
 <sql-exercise
@@ -114,7 +114,7 @@ As you've seen in the previous exercise, complex clauses can be made out of simp
     ></sql-exercise>
 
 Let's take a quick quiz to cement your understanding.
- 
+
 <sql-quiz
   data-title="Select the <code>WHERE</code> blocks with valid clauses."
   data-description="These are tricky. Even if you've guessed correctly, read the hints to understand the reasoning.">
@@ -137,7 +137,7 @@ Let's take a quick quiz to cement your understanding.
     data-value="greaterthan_orequal"
     data-statement="WHERE age => 62"
     data-hint="The 'greater than or equal to' operator is <code>>=</code>. The order of the symbols matches what you would say in English."
-    ></sql-quiz-option>    
+    ></sql-quiz-option>
   <sql-quiz-option
     data-value="int_column"
     data-statement="WHERE age"
@@ -151,7 +151,7 @@ Let's take a quick quiz to cement your understanding.
     data-correct="true"
     ></sql-quiz-option>
     </sql-quiz>
-    
+
 Now you have the tools you need to complete our project.
 <sql-exercise
   data-question="Find Napoleon Beazley's last statement."

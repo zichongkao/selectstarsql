@@ -13,10 +13,10 @@ contents:
   - name: Contact
     url: "#contact"
 - title: Beazley's Last Statement
-  url: tutorialone.html
+  url: beazley.html
   sections:
-  - name: Case File
-    url: "#casefile"
+  - name: The Beazley Case
+    url: "#beazley_case"
   - name: A first SQL Query
     url: "#first"
   - name: The SELECT Block
@@ -27,11 +27,11 @@ contents:
     url: "#where"
   - name: Recap
     url: "#recap"
-- title: The Harris County Tutorial
-  url: tutorialtwo.html
+- title: The Long Tail
+  url: longtail.html
   sections:
-  - name: Harris County
-    url: "#harris"
+  - name: Long Tails
+    url: "#long_tail"
   - name: Aggregations
     url: "#aggregations"
   - name: Group By
