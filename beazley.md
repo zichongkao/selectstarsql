@@ -32,6 +32,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
 
 <sql-exercise
   data-question="Edit the query to select first_name, last_name and last_statement columns."
+  data-comment="Once you're done, you can hit Shift+Enter to run the query."
   data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
 
