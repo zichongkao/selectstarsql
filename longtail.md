@@ -4,11 +4,12 @@ title: The Long Tail
 ---
 
 <a name="long_tail"></a>
-<h2>Long Tails</h2>
-Long tails refer to a small number of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. Long tails indicate the presence of outliers whose unique behaviors may be of interest to us. In Texas, several counties have been known to account for most of the executions. Let's find the percentage of executions from each county so that we know which counties to look into.
+## Long Tails
+Long tails refer to a small number of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. Long tails indicate the presence of outliers whose unique behaviors may be of interest to us. In Texas, several counties have been known to account for most of the executions. Let's find the percentage of executions from each county so that we know which ones to examine more closely.
 
+<br>
 <a name="aggregations"></a>
-<h2>Aggregations</h2>
+## Aggregations
 There are two numbers we need to calculate such a percentage: executions in each county, and executions in Texas. Until now, each row in the output has come from a single row of input. However here we have both the numerator and denominator requiring information from multiple rows of input. This is the most important characteristic of aggregation functions: <i>They take multiple rows of data and combine them into one number.</i>
 
 `AVG`, `MAX`, `MIN` and `SUM` are aggregate functions that work on numeric-valued columns.
@@ -19,8 +20,9 @@ There are two numbers we need to calculate such a percentage: executions in each
   data-default-text="SELECT execution_date FROM executions"
   data-solution="SELECT MIN(execution_date), MAX(execution_date) FROM executions"></sql-exercise>
 
+<br>
 <a name="count"></a>
-<h2>The COUNT Function</h2>
+## The COUNT Function
 The length of our table is a basic and important piece of information. It informs us how much optimization we need when designing queries. For instance, we could run `SELECT * FROM my_table` if `my_table` is only 10 rows. But what if it had 10 million rows? Such a query might well hang your computer. Enter the `COUNT` function. It is an aggregate function that takes in any type of column and returns the number of non-null rows.
 
 <div class="sideNote">
@@ -72,8 +74,9 @@ As I mentioned in <a href="frontmatter.html#pedagogy">Pedagogy</a>, learning SQL
   data-default-text="SELECT first_name, COUNT(*) FROM executions"
   data-solution="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
 
+<br>
 <a name="groupby"></a>
-<h2>The GROUP BY Block</h2>
+## The GROUP BY Block
 Moving on, let's find the second number: the execution counts by county. The naive way to do this is to run `SELECT COUNT(*) FROM executions WHERE county=<county>` for each of the 254 counties in Texas. A better way would be to use the `GROUP BY` block. Its most basic form is <code class="codeblock">GROUP BY &lt;column&gt;, &lt;column&gt;, ...</code> and comes after the `WHERE` block.
 
 <sql-exercise
@@ -110,4 +113,3 @@ Nested Queries
 
 Average 
 
- f818acb10827a7144200cf0b4c2a876a7dfb3380

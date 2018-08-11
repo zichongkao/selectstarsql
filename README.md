@@ -5,7 +5,6 @@
 - When data-solution is not defined, the exercise shouldn't output correct/incorrect
 - Datatable printout has grey blob at bottom left corner
 - Add codemirror hints
-- Switch out WITH example in frontmatter
 - Navigation
   - Create a sitemap page somewhere!
 - Error messages
@@ -18,19 +17,11 @@
 find maximum time between executions
 (self join)
 
-SELECT 
-e2.execution_date AS start_date, 
+SELECT
+e2.execution_date AS start_date,
 e1.execution_date AS end_date,
 DATEDIFF(day, e2.execution_date, e1.execution_date) AS delta
 FROM executions e1 JOIN executions e2
 ON e1.execution_number = e2.execution_number + 1
-ORDER BY delta desc 
+ORDER BY delta desc
 LIMIT 10
-
-race and time of offense to reception / time of reception to execution
-hypothesis that black inmates get fewer appeals that delay the process
-
-proportion executed inmates by county.
-harris
-nested queries
-aggregation

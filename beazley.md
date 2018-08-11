@@ -4,7 +4,7 @@ title: Beazley's Last Statement
 ---
 
 <a name="beazley_case"></a>
-<h2>The Beazley Case</h2>
+## The Beazley Case
 In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
 
 The case was also notable because the victim was the father of a federal judge John Michael Luttig. During the appeals to the Supreme court, three of the nine justices recused themselves because of their personal ties to Judge Luttig, leaving only six to review the case.
@@ -13,12 +13,11 @@ Napoleon Beazley made an impassionate last statement arguing that an eye for an 
 
 <br>
 <a name="first"></a>
-<h2>A First SQL Query</h2>
+## A First SQL Query
 <sql-exercise
   data-question="Run this query to find the first 3 rows of the 'executions' table."
   data-comment="Viewing a few rows is a good way to find out the columns of a table."
-  data-default-text="SELECT * FROM executions LIMIT 3"
-  data-solution="SELECT * FROM executions LIMIT 3"></sql-exercise>
+  data-default-text="SELECT * FROM executions LIMIT 3"></sql-exercise>
 
 The SQL query may look like an ordinary sentence, but you should view it as three *Lego blocks*:
 <code class='codeblock'>SELECT *</code>
@@ -28,7 +27,7 @@ As with Lego, each block has a fixed format and the different blocks have to fit
 
 <br>
 <a name="select"></a>
-<h2>The SELECT Block</h2>
+## The SELECT Block
 The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column_name&gt;, &lt;column_name&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
 
 <sql-exercise
@@ -43,7 +42,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
 
 <br>
 <a name="from"></a>
-<h2>The FROM Block</h2>
+## The FROM Block
 The <code>FROM</code> block specifies which table we're querying from. It's format is <code class="codeblock">FROM &lt;table_name&gt;</code>. It always comes *after* the <code>SELECT</code> block.
 
 <sql-exercise
@@ -68,19 +67,18 @@ We don’t need the `FROM` block if we not using anything from a table.
 <div class="sideNote">
   <h3>Whitespace</h3>
   <p>Whitespace refers to spaces, tabs, linebreaks and other characters that are rendered as empty space on a page. As with capitalization, SQL isn't very sensitive to whitespace as long as you don't smush two words into one. This means that there just needs to be at least one whitespace character around each command — it doesn't matter which one or how many you use. Unless it's a short query, I prefer putting each command on a new line to improve readability.</p>
-</div>
 
 <sql-exercise
   data-question="Verify that messing up capitalization and whitespace still gives a valid query."
   data-comment="Karla Tucker was the first woman executed in Texas since the Civil War. She was put to death for killing two people during a 1983 robbery."
   data-default-text="   SeLeCt   first_name,last_name
   fRoM      executions
-           WhErE ex_number = 145"
-  data-solution="SELECT first_name, last_name FROM executions WHERE ex_number = 145"></sql-exercise>
+           WhErE ex_number = 145"></sql-exercise>
+</div>
 
 <br>
 <a name="where"></a>
-<h2>The WHERE Block</h2>
+## The WHERE Block
 The `WHERE` block allows us to filter the table for rows that meet certain conditions. Its format is <code class='codeblock'>WHERE &lt;clause&gt;</code> and it always goes after the `FROM` block. Here, a clause refers to a Boolean statement that the computer can evaluate to be true or false like <code>ex_number = 145</code>. You can imagine that the computer will go through each row in the table checking if the clause is true, and if so, return the row.
 
 <sql-exercise
@@ -89,7 +87,7 @@ The `WHERE` block allows us to filter the table for rows that meet certain condi
   data-default-text=""
   data-solution="SELECT first_name, last_name, age FROM executions WHERE age <= 25"></sql-exercise>
 
-It's clear how we can use arthmetic operators like `<` and `<=` to build clauses. There are also a collection of string operators to work with strings. 
+It's clear how we can use arthmetic operators like `<` and `<=` to build clauses. There are also a collection of string operators to work with strings.
 
 The most powerful of these is probably <code>LIKE</code>. It allows us to use wildcards such as `%` and `_` to match various characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
 
@@ -161,7 +159,7 @@ Now you have the tools you need to complete our project.
 
 <br>
 <a name="#recap"></a>
-<h2>Recap</h2>
+## Recap
 The point of this tutorial has been to introduce the basic but powerful <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. It allows us to filter a table by having the computer go row by row and pick out those for which the `WHERE` clause is true. We've also learned how to put together fairly complex clauses that can operate on string, numeric and boolean-valued columns.
 
 Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next tutorial, we'll focus on aggregations which will allow us to understand system-level phenomena.
