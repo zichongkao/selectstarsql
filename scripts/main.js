@@ -1,45 +1,20 @@
 // Set up DB
 window.onload = loaddata;
 function loaddata() {
-  const dataset_location = 'data/dataset.csv';
-  alasql.promise(`
-  DROP TABLE IF EXISTS executions;
-
-  CREATE TABLE executions (
-    ex_number INT,
-    first_name STRING,
-    last_name STRING,
-    age INT,
-    race STRING,
-    county STRING,
-    ex_date DATE,
-    last_statement STRING
-    );
-
-  SELECT
-    Execution AS ex_number,
-    [First Name] AS first_name,
-    [Last Name] AS last_name,
-    [Age at Execution] AS age,
-    Race AS race,
-    County AS county,
-    [Execution Date] AS ex_date,
-    [Last Statement] AS last_statement
-  INTO executions
-  FROM CSV("` + dataset_location + `", {headers:true, separator:","});
-
-  -- For some reason the blank csv entries get read as empty strings.
-  UPDATE executions SET last_statement = NULL WHERE last_statement = '';
-  UPDATE executions SET age = NULL WHERE age = '';
-  `)
-  .then(function(data) {console.log(data[2] + " rows successfully loaded!");})
-  .catch(function(err) {console.log("Error: " + err);})
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'data/processed_dataset.db', true);
+  xhr.responseType = 'arraybuffer';
+  xhr.onload = e => {
+    var uInt8Array = new Uint8Array(xhr.response);
+    window.db = new SQL.Database(uInt8Array);
+  }
+  xhr.send();
 }
 
 function query(sql) {
   // get data as array of javascript objects
   try {
-    return alasql.exec(sql);
+    return db.exec(sql);
   } catch (e) {
     throw new Error(e.message);
   }
@@ -49,7 +24,7 @@ function datatable (data) {
   var tbl = document.createElement("table");
   tbl.className = 'datatable'
 
-  var header_labels = Object.keys(data[0]);
+  var header_labels = data[0].columns;
   for (var idx in header_labels) {
     var col = document.createElement('col');
     col.className = header_labels[idx];
@@ -66,11 +41,11 @@ function datatable (data) {
 
   // fill table body
   var tbody = document.createElement("tbody");
-  for (var row_idx in data) {
+  for (var row_idx in data[0]['values']) {
     var body_row = tbody.insertRow();
     for (var header_idx in header_labels) {
       var body_cell = body_row.insertCell();
-      body_cell.appendChild(document.createTextNode(data[row_idx][header_labels[header_idx]]));
+      body_cell.appendChild(document.createTextNode(data[0]['values'][row_idx][header_idx]));
     }
   }
   tbl.appendChild(tbody);

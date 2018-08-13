@@ -17,8 +17,8 @@ There are two numbers we need to calculate such a percentage: executions in each
 <sql-exercise
   data-question="Find the dates of the earliest and latest executions in the dataset."
   data-comment="Use the <code>MIN</code> and <code>MAX</code> functions."
-  data-default-text="SELECT execution_date FROM executions"
-  data-solution="SELECT MIN(execution_date), MAX(execution_date) FROM executions"></sql-exercise>
+  data-default-text='SELECT exn_date FROM executions'
+  data-solution='SELECT MIN(exn_date), MAX(exn_date) FROM executions'></sql-exercise>
 
 <br>
 <a name="count"></a>
@@ -50,13 +50,13 @@ Let's do a few more exercises.
   data-question="Find the number of inmates who have declined to give a last statement."
   data-comment="They have <code>NULL</code> entries in their last_statement column. For bonus points, do it without a <code>WHERE</code> block."
   data-default-text=""
-  data-solution="SELECT COUNT(*) - COUNT(last_statement) FROM executions"></sql-exercise>
+  data-solution='SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="Find the length of the longest last statement."
   data-comment="The <code>LEN</code> function returns the length of a string."
   data-default-text=""
-  data-solution="SELECT MAX(LEN(last_statement)) FROM executions"></sql-exercise>
+  data-solution='SELECT MAX(LENGTH(last_statement)) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="Find the first and last_name of the the inmate with the longest last statement."
@@ -71,8 +71,7 @@ As I mentioned in <a href="frontmatter.html#pedagogy">Pedagogy</a>, learning SQL
 <sql-exercise
   data-question="See what happens when you run this strange query."
   data-comment="In practice, databases try to return something sensible even though you pass in rubbish. Different databases will handle this case differently so it's best not to write stuff like this in the first place."
-  data-default-text="SELECT first_name, COUNT(*) FROM executions"
-  data-solution="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
+  data-default-text="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
 
 <br>
 <a name="groupby"></a>
@@ -81,14 +80,12 @@ Moving on, let's find the second number: the execution counts by county. The nai
 
 <sql-exercise
   data-question="This query pulls the execution counts for each county."
-  data-default-text="SELECT COUNT(*) FROM executions GROUP BY county"
-  data-solution="SELECT COUNT(*) FROM executions GROUP BY county"></sql-exercise>
+  data-default-text="SELECT COUNT(*) FROM executions GROUP BY county"></sql-exercise>
 
 At this point, you might be thinking: 'How do I know which count pertains to which county?' The solution is to insert `county` into the select block like so:
 
 <sql-exercise
-  data-default-text="SELECT county, COUNT(*) FROM executions GROUP BY county"
-  data-solution="SELECT county, COUNT(*) FROM executions GROUP BY county"></sql-exercise>
+  data-default-text="SELECT county, COUNT(*) FROM executions GROUP BY county"></sql-exercise>
 
 If you were paying attention earlier, alarm bells would be going off in your head. "Didn't we just learn not to mix aggregated and non-aggregated columns?" The difference here is that we have groups. The computer will gather all the rows with the same values in their grouping column, for example those with county as 'Harris', and run the aggregate functions. This guarantees no ambiguity about the value of the grouping column it should assign to the group.
 
