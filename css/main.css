@@ -47,18 +47,10 @@ code {
     padding: 2px;
 }
 
-
 /* general */
 @media (min-width: 1000px)
 html {
     font-size: 18px;
-}
-
-body #column {
-    width: 40rem;
-    margin-left: 4rem;
-    margin-right: 4rem;
-    margin-bottom: 2rem;
 }
 
 body {
@@ -69,6 +61,18 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+body #column {
+    width: 40rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 2rem;
+}
+
+.content img {
+    width: 100%
+}
+
 
 .header {
     display: flex;
@@ -95,8 +99,8 @@ body {
     font-family: 'Roboto',sans-serif;
     color: #333;
     font-weight: 200;
-}    
-    
+}
+
 .tutorial-nav {
     margin-top: 2em;
 }
@@ -125,6 +129,7 @@ a:hover {
 /* sublinks */
 ul.siblinks {
     font-family: Roboto, sans-serif;
+    font-size: 1.2em;
     column-count: 2;
     list-style-type: none;
     padding: 0;
@@ -136,9 +141,8 @@ ul.siblinks a.here {
 }
 ul.siblinks a {
     display: inline-block;
-    text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 0.5em;
+    padding: 0.3em;
 }
 
 /* sideNote */

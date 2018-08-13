@@ -3,10 +3,8 @@
 ## Todo
 - "Check Solution" should have a flag to for order-sensitiveness
 - Navigation
-  - Create a sitemap page somewhere!
-- Error messages
-  - Intercept when output is null and give better error msg than "Cannot convert undefined or null to object"
-- Length of columns with nulls should return null rather than undefined. Same with Min and Max.
+  - Create a sitemap page somewhere
+- Fix how dates are handled. MIN, MAX shouldn't be lexicographic.
 
 ## Task Ideas
 find maximum time between executions

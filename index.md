@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Select Star SQL
 ---
 <div id="nav">
   <ul class="siblinks">

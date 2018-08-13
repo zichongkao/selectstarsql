@@ -9,7 +9,7 @@ layout: default
       {% assign tutorial_index = forloop.index0 %}
       {% assign content_length = forloop.length %}
       {% for section in tutorial.sections %}
-      <li><a href="{{ section.url }}">{{ section.name }}</a></li>
+      <li><a href="{{ section.url }}">{{ forloop.index }}. {{ section.name }}</a></li>
       {% endfor %}
     {% endif %}
     {% endfor %}
