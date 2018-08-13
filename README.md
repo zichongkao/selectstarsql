@@ -2,15 +2,10 @@
 
 ## Todo
 - "Check Solution" should have a flag to for order-sensitiveness
-- When data-solution is not defined, the exercise shouldn't output correct/incorrect
-- Datatable printout has grey blob at bottom left corner
-- Add codemirror hints
 - Navigation
   - Create a sitemap page somewhere!
 - Error messages
   - Intercept when output is null and give better error msg than "Cannot convert undefined or null to object"
-  - Fix grammar of "table doesnt exists" error
-- Shift+enter automatically runs the focused cell
 - Length of columns with nulls should return null rather than undefined. Same with Min and Max.
 
 ## Task Ideas

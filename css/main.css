@@ -248,7 +248,6 @@ sql-exercise .sqlExOutputArea {
     max-width: 52rem;
     overflow: auto;
     background: #f9f9f9;
-    border-radius: 6px;
 }
 
 sql-exercise .sqlExOutputArea .returnOkay {
