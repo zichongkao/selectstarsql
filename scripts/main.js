@@ -1,23 +1,44 @@
 // Set up DB
 window.onload = loaddata;
 function loaddata() {
+  window.worker = new Worker("scripts/worker.sql.js");
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'data/processed_dataset.db', true);
   xhr.responseType = 'arraybuffer';
-  xhr.onload = e => {
+  xhr.onload = () => {
     var uInt8Array = new Uint8Array(xhr.response);
-    window.db = new SQL.Database(uInt8Array);
+    worker.onmessage = event => {
+       if (event.data.ready) {
+         console.log('DB initialization successful');
+         query('SELECT COUNT(*) FROM executions', (e) => {
+          console.log(e[0].values[0] + ' rows loaded')});
+       } else {
+         console.log('DB initialization failed');
+       }
+    }
+
+    worker.postMessage({
+      id:1,
+      action:'open',
+      buffer: uInt8Array,
+    });
   }
   xhr.send();
 }
 
-function query(sql) {
-  // get data as array of javascript objects
-  try {
-    return db.exec(sql);
-  } catch (e) {
+function query(sql, cb) {
+  worker.onerror = e => {
     throw new Error(e.message);
   }
+
+  worker.onmessage = event => {
+    cb(event.data.results);
+  }
+  worker.postMessage({
+      id: 2,
+      action: 'exec',
+      sql: sql
+  });
 }
 
 function datatable (data) {
@@ -230,23 +251,30 @@ class sqlExercise extends HTMLElement {
     runButton.value = 'Run';
     inputArea.appendChild(runButton);
 
+
     form['onsubmit'] = (e) => {
       e && e.preventDefault();
-      try {
-        var result_data = query(editor.getValue());
-        var result_div = document.createElement('div');
+      var result_div = document.createElement('div');
+
+      var handleSubmit = (submission_data) => {
         result_div.className = 'returnOkay';
+
         if (solution) {
-          var correct_data = query(solution);
-          var verdict = _.isEqual(result_data, correct_data) ? "Correct" : "Incorrect";
-          // http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
           var verdict_div = document.createElement('div');
-          verdict_div.innerText = verdict;
           result_div.appendChild(verdict_div);
+
+          query(solution, (solution_data) => {
+            var verdict = _.isEqual(submission_data, solution_data) ? "Correct" : "Incorrect";
+            // http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
+            verdict_div.innerText = verdict;
+          });
         }
-        result_div.appendChild(datatable(result_data));
+        result_div.appendChild(datatable(submission_data));
+      }
+
+      try {
+        query(editor.getValue(), handleSubmit);
       } catch (e) {
-        var result_div = document.createElement('div');
         result_div.className = 'returnError';
         result_div.innerText = e.message;
       }

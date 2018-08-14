@@ -14,7 +14,7 @@ Let's find the percentage of executions from each county so that we know which o
 ## Aggregations
 There are two numbers we need to calculate such a percentage: executions in each county, and executions in Texas. Until now, each row in the output has come from a single row of input. However here we have both the numerator and denominator requiring information from multiple rows of input. This is the most important characteristic of aggregation functions: <i>They take multiple rows of data and combine them into one number.</i>
 
-`AVG`, `MAX`, `MIN` and `SUM` are aggregate functions that work on numeric-valued columns.
+`AVG`, `MAX`, `MIN` and `SUM` are aggregate functions that work on numeric-valued columns. They are useful for giving us a system-level perspective of the dataset.
 
 <sql-exercise
   data-question="Find the dates of the earliest and latest executions in the dataset."
@@ -25,7 +25,7 @@ There are two numbers we need to calculate such a percentage: executions in each
 <br>
 <a name="count"></a>
 ## The COUNT Function
-The length of our table is a basic and important piece of information. It informs us how much optimization we need when designing queries. For instance, we could run `SELECT * FROM my_table` if `my_table` is only 10 rows. But what if it had 10 million rows? Such a query might well hang your computer. Enter the `COUNT` function. It is an aggregate function that takes in any type of column and returns the number of non-null rows.
+The length of a table is a basic and important piece of information. It informs us how much optimization we need when designing queries. For instance, we could run `SELECT * FROM my_table` if `my_table` is only 10 rows. But what if it has 10 million rows? Such a query may well hang our computer. Enter the `COUNT` function. It is an aggregate function that takes in any type of column and returns the number of non-null rows.
 
 <div class="sideNote">
   <h3>Nulls</h3>
@@ -38,7 +38,7 @@ The length of our table is a basic and important piece of information. It inform
     data-solution="SELECT 0 IS NOT NULL AND '' IS NOT NULL "></sql-exercise>
 </div>
 
-At this point, our best solution for finding table length is `COUNT(my_column)`. But what if `my_column` has `NULL`s in it? Worse still, what if all the columns have some indeterminate number of `NULL`s? The solution is `COUNT(*)`. This is reminiscent of `SELECT *` where the `*` represents all columns. In practice `COUNT(*)` counts rows as long as *any one* of their columns is non-null. This helps us find table length because a table shouldn't have rows that are completely null. Note that other aggregate functions don't work on `*`. After all, some of the columns may not be numeric-valued.
+At this point, our best solution for finding table length is `COUNT(my_column)`. But what if `my_column` has `NULL`s in it? Worse still, what if all the columns have some indeterminate number of `NULL`s? The solution is `COUNT(*)`. This is reminiscent of `SELECT *` where the `*` represents all columns. In practice `COUNT(*)` counts rows as long as *any one* of their columns is non-null. This helps us find table lengths because a table shouldn't have rows that are completely null. Note that other aggregate functions don't work on `*`. After all, some of the columns may not be numeric-valued.
 
 <sql-exercise
   data-question="Find the total number of executions in the dataset."
