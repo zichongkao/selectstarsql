@@ -5,6 +5,10 @@
 - Navigation
   - Create a sitemap page somewhere
 - Fix how dates are handled. MIN, MAX shouldn't be lexicographic.
+- Add exn_age
+- Allow Question to contain code
+- Fix css for numbered points
+- Clarify double quotes for SQLite
 
 ## Task Ideas
 find maximum time between executions

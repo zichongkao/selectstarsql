@@ -27,13 +27,26 @@ contents:
     url: "#where"
   - name: Recap
     url: "#recap"
-- title: The Long Tail
+- title: The Long Tail I
   url: longtail.html
   sections:
   - name: Long Tails
     url: "#long_tail"
   - name: Aggregations
     url: "#aggregations"
+  - name: The COUNT Function
+    url: "#count"
+  - name: Practice
+    url: "#practice"
+  - name: A Strange Query
+    url: "#strange"
+  - name: Recap
+    url: "#recap"
+- title: The Long Tail II
+  url: longtail2.html
+  sections:
+  - name: Previously
+    url: "#previously"
   - name: Group By
     url: "#groupby"
   - name: Nested Queries
