@@ -9,17 +9,17 @@ In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage
 
 The case was also notable because the victim was the father of a federal judge John Michael Luttig. During the appeals to the Supreme court, three of the nine justices recused themselves because of their personal ties to Judge Luttig, leaving only six to review the case.
 
-Napoleon Beazley made an impassionate last statement arguing that an eye for an eye does not constitute justice. Our task is to retrieve his statement from the database.
+Napoleon Beazley made an impassioned last statement arguing that an eye for an eye does not constitute justice. Our task is to retrieve his statement from the database.
 
 <br>
 <a name="first"></a>
 ## A First SQL Query
 <sql-exercise
   data-question="Run this query to find the first 3 rows of the 'executions' table."
-  data-comment="Viewing a few rows is a good way to find out the columns of a table."
+  data-comment="Viewing a few rows is a good way to find out the columns of a table. Try to remember the column names for later use."
   data-default-text="SELECT * FROM executions LIMIT 3"></sql-exercise>
 
-The SQL query may look like an ordinary sentence, but you should view it as three *Lego blocks*:
+The SQL query may look like an ordinary sentence, but you should view it as three Lego blocks:
 <code class='codeblock'>SELECT *</code>
 <code class='codeblock'>FROM executions</code>
 <code class='codeblock'>LIMIT 3</code>.
@@ -55,14 +55,17 @@ The <code>FROM</code> block specifies which table we're querying from. It's form
 We don’t need the `FROM` block if we not using anything from a table.
 
 <sql-exercise
-  data-question="Modify the query to calculate the product and sum of 7843 and 730."
+  data-question="Modify the query to divide 50 and 51 by 2."
   data-comment="SQL supports all the usual arithmetic operations."
-  data-default-text="SELECT 432 - 19, 5 / 2"
-  data-solution="SELECT 7843 * 730, 7843 + 730"></sql-exercise>
+  data-default-text="SELECT 50 + 2, 51 * 2"
+  data-solution="SELECT 50 / 2, 51 / 2"></sql-exercise>
+
+Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`.
 
 <div class="sideNote">
   <h3>Capitalization</h3>
-  <p>Even though we’ve capitalized <code>SELECT</code>, <code>FROM</code> and <code>LIMIT</code>, SQL commands are not case-sensitive. Nevertheless, I recommend capitalizing them to differentiate them from column names, table names and variables. Note that column names, table names and variables <i>are</i> case-sensitive though!</p>
+  <p>Even though we’ve capitalized <code>SELECT</code>, <code>FROM</code> and <code>LIMIT</code>, SQL commands are not case-sensitive. You can see that the code editor recognizes them and formats them as a command no matter the capitalization. Nevertheless, I recommend capitalizing them to differentiate them from column names, table names and variables.</p>
+  <p>Column names, table names and variables are also not case-sensitive in this version of SQL, though they are case-sensitive in many other versions. To be on the safe side, I recommend always assuming they are case-sensitive.</p>
 </div>
 
 <div class="sideNote">
@@ -86,9 +89,10 @@ The `WHERE` block allows us to filter the table for rows that meet certain condi
   data-question="Find the first and last names and ages of inmates 25 or younger at time of execution."
   data-comment="Because the average time inmates spend on death row prior to execution is 10.26 years, only 6 inmates this young have been executed in Texas since 1976."
   data-default-text=""
-  data-solution="SELECT first_name, last_name, age FROM executions WHERE age <= 25"></sql-exercise>
+  data-solution="SELECT first_name, last_name, ex_age
+FROM executions WHERE ex_age <= 25"></sql-exercise>
 
-It's clear how we can use arthmetic operators like `<` and `<=` to build clauses. There are also a collection of string operators to work with strings.
+It's clear how we can use arithmetic operators like `<` and `<=` to build clauses. There are also a collection of string operators to work with strings.
 
 The most powerful of these is probably <code>LIKE</code>. It allows us to use wildcards such as `%` and `_` to match various characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
 
@@ -96,7 +100,8 @@ The most powerful of these is probably <code>LIKE</code>. It allows us to use wi
     data-question="Find the execution number of Raymond Landry."
     data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find the row."
     data-default-text="SELECT ex_number FROM executions
-WHERE first_name = 'Raymond' AND last_name = 'Landry'"
+WHERE first_name = 'Raymond'
+    AND last_name = 'Landry'"
     data-solution="SELECT ex_number FROM executions WHERE first_name = 'Raymond' AND last_name LIKE '%Landry%'"></sql-exercise>
 
 <div class="sideNote">
@@ -107,9 +112,10 @@ WHERE first_name = 'Raymond' AND last_name = 'Landry'"
 As you've seen in the previous exercise, complex clauses can be made out of simple ones using Boolean operators like `NOT`, `AND` and `OR`. SQL gives most precedence to `NOT` and then `AND` and finally `OR`. But if, like me, you're too lazy to remember the order of precedence, you can use parenthesis to clarify the order you want.
 
 <sql-exercise
-    data-question="Insert a pair of parenthesis so that this statement returns false."
-    data-default-text="SELECT false AND false OR true"
-    data-solution="SELECT false AND (false OR true)"
+    data-question="Insert a pair of parenthesis so that this statement returns 0."
+    data-comment="Here we're relying on the fact that 1 means true and 0 means false."
+    data-default-text="SELECT 0 AND 0 OR 1"
+    data-solution="SELECT 0 AND (0 OR 1)"
     ></sql-exercise>
 
 Let's take a quick quiz to cement your understanding.
@@ -119,12 +125,12 @@ Let's take a quick quiz to cement your understanding.
   data-description="These are tricky. Even if you've guessed correctly, read the hints to understand the reasoning.">
   <sql-quiz-option
     data-value="bool_literal"
-    data-statement="WHERE false"
-    data-hint="<code>true</code> and <code>false</code> are the most basic Boolean statements. This block guarantees that no rows will be returned."
+    data-statement="WHERE 0"
+    data-hint="<code>1</code> and <code>0</code> are the most basic Boolean statements. This block guarantees that no rows will be returned."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="python_equal"
-    data-statement="WHERE age == 62"
+    data-statement="WHERE ex_age == 62"
     data-hint="The <code>==</code> operator checks equality in many other programming languages but SQL uses <code>=</code>."
     ></sql-quiz-option>
   <sql-quiz-option
@@ -134,12 +140,12 @@ Let's take a quick quiz to cement your understanding.
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="greaterthan_orequal"
-    data-statement="WHERE age => 62"
+    data-statement="WHERE ex_age => 62"
     data-hint="The 'greater than or equal to' operator is <code>>=</code>. The order of the symbols matches what you would say in English."
     ></sql-quiz-option>
   <sql-quiz-option
     data-value="int_column"
-    data-statement="WHERE age"
+    data-statement="WHERE ex_age"
     data-hint="SQL can evaluate the truth-value of almost anything. The 'age' column is filled with integers. The rule for integers is 0 is false and everything else is true, so only rows with non-zero ages will be returned."
     data-correct="true"
     ></sql-quiz-option>
@@ -147,7 +153,6 @@ Let's take a quick quiz to cement your understanding.
     data-value="like_order"
     data-statement="WHERE '%obert%' LIKE first_name"
     data-hint="More than one wildcard is fine. But the pattern has to come after the LIKE operator."
-    data-correct="true"
     ></sql-quiz-option>
     </sql-quiz>
 

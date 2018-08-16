@@ -26,9 +26,11 @@ function loaddata() {
   xhr.send();
 }
 
-function query(sql, cb) {
-  worker.onerror = e => {
-    throw new Error(e.message);
+function query(sql, cb, err_cb) {
+  if (err_cb) {
+    worker.onerror = e => err_cb(e);
+  } else {
+    worker.onerror = e => { throw new Error(e.message); }
   }
 
   worker.onmessage = event => {
@@ -130,7 +132,7 @@ class sqlQuiz extends HTMLElement {
 
     if (title) {
       var caption = `<div class="sqlQuizTitle">${title}</div>`;
-      homeDiv.innerHTML += caption;
+      homeDiv.insertAdjacentHTML("beforeend", caption);
     }
 
     if (description) {
@@ -139,7 +141,7 @@ class sqlQuiz extends HTMLElement {
         ${description}
       </div>
       `
-      homeDiv.innerHTML += commentbox;
+      homeDiv.insertAdjacentHTML("beforeend", commentbox);
     }
 
     var form = document.createElement('form');
@@ -212,13 +214,13 @@ class sqlExercise extends HTMLElement {
     homeDiv.className = 'sqlExHomeDiv';
 
     if (question) {
-      var caption = `<div class="sqlExQuestion">${question}</div>`
-      homeDiv.innerHTML += caption;
+      var caption = `<div class="sqlExQuestion">${question}</div>`;
+      homeDiv.insertAdjacentHTML("beforeend", caption);
     }
 
     if (comment) {
       var commentbox = `<div class = 'sqlExComment'>${comment}</div>`;
-      homeDiv.innerHTML += commentbox;
+      homeDiv.insertAdjacentHTML("beforeend", commentbox);
     }
 
     var form = document.createElement('form');
@@ -246,11 +248,8 @@ class sqlExercise extends HTMLElement {
     editor.setSize('100%', 'auto');
     editor.refresh();
 
-    var runButton = document.createElement('input');
-    runButton.type = 'submit';
-    runButton.value = 'Run';
-    inputArea.appendChild(runButton);
-
+    var runButton = `<input type="submit" value="Run &#x21e9;">`;
+    inputArea.insertAdjacentHTML("beforeend", runButton);
 
     form['onsubmit'] = (e) => {
       e && e.preventDefault();
@@ -269,15 +268,19 @@ class sqlExercise extends HTMLElement {
             verdict_div.innerText = verdict;
           });
         }
-        result_div.appendChild(datatable(submission_data));
+        if (submission_data.length < 0) {
+          result_div.appendChild(datatable(submission_data));
+        } else {
+          result_div.insertAdjacentHTML("beforeend", `No data returned`);
+        }
       }
 
-      try {
-        query(editor.getValue(), handleSubmit);
-      } catch (e) {
+      var handleError = (e) => {
         result_div.className = 'returnError';
         result_div.innerText = e.message;
       }
+
+      query(editor.getValue(), handleSubmit, handleError);
       outputBox.innerHTML = '';
       outputBox.appendChild(result_div);
     };
@@ -296,7 +299,8 @@ class sqlExercise extends HTMLElement {
       solutionButton.value = 'Show Solution';
       solutionButton.onclick = (e) => {
         var existingCode = editor.getValue();
-        editor.setValue(existingCode + "\n-- " + solution);
+        solution = "\n" + solution;
+        editor.setValue(existingCode + solution.replace(/\n/g, '\n-- '));
       };
       inputArea.appendChild(solutionButton);
     };
