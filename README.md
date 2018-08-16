@@ -4,11 +4,12 @@
 - "Check Solution" should have a flag to for order-sensitiveness
 - Navigation
   - Create a sitemap page somewhere
-- Fix how dates are handled. MIN, MAX shouldn't be lexicographic.
+- Fix how dates are handled. MIN, MAX shouldn't be lexicographic for dates.
 - Add exn_age
 - Allow Question to contain code
 - Fix css for numbered points
 - Clarify double quotes for SQLite
+- Add paragraph for each tutorial into sitemap and then put into index
 
 ## Task Ideas
 find maximum time between executions
