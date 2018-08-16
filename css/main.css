@@ -36,6 +36,10 @@ ul li {
     list-style-position: outside;
 }
 
+ol li {
+    list-style-position: outside;
+}
+
 code {
     font-family: Consolas,monospace;
     font-weight: 700;
@@ -192,7 +196,6 @@ sql-quiz .sqlQuizInputArea {
 sql-quiz .sqlQuizInputArea .sqlOption {
     min-width: 100%;
     margin: 0.5em 0em;
-    display: flex;
 }
 
 sql-quiz input[type=checkbox] {
@@ -271,4 +274,5 @@ sql-exercise .sqlExInputArea input {
     margin-right: 1em;
     background: none;
     border-radius: 4px;
+    font-size: 1em;
 }

@@ -13,8 +13,8 @@ Let's find the percentage of executions from each county so that we know which o
 <a name="aggregations"></a>
 ## Aggregations
 There are two numbers we need to calculate such a percentage:
-1. Executions in each county, and
-2. Executions in Texas.
+1. <p>Executions in each county, and</p>
+2. <p>Executions in Texas.</p>
 
 Until now, each row in the output has come from a single row of input. However, here we have both the numerator and denominator requiring information from multiple rows of input. This tells us we need to use an aggregation function because they <i>take multiple rows of data and combine them into one number.</i>
 

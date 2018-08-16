@@ -6,8 +6,7 @@
   - Create a sitemap page somewhere
 - Fix how dates are handled. MIN, MAX shouldn't be lexicographic for dates.
 - Add exn_age
-- Allow Question to contain code
-- Fix css for numbered points
+- Fix NULLs for last_statement
 - Clarify double quotes for SQLite
 - Add paragraph for each tutorial into sitemap and then put into index
 

@@ -103,7 +103,7 @@ class sqlQuizOption extends HTMLElement {
           <input type=checkbox name="input"
               data-correct=${dataCorrect}
               value=${value} />
-            <code>${statement}</code>
+            ${statement}
         </label>
       </div>
       <div class="hintSpan">${hint}</div>
@@ -134,10 +134,12 @@ class sqlQuiz extends HTMLElement {
     }
 
     if (description) {
-      var commentbox = document.createElement('div');
-      commentbox.className = 'sqlQuizDescription';
-      commentbox.textContent = description;
-      homeDiv.appendChild(commentbox);
+      var commentbox = `
+      <div class="sqlQuizDescription">
+        ${description}
+      </div>
+      `
+      homeDiv.innerHTML += commentbox;
     }
 
     var form = document.createElement('form');
@@ -210,10 +212,8 @@ class sqlExercise extends HTMLElement {
     homeDiv.className = 'sqlExHomeDiv';
 
     if (question) {
-      var caption = document.createElement('div');
-      caption.className = 'sqlExQuestion';
-      caption.textContent = question;
-      homeDiv.appendChild(caption);
+      var caption = `<div class="sqlExQuestion">${question}</div>`
+      homeDiv.innerHTML += caption;
     }
 
     if (comment) {
