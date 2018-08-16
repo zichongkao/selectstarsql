@@ -1,34 +1,55 @@
 ---
 layout: default
 ---
+
+{% for tutorial in site.data.sitemap.contents %}
+  {% if tutorial.title == page.title %}
+    {% assign tutorial_index = forloop.index0 %}
+    {% assign content_length = forloop.length %}
+    {% assign previous = tutorial_index | minus: 1 %}
+    {% assign next = tutorial_index | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
 <div class="section-nav">
-  <div><a href="/">Home</a> >> <h1>{{ page.title }}</h1></div>
-  <ul class="siblinks">
-    {% for tutorial in site.data.sitemap.contents %}
+  <a href="/">Home</a>
+  {% if previous >= 0 %}
+    {% assign previous_tutorial = site.data.sitemap.contents[previous] %}
+    <div class="section-sib">
+      &#x21b3; <a href="{{ previous_tutorial.url }}">{{ previous_tutorial.title }}</a>
+    </div>
+  {% endif %}
+
+  <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}</div></div>
+
+  {% for tutorial in site.data.sitemap.contents %}
     {% if tutorial.title == page.title %}
-      {% assign tutorial_index = forloop.index0 %}
-      {% assign content_length = forloop.length %}
       {% for section in tutorial.sections %}
-      <li><a href="{{ section.url }}">{{ forloop.index }}. {{ section.name }}</a></li>
+        <div class="childlinks">&#x21b3; <a href="{{ section.url }}">{{ section.name }}</a></div>
       {% endfor %}
     {% endif %}
-    {% endfor %}
-  </ul>
+  {% endfor %}
+
+  {% if site.data.sitemap.contents[next].title %}
+    {% assign next_tutorial = site.data.sitemap.contents[next] %}
+    <div class="section-sib">
+      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a></div>
+    </div>
+  {% endif %}
 </div>
+
 {{content}}
 
 <div class="tutorial-nav">
-{% assign previous = tutorial_index | minus: 1 %}
-{% if previous >= 0 %}
-{% assign previous_tutorial = site.data.sitemap.contents[previous] %}
-<div class="previous">Previous: <a href="{{ previous_tutorial.url }}">
-{{ previous_tutorial.title }}</a>
-</div>
-{% endif %}
+  {% if previous >= 0 %}
+    {% assign previous_tutorial = site.data.sitemap.contents[previous] %}
+    <div class="previous">Previous: <a href="{{ previous_tutorial.url }}">
+    {{ previous_tutorial.title }}</a></div>
+  {% endif %}
 
-{% assign next = tutorial_index | plus: 1 %}
-{% if site.data.sitemap.contents[next].title %}
-{% assign next_tutorial = site.data.sitemap.contents[next] %}
-<div class="next">Next: <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a></div>
-{% endif %}
+  {% if site.data.sitemap.contents[next].title %}
+    {% assign next_tutorial = site.data.sitemap.contents[next] %}
+    <div class="next">Next: <a href="{{ next_tutorial.url }}">
+    {{ next_tutorial.title }}</a></div>
+  {% endif %}
 </div>

@@ -131,23 +131,37 @@ a:hover {
 
 
 /* sublinks */
-ul.siblinks {
+.section-nav {
     font-family: Roboto, sans-serif;
     font-size: 1.2em;
-    column-count: 2;
-    list-style-type: none;
-    padding: 0;
+    letter-spacing: 0.05em;
+    padding: 0.5em;
 }
 
-ul.siblinks a.here {
+.section-nav .section-sib {
+    margin-left: 1em;
+}
+
+.section-nav .section-sib a.here {
     background: #fbfbfb;
     font-weight: bolder;
 }
-ul.siblinks a {
+
+.section-nav .cur-text {
     display: inline-block;
-    letter-spacing: 0.05em;
-    padding: 0.3em;
+    font-weight: 700;
 }
+
+.section-nav .childlinks {
+    margin-left: 3em;
+    font-weight: 200;
+}
+
+.section-nav .childlinks a.here {
+    background: #fbfbfb;
+    font-weight: bolder;
+}
+
 
 /* sideNote */
 .sideNote {

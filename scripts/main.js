@@ -268,7 +268,7 @@ class sqlExercise extends HTMLElement {
             verdict_div.innerText = verdict;
           });
         }
-        if (submission_data.length < 0) {
+        if (submission_data.length > 0) {
           result_div.appendChild(datatable(submission_data));
         } else {
           result_div.insertAdjacentHTML("beforeend", `No data returned`);
