@@ -132,10 +132,11 @@ a:hover {
 
 /* sublinks */
 .section-nav {
+    color: #1b1e23;
     font-family: Roboto, sans-serif;
     font-size: 1.2em;
-    letter-spacing: 0.05em;
-    padding: 0.5em;
+    line-height: 150%;
+    margin-bottom: 2em;
 }
 
 .section-nav .section-sib {
@@ -193,6 +194,7 @@ sql-quiz .sqlQuizHomeDiv {
     background: #f9f9f9;
     padding: 6px;
     border-radius: 6px;
+    font-weight: 200;
 }
 
 sql-quiz .sqlQuizTitle {
@@ -200,7 +202,6 @@ sql-quiz .sqlQuizTitle {
 }
 
 sql-quiz .sqlQuizDescription {
-    font-weight: 200;
 }
 
 sql-quiz .sqlQuizInputArea {
@@ -232,6 +233,8 @@ sql-quiz .sqlQuizInputArea input {
     margin-right: 1em;
     background: none;
     border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 200;
 }
 
 sql-quiz .sqlQuizOutputArea .returnOkay {

@@ -25,7 +25,9 @@ layout: default
   {% for tutorial in site.data.sitemap.contents %}
     {% if tutorial.title == page.title %}
       {% for section in tutorial.sections %}
-        <div class="childlinks">&#x21b3; <a href="{{ section.url }}">{{ section.name }}</a></div>
+        <div class="childlinks">
+          &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
+        </div>
       {% endfor %}
     {% endif %}
   {% endfor %}
@@ -33,7 +35,7 @@ layout: default
   {% if site.data.sitemap.contents[next].title %}
     {% assign next_tutorial = site.data.sitemap.contents[next] %}
     <div class="section-sib">
-      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a></div>
+      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
     </div>
   {% endif %}
 </div>
