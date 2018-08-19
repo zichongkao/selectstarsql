@@ -28,7 +28,7 @@ As with Lego, each block has a fixed format and the different blocks have to fit
 <br>
 <a name="select"></a>
 ## The SELECT Block
-The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column_name&gt;, &lt;column_name&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
+The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column&gt;, &lt;column&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
 
 <sql-exercise
   data-question="Edit the query to select first_name, last_name and last_statement columns."
@@ -44,7 +44,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
 <br>
 <a name="from"></a>
 ## The FROM Block
-The <code>FROM</code> block specifies which table we're querying from. It's format is <code class="codeblock">FROM &lt;table_name&gt;</code>. It always comes *after* the <code>SELECT</code> block.
+The <code>FROM</code> block specifies which table we're querying from. It's format is <code class="codeblock">FROM &lt;table&gt;</code>. It always comes after the <code>SELECT</code> block.
 
 <sql-exercise
   data-question="Run the given query and observe the error it produces. Fix the query."
@@ -60,7 +60,7 @@ We don’t need the `FROM` block if we not using anything from a table.
   data-default-text="SELECT 50 + 2, 51 * 2"
   data-solution="SELECT 50 / 2, 51 / 2"></sql-exercise>
 
-Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`.
+Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`. A common trick is to multiply one number by `1.0` to convert it into a decimal.
 
 <div class="sideNote">
   <h3>Capitalization</h3>

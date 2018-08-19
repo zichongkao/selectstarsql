@@ -95,7 +95,6 @@ body #column {
     font-size: 2em;
     margin-left: 0.5em;
     margin-top: 0.5em;
-    /*border: solid 1px grey; */
 }
 
 .footer {
@@ -119,7 +118,7 @@ body #column {
     max-width: 50%;
 }
 
-/*hyperlinks*/
+/* hyperlinks */
 a {
     color: #07a;
     text-decoration: none;
@@ -129,8 +128,19 @@ a:hover {
     background: #f2f8fa;
 }
 
+/* index page */
+.index_section {
+    margin-top: 1em;
+}
 
-/* sublinks */
+.index_section p{
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-weight: 200;
+    line-height: 120%;
+}
+
+/* tutorial nav links */
 .section-nav {
     color: #1b1e23;
     font-family: Roboto, sans-serif;

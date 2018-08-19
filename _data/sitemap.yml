@@ -1,6 +1,7 @@
 contents:
 - title: Front Matter
   url: frontmatter.html
+  blurb: "The philosophical and technical underpinnings of this project."
   sections:
   - name: Impetus
     url: "#impetus"
@@ -14,6 +15,7 @@ contents:
     url: "#contact"
 - title: Beazley's Last Statement
   url: beazley.html
+  blurb: "The structure of a SQL query; dealing with whitespace, quotes, comments and errors; the fundamental and powerful <code>SELECT-FROM-WHERE</code> form."
   sections:
   - name: The Beazley Case
     url: "#beazley_case"
@@ -29,6 +31,7 @@ contents:
     url: "#recap"
 - title: Claims of Innocence
   url: innocence.html
+  blurb: "Aggregation functions; with special emphasis on the <code>COUNT</code> function."
   sections:
   - name: Possible Innocence
     url: "#possible_innocence"
@@ -44,6 +47,7 @@ contents:
     url: "#recap"
 - title: The Long Tail
   url: longtail.html
+  blurb: "Aggregations using <code>GROUP BY</code>; nested queries; the ever useful but tricky calculation of percentages."
   sections:
   - name: Long Tails
     url: "#long_tails"
@@ -55,6 +59,7 @@ contents:
     url: "#recap"
 - title: The Discontinuity Tutorial
   url: tutorialthree.html
+  blurb: "<code>JOIN</code>s."
   sections:
   - name: Discontinuities
     url: "#discont"
