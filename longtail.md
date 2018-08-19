@@ -1,113 +1,99 @@
 ---
 layout: tutorial
-title: The Long Tail I
+title: The Long Tail
 ---
 
 <a name="long_tail"></a>
 ## Long Tails
 Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. <img src="execution_tail.png"> Long tails indicate the presence of outliers whose unusual behaviors may be of interest to us. In Texas, several counties have been known to account for most of the executions.
 
-Let's find the percentage of executions from each county so that we know which ones to examine further.
+Let's find the proportion of executions from each county so that we know which ones to examine further.
+
+<a name="previously"></a>
+## Previously
+In Part I, we set out to understand the long tail of counties with unusually high numbers of executions. We sought the percentage of executions per county and managed to find the denominator, the total number of executions, by applying aggregation functions to the whole dataset.
+
+In this part, we find the numerator, the execution counts of each county, by applying aggregate functions to subsets of the dataset. We then combine the two via nested queries, and provide research which accounts for the state of the most egregious counties.
 
 <br>
-<a name="aggregations"></a>
-## Aggregations
-There are two numbers we need to calculate such a percentage:
-1. <p>Executions in each county, and</p>
-2. <p>Executions in Texas.</p>
+<a name="groupby"></a>
+## The GROUP BY Block
+The `GROUP BY` block allows us to split the dataset into groups and apply aggregate functions within each group. This results in one row per group, instead of one row overall as we get when aggregating across the entire dataset. Its most basic form is <code class="codeblock">GROUP BY &lt;column&gt;, &lt;column&gt;, ...</code> and comes after the `WHERE` block.
 
-Until now, each row in the output has come from a single row of input. However, here we have both the numerator and denominator requiring information from multiple rows of input. This tells us we need to use an aggregation function because they <i>take multiple rows of data and combine them into one number.</i>
+<sql-exercise
+  data-question="This query pulls the execution counts for each county."
+  data-comment="Isn't it much better than running 254 individual queries?!"
+  data-default-text="SELECT COUNT(*)
+FROM executions
+GROUP BY county"></sql-exercise>
+
+At this point, you might be thinking: "How do I know which count pertains to which county?" The solution is to insert `county` into the `SELECT` block:
+
+<sql-exercise
+  data-default-text="SELECT county, COUNT(*)
+FROM executions
+GROUP BY county"
+  ></sql-exercise>
+
+If you recall <a href='longtail.html#strange'>A Strange Query</a>, alarm bells would be going off in your head. Didn't we just learn not to mix aggregated and non-aggregated columns? The difference here is that grouping columns are the only columns allowed to be non-aggregate. After all, all the rows in that group must have the same values on those columns so there's no ambiguity in the values they should take.
+
+<sql-quiz
+  data-title="Mark the statements that are true."
+  data-description=" The query <code>SELECT county, race, COUNT(*) FROM executions GROUP BY county, race</code>">
+  <sql-quiz-option
+    data-value="unique_combocc"
+    data-statement="will return as many rows as there are unique combinations of counties and races in the dataset."
+    data-correct="true"></sql-quiz-option>
+  <sql-quiz-option
+    data-statement="will return a group ('Bexar', 'Hispanic') even if no Hispanic inmates were executed in Bexar county."
+    data-hint="The <code>GROUP BY</code> block finds all combinations <i>in the dataset</i> rather than all theoretically possible combinations."
+    data-value="abstract_cartesian"></sql-quiz-option>
+  <sql-quiz-option
+    data-statement="will have a different value of county for every row it returns."
+    data-hint="This would be true only if <code>county</code> were the only grouping column. Here, we can have many groups with the same county but different races."
+    data-value="one_col_diff"></sql-quiz-option>
+</sql-quiz>
+
+Now you may ask, wouldn't we be done if we could just run something like `SELECT county, PROPORTION_OF_ROWS(*) FROM executions GROUP BY county`? Proportions are such a common metric &mdash; shouldn't such a function exist? Unfortunately not, and perhaps for good reason: Such a function would need to aggregate both within the group and throughout dataset to get the numerators and denominator respectively. The fact that this isn't possible solidifies our mental model a little more: `GROUP BY` really does split the dataset into groups and only runs functions within the groups.
 
 <br>
-<a name="count"></a>
-## The COUNT Function
-`COUNT` is probably the most widely-used aggregate function. As the name suggests, it counts things! For instance, <code class='codeblock'>COUNT(my_column)</code> returns the number of non-null rows in `my_column`.
+<a name="nested"></a>
+## Nested Queries
+So we can't run `SELECT county, PROPORTION_OF_ROWS(*) FROM executions GROUP BY county` directly. But perhaps we can work off of it. We know we want something like `SELECT county, COUNT(*)/<count_of_all_rows> FROM executions GROUP BY county`. We also already have the query for `<count_of_all_rows>`.
+
+The final step is to simply stuff the query in using parentheses:
 
 <sql-exercise
-  data-question="Edit the query to find how many inmates provided last statements."
-  data-comment="We can use <code>COUNT</code> here because <code>NULL</code>s are used when there are no statements."
-  data-default-text="SELECT COUNT(first_name) FROM executions"
-  data-solution="SELECT COUNT(last_statement) FROM executions"></sql-exercise>
+  data-question="Insert the <code>count_of_all_rows</code> query to find the proportion of executions from each county."
+  data-comment="The <code>1.0 *</code> is necessary so that we do decimal-based division."
+  data-default-text="SELECT
+    county,
+    1.0 * COUNT(*) / (<count_of_all_rows>)
+        AS proportion
+FROM executions
+GROUP BY county
+ORDER BY proportion DESC"
+  data-solution="SELECT
+    county,
+    1.0 * COUNT(*) / (SELECT COUNT(*) FROM executions)
+        AS proportion
+FROM executions
+GROUP BY county
+ORDER BY proportion DESC"
+  ></sql-exercise>
 
-As you can tell, the `COUNT` function is intrinsically tied to the concept of `NULL`s. Let's make a small digression to learn about `NULL`s.
-<div class="sideNote">
-  <h3>Nulls</h3>
-  <p>In SQL, <code>NULL</code> is the value of an empty entry. This is different from the empty string <code>''</code> and the integer <code>0</code>, both of which  are <i>not</i> considered <code>NULL</code>. To check if an entry is <code>NULL</code>, use <code>IS</code> and <code>IS NOT</code> instead of <code>=</code> and <code>!=</code>.</p>
 
-  <sql-exercise
-    data-question="Verify that 0 and the empty string are not considered NULL."
-    data-comment="Recall that this is a compound clause. Both of the two <code>IS NOT NULL</code> clauses have to be true for the query to return <code>true</code>."
-    data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL) "
-    data-solution="SELECT 0 IS NOT NULL AND '' IS NOT NULL "></sql-exercise>
-</div>
 
-With this, we know just enough to get one of the numbers we need:
-<sql-exercise
-data-question="Find the total number of executions in the dataset."
-data-comment="The idea here is to pick one of the columns that you're confident has no <code>NULL</code>s."
-data-default-text=""
-data-solution="SELECT COUNT(*) FROM executions"></sql-exercise>
+I've also quietly slipped in two additional SQL features. The <code class="codeblock">ORDER BY &lt;column&gt;, &lt;column&gt;, ...</code> block orders the output and can be modified by appending `DESC` if you don't want the default ascending order.
 
-So far so good. But what if we don't know which columns are `NULL`-free? Worse still, what if none of the columns are `NULL`-free? Surely there must still be a way to find the length of the table!
-
-The solution is `COUNT(*)`. This is reminiscent of `SELECT *` where the `*` represents all columns. In practice `COUNT(*)` counts rows as long as *any one* of their columns is non-null. This helps us find table lengths because a table shouldn't have rows that are completely null.
+The second feature is called aliasing. In the `SELECT` block, you can use <code class="codeblock">&lt;expression&gt; AS &lt;alias&gt;</code> to provide an alias that you can use later in the query. This saved me from having to type the whole `COUNT(*) / (SELECT ... )` shebang in the `ORDER BY` block. You can see that it also changed the heading of the column in the output table.
 
 <sql-exercise
-data-question="Verify that <code>COUNT(*)</code> gives the same result as before."
-data-default-text="SELECT COUNT(*) FROM executions"></sql-exercise>
-
-<br>
-<a name="practice"></a>
-## Practice
-
-<sql-exercise
-  data-question="Find the number of inmates who have declined to give a last statement."
-  data-comment="Just for fun, try to do it without a <code>WHERE</code> block. The hint is to combine two of the earlier exercises."
+  data-question="Find the first and last_name of the the inmate with the longest last state    ment."
+  data-comment="Aggregate functions aren't confined to the <code>SELECT</code> block. Here     you may have to use them in the <code>WHERE</code> block."
   data-default-text=""
-  data-solution='SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
-
-<sql-exercise
-  data-question="Find the minimum, maximum and average age of inmates at time of execution."
-  data-comment="Use the <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> aggregation functions."
-  data-default-text="SELECT exn_age FROM executions"
-  data-solution='SELECT MIN(exn_age), MAX(exn_age), AVG(exn_age) FROM executions'></sql-exercise>
-
-<sql-exercise
-  data-question="Find the length of the longest last statement (based on character count)."
-  data-comment="You can compose functions together. Use the <code>LENGTH</code> function which returns the number of characters in a string."
-  data-default-text=""
-  data-solution='SELECT MAX(LENGTH(last_statement)) FROM executions'></sql-exercise>
-
-<br>
-<a name="strange"></a>
-## A Strange Query
-As I mentioned in <a href="frontmatter.html#pedagogy">Pedagogy</a>, learning SQL is primarily about learning a mental model of what the computer is doing with your query; and at the risk of belaboring the point, the crucial thing about aggregations is that the computer takes a stack of rows and returning just *one*.
-
-Can you see why the following doesn't make sense?<br> `SELECT first_name, COUNT(*) FROM executions`.
-
-`COUNT(*)` is trying to return a single entry consisting the length of the execution table. `first_name` is trying to return one entry for each row. Should the computer return one or multiple rows? If it returns one, which `first_name` should it pick? If it returns multiple, is it supposed to replicate the `COUNT(*)` result across all the rows?
-
-<sql-exercise
-  data-question="See what happens when you run this strange query."
-  data-comment=""
-  data-default-text="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
-
-In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on this behavior. If you know you want the last entry, use the `LAST` aggregation function instead.
-
-<div class="sideNote">
-  <h3>SQL Dialects and Databases</h3>
-  <p>Although we've called this a SQL tutorial, if you want to be pedantic it really is a <i>SQLite</i> tutorial. This is because SQL is an imaginary concept, a platonic ideal. In reality, there are only dialects that try to conform to the SQL specifications.</p>
-  <p>SQL is also under-specified, meaning that some functionality is not specified by the standards. For instance, the standards don't say whether the string length-finding function should be called <code>LEN</code> (SQL Server) or <code>LENGTH</code> (SQLite); or how identifiers like table or column names should be quoted (<code>`</code> in MySQL, <code>"</code> in SQLite).</p>
-  <p>To make matters worse, even a single query in a single dialect can be processed differently because the underlying databases can have different architectures. For instance, the PostgreSQL dialect can be used on databases distributed over many different physical machines, and ones consisting a single file. It means that the mental models we develop here are just a crutch. They may not reflect exactly what the database is doing.</p>
-  <p>We've picked SQLite, which is both a dialect and implementation, because it's one of the most common databases around. We've also tried to focus on the core functionality and mental model of SQL rather than distinctive parts of SQLite. With a robust mental model in place, it's easy to switch between SQL dialects and databases.
-  </p>
-</div>
+  data-solution="SELECT first_name, last_name FROM executions WHERE LEN(last_statement) = M    AX(LEN(last_statement))"></sql-exercise>
 
 <br>
 <a name="recap"></a>
 ## Recap
-Our aim in this section was to find the percentage of executions that have occurred in each county. We learned to apply aggregate functions over the entire dataset which allowed us to find the denominator: the total executions in our dataset.
-
-Though we've not got this far, we already have the tools to find the numerator: executions by county. We could run `SELECT COUNT(*) FROM executions WHERE county=<county>` for each of the 254 counties in Texas, though this is obviously not the way forward.
-
-In the next section, we'll learn to apply aggregate functions on subsets of the dataset using the `GROUP BY` block. This will allow us to find the per-county counts without having to run 254 individual queries.

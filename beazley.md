@@ -5,7 +5,7 @@ title: Beazley's Last Statement
 
 <a name="beazley_case"></a>
 ## The Beazley Case
-In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. The Beazley case ignited a fierce debate over the death penalty for juvenile offenders because he was just shy of 18 years old at the time of the murder. In 2005, 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense.
+In 1994, Napoleon Beazley shot 63-year-old businessman John Luttig in his garage while trying to steal his family's car. Because he was just shy of 18 years old at the time of the murder, the Beazley case ignited a fierce debate over the death penalty for juvenile offenders. 3 years after Beazley was executed, the Supreme Court prohibited the execution of offenders under 18 at the time of their offense ([Roper v Simmons, 2005](https://en.wikipedia.org/wiki/Roper_v._Simmons)).
 
 The case was also notable because the victim was the father of a federal judge John Michael Luttig. During the appeals to the Supreme court, three of the nine justices recused themselves because of their personal ties to Judge Luttig, leaving only six to review the case.
 
@@ -159,9 +159,10 @@ Let's take a quick quiz to cement your understanding.
 Now you have the tools you need to complete our project.
 <sql-exercise
   data-question="Find Napoleon Beazley's last statement."
-  data-comment="Recall that Beazley was only 25 when he made this statement."
   data-default-text=""
   data-solution="SELECT last_statement FROM executions WHERE first_name = 'Napoleon' AND last_name = 'Beazley'"></sql-exercise>
+
+Is it amazing how profound and eloquent Beazley is? Recall that he was only 25 at time of statement and had been in prison since he was 18.
 
 <br>
 <a name="#recap"></a>

@@ -11,7 +11,7 @@ CREATE TABLE executions AS
     CAST("Age at Execution" AS INT) AS ex_age,
     "Execution Date" AS ex_date,
     "County" AS county,
-    "Last Statement" AS last_statement
+    NULLIF("Last Statement", '') AS last_statement
   FROM fulldataset;
 
 DROP TABLE fulldataset;

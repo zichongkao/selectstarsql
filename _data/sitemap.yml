@@ -27,26 +27,26 @@ contents:
     url: "#where"
   - name: Recap
     url: "#recap"
-- title: The Long Tail I
-  url: longtail.html
+- title: Claims of Innocence
+  url: innocence.html
   sections:
-  - name: Long Tails
-    url: "#long_tail"
+  - name: Possible Innocence
+    url: "#possible_innocence"
   - name: Aggregations
     url: "#aggregations"
   - name: The COUNT Function
     url: "#count"
-  - name: Practice
-    url: "#practice"
+  - name: Variations on COUNT
+    url: "#count_var"
   - name: A Strange Query
     url: "#strange"
-  - name: Recap
+  - name: Conclusion and Recap
     url: "#recap"
-- title: The Long Tail II
-  url: longtail2.html
+- title: The Long Tail
+  url: longtail.html
   sections:
-  - name: Previously
-    url: "#previously"
+  - name: Long Tails
+    url: "#long_tails"
   - name: Group By
     url: "#groupby"
   - name: Nested Queries

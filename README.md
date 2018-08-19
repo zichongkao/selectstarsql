@@ -11,6 +11,10 @@
 - Add paragraph for each tutorial into sitemap and then put into index
 
 ## Task Ideas
+Average Word count of laststatements
+Average time on deathrow
+proportion of last statements that talk about X
+
 find maximum time between executions
 (self join)
 
