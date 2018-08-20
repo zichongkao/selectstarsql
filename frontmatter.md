@@ -19,7 +19,7 @@ These principles have guided the design of this tutorial:
      To quote <a href="https://www.fastcompany.com/40435064/what-alan-kay-thinks-about-the-iphone-and-technology-now">Alan Kay</a>: "You never let [the learner] do something that isn’t the real thing&mdash;but you have to work your ass off to figure out what the real thing is in the context of the way their minds are working at that developmental level."</p>
      <p>Likewise, the exercises here have been designed to introduce increasingly sophisticated SQL techniques while exploring the dataset in ways that people would actually be interested in.</p>
    - <p><strong>Learning to program is learning a mental model</strong><br>
-     Our goal here isn't to learn the rules for how to use <code>GROUP BY</code> or when to pick a <code>LEFT JOIN</code> over an <code>INNER JOIN</code>. We know we've been successful if after writing a SQL query, you can close your eyes and imagine what the computer would do and what output it would give. Only then will you be able to solve real world problems with SQL.
+     Our goal here isn't to learn the rules for how to use <code>GROUP BY</code> or when to pick a <code>LEFT JOIN</code> over an <code>INNER JOIN</code>. We know we've been successful if after writing a SQL query, you can close your eyes and imagine what the computer would do and what output it would give. Only then will you be able to solve real-world problems with SQL.
 
 <br>
 <a name="dataset"></a>

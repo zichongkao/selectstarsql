@@ -5,9 +5,9 @@ title: Claims of Innocence
 
 <a name="possible_innoncence"></a>
 ## Possible Innocence
-Opponents of the death penalty have argued that the risk of mistakenly executing an innocent person is too great a cost to bear. In this tutorial, we estimate how many innocent people could have been executed. The main caveat is that a claim of innocence, even if made on one's deathbed, does not constitute innocence.
+Opponents of the death penalty have argued that the risk of mistakenly executing an innocent person is too great a cost to bear. In this tutorial, we attempt to approximate how many innocent people may have been executed.
 
-Furthermore, even if the inmate is truthful, there are many interpretations of innocence: The inmate could have been accused of murdering two people but is only innocent of killing one; or he may have killed the bystander but not the cop. These aren't just quibbles though: In Texas, murder alone doesn't warrant the death penalty. The inmate must have committed a [capital crime](https://en.wikipedia.org/wiki/Capital_punishment_in_Texas#Capital_crimes) like killing an on-duty public safety officer or multiple people. Hence the inmate may be innocent in a strict judicial sense, though perhaps not by common standards of morality.
+The main caveat is that a claim of innocence, even if made on one's deathbed, does not constitute innocence. Furthermore, even if the inmate is truthful, there are many interpretations of innocence: The inmate could have been accused of murdering two people but is only innocent of killing one; or he may have killed the bystander but not the cop. These aren't just quibbles though: In Texas, murder alone doesn't warrant the death penalty. The inmate must have committed a [capital crime](https://en.wikipedia.org/wiki/Capital_punishment_in_Texas#Capital_crimes) like killing a public safety officer or multiple people. Hence the inmate may be innocent in a strict judicial sense, though perhaps not by common standards of morality.
 
 Nevertheless, there is still something unsettling about claims of innocence persisting to the cusp of execution when there is little left to gain. Our task here is to find how frequently this happens by calculating the proportion of last statements where is a claim of innocence.
 
@@ -139,4 +139,6 @@ Let's use what we've learned so far to complete our task:
 FROM executions"
 ></sql-exercise>
 
-We've moved from row-level operations in the previous section, to using aggregate functions on multiple rows in the dataset. This has opened up an avenue to study system-level behavior. In the next section, we'll learn to apply aggregate functions on multiple subgroups of the dataset using the `GROUP BY` block.
+This method of finding claims of innocence is admittedly rather inaccurate because innocence can be expressed in other terms like "not guilty". Nevertheless, I suspect it underestimates the real number, and is probably of the right order of magnitude. The question we are left with then, is whether we are willing to accept the possibility that around 5% percent of people we execute are actually innocent. ([Paul Graham thinks not](http://paulgraham.com/prop62.html).)
+
+To recap, we've moved from row-level operations in the previous section, to using aggregate functions on multiple rows in the dataset. This has opened up an avenue to study system-level behavior. In the next section, we'll learn to apply aggregate functions on multiple subgroups of the dataset using the `GROUP BY` block.
