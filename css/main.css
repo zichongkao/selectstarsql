@@ -40,9 +40,13 @@ ol li {
     list-style-position: outside;
 }
 
-code {
+code, pre {
     font-family: Consolas,monospace;
     font-weight: 700;
+}
+
+pre {
+    margin-left: 1em;
 }
 
 .codeblock {
@@ -225,18 +229,18 @@ sql-quiz .sqlQuizInputArea .sqlOption {
 
 sql-quiz input[type=checkbox] {
   transform: scale(1.5);
+  float: left;
 }
 
 sql-quiz .sqlOption .optionText {
-    flex-shrink: 0;
-    min-width: 10em;
+    display: table;
 }
 
 sql-quiz .sqlOption .hintSpan {
+    /*when revealed, display: table-row;*/
     display: none;
     color: blue;
     font-weight: 200;
-    margin-left: 1em
 }
 
 sql-quiz .sqlQuizInputArea input {

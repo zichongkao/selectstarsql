@@ -100,15 +100,15 @@ class sqlQuizOption extends HTMLElement {
 
     var quizoption = `
     <div class='sqlOption'>
-      <div class="optionText">
-        <label>
-          <input type=checkbox name="input"
-              data-correct=${dataCorrect}
-              value=${value} />
+      <label>
+        <input type=checkbox name="input"
+            data-correct=${dataCorrect}
+            value=${value} />
+          <div class="optionText">
             ${statement}
-        </label>
-      </div>
-      <div class="hintSpan">${hint}</div>
+            <div class="hintSpan">${hint}</div>
+          </div>
+      </label>
     </div>
     `
     this.parentNode.querySelector('.sqlQuizOptions').innerHTML += quizoption;
@@ -164,7 +164,7 @@ class sqlQuiz extends HTMLElement {
     hintButton.type = "button";
     hintButton.value = "Show Hints";
     hintButton.onclick = (e) => {
-      document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'inline');
+      document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'table-row');
     };
     inputArea.appendChild(hintButton);
     form.appendChild(inputArea);

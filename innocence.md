@@ -139,6 +139,6 @@ Let's use what we've learned so far to complete our task:
 FROM executions"
 ></sql-exercise>
 
-This method of finding claims of innocence is admittedly rather inaccurate because innocence can be expressed in other terms like "not guilty". Nevertheless, I suspect it underestimates the real number, and is probably of the right order of magnitude. The question we are left with then, is whether we are willing to accept the possibility that around 5% percent of people we execute are actually innocent. ([Paul Graham thinks not](http://paulgraham.com/prop62.html).)
+This method of finding claims of innocence is admittedly rather inaccurate because innocence can be expressed in other terms like "not guilty". Nevertheless, I suspect it underestimates the real number, and is probably of the right order of magnitude. The question we are left with then, is whether we are willing to accept the possibility that up to 5% percent of people we execute are actually innocent. ([Paul Graham is not.](http://paulgraham.com/prop62.html))
 
 To recap, we've moved from row-level operations in the previous section, to using aggregate functions on multiple rows in the dataset. This has opened up an avenue to study system-level behavior. In the next section, we'll learn to apply aggregate functions on multiple subgroups of the dataset using the `GROUP BY` block.

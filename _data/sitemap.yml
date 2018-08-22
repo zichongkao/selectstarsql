@@ -55,6 +55,8 @@ contents:
     url: "#groupby"
   - name: Nested Queries
     url: "#nested"
+  - name: Harris County
+    url: "#harris"
   - name: Recap
     url: "#recap"
 - title: The Discontinuity Tutorial

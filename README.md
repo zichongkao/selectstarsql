@@ -1,19 +1,18 @@
 # Select Star SQL
 
 ## Todo
+- Fix how dates are handled. MIN, MAX shouldn't be lexicographic for dates.
+- Clarify double quotes for SQLite
+- Fix case when block
+- comment multiline solutions using multiline comments
 - "Check Solution" should have a flag to for order-sensitiveness
 - Navigation
   - Create a sitemap page somewhere
-- Fix how dates are handled. MIN, MAX shouldn't be lexicographic for dates.
-- Add exn_age
-- Fix NULLs for last_statement
-- Clarify double quotes for SQLite
-- Add paragraph for each tutorial into sitemap and then put into index
+- sideNote about documentation
 
 ## Task Ideas
-Average Word count of laststatements
+Average Word(not char) count of laststatements
 Average time on deathrow
-proportion of last statements that talk about X
 
 find maximum time between executions
 (self join)
