@@ -59,12 +59,12 @@ contents:
     url: "#harris"
   - name: Recap
     url: "#recap"
-- title: The Discontinuity Tutorial
-  url: tutorialthree.html
+- title: Execution Hiatuses
+  url: hiatuses.html
   blurb: "<code>JOIN</code>s."
   sections:
-  - name: Discontinuities
-    url: "#discont"
+  - name: Hiatuses
+    url: "#hiatuses"
   - name: Joins
     url: "#joins"
   - name: Recap

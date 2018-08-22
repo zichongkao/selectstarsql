@@ -127,13 +127,13 @@ I've quietly slipped in an `ORDER BY` block. It's format is <code class="codeblo
 ## Harris County
 Is it surprising that Harris (Houston), Dallas, Bexar and Tarrant account for about 50% of all executions in Texas? Perhaps it is, especially if we start from the assumption that executions should be distributed evenly across counties. But a better first approximation is that executions are distributed in line with the population distribution. The [2010 Texas Census](https://www.tsl.texas.gov/ref/abouttx/popcnty12010.html) shows that the 4 counties had a population of 10.0M which is 40.0% the population of Texas (25.1M). This makes the finding slightly less surprising.
 
-But digging into the breakdowns, we realize that Harris county accounts for most of the delta. It only has 16.4% of the population, but 23.1% of the executions. That's almost 50% more than it's supposed to have.
+But breaking this tail down further, we realize that Harris county accounts for most of the delta. It only has 16.4% of the population, but 23.1% of the executions. That's almost 50% more than it's supposed to have.
 
-Numerous studies have examined why Harris county has been so prolific. Several factors have been suggested:
- - <p>Prosecutions are <a href="https://www.citylab.com/equity/2014/09/one-texas-county-is-responsible-for-most-of-the-executions-in-the-entire-us/380705/">organized and well-financed</a>, while defenses are court-financed and poorly-incentivized. <a href="http://www.houstonlawreview.org/wp-content/uploads/2018/05/3-Steiker-896.pdf">(Source, see p49)</a>
+Numerous studies have examined why Harris county has been so prolific and several factors have been suggested:
+ - <p>Prosecutions have been <a href="https://www.citylab.com/equity/2014/09/one-texas-county-is-responsible-for-most-of-the-executions-in-the-entire-us/380705/">organized and well-financed</a>, while defenses have been court-financed and poorly-incentivized. <a href="http://www.houstonlawreview.org/wp-content/uploads/2018/05/3-Steiker-896.pdf">(Source, see p49)</a>
  - <p>The long-time district attorney was <a href="https://www.chron.com/news/houston-texas/article/Former-DA-ran-powerful-death-penalty-machine-1833545.php">determined and enthusiastic about the death penalty</a>.
- - <p>A system in which judges are elected, combined with a population that supports the death penalty. <a href="https://priceonomics.com/why-has-texas-executed-so-many-inmates/">(Source)</a>
- - <p>Failure of checks and balances in the Harris county judicial system. <a href="http://www.houstonlawreview.org/wp-content/uploads/2018/05/3-Steiker-896.pdf">(Source, see p929)</a></p>
+ - <p>Judges in Texas are elected, and the population has supported the death penalty. <a href="https://priceonomics.com/why-has-texas-executed-so-many-inmates/">(Source)</a>
+ - <p>Checks and balances in the Harris county judicial system have not worked. <a href="http://www.houstonlawreview.org/wp-content/uploads/2018/05/3-Steiker-896.pdf">(Source, see p929)</a></p>
 
 <br>
 <a name="recap"></a>
