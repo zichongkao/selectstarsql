@@ -1,14 +1,15 @@
 # Select Star SQL
 
 ## Todo
+- Complete hiatus tutorial
 - Fix how dates are handled. MIN, MAX shouldn't be lexicographic for dates.
 - Clarify double quotes for SQLite
-- Fix case when block
-- comment multiline solutions using multiline comments
+- Improve CASE WHEN explanation
+- Comment multiline solutions using multiline comments
 - "Check Solution" should have a flag to for order-sensitiveness
 - Navigation
   - Create a sitemap page somewhere
-- sideNote about documentation
+- Include sideNote about documentation in one of the earlier tutorials
 
 ## Task Ideas
 Average Word(not char) count of laststatements
