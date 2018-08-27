@@ -162,7 +162,7 @@ Now you have the tools you need to complete our project.
   data-default-text=""
   data-solution="SELECT last_statement FROM executions WHERE first_name = 'Napoleon' AND last_name = 'Beazley'"></sql-exercise>
 
-Is it amazing how profound and eloquent Beazley is? Recall that he was only 25 at time of statement and had been in prison since he was 18.
+Isn't it amazing how profound and eloquent Beazley is? Recall that he was only 25 at time of statement and had been in prison since he was 18.
 
 <br>
 <a name="#recap"></a>

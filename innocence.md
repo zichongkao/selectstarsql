@@ -93,16 +93,28 @@ SELECT COUNT(CASE WHEN last_statement IS NULL THEN 1 ELSE NULL END) FROM executi
 SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 
 <sql-exercise
+  data-question="Find how many inmates where over the age of 50 at execution time."
+  data-comment="This illustrates that the <code>WHERE</code> block filters before aggregation occurs."
+  data-default-text=""
+  data-solution='SELECT COUNT(*) FROM executions WHERE ex_age > 50'></sql-exercise>
+
+<sql-exercise
   data-question="Find the minimum, maximum and average age of inmates at time of execution."
   data-comment="Use the <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> aggregation functions."
-  data-default-text="SELECT exn_age FROM executions"
-  data-solution='SELECT MIN(exn_age), MAX(exn_age), AVG(exn_age) FROM executions'></sql-exercise>
+  data-default-text="SELECT ex_age FROM executions"
+  data-solution='SELECT MIN(ex_age), MAX(ex_age), AVG(ex_age) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="Find the average length (based on character count) of last statements in the dataset."
   data-comment="You can compose functions together. Use the <code>LENGTH</code> function which returns the number of characters in a string."
   data-default-text=""
   data-solution='SELECT AVG(LENGTH(last_statement)) FROM executions'></sql-exercise>
+
+<sql-exercise
+  data-question="List all the counties in the dataset without duplication."
+  data-comment="We can get unique entries by using <code>SELECT DISTINCT</code>. See <a href='https://www.w3schools.com/sql/sql_distinct.asp'>documentation.</a>"
+  data-default-text=""
+  data-solution='SELECT DISTINCT county FROM executions'></sql-exercise>
 
 <br>
 <a name="strange"></a>

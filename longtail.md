@@ -44,9 +44,9 @@ GROUP BY county, decade_age</pre>">
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="gran"
-    data-statement="will return more rows than if we used ex_age directly instead of decade_age."
-    data-hint="Remember that decade_age does integer division which rounds all the ages. This produces fewer unique groups."
-    ></sql-quiz-option>
+    data-statement="will return more rows if we were to use <code>ex_age</code> instead of <code>ex_age/10</code>."
+    data-hint="Remember that <code>ex_age/10</code> does integer division which rounds all the ages. This produces fewer unique groups."
+    data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="unique_combocc"
     data-statement="will return as many rows as there are unique combinations of counties and decade_ages in the dataset."
@@ -70,6 +70,34 @@ GROUP BY county, decade_age</pre>">
     data-hint="Even though it would be  valid (in SQLite) for the reasons set forth in <a href='innocence.html#strange'>A Strange Query</a>, it is terrible form to have unaggregated, non-grouping columns in the <code>SELECT</code> block. Don't do it!"
     data-value="extra_gp_col"></sql-quiz-option>
 </sql-quiz>
+
+<sql-exercise
+  data-question="Count the number of inmates over the age of 50 executed in each county."
+  data-comment="You should be able to do this using <code>CASE WHEN</code>, but try using the <code>WHERE</code> block here. It illustrates that filtering happens before grouping and aggregation."
+  data-default-text=""
+  data-solution="SELECT county, COUNT(*)
+FROM executions
+WHERE ex_age > 50
+GROUP BY county"
+  ></sql-exercise>
+
+<sql-exercise
+  data-question="List the counties in which more than 2 inmates over the age of 50 have been executed."
+  data-comment="This builds on the previous exercise. We need an additional filter, but this filter is based on result of the aggregation and so cannot exist in the <code>WHERE</code> block which filters before aggregation. Look up the <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> block</a>. It is a post-aggregation <code>WHERE</code> block."
+  data-default-text=""
+  data-solution="SELECT county
+FROM executions
+WHERE ex_age > 50
+GROUP BY county
+HAVING COUNT(*) > 2"
+  ></sql-exercise>
+
+<sql-exercise
+  data-question="List all the distinct counties in the dataset."
+  data-comment="We did this in the previous tutorial using the <code>SELECT DISTINCT</code> command. This time, stick with vanilla <code>SELECT</code> and use <code>GROUP BY</code>."
+  data-default-text=""
+  data-solution="SELECT county FROM executions GROUP BY county"
+  ></sql-exercise>
 
 <br>
 <a name="nested"></a>
@@ -143,7 +171,7 @@ In this section, we've learned to aggregate over groups and to use nesting to us
 <div class="sideNote">
   <h3>MapReduce</h3>
   <p>An interesting addendum is that we've actually just learned to do MapReduce in SQL. MapReduce is a famous programming paradigm which views computations as occuring in a "map" and "reduce" step. You can learn more about MapReduce <a href="https://stackoverflow.com/questions/28982/simple-explanation-of-mapreduce">here</a>.</p>
-  <p>The <a href="beazley.html">Beazley</a> tutorial was all about mapping because it showed us how to map various operations out to all the rows. For example, <code>SELECT LEN(last_statement) FROM executions</code> maps the length function out to all the rows. This tutorial showed us how to reduce various groups of data using aggregation functions; and the previous <a href="innocence.html">Claims of Innocence</a> tutorial was just a special case in which the entire table is one group.</p>
+  <p>The <a href="beazley.html">Beazley</a> tutorial was all about mapping because it showed us how to map various operations out to all the rows. For example, <code>SELECT LENGTH(last_statement) FROM executions</code> maps the length function out to all the rows. This tutorial showed us how to reduce various groups of data using aggregation functions; and the previous <a href="innocence.html">Claims of Innocence</a> tutorial was just a special case in which the entire table is one group.</p>
 </div>
 
 In the next tutorial, we'll learn about `JOIN`s which will enable us to work with multiple tables.
