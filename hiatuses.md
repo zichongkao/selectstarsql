@@ -30,6 +30,11 @@ Try this instead:
 <img src="join_correctmm.png">
 It emphasizes how `JOIN` creates a big combined table which is then fed into the `FROM` block just like any other table.
 
+<br>
+<a name="join_mechanics">
+## Mechanics of a JOIN
+Now that we know `JOIN`s are all about forming a big combined table, we want to form a mental model of how this happens.
+
 The clause works the same way as in `WHERE <clause>`. That is, it is a statement that evaluates to true or false, and anytime a row from the first and second tables line up with the clause being true, the two rows are matched.
 
 <div class="sideNote">
