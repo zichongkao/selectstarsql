@@ -10,6 +10,7 @@
 - Navigation
   - Create a sitemap page somewhere
 - Include sideNote about documentation in one of the earlier tutorials
+- Scale up the hiatus graph
 
 ## Task Ideas
 Average Word(not char) count of laststatements
