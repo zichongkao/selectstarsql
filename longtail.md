@@ -168,6 +168,7 @@ Numerous studies have examined why Harris county has been so prolific and severa
 ## Recap
 In this section, we've learned to aggregate over groups and to use nesting to use the output of an inner query in an outer one. These techniques have the very practical benefit of allowing us to calculate percentages.
 
+<a name="mapreduce"></a>
 <div class="sideNote">
   <h3>MapReduce</h3>
   <p>An interesting addendum is that we've actually just learned to do MapReduce in SQL. MapReduce is a famous programming paradigm which views computations as occuring in a "map" and "reduce" step. You can learn more about MapReduce <a href="https://stackoverflow.com/questions/28982/simple-explanation-of-mapreduce">here</a>.</p>

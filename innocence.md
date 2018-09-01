@@ -32,6 +32,7 @@ Until now, each row in the output has come from a single row of input. However, 
   data-solution="SELECT COUNT(last_statement) FROM executions"></sql-exercise>
 
 As you can tell, the `COUNT` function is intrinsically tied to the concept of `NULL`s. Let's make a small digression to learn about `NULL`s.
+<a name="nulls"></a>
 <div class="sideNote">
   <h3>Nulls</h3>
   <p>In SQL, <code>NULL</code> is the value of an empty entry. This is different from the empty string <code>''</code> and the integer <code>0</code>, both of which  are <i>not</i> considered <code>NULL</code>. To check if an entry is <code>NULL</code>, use <code>IS</code> and <code>IS NOT</code> instead of <code>=</code> and <code>!=</code>.</p>
@@ -129,6 +130,7 @@ Doesn't it look strange? If you have a good mental model of aggregations, it sho
 
 In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on this behavior. If you know you want the last entry, use the `LAST` aggregation function instead.
 
+<a name="dialects"></a>
 <div class="sideNote">
   <h3>SQL Dialects and Databases</h3>
   <p>Although we've called this a SQL tutorial, if we want to be pedantic it really is a <i>SQLite</i> tutorial. This is because SQL is an imaginary concept, a platonic ideal. In reality, there are only dialects that try to conform to the SQL specifications.</p>

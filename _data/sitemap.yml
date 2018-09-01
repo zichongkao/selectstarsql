@@ -23,10 +23,22 @@ contents:
     url: "#first"
   - name: The SELECT Block
     url: "#select"
+  - name: SQL Comments
+    url: "#comments"
+    sidenote: true
   - name: The FROM Block
     url: "#from"
+  - name: Capitalization
+    url: "#capitalization"
+    sidenote: true
+  - name: Whitespace
+    url: "#whitespace"
+    sidenote: true
   - name: The WHERE Block
     url: "#where"
+  - name: Quotes
+    url: "#quotes"
+    sidenote: true
   - name: Recap
     url: "#recap"
 - title: Claims of Innocence
@@ -39,10 +51,16 @@ contents:
     url: "#aggregations"
   - name: The COUNT Function
     url: "#count"
+  - name: Nulls
+    url: "#nulls"
+    sidenote: true
   - name: Variations on COUNT
     url: "#count_var"
   - name: A Strange Query
     url: "#strange"
+  - name: SQL Dialects and Databases
+    url: "#dialects"
+    sidenote: true
   - name: Conclusion and Recap
     url: "#recap"
 - title: The Long Tail
@@ -59,13 +77,25 @@ contents:
     url: "#harris"
   - name: Recap
     url: "#recap"
+  - name: MapReduce
+    url: "#mapreduce"
+    sidenote: true
 - title: Execution Hiatuses
   url: hiatuses.html
   blurb: "<code>JOIN</code>s."
   sections:
   - name: Hiatuses
     url: "#hiatuses"
-  - name: Joins
+  - name: Thinking about Joins
     url: "#joins"
-  - name: Recap
+  - name: Disambiguating Columns
+    url: "#disam_cols"
+    sidenote: true
+  - name: Types of Joins
+    url: "#join_types"
+  - name: Dates
+    url: "#dates"
+  - name: Self Joins
+    url: "#self_joins"
+  - name: Conclusion and Recap
     url: "#recap"

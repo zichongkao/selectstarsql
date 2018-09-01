@@ -36,6 +36,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
   data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
 
+<a name="comments"></a>
 <div class="sideNote">
   <h3>SQL Comments</h3>
   <p>Notice that clicking "Show Solution" appends the solution to the editor preceded by two dashes. The two dashes indicate that the rest of the line is a comment and shouldn't be run as code. It is useful for temporarily hiding code you don't want to run. To run the solution, simply comment out your code and uncomment the solution.</p>
@@ -62,12 +63,14 @@ We don’t need the `FROM` block if we not using anything from a table.
 
 Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`. A common trick is to multiply one number by `1.0` to convert it into a decimal.
 
+<a name="capitalization"></a>
 <div class="sideNote">
   <h3>Capitalization</h3>
   <p>Even though we’ve capitalized <code>SELECT</code>, <code>FROM</code> and <code>LIMIT</code>, SQL commands are not case-sensitive. You can see that the code editor recognizes them and formats them as a command no matter the capitalization. Nevertheless, I recommend capitalizing them to differentiate them from column names, table names and variables.</p>
   <p>Column names, table names and variables are also not case-sensitive in this version of SQL, though they are case-sensitive in many other versions. To be on the safe side, I recommend always assuming they are case-sensitive.</p>
 </div>
 
+<a name="whitespace"></a>
 <div class="sideNote">
   <h3>Whitespace</h3>
   <p>Whitespace refers to spaces, tabs, linebreaks and other characters that are rendered as empty space on a page. As with capitalization, SQL isn't very sensitive to whitespace as long as you don't smush two words into one. This means that there just needs to be at least one whitespace character around each command — it doesn't matter which one or how many you use. Unless it's a short query, I prefer putting each command on a new line to improve readability.</p>
@@ -104,8 +107,9 @@ WHERE first_name = 'Raymond'
     AND last_name = 'Landry'"
     data-solution="SELECT ex_number FROM executions WHERE first_name = 'Raymond' AND last_name LIKE '%Landry%'"></sql-exercise>
 
+<a name="quotes"></a>
 <div class="sideNote">
-  <h3>Quotes vs Backticks</h3>
+  <h3>Quotes</h3>
   <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. It's possible to have a database with a table named 'where' and a column named 'from'. (Who would be so cruel as to do this?!) You would have to do <code>SELECT `from` FROM `where` WHERE ...</code>. This is another example why capitalization of SQL commands helps.</p>
 </div>
 

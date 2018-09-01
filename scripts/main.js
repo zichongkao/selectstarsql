@@ -111,7 +111,7 @@ class sqlQuizOption extends HTMLElement {
       </label>
     </div>
     `
-    this.parentNode.querySelector('.sqlQuizOptions').innerHTML += quizoption;
+    this.parentNode.querySelector('.sqlQuizOptions').insertAdjacentHTML("beforeend", quizoption);
   }
 }
 
