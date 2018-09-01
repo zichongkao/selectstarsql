@@ -5,7 +5,7 @@ title: Claims of Innocence
 
 <a name="possible_innoncence"></a>
 ## Possible Innocence
-Opponents of the death penalty have argued that the risk of mistakenly executing an innocent person is too great a cost to bear. In this tutorial, we attempt to approximate how many innocent people may have been executed.
+Opponents of the death penalty have argued that the risk of mistakenly executing an innocent person is too great a cost to bear. In this chapter, we attempt to approximate how many innocent people may have been executed.
 
 The main caveat is that a claim of innocence, even if made on one's deathbed, does not constitute innocence. Furthermore, even if the inmate is truthful, there are many interpretations of innocence: The inmate could have been accused of murdering two people but is only innocent of killing one; or he may have killed the bystander but not the cop. These aren't just quibbles though: In Texas, murder alone doesn't warrant the death penalty. The inmate must have committed a [capital crime](https://en.wikipedia.org/wiki/Capital_punishment_in_Texas#Capital_crimes) like killing a public safety officer or multiple people. Hence the inmate may be innocent in a strict judicial sense, though perhaps not by common standards of morality.
 
@@ -64,7 +64,7 @@ data-default-text="SELECT COUNT(*) FROM executions"></sql-exercise>
 
 Another common variation is to count a subset of the table. For instance, counting Harris county executions. We could run `SELECT COUNT(*) FROM executions WHERE county='Harris'` which filters down to a smaller dataset consisting Harris executions and then counts all the rows. But what if we want to simultaneously find the number of Bexar county executions?
 
-The solution is to apply a `CASE WHEN` block which acts as big if-else statement. You start with `CASE` and end with `ELSE <result> END`. In between you can place as many `WHEN <clause> THEN <result>` branches as you want. The `ELSE <result>` serves as catch-all when none of the `WHEN` clauses return true. Recall from the previous tutorial that clauses are expressions that can bevaluated to be true or false. If the `WHEN` clause is `TRUE`, the block will return the result of the corresponding `THEN`.
+The solution is to apply a `CASE WHEN` block which acts as big if-else statement. You start with `CASE` and end with `ELSE <result> END`. In between you can place as many `WHEN <clause> THEN <result>` branches as you want. The `ELSE <result>` serves as catch-all when none of the `WHEN` clauses return true. Recall from the previous chapter that clauses are expressions that can bevaluated to be true or false. If the `WHEN` clause is `TRUE`, the block will return the result of the corresponding `THEN`.
 
 <sql-exercise
 data-question="This query counts the number of Harris and Bexar county executions. Replace <code>SUM</code>s with <code>COUNT</code>s and edit the <code>CASE WHEN</code> blocks so the query still works."
@@ -133,7 +133,7 @@ In practice, databases try to return something sensible even though you pass in 
 <a name="dialects"></a>
 <div class="sideNote">
   <h3>SQL Dialects and Databases</h3>
-  <p>Although we've called this a SQL tutorial, if we want to be pedantic it really is a <i>SQLite</i> tutorial. This is because SQL is an imaginary concept, a platonic ideal. In reality, there are only dialects that try to conform to the SQL specifications.</p>
+  <p>Although we've called this a book about SQL, if we want to be pedantic it really is a book about <i>SQLite</i>. This is because SQL is an imaginary concept, a platonic ideal. In reality, there are only dialects that try to conform to the SQL specifications.</p>
   <p>SQL is also under-specified, meaning that some functionality is not specified by the standards. For instance, the standards don't say whether the string length-finding function should be called <code>LEN</code> (SQL Server) or <code>LENGTH</code> (SQLite); or how identifiers like table or column names should be quoted (<code>`</code> in MySQL, <code>"</code> in SQLite).</p>
   <p>To make matters worse, even a single query in a single dialect can be processed differently because the underlying databases can have different architectures. For instance, the PostgreSQL dialect can be used on databases distributed over many different physical machines, and ones consisting a single file. It means that the mental models we develop here are just a crutch. They may not reflect exactly what the database is doing.</p>
   <p>We've picked SQLite, which is both a dialect and implementation, because it's one of the most common databases. We've also tried to focus on the core functionality and mental model of SQL rather than distinctive parts of SQLite. With a robust mental model in place, it's easy to switch between SQL dialects and databases.

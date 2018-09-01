@@ -12,7 +12,7 @@ By overcoming some minor <a href="#technicals">technical hurdles</a>, I believe 
 <br>
 <a name="pedagogy"></a>
 ## Pedagogy
-These principles have guided the design of this tutorial:
+These principles have guided the design of this project:
    - <p><strong>Programming is best learnt by doing.</strong><br>
      A high proportion of the material consists of exercises, and struggling with them should occupy most of your time.</p>
    - <p><strong>Exercises should be realistic and substantial.</strong><br>
@@ -26,13 +26,13 @@ These principles have guided the design of this tutorial:
 ## Dataset
 Our dataset documents Texas death row inmates executed from 1976, when the Supreme Court reinstated the death penalty, to the present. It was extracted from the <a href='https://www.tdcj.state.tx.us/death_row/dr_executed_offenders.html'>Texas Department of Criminal Justice</a> website using automatic means where possible. However, much of the pre-1995 data is only available as images of physical documents and these required painstaking manual extraction.
 
-The raw data is available as a csv for <a href="data/fulldataset.csv">download</a>. Because of the manual extraction and cleaning that was done, it is probably the most complete set of Texas death row data on the internet. You can also explore a subset of it that I've prepared for this tutorial:
+The raw data is available as a csv for <a href="data/fulldataset.csv">download</a>. Because of the manual extraction and cleaning that was done, it is probably the most complete set of Texas death row data on the internet. You can also explore a subset of it that I've prepared for this book:
 <sql-exercise
   data-default-text="SELECT *
 FROM executions
 LIMIT 3"></sql-exercise>
 
-On one level, the data is simply a part of a mundane programming tutorial. On another, each row represents immense suffering, lives lost, and in some cases redemption and acceptance. In preparing for this dataset, I was deeply moved by a number of the statements and found myself re-evaluting my position on capital punishment. I hope that as we examine the data, you too will contemplate the deeper issues at play.
+On one level, the data is simply a part of a mundane programming book. On another, each row represents immense suffering, lives lost, and in some cases redemption and acceptance. In preparing for this dataset, I was deeply moved by a number of the statements and found myself re-evaluting my position on capital punishment. I hope that as we examine the data, you too will contemplate the deeper issues at play.
 
 <br>
 <a name="technicals"></a>

@@ -171,6 +171,6 @@ Isn't it amazing how profound and eloquent Beazley is? Recall that he was only 2
 <br>
 <a name="#recap"></a>
 ## Recap
-The point of this tutorial has been to introduce the basic but powerful <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. It allows us to filter a table by having the computer go row by row and pick out those for which the `WHERE` clause is true. We've also learned how to put together fairly complex clauses that can operate on string, numeric and boolean-valued columns.
+The point of this chapter has been to introduce the basic but powerful <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. It allows us to filter a table by having the computer go row by row and pick out those for which the `WHERE` clause is true. We've also learned how to put together fairly complex clauses that can operate on string, numeric and boolean-valued columns.
 
-Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next tutorial, we'll focus on aggregations which will allow us to understand system-level phenomena.
+Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next chapter, we'll focus on aggregations which will allow us to understand system-level phenomena.

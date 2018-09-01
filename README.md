@@ -2,7 +2,6 @@
 
 ## Todo
 - Complete hiatus tutorial
-- Fix how dates are handled. MIN, MAX shouldn't be lexicographic for dates.
 - Clarify double quotes for SQLite
 - Improve CASE WHEN explanation
 - Comment multiline solutions using multiline comments

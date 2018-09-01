@@ -12,7 +12,7 @@ Our strategy is to get the table into a state where each row also contains the d
 <br>
 <a name="joins"></a>
 ## Thinking about Joins
-None of the techniques we've learned so far are adequate here. Our desired table has the same length as the original `executions` table, so we can rule out aggregations which produce a smaller table. The [Beazley](beazley.html) tutorial only taught us row operations which limit us to working with information already in the rows. However, the date of the previous execution lies outside a row so we have to use `JOIN` to bring in the additional information.
+None of the techniques we've learned so far are adequate here. Our desired table has the same length as the original `executions` table, so we can rule out aggregations which produce a smaller table. The [Beazley](beazley.html) chapter only taught us row operations which limit us to working with information already in the rows. However, the date of the previous execution lies outside a row so we have to use `JOIN` to bring in the additional information.
 
 Let's suppose the additional information we want exists in a table called `previous` which has two columns `(ex_number, last_ex_date)`. We would be able to run the following query to complete our task:
 

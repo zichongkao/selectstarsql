@@ -9,7 +9,7 @@ Long tails refer to small numbers of samples which occur a large number of times
 
 Let's find the percentage of executions from each county so that we can pick out the ones in the tail.
 
-This task is a different from anything we've seen before. The [Beazley](beazley.html) tutorial dealt with individual rows of data, but it's clear that we need to do some aggregation to find county-level data. The [Claims of Innocence](innocence.html) tutorial taught us aggregation, but those functions would end up aggregating the dataset into one row when we really want one row per county.
+This task is a different from anything we've seen before. The [Beazley](beazley.html) chapter dealt with individual rows of data, but it's clear that we need to do some aggregation to find county-level data. The [Claims of Innocence](innocence.html) chapter taught us aggregation, but those functions would end up aggregating the dataset into one row when we really want one row per county.
 
 <br>
 <a name="groupby"></a>
@@ -94,7 +94,7 @@ HAVING COUNT(*) > 2"
 
 <sql-exercise
   data-question="List all the distinct counties in the dataset."
-  data-comment="We did this in the previous tutorial using the <code>SELECT DISTINCT</code> command. This time, stick with vanilla <code>SELECT</code> and use <code>GROUP BY</code>."
+  data-comment="We did this in the previous chapter using the <code>SELECT DISTINCT</code> command. This time, stick with vanilla <code>SELECT</code> and use <code>GROUP BY</code>."
   data-default-text=""
   data-solution="SELECT county FROM executions GROUP BY county"
   ></sql-exercise>
@@ -172,7 +172,7 @@ In this section, we've learned to aggregate over groups and to use nesting to us
 <div class="sideNote">
   <h3>MapReduce</h3>
   <p>An interesting addendum is that we've actually just learned to do MapReduce in SQL. MapReduce is a famous programming paradigm which views computations as occuring in a "map" and "reduce" step. You can learn more about MapReduce <a href="https://stackoverflow.com/questions/28982/simple-explanation-of-mapreduce">here</a>.</p>
-  <p>The <a href="beazley.html">Beazley</a> tutorial was all about mapping because it showed us how to map various operations out to all the rows. For example, <code>SELECT LENGTH(last_statement) FROM executions</code> maps the length function out to all the rows. This tutorial showed us how to reduce various groups of data using aggregation functions; and the previous <a href="innocence.html">Claims of Innocence</a> tutorial was just a special case in which the entire table is one group.</p>
+  <p>The <a href="beazley.html">Beazley</a> chapter was all about mapping because it showed us how to map various operations out to all the rows. For example, <code>SELECT LENGTH(last_statement) FROM executions</code> maps the length function out to all the rows. This chapter showed us how to reduce various groups of data using aggregation functions; and the previous <a href="innocence.html">Claims of Innocence</a> chapter was just a special case in which the entire table is one group.</p>
 </div>
 
-In the next tutorial, we'll learn about `JOIN`s which will enable us to work with multiple tables.
+In the next chapter, we'll learn about `JOIN`s which will enable us to work with multiple tables.

@@ -15,7 +15,7 @@ contents:
     url: "#contact"
 - title: Beazley's Last Statement
   url: beazley.html
-  blurb: "The structure of a SQL query; dealing with whitespace, quotes, comments and errors; the fundamental and powerful <code>SELECT-FROM-WHERE</code> form."
+  blurb: "Chapter 1 examines Napoleon Beazley's argument against capital punishment. We learn the structure of a SQL query and row operations on a table."
   sections:
   - name: The Beazley Case
     url: "#beazley_case"
@@ -43,7 +43,7 @@ contents:
     url: "#recap"
 - title: Claims of Innocence
   url: innocence.html
-  blurb: "Aggregation functions; with special emphasis on the <code>COUNT</code> function."
+  blurb: "Chapter 2 estimates how many executed inmates may have been innocent. The technical theme is aggregating the entire table."
   sections:
   - name: Possible Innocence
     url: "#possible_innocence"
@@ -65,7 +65,7 @@ contents:
     url: "#recap"
 - title: The Long Tail
   url: longtail.html
-  blurb: "Aggregations using <code>GROUP BY</code>; nested queries; the ever useful but tricky calculation of percentages."
+  blurb: "Chapter 3 studies counties with unusually high numbers of executions. We generalize Chapter 2 by applying aggregations on groups of rows."
   sections:
   - name: Long Tails
     url: "#long_tails"
@@ -82,7 +82,7 @@ contents:
     sidenote: true
 - title: Execution Hiatuses
   url: hiatuses.html
-  blurb: "<code>JOIN</code>s."
+  blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
   sections:
   - name: Hiatuses
     url: "#hiatuses"
