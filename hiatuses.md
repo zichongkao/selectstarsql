@@ -5,7 +5,7 @@ title: Execution Hiatuses
 
 <a name="hiatuses"></a>
 ## Hiatuses
-This graph shows executions over time.<img src="executionno_time.png"> Notice that there have been about 5 extended periods when no executions have taken place. Our goal is to figure out exactly when they were and research their causes.
+This graph shows executions over time.<img src="imgs/executionno_time.png"> Notice that there have been about 5 extended periods when no executions have taken place. Our goal is to figure out exactly when they were and research their causes.
 
 Our strategy is to get the table into a state where each row also contains the date of the execution before it. We can then find the time difference between the two dates, order them in descending order, and read off the longest hiatuses.
 
@@ -26,7 +26,7 @@ Let's suppose the additional information we want exists in a table called `previ
     ORDER BY day_delta DESC
     LIMIT 5
 
-The `JOIN` block is the focus of this section. Instead of viewing it as a line on its own, it is often helpful to look at it like this: <img src="join_correctview.png"> This emphasizes how `JOIN` creates a big combined table which is then fed into the `FROM` b vs Backtickslock just like any other table.
+The `JOIN` block is the focus of this section. Instead of viewing it as a line on its own, it is often helpful to look at it like this: <img src="imgs/join_correctview.png"> This emphasizes how `JOIN` creates a big combined table which is then fed into the `FROM` b vs Backtickslock just like any other table.
 <a name="disam_cols"></a>
 <div class="sideNote">
   <h3>Disambiguating Columns</h3>
@@ -37,23 +37,23 @@ The `JOIN` block is the focus of this section. Instead of viewing it as a line o
 <a name="join_types">
 ## Types of Joins
 The `JOIN` block takes the form of <code class='codeblock'>&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>. The clause works the same way as in `WHERE <clause>`. That is, it is a statement that evaluates to true or false, and anytime a row from the first table and another from the second line up with the clause being true, the two are matched:
-<img src="join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="imgs/join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 But what happens to rows which have no matches? In this case, the `previous` table didn't have a row for execution number 1 because there aren't any executions prior to it.
-<img src="join_unmatched.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="imgs/join_unmatched.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
  The <code>JOIN</code> command defaults to performing what is called an "inner join" in which unmatched rows are dropped.
-<img src="join_inner.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="imgs/join_inner.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 To preserve all the rows of the left table, we use a <code>LEFT JOIN</code> in in place of the vanilla <code>JOIN</code>. The empty parts of the row are left alone, which means they evaluate to <code>NULL</code>.
-<img src="join_left.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="imgs/join_left.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 The <code>RIGHT JOIN</code> can be used to preserve unmatched rows in the right table, and the <code>OUTER JOIN</code> can be used to preserve unmatched rows in both.
 
 The final subtlety is handling multiple matches. Say we have a `duplicated_previous` table which contains two copies of each row of the `previous` table. Each row of `executions` now matches two rows in `duplicated_previous`.
-<img src="join_dup_pre.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
+<img src="imgs/join_dup_pre.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
 The join creates enough rows of `executions` so that each matching row of `duplicated_previous` gets its own partner. In this way, joins can create tables that are larger than the their constituents.
-<img src="join_dup_post.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
+<img src="imgs/join_dup_post.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
 
 <sql-quiz
   data-title="Mark the true statements."
@@ -97,9 +97,9 @@ We've made a big assumption that we can subtract dates from one another. But ima
 Fortunately, SQLite contains a bunch of functions to tell the computer: "Hey, these strings that I'm passing you actually contain dates or times. Act on them as you would a date."
 
 <sql-exercise
- data-question='Look up <a href="">the documentation</a> to fix the query to return the number of days between the dates.'
- data-default-text="SELECT '1993/8/10' - '1989/7/7' AS day_delta"
- data-solution="SELECT DATEDIFF(day, '1993/8/10', '1989/7/7') AS day_delta"
+ data-question='Look up <a href="https://stackoverflow.com/questions/27521223/sqlite-calculate-difference-in-days-between-yyyymmdd-date-formats-in-query">the documentation</a> to fix the query to return the number of days between the dates.'
+ data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_delta"
+ data-solution="SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
 ></sql-exercise>
 
 <br>
@@ -110,7 +110,8 @@ With what we learned about dates, we can correct our template query:
     SELECT
       last_ex_date AS start,
       ex_date AS end,
-      DATEDIFF(day, ex_date, last_ex_date) AS day_delta
+      JULIANDAY(ex_date) - JULIANDAY(last_ex_date)
+        AS day_delta
     FROM executions
     JOIN previous
       ON executions.ex_number = previous.ex_number
@@ -134,7 +135,8 @@ Now we can nest this query into our template above:
   data-default-text="SELECT
   last_ex_date AS start,
   ex_date AS end,
-  ex_date - last_ex_date AS day_delta
+  JULIANDAY(ex_date) - JULIANDAY(last_ex_date)
+    AS day_delta
 FROM executions
 JOIN (<your-query>) previous
   ON executions.ex_number = previous.ex_number
@@ -143,7 +145,7 @@ LIMIT 5"
   data-solution="SELECT
   last_ex_date AS start,
   ex_date AS end,
-  ex_date - last_ex_date AS day_delta
+  JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_delta
 FROM executions
 JOIN (
     SELECT
@@ -166,7 +168,8 @@ We've created the `previous` table to clarify the purpose that it serves. But we
   data-default-text="SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
-  DATEDIFF(day, executions.ex_date, previous.ex_date) AS day_delta
+  JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
+    AS day_delta
 FROM executions
 JOIN executions previous
   ON <your-clause>
@@ -175,7 +178,8 @@ LIMIT 5"
   data-solution="SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
-  DATEDIFF(day, executions.ex_date, previous.ex_date) AS day_delta
+  JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
+    AS day_delta
 FROM executions
 JOIN executions previous
   ON executions.ex_number = previous.ex_number + 1

@@ -5,7 +5,7 @@ title: The Long Tail
 
 <a name="long_tail"></a>
 ## Long Tails
-Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. <img src="execution_tail.png"> Long tails indicate the presence of outliers whose unusual behaviors may be of interest to us. In Texas, several counties have been known to account for most of the executions.
+Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. <img src="imgs/execution_tail.png"> Long tails indicate the presence of outliers whose unusual behaviors may be of interest to us. In Texas, several counties have been known to account for most of the executions.
 
 Let's find the percentage of executions from each county so that we can pick out the ones in the tail.
 
