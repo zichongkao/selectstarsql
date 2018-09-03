@@ -32,7 +32,7 @@ The raw data is available as a csv for <a href="data/fulldataset.csv">download</
 FROM executions
 LIMIT 3"></sql-exercise>
 
-On one level, the data is simply a part of a mundane programming book. On another, each row represents immense suffering, lives lost, and in some cases redemption and acceptance. In preparing for this dataset, I was deeply moved by a number of the statements and found myself re-evaluting my position on capital punishment. I hope that as we examine the data, you too will contemplate the deeper issues at play.
+On one level, the data is simply a part of a mundane programming book. On another, each row represents immense suffering, lives lost, and in some cases amazing redemption and acceptance. In preparing for this dataset, I was deeply moved by a number of the statements and found myself re-evaluting my position on capital punishment. I hope that as we examine the data, you too will contemplate the deeper issues at play.
 
 <br>
 <a name="technicals"></a>

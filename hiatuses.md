@@ -5,7 +5,7 @@ title: Execution Hiatuses
 
 <a name="hiatuses"></a>
 ## Hiatuses
-This graph shows executions over time.<img src="imgs/executionno_time.png"> Notice that there have been about 5 extended periods when no executions have taken place. Our goal is to figure out exactly when they were and research their causes.
+This graph shows executions over time.<img src="imgs/exno_time.png"> Notice that there have been about several extended periods when no executions took place. Our goal is to figure out exactly when they were and research their causes.
 
 Our strategy is to get the table into a state where each row also contains the date of the execution before it. We can then find the time difference between the two dates, order them in descending order, and read off the longest hiatuses.
 
@@ -24,9 +24,9 @@ Let's suppose the additional information we want exists in a table called `previ
     JOIN previous
       ON executions.ex_number = previous.ex_number
     ORDER BY day_delta DESC
-    LIMIT 5
+    LIMIT 10
 
-The `JOIN` block is the focus of this section. Instead of viewing it as a line on its own, it is often helpful to look at it like this: <img src="imgs/join_correctview.png"> This emphasizes how `JOIN` creates a big combined table which is then fed into the `FROM` b vs Backtickslock just like any other table.
+The `JOIN` block is the focus of this section. Instead of viewing it as a line on its own, it is often helpful to look at it like this: <img src="imgs/join_correctview.png"> This emphasizes how `JOIN` creates a big combined table which is then fed into the `FROM` block just like any other table.
 <a name="disam_cols"></a>
 <div class="sideNote">
   <h3>Disambiguating Columns</h3>
@@ -97,7 +97,7 @@ We've made a big assumption that we can subtract dates from one another. But ima
 Fortunately, SQLite contains a bunch of functions to tell the computer: "Hey, these strings that I'm passing you actually contain dates or times. Act on them as you would a date."
 
 <sql-exercise
- data-question='Look up <a href="https://stackoverflow.com/questions/27521223/sqlite-calculate-difference-in-days-between-yyyymmdd-date-formats-in-query">the documentation</a> to fix the query to return the number of days between the dates.'
+ data-question='Look up <a href="https://stackoverflow.com/questions/27521223/sqlite-calculate-difference-in-days-between-yyyymmdd-date-formats-in-query">the documentation</a> to fix the query so that it returns the number of days between the dates.'
  data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_delta"
  data-solution="SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
 ></sql-exercise>
@@ -141,7 +141,7 @@ FROM executions
 JOIN (<your-query>) previous
   ON executions.ex_number = previous.ex_number
 ORDER BY day_delta DESC
-LIMIT 5"
+LIMIT 10"
   data-solution="SELECT
   last_ex_date AS start,
   ex_date AS end,
@@ -156,7 +156,7 @@ JOIN (
   ) previous
   ON executions.ex_number = previous.ex_number
 ORDER BY day_delta DESC
-LIMIT 5"
+LIMIT 10"
 ></sql-exercise>
 
 `previous` is derived from `executions`, so we're effectively joining `executions` to itself. This is called a "self join" and is a powerful technique for allowing rows to get information from other parts of the same table.
@@ -174,7 +174,7 @@ FROM executions
 JOIN executions previous
   ON <your-clause>
 ORDER BY day_delta DESC
-LIMIT 5"
+LIMIT 10"
   data-solution="SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
@@ -184,10 +184,14 @@ FROM executions
 JOIN executions previous
   ON executions.ex_number = previous.ex_number + 1
 ORDER BY day_delta DESC
-LIMIT 5"
+LIMIT 10"
 ></sql-exercise>
 
 
 <br>
 <a name="recap"></a>
 ## Recap
+We can now use the precise dates of the hiatuses to research what happened over each period. In the years immediately after the ban on capital punishment was lifted, there were long periods without executions due to the low number death sentences, coupled with legal challenges to the new ruling. We thus exclude intermissions before 1993 and focus on two major hiatuses since.<img src="imgs/exno_time_annotated.png">
+
+The 1996, Texas was resolving challenges to a new set of laws created in response to the 1993 World Trade Center bombing and 1995 Oklahoma City bombing which limit the appeals process for capital cases.(<a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> and <a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>)
+ - The hiatus between September 2007 and June 2008 was due to a stay by the Supreme Court while it was weighing in on <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a> in which the defendents sued that lethal injection violates the Eighth Amendment prohibiting cruel and unusual punishment. This affected executions across America because most states were using the same drug cocktail as Kentucky. The Supreme Court eventually affirmed Kentucky court decision and executions in Texas resumed a few months later.

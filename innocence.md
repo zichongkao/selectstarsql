@@ -85,6 +85,14 @@ FROM executions"></sql-exercise>
 <br>
 ## Practice
 
+<a name="documentation"></a>
+<div class="sideNote">
+  <h3>Looking Up Documentation</h3>
+  <p>This book was never intended to be a comprehensive reference for the SQL llanguage. For that, you will have to look up other online resources. This in a skill in itself, and one that is worth mastering because you will be looking up documentation years after you've achieved familiarity with the language.</p>
+  <p>The good news is that with the mental models you will learn in this book, lookups should be quick and painless because you will just be checking details like whether the function is called `LENGTH` or `LEN` instead of figuring out what approach to take.</p>
+  <p>For lookups, I often use <a href="https://www.w3schools.com/sql/default.asp">W3 Schools</a> and Stack Overflow.</p>
+</div>
+
 <sql-exercise
   data-question="Find the number of inmates who have declined to give a last statement."
   data-comment="For bonus points, try to do it in 3 ways:<br> 1) With a <code>WHERE</code> block,<br> 2) With a <code>CASE WHEN</code> block,<br> 3) With two <code>COUNT</code> functions."
