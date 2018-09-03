@@ -5,7 +5,7 @@ title: Execution Hiatuses
 
 <a name="hiatuses"></a>
 ## Hiatuses
-This graph shows executions over time.<img src="imgs/exno_time.png"> Notice that there have been about several extended periods when no executions took place. Our goal is to figure out exactly when they were and research their causes.
+This graph shows executions over time.<img src="imgs/exno_time.png"> Notice that there have been several extended periods when no executions took place. Our goal is to figure out exactly when they were and research their causes.
 
 Our strategy is to get the table into a state where each row also contains the date of the execution before it. We can then find the time difference between the two dates, order them in descending order, and read off the longest hiatuses.
 
@@ -92,7 +92,7 @@ Let's take a break from joins for a bit and look at this line in our template qu
 
       ex_date - last_ex_date AS day_delta
 
-We've made a big assumption that we can subtract dates from one another. But imagine you're the computer receiving a line like this. Do return the number of days between the dates? Why not hours or seconds? To make things worse, SQLite doesn't actually have a date type (unlike most other SQL dialects.) so the `ex_date` and `last_ex_date` columns look like ordinary strings to you. You're effectively being asked to do `'hello' - 'world'`. What does that even mean?
+We've made a big assumption that we can subtract dates from one another. But imagine you're the computer receiving a line like this. Do return the number of days between the dates? Why not hours or seconds? To make things worse, SQLite doesn't actually have date or time types (unlike most other SQL dialects) so the `ex_date` and `last_ex_date` columns look like ordinary strings to you. You're effectively being asked to do `'hello' - 'world'`. What does that even mean?
 
 Fortunately, SQLite contains a bunch of functions to tell the computer: "Hey, these strings that I'm passing you actually contain dates or times. Act on them as you would a date."
 
@@ -187,11 +187,13 @@ ORDER BY day_delta DESC
 LIMIT 10"
 ></sql-exercise>
 
+We can now use the precise dates of the hiatuses to research what happened over each period. In the years immediately after the ban on capital punishment was lifted, there were long periods without executions due to the low number death sentences, coupled with legal challenges to the new ruling. We thus exclude intermissions before 1993 and focus on two major hiatuses since.<img src="imgs/exno_time_annotated.png">
+
+Hiatus 1 was due to legal challenges to the <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> created in response to the 1993 World Trade Center and 1995 Oklahoma City bombings. The act limited the appeals process  to make the death penalty more effective especially for terrorism cases.(<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>)
+
+Hiatus 2 was caused by a stay enacted by the Supreme Court while it weighed in on <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a> which examined if lethal injection violates the Eighth Amendment prohibiting "cruel and unusual punishment". This affected executions across America because most states were using the same drug cocktail as Kentucky. The Supreme Court eventually affirmed Kentucky court decision and executions in Texas resumed a few months later.
 
 <br>
 <a name="recap"></a>
 ## Recap
-We can now use the precise dates of the hiatuses to research what happened over each period. In the years immediately after the ban on capital punishment was lifted, there were long periods without executions due to the low number death sentences, coupled with legal challenges to the new ruling. We thus exclude intermissions before 1993 and focus on two major hiatuses since.<img src="imgs/exno_time_annotated.png">
 
-The 1996, Texas was resolving challenges to a new set of laws created in response to the 1993 World Trade Center bombing and 1995 Oklahoma City bombing which limit the appeals process for capital cases.(<a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> and <a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>)
- - The hiatus between September 2007 and June 2008 was due to a stay by the Supreme Court while it was weighing in on <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a> in which the defendents sued that lethal injection violates the Eighth Amendment prohibiting cruel and unusual punishment. This affected executions across America because most states were using the same drug cocktail as Kentucky. The Supreme Court eventually affirmed Kentucky court decision and executions in Texas resumed a few months later.

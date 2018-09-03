@@ -100,5 +100,11 @@ contents:
     url: "#dates"
   - name: Self Joins
     url: "#self_joins"
-  - name: Conclusion and Recap
+  - name: Recap
     url: "#recap"
+- title: Challenge Questions
+  url: questions.html
+  blurb: "This final chapter is a collection of miscellaneous challenge questions."
+  sections:
+  - name: Dates and Times
+    url: "#date_time"
