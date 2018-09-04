@@ -119,12 +119,12 @@ Here's an example of how nesting works. The parentheses are important for demarc
   data-comment="Write in a suitable query to nest in &lt;<code>length-of-longest-last-statement</code>&gt;."
   data-default-text="SELECT first_name, last_name
 FROM executions
-WHERE LEN(last_statement) =
+WHERE LENGTH(last_statement) =
     (<length-of-longest-last-statement>)"
   data-solution="SELECT first_name, last_name
 FROM executions
-WHERE LEN(last_statement) =
-    (SELECT MAX(LEN(last_statement))
+WHERE LENGTH(last_statement) =
+    (SELECT MAX(LENGTH(last_statement))
      FROM executions)"></sql-exercise>
 
 Now apply the same concept to find the percentage of executions from each county.
