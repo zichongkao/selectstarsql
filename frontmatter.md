@@ -28,7 +28,10 @@ Our dataset documents Texas death row inmates executed from 1976, when the Supre
 
 The raw data is available as a csv for <a href="data/fulldataset.csv">download</a>. Because of the manual extraction and cleaning that was done, it is probably the most complete set of Texas death row data on the internet. You can also explore a subset of it that I've prepared for this book:
 <sql-exercise
-  data-default-text="SELECT *
+  data-question="This is an interactive code editor. Enter your query below.
+  data-comment="Shift+Enter is the keyboard shortcut for running the query."
+  data-default-text="
+SELECT *
 FROM executions
 LIMIT 3"></sql-exercise>
 

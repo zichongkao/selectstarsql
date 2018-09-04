@@ -31,7 +31,7 @@ As with Lego, each block has a fixed format and the different blocks have to fit
 The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column&gt;, &lt;column&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
 
 <sql-exercise
-  data-question="Edit the query to select first_name, last_name and last_statement columns."
+  data-question="In the code editor below, revise the query to select the first_name, last_name and last_statement columns."
   data-comment="Once you're done, you can hit Shift+Enter to run the query."
   data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
@@ -39,7 +39,8 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
 <a name="comments"></a>
 <div class="sideNote">
   <h3>SQL Comments</h3>
-  <p>Notice that clicking "Show Solution" appends the solution to the editor preceded by two dashes. The two dashes indicate that the rest of the line is a comment and shouldn't be run as code. It is useful for temporarily hiding code you don't want to run. To run the solution, simply comment out your code and uncomment the solution.</p>
+  <p>Notice that clicking "Show Solution" displays the solution in the editor preceded by <code>/*</code>. The contents between <code>/*</code> and <code>*/</code> are taken as comments and aren't run as code. This is useful for temporarily hiding code we don't want to run. To run the solution, simply delete or comment out your code and uncomment the solution.</p>
+  <p><code>--</code> is another way of indicating comments. It is used to mark the rest of a single line as a comment. When we have multiple lines we want to comment out, <code>/* ... */</code> is more convenient than prepending <code>--</code> to each line.</p>
 </div>
 
 <br>
@@ -102,10 +103,14 @@ The most powerful of these is probably <code>LIKE</code>. It allows us to use wi
 <sql-exercise
     data-question="Find the execution number of Raymond Landry."
     data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find the row."
-    data-default-text="SELECT ex_number FROM executions
+    data-default-text="SELECT ex_number
+FROM executions
 WHERE first_name = 'Raymond'
-    AND last_name = 'Landry'"
-    data-solution="SELECT ex_number FROM executions WHERE first_name = 'Raymond' AND last_name LIKE '%Landry%'"></sql-exercise>
+  AND last_name = 'Landry'"
+    data-solution="SELECT ex_number
+FROM executions
+WHERE first_name = 'Raymond'
+  AND last_name LIKE '%Landry%'"></sql-exercise>
 
 <a name="quotes"></a>
 <div class="sideNote">
@@ -164,7 +169,10 @@ Now you have the tools you need to complete our project.
 <sql-exercise
   data-question="Find Napoleon Beazley's last statement."
   data-default-text=""
-  data-solution="SELECT last_statement FROM executions WHERE first_name = 'Napoleon' AND last_name = 'Beazley'"></sql-exercise>
+  data-solution="SELECT last_statement
+FROM executions
+WHERE first_name = 'Napoleon'
+  AND last_name = 'Beazley'"></sql-exercise>
 
 Isn't it amazing how profound and eloquent Beazley is? Recall that he was only 25 at time of statement and had been in prison since he was 18.
 

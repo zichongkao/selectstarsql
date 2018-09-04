@@ -263,6 +263,8 @@ class sqlExercise extends HTMLElement {
           result_div.appendChild(verdict_div);
 
           query(solution, (solution_data) => {
+            console.log(submission_data)
+            console.log(solution_data)
             var verdict = _.isEqual(submission_data, solution_data) ? "Correct" : "Incorrect";
             // http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
             verdict_div.innerText = verdict;
@@ -299,8 +301,7 @@ class sqlExercise extends HTMLElement {
       solutionButton.value = 'Show Solution';
       solutionButton.onclick = (e) => {
         var existingCode = editor.getValue();
-        solution = "\n" + solution;
-        editor.setValue(existingCode + solution.replace(/\n/g, '\n-- '));
+        editor.setValue(existingCode + "\n/* " + solution);
       };
       inputArea.appendChild(solutionButton);
     };
