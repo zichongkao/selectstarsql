@@ -110,7 +110,7 @@ Now you may ask, wouldn't we be done if we could just run something like:
     FROM executions
     GROUP BY county
 
-Percentages are such a common metric &mdash; shouldn't such a function exist? Unfortunately not, and perhaps for good reason: Such a function would need to aggregate both within the groups and throughout the dataset to get the numerators and denominator for calculating percentages. But each query either has a `GROUP BY` block or doesn't. So what we really need are two separate queries, one which aggregates with a `GROUP BY` and another that aggregates without.
+Percentages are such a common metric &mdash; shouldn't such a function exist? Unfortunately not, and perhaps for good reason: Such a function would need to aggregate both within the groups and throughout the dataset to get the numerators and denominator for calculating percentages. But each query either has a `GROUP BY` block or doesn't. So what we really need are two separate queries, one which aggregates with a `GROUP BY` and another that aggregates without. We can them combine them using a technique called "nesting".
 
 Here's an example of how nesting works. The parentheses are important for demarcating the boundary between the inner query and the outer one:
 
@@ -119,12 +119,12 @@ Here's an example of how nesting works. The parentheses are important for demarc
   data-comment="Write in a suitable query to nest in &lt;<code>length-of-longest-last-statement</code>&gt;."
   data-default-text="SELECT first_name, last_name
 FROM executions
-WHERE LEN(last_statement) =
+WHERE LENGTH(last_statement) =
     (<length-of-longest-last-statement>)"
   data-solution="SELECT first_name, last_name
 FROM executions
-WHERE LEN(last_statement) =
-    (SELECT MAX(LEN(last_statement))
+WHERE LENGTH(last_statement) =
+    (SELECT MAX(LENGTH(last_statement))
      FROM executions)"></sql-exercise>
 
 Now apply the same concept to find the percentage of executions from each county.
