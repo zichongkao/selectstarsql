@@ -72,22 +72,22 @@ GROUP BY county, decade_age</pre>">
 </sql-quiz>
 
 <sql-exercise
-  data-question="Count the number of inmates over the age of 50 executed in each county."
+  data-question="Count the number of inmates aged 50 or older that were executed in each county."
   data-comment="You should be able to do this using <code>CASE WHEN</code>, but try using the <code>WHERE</code> block here. It illustrates that filtering happens before grouping and aggregation."
   data-default-text=""
   data-solution="SELECT county, COUNT(*)
 FROM executions
-WHERE ex_age > 50
+WHERE ex_age >= 50
 GROUP BY county"
   ></sql-exercise>
 
 <sql-exercise
-  data-question="List the counties in which more than 2 inmates over the age of 50 have been executed."
+  data-question="List the counties in which more than 2 inmates aged 50 or older have been executed."
   data-comment="This builds on the previous exercise. We need an additional filter, but this filter is based on result of the aggregation and so cannot exist in the <code>WHERE</code> block which filters before aggregation. Look up the <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> block</a>. It is a post-aggregation <code>WHERE</code> block."
   data-default-text=""
   data-solution="SELECT county
 FROM executions
-WHERE ex_age > 50
+WHERE ex_age >= 50
 GROUP BY county
 HAVING COUNT(*) > 2"
   ></sql-exercise>

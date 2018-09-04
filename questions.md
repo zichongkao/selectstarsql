@@ -12,13 +12,10 @@ This is a good reference for date and time functions: <a href="https://www.sqlit
 <sql-exercise
   data-question='Find the number of execution on each day of the week.'
   data-comment="Days of the week should be integers between 0 and 6 where Sunday is 0, Monday is 1 and so on."
-  data-solution="SELECT
-  (JULIANDAY(ex_date) - JULIANDAY(ex_date, 'weekday 0', '-7 days')) % 7
-  -- 'weekday 0' pushes the date until the next sunday, unless its already a Sunday.
-  -- the modulo 7 is necessary because '-7 days' brings sundays a week back.
-    AS day_of_week,
+  data-solution='SELECT
+  strftime("%w", ex_date) AS day_of_week,
   COUNT(*)
 FROM executions
-GROUP BY day_of_week"
+GROUP BY day_of_week'
 ></sql-exercise>
 
