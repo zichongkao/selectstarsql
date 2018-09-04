@@ -64,28 +64,17 @@ body {
     color: #1b1e23;
     font-family: Roboto, sans-serif;
     font-size: 18px;
-    max-width: 40rem;
+    max-width: 45rem;
     margin-left: auto;
     margin-right: auto;
 }
 
-@media only screen and (min-width: 600px) {
-  body #column {
-    max-width: 35rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 2rem;
-  }
+body #column {
+  max-width: 33rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
 }
-
-@media only screen and (max-width: 600px) {
-  body #column {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 2rem;
-  }
-}
-
 
 .content img {
     width: 100%
