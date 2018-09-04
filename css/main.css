@@ -56,7 +56,6 @@ pre {
 }
 
 /* general */
-@media (min-width: 1000px)
 html {
     font-size: 18px;
 }
@@ -65,17 +64,28 @@ body {
     color: #1b1e23;
     font-family: Roboto, sans-serif;
     font-size: 18px;
-    max-width: 1000px;
+    max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
 }
 
-body #column {
-    width: 40rem;
-    margin-left: 4rem;
-    margin-right: 4rem;
+@media only screen and (min-width: 600px) {
+  body #column {
+    max-width: 35rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     margin-bottom: 2rem;
+  }
 }
+
+@media only screen and (max-width: 600px) {
+  body #column {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
 
 .content img {
     width: 100%
