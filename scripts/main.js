@@ -212,6 +212,7 @@ class sqlExercise extends HTMLElement {
     var comment = this.getAttribute('data-comment') || '';
     var defaultText = this.getAttribute('data-default-text') || '';
     var solution = this.getAttribute('data-solution') || '';
+    var orderSensitive = this.getAttribute('data-orderSensitive') || false;
 
     var homeDiv = document.createElement('div');
     homeDiv.className = 'sqlExHomeDiv';
@@ -266,7 +267,13 @@ class sqlExercise extends HTMLElement {
           result_div.appendChild(verdict_div);
 
           query(solution, (solution_data) => {
-            var verdict = _.isEqual(submission_data[0].values, solution_data[0].values) ? "Correct" : "Incorrect";
+            var submission_u = submission_data[0].values;
+            var solution_u = solution_data[0].values;
+            if (!orderSensitive) {
+                submission_u.sort();
+                solution_u.sort();
+            }
+            var verdict = _.isEqual(submission_u, solution_u) ? "Correct" : "Incorrect";
             // http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
             verdict_div.innerText = verdict;
           });

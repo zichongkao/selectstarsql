@@ -41,7 +41,7 @@ LIMIT 1 "
 
 <sql-exercise
   data-question="Now find the most networked senator from each state."
-  data-comment="If multiple senators tie for top, show both. Return columns corresponding to (state, senator, mutual cosponsorship count)."
+  data-comment="If multiple senators tie for top, show both. Return columns corresponding to state, senator and mutual cosponsorship count."
   data-solution="
 WITH mutual_counts AS (
   SELECT
@@ -77,3 +77,20 @@ JOIN state_max
   AND mutual_counts.mutual_count = state_max.max_mutual_count
 "
   ></sql-exercise>
+
+<sql-exercise
+  data-question="Find the senators who cosponsored but didn't sponsor bills."
+  data-comment=""
+  data-solution="
+SELECT DISTINCT c1.cosponsor_name
+FROM cosponsors c1
+LEFT JOIN cosponsors c2
+ ON c1.cosponsor_name = c2.sponsor_name
+ -- This join identifies cosponsors
+ -- who have sponsored bills
+WHERE c2.sponsor_name IS NULL
+-- LEFT JOIN + NULL is a standard trick for excluding
+-- rows. It's more efficient than WHERE ... NOT IN.
+"
+  ></sql-exercise>
+

@@ -98,9 +98,10 @@ We've made a big assumption that we can subtract dates from one another. But ima
 Fortunately, SQLite contains a bunch of functions to tell the computer: "Hey, these strings that I'm passing you actually contain dates or times. Act on them as you would a date."
 
 <sql-exercise
- data-question='Look up <a href="https://stackoverflow.com/questions/27521223/sqlite-calculate-difference-in-days-between-yyyymmdd-date-formats-in-query">the documentation</a> to fix the query so that it returns the number of days between the dates.'
+ data-question='Look up <a href="https://www.sqlite.org/lang_datefunc.html">the documentation</a> to fix the query so that it returns the number of days between the dates.'
  data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_delta"
- data-solution="SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
+ data-solution="
+SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
 ></sql-exercise>
 
 <br>
@@ -123,7 +124,8 @@ The next step is to build out the `previous` table.
 <sql-exercise
   data-question="Write a query to produce the <code>previous</code> table."
   data-comment="Remember to use aliases to get the column names<code>(ex_number, last_ex_date)</code>."
-  data-solution="SELECT
+  data-solution="
+SELECT
   ex_number + 1 AS ex_number,
   ex_date AS last_ex_date
 FROM executions
@@ -143,7 +145,8 @@ JOIN (<your-query>) previous
   ON executions.ex_number = previous.ex_number
 ORDER BY day_delta DESC
 LIMIT 10"
-  data-solution="SELECT
+  data-solution="
+SELECT
   last_ex_date AS start,
   ex_date AS end,
   JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_delta
@@ -153,7 +156,6 @@ JOIN (
       ex_number + 1 AS ex_number,
       ex_date AS last_ex_date
     FROM executions
-    WHERE ex_number < 553
   ) previous
   ON executions.ex_number = previous.ex_number
 ORDER BY day_delta DESC
@@ -176,7 +178,8 @@ JOIN executions previous
   ON <your-clause>
 ORDER BY day_delta DESC
 LIMIT 10"
-  data-solution="SELECT
+  data-solution="
+SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
   JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
@@ -190,7 +193,7 @@ LIMIT 10"
 
 We can now use the precise dates of the hiatuses to research what happened over each period. In the years immediately after the ban on capital punishment was lifted, there were long periods without executions due to the low number death sentences, coupled with legal challenges to the new ruling. We thus exclude intermissions before 1993 and focus on two major hiatuses since.<img src="imgs/exno_time_annotated.png">
 
-Hiatus 1 was due to legal challenges to the <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> created in response to the 1993 World Trade Center and 1995 Oklahoma City bombings. The act limited the appeals process  to make the death penalty more effective especially for terrorism cases.(<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>)
+Hiatus 1 was due to legal challenges to the <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> created in response to the 1993 World Trade Center and 1995 Oklahoma City bombings. The act limited the appeals process  to make the death penalty more effective especially for terrorism cases (<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>).
 
 Hiatus 2 was caused by a stay enacted by the Supreme Court while it weighed in on <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a> which examined if lethal injection violates the Eighth Amendment prohibiting "cruel and unusual punishment". This affected executions across America because most states were using the same drug cocktail as Kentucky. The Supreme Court eventually affirmed Kentucky court decision and executions in Texas resumed a few months later.
 
