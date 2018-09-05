@@ -34,7 +34,7 @@ WITH mutuals AS (
 
 SELECT senator, COUNT(*) AS mutual_count
 FROM mutuals
-GROUP BY senator1
+GROUP BY senator
 ORDER BY mutual_count DESC
 LIMIT 1 "
   ></sql-exercise>
