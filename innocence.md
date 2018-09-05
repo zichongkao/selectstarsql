@@ -1,6 +1,7 @@
 ---
 layout: tutorial
 title: Claims of Innocence
+dbFile: data/tx_deathrow_small.db
 ---
 
 <a name="possible_innoncence"></a>
@@ -9,7 +10,7 @@ Opponents of the death penalty have argued that the risk of mistakenly executing
 
 The main caveat is that a claim of innocence, even if made on one's deathbed, does not constitute innocence. Furthermore, even if the inmate is truthful, there are many interpretations of innocence: The inmate could have been accused of murdering two people but is only innocent of killing one; or he may have killed the bystander but not the cop. These aren't just quibbles though: In Texas, murder alone doesn't warrant the death penalty. The inmate must have committed a [capital crime](https://en.wikipedia.org/wiki/Capital_punishment_in_Texas#Capital_crimes) like killing a public safety officer or multiple people. Hence the inmate may be innocent in a strict judicial sense, though perhaps not by common standards of morality.
 
-Nevertheless, there is still something unsettling about claims of innocence persisting to the cusp of execution when there is little left to gain. Our task here is to find how frequently this happens by calculating the proportion of last statements where is a claim of innocence.
+Nevertheless, there is still something unsettling about claims of innocence persisting to the cusp of execution when there is little left to gain. Our task here is to find how frequently this happens by calculating the proportion of last statements where there is a claim of innocence.
 
 <br>
 <a name="aggregations"></a>
@@ -41,7 +42,7 @@ As you can tell, the `COUNT` function is intrinsically tied to the concept of `N
     data-question="Verify that 0 and the empty string are not considered NULL."
     data-comment="Recall that this is a compound clause. Both of the two <code>IS NOT NULL</code> clauses have to be true for the query to return <code>true</code>."
     data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL) "
-    data-solution="SELECT 0 IS NOT NULL AND '' IS NOT NULL "></sql-exercise>
+    ></sql-exercise>
 </div>
 
 With this, we can complete part of our task:
@@ -62,9 +63,9 @@ The solution is `COUNT(*)`. This is reminiscent of `SELECT *` where the `*` repr
 data-question="Verify that <code>COUNT(*)</code> gives the same result as before."
 data-default-text="SELECT COUNT(*) FROM executions"></sql-exercise>
 
-Another common variation is to count a subset of the table. For instance, counting Harris county executions. We could run `SELECT COUNT(*) FROM executions WHERE county='Harris'` which filters down to a smaller dataset consisting Harris executions and then counts all the rows. But what if we want to simultaneously find the number of Bexar county executions?
+Another common variation is to count a subset of the table. For instance, counting Harris county executions. We could run `SELECT COUNT(*) FROM executions WHERE county='Harris'` which filters down to a smaller dataset consisting of Harris executions and then counts all the rows. But what if we want to simultaneously find the number of Bexar county executions?
 
-The solution is to apply a `CASE WHEN` block which acts as big if-else statement. You start with `CASE` and end with `ELSE <result> END`. In between you can place as many `WHEN <clause> THEN <result>` branches as you want. The `ELSE <result>` serves as catch-all when none of the `WHEN` clauses return true. Recall from the previous chapter that clauses are expressions that can bevaluated to be true or false. If the `WHEN` clause is `TRUE`, the block will return the result of the corresponding `THEN`.
+The solution is to apply a `CASE WHEN` block which acts as a big if-else statement. You start with `CASE` and end with `ELSE <result> END`. In between you can place as many `WHEN <clause> THEN <result>` branches as you want. The `ELSE <result>` serves as a catch-all when none of the `WHEN` clauses return true. Recall from the previous chapter that clauses are expressions that can be evaluated to be true or false. If the `WHEN` clause is `TRUE`, the block will return the result of the corresponding `THEN`.
 
 <sql-exercise
 data-question="This query counts the number of Harris and Bexar county executions. Replace <code>SUM</code>s with <code>COUNT</code>s and edit the <code>CASE WHEN</code> blocks so the query still works."
@@ -136,7 +137,7 @@ Doesn't it look strange? If you have a good mental model of aggregations, it sho
   data-question="Let's try it anyway and see what happens."
   data-default-text="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
 
-In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on this behavior. If you know you want the last entry, use the `LAST` aggregation function instead.
+In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on their default behavior. If you know you want the last entry, you should explicitly find it. Many SQL dialects have a `LAST` aggregation function which makes this trivial. Unfortunately SQLite doesn't, so a workaround is necessary.
 
 <a name="dialects"></a>
 <div class="sideNote">

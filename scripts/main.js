@@ -1,17 +1,17 @@
 // Set up DB
-window.onload = loaddata;
-function loaddata() {
+function loadData(dbFile) {
+  if (!dbFile) { return; }
   window.worker = new Worker("scripts/worker.sql.js");
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'data/processed_dataset.db', true);
+  xhr.open('GET', dbFile, true);
   xhr.responseType = 'arraybuffer';
   xhr.onload = () => {
     var uInt8Array = new Uint8Array(xhr.response);
     worker.onmessage = event => {
        if (event.data.ready) {
-         console.log('DB initialization successful');
-         query('SELECT COUNT(*) FROM executions', (e) => {
-          console.log(e[0].values[0] + ' rows loaded')});
+         query('SELECT 1', (e) => {
+           console.log('DB initialization successful');
+         });
        } else {
          console.log('DB initialization failed');
        }

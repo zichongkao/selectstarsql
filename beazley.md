@@ -1,6 +1,7 @@
 ---
 layout: tutorial
 title: Beazley's Last Statement
+dbFile: data/tx_deathrow_small.db
 ---
 
 <a name="beazley_case"></a>
@@ -144,7 +145,7 @@ Let's take a quick quiz to cement your understanding.
     ></sql-quiz-option>
   <sql-quiz-option
     data-value="column_comparison"
-    data-statement="WHERE ex_number < age"
+    data-statement="WHERE ex_number < ex_age"
     data-hint="Multiple column names may be used in a clause."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
@@ -155,7 +156,7 @@ Let's take a quick quiz to cement your understanding.
   <sql-quiz-option
     data-value="int_column"
     data-statement="WHERE ex_age"
-    data-hint="SQL can evaluate the truth-value of almost anything. The 'age' column is filled with integers. The rule for integers is 0 is false and everything else is true, so only rows with non-zero ages will be returned."
+    data-hint="SQL can evaluate the truth-value of almost anything. The 'ex_age' column is filled with integers. The rule for integers is 0 is false and everything else is true, so only rows with non-zero ages will be returned."
     data-correct="true"
     ></sql-quiz-option>
    <sql-quiz-option

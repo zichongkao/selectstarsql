@@ -1,6 +1,7 @@
 ---
 layout: tutorial
 title: The Long Tail
+dbFile: data/tx_deathrow_small.db
 ---
 
 <a name="long_tail"></a>
@@ -24,7 +25,7 @@ This is where the `GROUP BY` block comes in. It allows us to split up the datase
 FROM executions
 GROUP BY county"></sql-exercise>
 
-If you recall <a href='longtail.html#strange'>A Strange Query</a>, alarm bells would be going off in your head. Didn't we just learn not to mix aggregated and non-aggregated columns? The difference here is that grouping columns are the only columns allowed to be non-aggregate. After all, all the rows in that group must have the same values on those columns so there's no ambiguity in the value that should be returned.
+If you recall <a href='innocence.html#strange'>A Strange Query</a>, alarm bells would be going off in your head. Didn't we just learn not to mix aggregated and non-aggregated columns? The difference here is that grouping columns are the only columns allowed to be non-aggregate. After all, all the rows in that group must have the same values on those columns so there's no ambiguity in the value that should be returned.
 
 You may have also noticed our use of `AS`. It's what we call "aliasing". In the `SELECT` block, <code class="codeblock">&lt;expression&gt; AS &lt;alias&gt;</code> provides an alias that can be referred to later in the query. This saves us from having to write out long expressions again, and can clarify the purpose of the expression.
 
@@ -83,7 +84,7 @@ GROUP BY county"
 
 <sql-exercise
   data-question="List the counties in which more than 2 inmates aged 50 or older have been executed."
-  data-comment="This builds on the previous exercise. We need an additional filter, but this filter is based on result of the aggregation and so cannot exist in the <code>WHERE</code> block which filters before aggregation. Look up the <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> block</a>. It is a post-aggregation <code>WHERE</code> block."
+  data-comment="This builds on the previous exercise. We need an additional filter &mdash; one that uses the result of the aggregation. This means it cannot exist in the <code>WHERE</code> block because those filters are run before aggregation. Look up the <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> block</a>. It is a post-aggregation <code>WHERE</code> block."
   data-default-text=""
   data-solution="SELECT county
 FROM executions
@@ -102,7 +103,7 @@ HAVING COUNT(*) > 2"
 <br>
 <a name="nested"></a>
 ## Nested Queries
-Now you may ask, wouldn't we be done if we could just run something like:
+Now, you may ask, wouldn't we be done if we could just run something like this?
 
     SELECT
       county,
