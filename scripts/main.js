@@ -11,6 +11,8 @@ function loadData(dbFile) {
        if (event.data.ready) {
          query('SELECT 1', (e) => {
            console.log('DB initialization successful');
+           document.querySelectorAll("input.sql-exercise-submit").forEach(
+             (button) => {button.disabled = false;});
          });
        } else {
          console.log('DB initialization failed');
@@ -252,7 +254,7 @@ class sqlExercise extends HTMLElement {
     editor.setSize('100%', 'auto');
     editor.refresh();
 
-    var runButton = `<input type="submit" value="Run &#x21e9;">`;
+    var runButton = `<input class="sql-exercise-submit" type="submit" value="Run &#x21e9;" disabled>`;
     inputArea.insertAdjacentHTML("beforeend", runButton);
 
     form['onsubmit'] = (e) => {
