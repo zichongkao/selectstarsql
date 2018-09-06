@@ -26,9 +26,6 @@ function loadData(dbFile) {
     });
   }
   xhr.send();
-  if (!('customElements' in window)) {
-    document.querySelector('.warning').style.display = "block";
-  }
 }
 
 function query(sql, cb, err_cb) {
