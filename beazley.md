@@ -47,7 +47,7 @@ The `SELECT` block specifies which columns you want to output. Its format is <co
 <br>
 <a name="from"></a>
 ## The FROM Block
-The <code>FROM</code> block specifies which table we're querying from. It's format is <code class="codeblock">FROM &lt;table&gt;</code>. It always comes after the <code>SELECT</code> block.
+The <code>FROM</code> block specifies which table we're querying from. Its format is <code class="codeblock">FROM &lt;table&gt;</code>. It always comes after the <code>SELECT</code> block.
 
 <sql-exercise
   data-question="Run the given query and observe the error it produces. Fix the query."
