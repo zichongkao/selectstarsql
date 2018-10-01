@@ -154,7 +154,7 @@ In practice, databases try to return something sensible even though you pass in 
 ## Conclusion and Recap
 Let's use what we've learned so far to complete our task:
 <sql-exercise
-  data-question="Find the proportion of last statements with claims of innocence."
+  data-question="Find the proportion of inmates with claims of innocence in their last statements."
   data-comment="To do decimal division, ensure that one of the numbers is a decimal by multiplying it by 1.0. Use <code>LIKE '%innocent%'</code> to find claims of innocence."
   data-solution="SELECT
 1.0 * COUNT(CASE WHEN last_statement LIKE '%innocent%'
