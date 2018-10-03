@@ -2,7 +2,7 @@
 layout: he_default
 ---
 
-{% for tutorial in site.data.sitemap.contents %}
+{% for tutorial in site.data.he_sitemap.contents %}
   {% if tutorial.title == page.title %}
     {% assign tutorial_index = forloop.index0 %}
     {% assign content_length = forloop.length %}
@@ -12,9 +12,9 @@ layout: he_default
 {% endfor %}
 
 <div class="section-nav">
-  <a href="/">Home</a>
+  <a href="/">עמוד הבית</a>
   {% if previous >= 0 %}
-    {% assign previous_tutorial = site.data.sitemap.contents[previous] %}
+    {% assign previous_tutorial = site.data.he_sitemap.contents[previous] %}
     <div class="section-sib">
       &#x21b3; <a href="{{ previous_tutorial.url }}">{{ previous_tutorial.title }}</a>
     </div>
@@ -22,11 +22,11 @@ layout: he_default
 
   <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}</div></div>
 
-  {% for tutorial in site.data.sitemap.contents %}
+  {% for tutorial in site.data.he_sitemap.contents %}
     {% if tutorial.title == page.title %}
       {% for section in tutorial.sections %}
         {% unless section.sidenote %}
-          <div class="childlinks">
+          <div class="rtlchildlinks">
             &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
           </div>
         {% endunless %}
@@ -34,8 +34,8 @@ layout: he_default
     {% endif %}
   {% endfor %}
 
-  {% if site.data.sitemap.contents[next].title %}
-    {% assign next_tutorial = site.data.sitemap.contents[next] %}
+  {% if site.data.he_sitemap.contents[next].title %}
+    {% assign next_tutorial = site.data.he_sitemap.contents[next] %}
     <div class="section-sib">
       &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
     </div>
@@ -46,13 +46,13 @@ layout: he_default
 
 <div class="tutorial-nav">
   {% if previous >= 0 %}
-    {% assign previous_tutorial = site.data.sitemap.contents[previous] %}
+    {% assign previous_tutorial = site.data.he_sitemap.contents[previous] %}
     <div class="previous">Previous: <a href="{{ previous_tutorial.url }}">
     {{ previous_tutorial.title }}</a></div>
   {% endif %}
 
   {% if site.data.sitemap.contents[next].title %}
-    {% assign next_tutorial = site.data.sitemap.contents[next] %}
+    {% assign next_tutorial = site.data.he_sitemap.contents[next] %}
     <div class="next">Next: <a href="{{ next_tutorial.url }}">
     {{ next_tutorial.title }}</a></div>
   {% endif %}

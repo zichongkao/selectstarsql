@@ -171,6 +171,10 @@ a:hover {
     font-weight: 200;
 }
 
+.section-nav .rtlchildlinks {
+    margin-right: 3em;
+    font-weight: 200;
+}
 .section-nav .childlinks a.here {
     background: #fbfbfb;
     font-weight: bolder;
