@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="he">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <!-- thanks to https://favicon.io/ -->
+    <link rel="stylesheet" href='https://codemirror.net/lib/codemirror.css'>
+    <link rel="stylesheet" href='css/neat.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
+    <script src="scripts/codemirror.js"></script>
+    <script src="scripts/codemirrorsql.js"></script>
+    <script src="scripts/autorefresh.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+      window.onload = () => loadData('{{ page.dbFile }}');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46601509-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46601509-2');
+    </script>
+    <title>{{ page.title }}</title>
+  </head>
+
+  <body dir="rtl">
+    <div id="column">
+      <div class="header">
+        <a href="/"><img class="logo" src="favicon-256.png"></a>
+        <a href="/"><div class="title">Select Star SQL</div></a>
+      </div>
+      <div class="content">
+        {{content}}
+      </div>
+      <div class="footer">
+        מוגש לשימוש תחת הרשיון הפתוח <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"> המתיר שיתוף ושימוש לצרכים לא מסחריים, תוך אזכור וייחוס היוצר/ת.
+      </div>
+    </div>
+  </body>
+</html>
