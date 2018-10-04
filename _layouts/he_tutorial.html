@@ -26,7 +26,7 @@ layout: he_default
     {% if tutorial.title == page.title %}
       {% for section in tutorial.sections %}
         {% unless section.sidenote %}
-          <div class="rtlchildlinks">
+          <div class="childlinks">
             &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
           </div>
         {% endunless %}
