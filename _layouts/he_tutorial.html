@@ -47,13 +47,13 @@ layout: he_default
 <div class="tutorial-nav">
   {% if previous >= 0 %}
     {% assign previous_tutorial = site.data.he_sitemap.contents[previous] %}
-    <div class="previous">Previous: <a href="{{ previous_tutorial.url }}">
+    <div class="previous">לעמוד הקודם: <a href="{{ previous_tutorial.url }}">
     {{ previous_tutorial.title }}</a></div>
   {% endif %}
 
   {% if site.data.sitemap.contents[next].title %}
     {% assign next_tutorial = site.data.he_sitemap.contents[next] %}
-    <div class="next">Next: <a href="{{ next_tutorial.url }}">
+    <div class="next">לעמוד הבא: <a href="{{ next_tutorial.url }}">
     {{ next_tutorial.title }}</a></div>
   {% endif %}
 </div>
