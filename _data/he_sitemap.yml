@@ -1,0 +1,110 @@
+contents:
+- title: העניינים שלפני
+  url: he_frontmatter.html
+  blurb: "הבסיס הפילוסופי והטכני של הפרוייקט."
+  sections:
+  - name: התמריץ
+    url: "#impetus"
+  - name: הפדגוגיה
+    url: "#pedagogy"
+  - name: סט הנתונים
+    url: "#dataset"
+  - name: העניינים הטכניים
+    url: "#technicals"
+  - name: צרו קשר
+    url: "#contact"
+- title: המלים האחרונות של ביזלי
+  url: he_beazley.html
+  blurb: "הפרק הראשון בוחן את הטיעון של נפוליאון ביזלי כנגד עונש מוות. נלמד את המבנה של שאילתת SQL ופעולות שניתן לבצע על שורה בטבלה."
+  sections:
+  - name: המקרה של ביזלי (Beazley’s case)
+    url: "#המקרה-של-ביזלי-beazleys-case"
+  - name: שאילתת SQL ראשונה
+    url: "#שאילתת-sql-ראשונה"
+  - name: The SELECT Block
+    url: "#select"
+  - name: SQL Comments
+    url: "#comments"
+    sidenote: true
+  - name: The FROM Block
+    url: "#from"
+  - name: Capitalization
+    url: "#capitalization"
+    sidenote: true
+  - name: Whitespace
+    url: "#whitespace"
+    sidenote: true
+  - name: The WHERE Block
+    url: "#where"
+  - name: Quotes
+    url: "#quotes"
+    sidenote: true
+  - name: Recap
+    url: "#recap"
+- title: Claims of Innocence
+  url: he_innocence.html
+  blurb: "Chapter 2 estimates how many executed inmates may have been innocent. The technical theme is aggregating the entire table."
+  sections:
+  - name: Possible Innocence
+    url: "#possible_innocence"
+  - name: Aggregations
+    url: "#aggregations"
+  - name: The COUNT Function
+    url: "#count"
+  - name: Nulls
+    url: "#nulls"
+    sidenote: true
+  - name: Variations on COUNT
+    url: "#count_var"
+  - name: Looking Up Documentation
+    url: "#documentation"
+    sidenote: true
+  - name: A Strange Query
+    url: "#strange"
+  - name: SQL Dialects and Databases
+    url: "#dialects"
+    sidenote: true
+  - name: Conclusion and Recap
+    url: "#recap"
+- title: The Long Tail
+  url: he_longtail.html
+  blurb: "Chapter 3 studies counties with unusually high numbers of executions. We generalize Chapter 2 by applying aggregations on groups of rows."
+  sections:
+  - name: Long Tails
+    url: "#long_tails"
+  - name: Group By
+    url: "#groupby"
+  - name: Nested Queries
+    url: "#nested"
+  - name: Harris County
+    url: "#harris"
+  - name: Recap
+    url: "#recap"
+  - name: MapReduce
+    url: "#mapreduce"
+    sidenote: true
+- title: Execution Hiatuses
+  url: he_hiatuses.html
+  blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
+  sections:
+  - name: Hiatuses
+    url: "#hiatuses"
+  - name: Thinking about Joins
+    url: "#joins"
+  - name: Disambiguating Columns
+    url: "#disam_cols"
+    sidenote: true
+  - name: Types of Joins
+    url: "#join_types"
+  - name: Dates
+    url: "#dates"
+  - name: Self Joins
+    url: "#self_joins"
+  - name: Recap
+    url: "#recap"
+- title: Challenge Questions
+  url: he_questions.html
+  blurb: "This final chapter is a collection of miscellaneous challenge questions."
+  sections:
+  - name: Dates and Times
+    url: "#date_time"
