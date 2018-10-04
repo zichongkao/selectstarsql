@@ -166,11 +166,11 @@ a:hover {
     font-weight: 700;
 }
 
+
 .section-nav .childlinks {
-    margin-left: 3em;
+    margin-right: 3em;
     font-weight: 200;
 }
-
 .section-nav .childlinks a.here {
     background: #fbfbfb;
     font-weight: bolder;
@@ -180,9 +180,9 @@ a:hover {
 /* sideNote */
 .sideNote {
     margin: 1em 0em;
-    padding-left: 1em;
+    padding-right: 1em;
     font-size: 0.9em;
-    border-left: 2px solid grey;
+    border-right: 2px solid grey;
 }
 
 /* datatable */
