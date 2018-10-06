@@ -186,8 +186,8 @@ class sqlQuiz extends HTMLElement {
       var value = Array.prototype.filter.call(form.input, i => i.checked).map(i => i.value);
       var correct = Array.prototype.filter.call(form.input, i => i.dataset.correct === "true").map(i => i.value);
       var mistakes = setdiff(correct, value).size + setdiff(value, correct).size;
-      var res = mistakes >= 2 ? mistakes + " mistakes" :
-          mistakes == 1 ? mistakes + " mistake" : "All correct!"
+      var res = mistakes >= 2 ? mistakes + " טעויות" :
+          mistakes == 1 ? mistakes + " טעויות" : "הכל נכון!"
       form.output.innerHTML = `<div class='returnOkay'>${res}</div>`;
     };
 
