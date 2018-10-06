@@ -55,7 +55,7 @@ The <code>FROM</code> block specifies which table we're querying from. Its forma
   data-default-text="SELECT first_name FROM execution LIMIT 3"
   data-solution="SELECT first_name FROM executions LIMIT 3"></sql-exercise>
 
-We don’t need the `FROM` block if we not using anything from a table.
+We don’t need the `FROM` block if we're not using anything from a table.
 
 <sql-exercise
   data-question="Modify the query to divide 50 and 51 by 2."
