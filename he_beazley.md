@@ -20,70 +20,77 @@ dbFile: data/tx_deathrow_small.db
   הריצו את השאילתה כדי לאתר את 3 השורות הראשונות של הטבלה הנקראת 'executions'"
 
   data-comment="הצגה של כמה שורות היא דרך נוחה לגלות מהם הטורים בטבלה. נסו לזכור את שמות הטורים לשימוש בהמשך."
-  
+
   data-default-text="SELECT * FROM executions LIMIT 3"></sql-exercise>
 
-שאילתת ה-SQL עשויה להיראות כמשפט רגיל, אבל כדאי שתסתכלו עליה כעל שלוש לבנים:
+שאילתת ה-SQL עשויה להיראות כמשפט רגיל, אבל כדאי שתסתכלו עליה כעל שלוש לבנים, או שלושה בלוקים:
 
-<code class='codeblock'>SELECT *</code>
+<code class='codeblock'>SELECT * </code>
 <code class='codeblock'>FROM executions</code>
-<code class='codeblock'>LIMIT 3</code>.
-כמו בלבני לגו, לכל לבנה יש מבנה קבועה והלבנים השונות צריכות להתחבר בדרכים מסויימות
+<code class='codeblock'>LIMIT 3</code>.<br>
+כמו בלגו, לכל לבנה יש מבנה קבוע והלבנים השונות צריכות להתחבר בדרך כזו או אחרת.
 
 <br>
 <a name="select"></a>
-## The SELECT Block
-The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column&gt;, &lt;column&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
+## בלוק ה-SELECT
+בלוק ה-`SELECT` מפרט אילו טורים אתם רוצים שייכללו בפלט. המבנה שלו הוא <br><code class='codeblock' dir="ltr">SELECT &lt;column&gt;, &lt;column&gt;,... </code>. כל טור צריך להיות מפורד על ידי פסיק, אבל הרווח שאחרי הפסיק אינו הכרחי. סימן הכוכב (`*`) הוא תו מיוחד שמסמן שאנחנו רוצים את כל הטורים שבטבלה.
+
 
 <sql-exercise
-  data-question="In the code editor below, revise the query to select the first_name, last_name and last_statement columns."
-  data-comment="Once you're done, you can hit Shift+Enter to run the query."
+  data-question="שנו את השאילתה בעורך הקוד כדי לבחור את הטורים first_name, last_name ו-last_statement."
+  data-comment="כשתסיימו, ניתן ללחוץ על Shift+Enter כדי להריץ את השאילתה."
   data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
 
 <a name="comments"></a>
 <div class="sideNote">
-  <h3>SQL Comments</h3>
-  <p>Notice that clicking "Show Solution" displays the solution in the editor preceded by <code>/*</code>. The contents between <code>/*</code> and <code>*/</code> are taken as comments and aren't run as code. This is useful for temporarily hiding code we don't want to run. To run the solution, simply delete or comment out your code and uncomment the solution.</p>
-  <p><code>--</code> is another way of indicating comments. It is used to mark the rest of a single line as a comment. When we have multiple lines we want to comment out, <code>/* ... */</code> is more convenient than prepending <code>--</code> to each line.</p>
-</div>
+  <h3>הערות ב-SQL</h3>
 
+  <p>שימו לב שלחיצה על "הצגת פתרון" מציגה בעורך הקוד את הפתרון כשלפני מופיעים הסימנים `*/`. התוכן שמופיע בין <code>*/</code> לבין <code>/*</code> נחשב כהערות ולא יופעל כחלק מהקוד. זוהי דרך נוחה למנוע באופן זמני הרצה של קוד שאיננו מעוניינים שיופעל. כדי להריץ את הפתרון שלנו, עליכם פשוט למחוק או לסמן כהערה את הקוד שלכם ולהסיר את סימני ההערה מסביב לפתרון שהצגנו לכם.</p><p>הרצף <code>--</code> הוא דרך נוספת לסמן טקסט כהערה. הוא משמש לסמן את המשך השורה כהערה. כאשר יש לנו כמה שורות רצופות שברצוננו לסמן כהערה השימוש ב-<code>/* ... */</code> יהיה נח יותר מאשר להוסיף <code>--</code> בתחילת כל שורה.</p>
+
+
+</div>
 <br>
 <a name="from"></a>
-## The FROM Block
-The <code>FROM</code> block specifies which table we're querying from. Its format is <code class="codeblock">FROM &lt;table&gt;</code>. It always comes after the <code>SELECT</code> block.
+
+## בלוק ה-FROM
+בלוק ה-<code>FROM</code> מפרט מאיזו טבלה אנחנו מבצעים את השאילתה. המבנה של הבלוק הוא <code class="codeblock">&lt;שם_טבלה&gt; FROM </code>. הוא תמיד יופיע אחר בלוק ה-<code>SELECT</code>
+
 
 <sql-exercise
-  data-question="Run the given query and observe the error it produces. Fix the query."
-  data-comment="Make it a habit to examine error messages when something goes wrong. Avoid debugging by gut feel or trial and error."
+  data-question="הריצו את השאילתה המוצגת וראו את הודעת השגיאה שהיא מעלה. תקנו את השאילתה."
+  data-comment="תתרגלו לבחון הודעות שגיאה כאשר משהו משתבש ונסו להמנע מתיקון (debug) על בסיס תחושת בטן או ניסוי וטעייה."
   data-default-text="SELECT first_name FROM execution LIMIT 3"
   data-solution="SELECT first_name FROM executions LIMIT 3"></sql-exercise>
 
-We don’t need the `FROM` block if we not using anything from a table.
+אנחנו לא צריכים את בלוק ה-`FROM` אם איננו משתמשים בפריט כלשהוא מטבלה.
+
 
 <sql-exercise
-  data-question="Modify the query to divide 50 and 51 by 2."
-  data-comment="SQL supports all the usual arithmetic operations."
+  data-question="שנו את השאילתה כך שתחלק את המספר 50 ואת המספר 51 ב-2."
+  data-comment="SQL תומכת בכל פעולות החשבונאיות הרגילות."
   data-default-text="SELECT 50 + 2, 51 * 2"
   data-solution="SELECT 50 / 2, 51 / 2"></sql-exercise>
 
-Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`. A common trick is to multiply one number by `1.0` to convert it into a decimal.
+האם זה לא מוזר ש- `51/2` מציג `25` במקום `25.5`? זה קורה מפני ש-SQL מבצעת חלוקה בין מספרים שלמים (integers). על מנת לבצע חלוקה בין מספרים עשרוניים (decimals), לפחות אחד מן הגורמים (operands) חייב להיות מספר עשרוני, למשל `51.0/2`. זה טריק מקובל להכפיל את אחד המספרים ב-`1.0` כדי להמיר אותו למספר עשרוני.
+
 
 <a name="capitalization"></a>
 <div class="sideNote">
-  <h3>Capitalization</h3>
-  <p>Even though we’ve capitalized <code>SELECT</code>, <code>FROM</code> and <code>LIMIT</code>, SQL commands are not case-sensitive. You can see that the code editor recognizes them and formats them as a command no matter the capitalization. Nevertheless, I recommend capitalizing them to differentiate them from column names, table names and variables.</p>
-  <p>Column names, table names and variables are also not case-sensitive in this version of SQL, though they are case-sensitive in many other versions. To be on the safe side, I recommend always assuming they are case-sensitive.</p>
+  <h3>אותיות אנגליות גדולות (Capitalization)</h3>
+<p>למרות שכתבתנו את המלים <code>SELECT</code>, <code>FROM</code> ו-<code>LIMIT</code> באותיות אנגליות גדולות, פקודות SQL אינן רגישות להבדלים בין אותיות גדולות וקטנות (case-insensitive). תוכלו לראות שעורך הקוד מכיר אותן ומתייחס אליהן כפקודות במנותק מצורת האותיות. למרות זאת, אני ממליץ לרשום את פקודות ה-SQL באותיות גדולות (capitalized) כדי להבדיל ביניהן לבין שמות הטורים, שמות הטבלאות ושמות משתנים.</p>
+
+  <p>שמות טורים, שמות טבלאות ושמות משתנים גם כן אינם רגישים להבדלים בין אותיות קטנות לגדולות בגרסה הזו של SQL, אבל הם כן case-sensitive בגרסאות רבות אחרות. כדי לעבוד בצורה בטוחה, אני ממליץ תמיד לניח שישנה רגישות להבדלים בין אותיות קטנות לגדולות.</p>
 </div>
 
 <a name="whitespace"></a>
 <div class="sideNote">
-  <h3>Whitespace</h3>
-  <p>Whitespace refers to spaces, tabs, linebreaks and other characters that are rendered as empty space on a page. As with capitalization, SQL isn't very sensitive to whitespace as long as you don't smush two words into one. This means that there just needs to be at least one whitespace character around each command — it doesn't matter which one or how many you use. Unless it's a short query, I prefer putting each command on a new line to improve readability.</p>
+  <h3>רווחים</h3>
+<p>הכוונה ברווחים היא לרווח, טאבם, שבירת שורה ותווים אחרים שמוצגים בעמוד כמרווח ריק. בדומה לאותיות אנגליות גדולות/קטנות (Capitalization), SQL אינה רגישה מאוד לרווחים, כל עוד לא תאחדו שתי מלים נפרדות למילה אחת. המשמעות היא שחייב להיות לפחות תו אחד של רווח משני הצדדים של כל פקודה – לא משנה איזה מן התווים המייצגים מרווח ריק ובכמה תווים כאלו תשתמשו. למעט שאילתות קצרות, אני מעדיף לשים כל פקודה בשורה חדשה כדי להקל את הקריאה של השאילתה.</p>
 
 <sql-exercise
-  data-question="Verify that messing up capitalization and whitespace still gives a valid query."
-  data-comment="Karla Tucker was the first woman executed in Texas since the Civil War. She was put to death for killing two people during a 1983 robbery."
+  data-question="ודאו שערבוב אותיות קטנות וגדולות ורווחים אינם פוגעים בתקינות של השאילתה."
+data-comment="קרלה טוקר (Karla Tucker) היתה האישה הראשונה שהוצאה להורג בטקסס מאז מלחמת האזרחים. היא הורשעה בהרג במהלך שוד ב-1983."
   data-default-text="   SeLeCt   first_name,last_name
   fRoM      executions
            WhErE ex_number = 145"></sql-exercise>
@@ -91,23 +98,25 @@ Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQ
 
 <br>
 <a name="where"></a>
-## The WHERE Block
-The `WHERE` block allows us to filter the table for rows that meet certain conditions. Its format is <code class='codeblock'>WHERE &lt;clause&gt;</code> and it always goes after the `FROM` block. Here, a clause refers to a Boolean statement that the computer can evaluate to be true or false like <code>ex_number = 145</code>. You can imagine that the computer will go through each row in the table checking if the clause is true, and if so, return the row.
+## בלוק ה-WHERE
+<p>בלוק ה-`WHERE` מאפשר לנו לסנן את השורות שעומדות בתנאים מסויימים מתוך הטבלה. המבנה של הבלוק הוא <code class='codeblock' dir="ltr">WHERE &lt;clause&gt;</code> והוא תמיד יופיע אחרי בלוק ה-`FROM`. כאן, הפסקה מייצרת ביטוי בוליאני (Boolean statement) שהמחשב יכול לחשב כאמת או שקר, כמו <code>ex_number = 145</code>. אתם יכולים לדמיין איך המחשב עובר שורה אחרי שורה בטבלה ויבדוק אם הביטוי בפסקה אמיתי, ואם כן, יוסיף את השורה.</p>
+
 
 <sql-exercise
-  data-question="Find the first and last names and ages of inmates 25 or younger at time of execution."
-  data-comment="Because the average time inmates spend on death row prior to execution is 10.26 years, only 6 inmates this young have been executed in Texas since 1976."
+  data-question="מצאו את השם הפרטי ושם המשפחה של נדונים למוות בגיל 25 או צעירים יותר בעת ההוצאה להורג."
+  data-comment="בגלל שזמן המאסר הממוצע שנדונים למוות ישבו בכלא לפני ההוצאה להורג הוא 10.26 שנים, רק שישה נדונים למוות בגיל צעיר שכזה הוצאו להורג בטקסס מאז שנת 1976."
   data-default-text=""
   data-solution="SELECT first_name, last_name, ex_age
 FROM executions WHERE ex_age <= 25"></sql-exercise>
 
-It's clear how we can use arithmetic operators like `<` and `<=` to build clauses. There are also a collection of string operators to work with strings.
+די ברור איך אנחנו יכולים להשתמש באופרטרים אריתמטיים כמו `<` ו-`=>` בבניית הפסקאות. יש גם אוסף של תווים שמשמשים כאופרטורים לעבודה עם מחרוזות תווים.
 
-The most powerful of these is probably <code>LIKE</code>. It allows us to use wildcards such as `%` and `_` to match various characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
+הדוגמה החזקה ביותר מתוך לה היא כנראה <code>LIKE</code>. היא מאפשרת לנו להשתמש בתווים כלליים (wildcards) כמו `%` ו-`_` כדי לנסות למצוא התאמה עם תווים שונים. לדוגמה, `first_name LIKE '%roy'` יחזיר תוצאת אמת לשורות שבהן השם הפרטי הוא ‘roy’,’Troy’ ו-’Deroy’, אבל לא ‘royman’. התו הכללי `_` ישווה ויהיה תואם לתו בודד, כך ש-`first_name LIKE `_roy` יהיה תואם רק ל-`Troy`.
+
 
 <sql-exercise
-    data-question="Find the execution number of Raymond Landry."
-    data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find the row."
+    data-question="מצאו את מספר ההוצאה להורג של ריימונד לנדרי (Raymond Landry)."
+    data-comment="יתכן שתחשבו שזה קל, מכיוון שאנחנו כבר יודעים את השם הפרטי ושם המשפחה שלו, אבל אוספי נתונים מגיעים נקיים ומסודרים רק לעתים רחוקות. השתמשו באופרטור LIKE כך שלא תצטרכו לדעת את השם שלו באופן מושלם כדי לאתר את השורה."
     data-default-text="SELECT ex_number
 FROM executions
 WHERE first_name = 'Raymond'
@@ -119,71 +128,73 @@ WHERE first_name = 'Raymond'
 
 <a name="quotes"></a>
 <div class="sideNote">
-  <h3>Quotes</h3>
-  <p>In SQL, strings are denoted by single quotes. Backticks (ie <code>`</code>) can be used to denote column and table names. This is useful when the column or table name is the same as a SQL keyword and when they have a space in them. It's possible to have a database with a table named 'where' and a column named 'from'. (Who would be so cruel as to do this?!) You would have to do <code>SELECT `from` FROM `where` WHERE ...</code>. This is another example why capitalization of SQL commands helps.</p>
+  <h3>מרכאות</h3>
+<p>ב-SQL, מחרוזות תווים מסומנות במרכאות בודדות (‘). מרכאה בודדת חרות (Backticks, <code>`</code>) משמשת כדי לסמן שמות של טורים ושל טבלאות. זה שימושי כאשר שם של טור הוא שם של טבלה זהים לאחת ממלות המפתח של SQL או כאשר יש בתוכם רווח. יתכן מצב שבו בסיס נתונים כולל טבלה בשם ‘where’ וטור שנקרא ‘from’. (מי יכול להיות אכזרי כל כך ולעשות דבר כזה?!) במקרה כזה תצטרכו לכתוב <code>SELECT `from` FROM `where` WHERE ...</code>. <br>זוהי עוד דוגמה שממחישה מדוע שמירה על כתיבה באותיות גדולות (capitalization) של פקודות SQL יכולה לעזור.</p>
 </div>
 
-As you've seen in the previous exercise, complex clauses can be made out of simple ones using Boolean operators like `NOT`, `AND` and `OR`. SQL gives most precedence to `NOT` and then `AND` and finally `OR`. But if, like me, you're too lazy to remember the order of precedence, you can use parenthesis to clarify the order you want.
+כמו שראיתם בתרגילים הקודמים, פסקאות מורכבות יכולות להיווצר מחיבור של פסקאות פשוטות באמצעות אופרטורים בוליאנים כמו `NOT` (לא), `AND` (ו-) ו-`OR` (או). SQL מעניקה קדימות ל-`NOT` ואז ל-`AND` ולבסוף ל-`OR`. אבל אם אתם, כמוני, עצלנים מידי בכדי לזכור את סדר הקדימויות, תוכלו להשתמש בסוגריים כדי להבהיר את הסדר הרצוי.
+
 
 <sql-exercise
-    data-question="Insert a pair of parenthesis so that this statement returns 0."
-    data-comment="Here we're relying on the fact that 1 means true and 0 means false."
+    data-question="הכניסו זוג סוגריים כדי שההצהרה הזו תחזיר 0."
+    data-comment="אנחנו מסתמכים כאן על העובדה שהמשמעות של 1 היא אמת והמשמעות של 0 היא שקר."
     data-default-text="SELECT 0 AND 0 OR 1"
     data-solution="SELECT 0 AND (0 OR 1)"
     ></sql-exercise>
 
-Let's take a quick quiz to cement your understanding.
+בואו נבצע בוחן קטן כדי לקבע את ההבנה שלכם.
 
 <sql-quiz
-  data-title="Select the <code>WHERE</code> blocks with valid clauses."
-  data-description="These are tricky. Even if you've guessed correctly, read the hints to understand the reasoning.">
+  data-title="בחרו את כל הבלוקים <code>WHERE</code> עם הפסקאות התקינות."
+  data-description="אלה שאלות טריקיות. גם אם נחשתם נכון, קראו את הרמזים כדי להבין מה הסיבה לתשובה הנכונה.">
   <sql-quiz-option
     data-value="bool_literal"
     data-statement="WHERE 0"
-    data-hint="<code>1</code> and <code>0</code> are the most basic Boolean statements. This block guarantees that no rows will be returned."
+    data-hint="code>1</code> ו-<code>0</code> הם ההצהרות הבוליאניות הכי בסיסיות. הבלוק הזה מבטיח ששום שורות לא יוחזרו."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="python_equal"
     data-statement="WHERE ex_age == 62"
-    data-hint="The <code>==</code> operator checks equality in many other programming languages but SQL uses <code>=</code>."
+    data-hint="האופרטור <code>==</code> בודק שוויון בהרבה שפות תכנות אחרות, אבל ב-SQL משתמשים ב-<code>=</code>."
     ></sql-quiz-option>
   <sql-quiz-option
     data-value="column_comparison"
     data-statement="WHERE ex_number < ex_age"
-    data-hint="Multiple column names may be used in a clause."
+    data-hint="כמה שמות טורים יכולים לשמש בפסקה אחת."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="greaterthan_orequal"
     data-statement="WHERE ex_age => 62"
-    data-hint="The 'greater than or equal to' operator is <code>>=</code>. The order of the symbols matches what you would say in English."
+    data-hint="האופרטור לסימון ‘גדול מ.. או שווה ל..’ הוא <code>=</code>. הסדר של הסמלים תואם לאופן שבו הייתם רושמים את הדברים באנגלית או בעברית."
     ></sql-quiz-option>
   <sql-quiz-option
     data-value="int_column"
     data-statement="WHERE ex_age"
-    data-hint="SQL can evaluate the truth-value of almost anything. The 'ex_age' column is filled with integers. The rule for integers is 0 is false and everything else is true, so only rows with non-zero ages will be returned."
+    data-hint="SQL יכולה להעריך כאמת כמעט כל דבר. הטור ‘ex_age’ מלא במספרים שלמים (integers). הכלל למספרים שלמים הוא ש-0 הוא שקר (false) וכל ערך אחר שווה לאמת (true), כך שרק שורות עם ערך שאינו 0 יוחזרו."
     data-correct="true"
     ></sql-quiz-option>
    <sql-quiz-option
     data-value="like_order"
     data-statement="WHERE '%obert%' LIKE first_name"
-    data-hint="More than one wildcard is fine. But the pattern has to come after the LIKE operator."
+    data-hint="אין בעיה להשתמש ביותר מתו כללי (wildcard) אחד, אבל התבנית חייבת להגיע אחר האופרטור LIKE."
     ></sql-quiz-option>
     </sql-quiz>
 
-Now you have the tools you need to complete our project.
+כעת נמצאים בידיכם הכלים הדרושים לכם כדי להשלים את הפרוייקט שלנו.
+
 <sql-exercise
-  data-question="Find Napoleon Beazley's last statement."
+  data-question="מצאו את מלותיו האחרונות של נפוליאון ביזלי."
   data-default-text=""
   data-solution="SELECT last_statement
 FROM executions
 WHERE first_name = 'Napoleon'
   AND last_name = 'Beazley'"></sql-exercise>
 
-Isn't it amazing how profound and eloquent Beazley is? Recall that he was only 25 at time of statement and had been in prison since he was 18.
+זה לא מדהים עד כמה עמוק ורב עוצמה ביזלי? זכרו שהוא רק בן 25 בזמן שהשמיע את המלים הללו ושהה בכלא מאז שהיה בן 18.
 
 <br>
 <a name="#recap"></a>
-## Recap
-The point of this chapter has been to introduce the basic but powerful <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. It allows us to filter a table by having the computer go row by row and pick out those for which the `WHERE` clause is true. We've also learned how to put together fairly complex clauses that can operate on string, numeric and boolean-valued columns.
+## לסיכום
+המטרה של הפרק הזה היתה להציג את המקטע הבסיסי אך העוצמתי  <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. הוא מאפשר לנו לסנן טבלה על ידי כך שהמחשב עובר שורה אחר שורה ובוחר את השורות עבורן פסקת ה-`WHERE` נכונה.למדנו גם איך לחבר חד כמה פסקות מורכבות יחסית שניתן להפעיל על תווים, מספרים וטורים עם ערכים בוליאנים (אמת/שקר).
 
-Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next chapter, we'll focus on aggregations which will allow us to understand system-level phenomena.
+עד כה פעלנו רק ברמת השורה הבודדת, מה שהגביל אותנו לחיפוש ואיתור של נקודות מידע בודדות ונפרדות. בפרק הבא נתרכז בצבירות (aggregations) שיאפשרו לנו להבין תופעות ברמה המערכתית.

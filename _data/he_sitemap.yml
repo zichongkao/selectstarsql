@@ -20,23 +20,23 @@ contents:
   - name: המקרה של ביזלי (Beazley’s case)
     url: "#המקרה-של-ביזלי-beazleys-case"
   - name: שאילתת SQL ראשונה
-    url: "#שאילתת-sql-ראשונה"
-  - name: The SELECT Block
+    url: "#first"
+  - name: בלוק ה-SELECT
     url: "#select"
-  - name: SQL Comments
+  - name: הערות ב-SQL
     url: "#comments"
     sidenote: true
-  - name: The FROM Block
+  - name: בלוק ה-FROM
     url: "#from"
-  - name: Capitalization
+  - name: אותיות אנגליות גדולות (Capitalization)
     url: "#capitalization"
     sidenote: true
-  - name: Whitespace
+  - name: רווחים
     url: "#whitespace"
     sidenote: true
-  - name: The WHERE Block
+  - name: בלוק ה-WHERE
     url: "#where"
-  - name: Quotes
+  - name: מרכאות
     url: "#quotes"
     sidenote: true
   - name: Recap
