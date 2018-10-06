@@ -106,5 +106,8 @@ contents:
   url: questions.html
   blurb: "This final chapter is a collection of miscellaneous challenge questions."
   sections:
-  - name: Dates and Times
-    url: "#date_time"
+  - name: Call for Problems
+    url: "#call_for_problems"
+    sidenote: true
+  - name: Senate Cosponsorship Dataset
+    url: "#senate_cosponsorship"
