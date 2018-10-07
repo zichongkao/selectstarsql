@@ -272,7 +272,7 @@ class sqlExercise extends HTMLElement {
                 submission_u.sort();
                 solution_u.sort();
             }
-            var verdict = arraysEqual(submission_u, solution_u) ? "Correct" : "Incorrect";
+            var verdict = arraysEqual(submission_u, solution_u) ? "תשובה נכונה" : "תשובה שגויה";
             // http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
             verdict_div.innerText = verdict;
           });
