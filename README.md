@@ -18,7 +18,7 @@ To contribute, either email me directly at zichongkao@gmail.com, or submit a pul
 - Click "Create Pull-request" when looking at your forked repo on Github.
 
 ## Licensing
-The prose of the book is licensed by Zi Chong Kao under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 License</a> which allows sharing and adapting for non-commercial purposes under the same license and with attribution. The code and datasets are released into the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 License</a>.
+The prose of the book is licensed by Zi Chong Kao under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0 License</a> which allows sharing and adapting under the same license and with attribution. The code and datasets are released into the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 License</a>.
 
 ## Todo
 - Complete hiatus tutorial
