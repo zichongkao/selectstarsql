@@ -20,11 +20,11 @@ Let's suppose the additional information we want exists in a table called `previ
     SELECT
       last_ex_date AS start,
       ex_date AS end,
-      ex_date - last_ex_date AS day_delta
+      ex_date - last_ex_date AS day_difference
     FROM executions
     JOIN previous
       ON executions.ex_number = previous.ex_number
-    ORDER BY day_delta DESC
+    ORDER BY day_difference DESC
     LIMIT 10
 
 The `JOIN` block is the focus of this section. Instead of viewing it as a line on its own, it is often helpful to look at it like this: <img src="imgs/join_correctview.png"> This emphasizes how `JOIN` creates a big combined table which is then fed into the `FROM` block just like any other table.
@@ -37,7 +37,7 @@ The `JOIN` block is the focus of this section. Instead of viewing it as a line o
 <br>
 <a name="join_types">
 ## Types of Joins
-The `JOIN` block takes the form of <code class='codeblock'>&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>. The clause works the same way as in `WHERE <clause>`. That is, it is a statement that evaluates to true or false, and anytime a row from the first table and another from the second line up with the clause being true, the two are matched:
+The `JOIN` block takes the form of <code class='codeblock'>&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>. The clause works the same way as in <code class='codeblock'>WHERE &lt;clause&gt;</code>. That is, it is a statement that evaluates to true or false, and anytime a row from the first table and another from the second line up with the clause being true, the two are matched:
 <img src="imgs/join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 But what happens to rows which have no matches? In this case, the `previous` table didn't have a row for execution number 1 because there aren't any executions prior to it.
@@ -91,17 +91,17 @@ The join creates enough rows of `executions` so that each matching row of `dupli
 ## Dates
 Let's take a break from joins for a bit and look at this line in our template query:
 
-      ex_date - last_ex_date AS day_delta
+      ex_date - last_ex_date AS day_difference
 
-We've made a big assumption that we can subtract dates from one another. But imagine you're the computer receiving a line like this. Do return the number of days between the dates? Why not hours or seconds? To make things worse, SQLite doesn't actually have date or time types (unlike most other SQL dialects) so the `ex_date` and `last_ex_date` columns look like ordinary strings to you. You're effectively being asked to do `'hello' - 'world'`. What does that even mean?
+We've made a big assumption that we can subtract dates from one another. But imagine you're the computer receiving a line like this. Do you return the number of days between the dates? Why not hours or seconds? To make things worse, SQLite doesn't actually have date or time types (unlike most other SQL dialects) so the `ex_date` and `last_ex_date` columns look like ordinary strings to you. You're effectively being asked to do `'hello' - 'world'`. What does that even mean?
 
 Fortunately, SQLite contains a bunch of functions to tell the computer: "Hey, these strings that I'm passing you actually contain dates or times. Act on them as you would a date."
 
 <sql-exercise
  data-question='Look up <a href="https://www.sqlite.org/lang_datefunc.html">the documentation</a> to fix the query so that it returns the number of days between the dates.'
- data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_delta"
+ data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_difference"
  data-solution="
-SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
+SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_difference"
 ></sql-exercise>
 
 <br>
@@ -113,17 +113,17 @@ With what we learned about dates, we can correct our template query:
       last_ex_date AS start,
       ex_date AS end,
       JULIANDAY(ex_date) - JULIANDAY(last_ex_date)
-        AS day_delta
+        AS day_difference
     FROM executions
     JOIN previous
       ON executions.ex_number = previous.ex_number
-    ORDER BY day_delta DESC
+    ORDER BY day_difference DESC
     LIMIT 5
 
 The next step is to build out the `previous` table.
 <sql-exercise
   data-question="Write a query to produce the <code>previous</code> table."
-  data-comment="Remember to use aliases to get the column names<code>(ex_number, last_ex_date)</code>."
+  data-comment="Remember to use aliases to form the column names<code>(ex_number, last_ex_date)</code>. Hint: Instead of shifting dates back, you could shift <code>ex_number</code> forward!"
   data-solution="
 SELECT
   ex_number + 1 AS ex_number,
@@ -139,17 +139,17 @@ Now we can nest this query into our template above:
   last_ex_date AS start,
   ex_date AS end,
   JULIANDAY(ex_date) - JULIANDAY(last_ex_date)
-    AS day_delta
+    AS day_difference
 FROM executions
 JOIN (<your-query>) previous
   ON executions.ex_number = previous.ex_number
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
   data-solution="
 SELECT
   last_ex_date AS start,
   ex_date AS end,
-  JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_delta
+  JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_difference
 FROM executions
 JOIN (
     SELECT
@@ -158,7 +158,7 @@ JOIN (
     FROM executions
   ) previous
   ON executions.ex_number = previous.ex_number
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
@@ -172,22 +172,22 @@ We've created the `previous` table to clarify the purpose that it serves. But we
   previous.ex_date AS start,
   executions.ex_date AS end,
   JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
-    AS day_delta
+    AS day_difference
 FROM executions
 JOIN executions previous
   ON <your-clause>
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
   data-solution="
 SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
   JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
-    AS day_delta
+    AS day_difference
 FROM executions
 JOIN executions previous
   ON executions.ex_number = previous.ex_number + 1
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
@@ -195,7 +195,7 @@ We can now use the precise dates of the hiatuses to research what happened over 
 
 Hiatus 1 was due to legal challenges to the <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> created in response to the 1993 World Trade Center and 1995 Oklahoma City bombings. The act limited the appeals process  to make the death penalty more effective especially for terrorism cases (<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>).
 
-Hiatus 2 was caused by a stay enacted by the Supreme Court while it weighed in on <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a> which examined if lethal injection violates the Eighth Amendment prohibiting "cruel and unusual punishment". This affected executions across America because most states were using the same drug cocktail as Kentucky. The Supreme Court eventually affirmed Kentucky court decision and executions in Texas resumed a few months later.
+Hiatus 2 was caused by a stay enacted by the Supreme Court while it weighed in on <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a> which examined if lethal injection violates the Eighth Amendment prohibiting "cruel and unusual punishment". This affected executions across America because most states were using the same drug cocktail as Kentucky. The Supreme Court eventually affirmed the Kentucky court decision and executions in Texas resumed a few months later.
 
 <br>
 <a name="recap"></a>
