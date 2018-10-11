@@ -32,9 +32,11 @@ As with Lego, each block has a fixed format and the different blocks have to fit
 The `SELECT` block specifies which columns you want to output. Its format is <code class='codeblock'>SELECT &lt;column&gt;, &lt;column&gt;, ...</code>. Each column must be separated by a comma, but the space following the comma is optional. The star (ie. `*`) is a special character that signifies we want all the columns in the table.
 
 <sql-exercise
-  data-question="In the code editor below, revise the query to select the first_name, last_name and last_statement columns."
+  data-question="In the code editor below, revise the query to select the last_statement column in addition to the existing columns."
   data-comment="Once you're done, you can hit Shift+Enter to run the query."
-  data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
+  data-default-text="SELECT first_name, last_name
+FROM executions
+LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
 
 <a name="comments"></a>
@@ -55,7 +57,7 @@ The <code>FROM</code> block specifies which table we're querying from. Its forma
   data-default-text="SELECT first_name FROM execution LIMIT 3"
   data-solution="SELECT first_name FROM executions LIMIT 3"></sql-exercise>
 
-We don’t need the `FROM` block if we're not using anything from a table.
+In the next example, observe that we don’t need the `FROM` block if we're not using anything from a table.
 
 <sql-exercise
   data-question="Modify the query to divide 50 and 51 by 2."
@@ -63,7 +65,7 @@ We don’t need the `FROM` block if we're not using anything from a table.
   data-default-text="SELECT 50 + 2, 51 * 2"
   data-solution="SELECT 50 / 2, 51 / 2"></sql-exercise>
 
-Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`. A common trick is to multiply one number by `1.0` to convert it into a decimal.
+Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQL is doing integer division. To do decimal division, at least one of the operands must be a decimal, for instance `51.0 / 2`. A common trick is to multiply one number by `1.0` to convert it into a decimal. This will come in useful in the later chapters.
 
 <a name="capitalization"></a>
 <div class="sideNote">
@@ -91,7 +93,7 @@ Isn't it strange that `51 / 2` gives `25` rather than `25.5`? This is because SQ
 The `WHERE` block allows us to filter the table for rows that meet certain conditions. Its format is <code class='codeblock'>WHERE &lt;clause&gt;</code> and it always goes after the `FROM` block. Here, a clause refers to a Boolean statement that the computer can evaluate to be true or false like <code>ex_number = 145</code>. You can imagine that the computer will go through each row in the table checking if the clause is true, and if so, return the row.
 
 <sql-exercise
-  data-question="Find the first and last names and ages of inmates 25 or younger at time of execution."
+  data-question="Find the first and last names and ages (ex_age) of inmates 25 or younger at time of execution."
   data-comment="Because the average time inmates spend on death row prior to execution is 10.26 years, only 6 inmates this young have been executed in Texas since 1976."
   data-default-text=""
   data-solution="SELECT first_name, last_name, ex_age
@@ -102,13 +104,13 @@ It's clear how we can use arithmetic operators like `<` and `<=` to build clause
 The most powerful of these is probably <code>LIKE</code>. It allows us to use wildcards such as `%` and `_` to match various characters. For instance, `first_name LIKE '%roy'` will return true for rows with first names 'roy', 'Troy', and 'Deroy' but not 'royman'. The wildcard `_` will match a single character so `first_name LIKE '_roy'` will only match 'Troy'.
 
 <sql-exercise
-    data-question="Find the execution number of Raymond Landry."
+    data-question="Modify the query to find the result for Raymond Landry."
     data-comment="You might think this would be easy since we already know his first and last name. But datasets are rarely so clean. Use the LIKE operator so you don't have to know his name perfectly to find the row."
-    data-default-text="SELECT ex_number
+    data-default-text="SELECT first_name, last_name, ex_number
 FROM executions
 WHERE first_name = 'Raymond'
   AND last_name = 'Landry'"
-    data-solution="SELECT ex_number
+    data-solution="SELECT first_name, last_name, ex_number
 FROM executions
 WHERE first_name = 'Raymond'
   AND last_name LIKE '%Landry%'"></sql-exercise>
@@ -182,4 +184,4 @@ Isn't it amazing how profound and eloquent Beazley is? Recall that he was only 2
 ## Recap
 The point of this chapter has been to introduce the basic but powerful <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. It allows us to filter a table by having the computer go row by row and pick out those for which the `WHERE` clause is true. We've also learned how to put together fairly complex clauses that can operate on string, numeric and boolean-valued columns.
 
-Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next chapter, we'll focus on aggregations which will allow us to understand system-level phenomena.
+Up till now, we've been operating at the row-level which has limited us to looking at individual data points. In the next chapter, we'll focus on aggregations which will allow us to study system-level phenomena.

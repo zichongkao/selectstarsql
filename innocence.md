@@ -14,17 +14,20 @@ Nevertheless, there is still something unsettling about claims of innocence pers
 
 <br>
 <a name="aggregations"></a>
-## Aggregations
-There are two numbers we need to find:
-1. <p>Number of executions with claims of innocence.</p>
-2. <p>Number of executions in total.</p>
+## Aggregate Functions
+There are two numbers we need to calculate the proportion:
 
-Until now, each row in the output has come from a single row of input. However, here we have both the numerator and denominator requiring information from multiple rows of input. This tells us we need to use an aggregation function because they <i>take multiple rows of data and combine them into one number.</i>
+&nbsp;&nbsp;**Numerator**: Number of executions with claims of innocence.
+
+&nbsp;&nbsp;**Denominator**: Number of executions in total.
+
+Until now, each row in the output has come from a single row of input. However, here we have both the numerator and denominator requiring information from multiple rows of input. This tells us we need to use an aggregate function. To "aggregate" means to combine multiple elements into a whole. Similarly, aggregation functions <i>take multiple rows of data and combine them into one number.</i>
+
 
 <br>
 <a name="count"></a>
 ## The COUNT Function
-`COUNT` is probably the most widely-used aggregate function. As the name suggests, it counts things! For instance, <code class='codeblock'>COUNT(my_column)</code> returns the number of non-null rows in `my_column`.
+`COUNT` is probably the most widely-used aggregate function. As the name suggests, it counts things! For instance, <code class='codeblock'>COUNT(&lt;column&gt;)</code> returns the number of non-null rows in the column.
 
 <sql-exercise
   data-question="Edit the query to find how many inmates provided last statements."
@@ -45,12 +48,12 @@ As you can tell, the `COUNT` function is intrinsically tied to the concept of `N
     ></sql-exercise>
 </div>
 
-With this, we can complete part of our task:
+With this, we can find the denominator for our proportion:
 <sql-exercise
 data-question="Find the total number of executions in the dataset."
 data-comment="The idea here is to pick one of the columns that you're confident has no <code>NULL</code>s and count it."
 data-default-text=""
-data-solution="SELECT COUNT(first_name) FROM executions"></sql-exercise>
+data-solution="SELECT COUNT(ex_number) FROM executions"></sql-exercise>
 
 <br>
 <a name="count_var">
@@ -65,7 +68,16 @@ data-default-text="SELECT COUNT(*) FROM executions"></sql-exercise>
 
 Another common variation is to count a subset of the table. For instance, counting Harris county executions. We could run `SELECT COUNT(*) FROM executions WHERE county='Harris'` which filters down to a smaller dataset consisting of Harris executions and then counts all the rows. But what if we want to simultaneously find the number of Bexar county executions?
 
-The solution is to apply a `CASE WHEN` block which acts as a big if-else statement. You start with `CASE` and end with `ELSE <result> END`. In between you can place as many `WHEN <clause> THEN <result>` branches as you want. The `ELSE <result>` serves as a catch-all when none of the `WHEN` clauses return true. Recall from the previous chapter that clauses are expressions that can be evaluated to be true or false. If the `WHEN` clause is `TRUE`, the block will return the result of the corresponding `THEN`.
+The solution is to apply a `CASE WHEN` block which acts as a big if-else statement. It has two formats and the one I like is:
+
+    CASE
+        WHEN <clause> THEN <result>
+        WHEN <clause> THEN <result>
+        ...
+        ELSE <result>
+    END
+
+This is admittedly one of the clunkier parts of SQL. A common mistake is to miss out the `END` command and the `ELSE` condition which is a catchall in case all the prior clauses are false. Also recall from the previous chapter that clauses are expressions that can be evaluated to be true or false. This makes it important to think about the boolean value of whatever you stuff in there.
 
 <sql-exercise
 data-question="This query counts the number of Harris and Bexar county executions. Replace <code>SUM</code>s with <code>COUNT</code>s and edit the <code>CASE WHEN</code> blocks so the query still works."
@@ -86,37 +98,39 @@ FROM executions"></sql-exercise>
 <br>
 ## Practice
 
-<a name="documentation"></a>
-<div class="sideNote">
-  <h3>Looking Up Documentation</h3>
-  <p>This book was never intended to be a comprehensive reference for the SQL language. For that, you will have to look up other online resources. This in a skill in itself, and one that is worth mastering because you will be looking up documentation years after you've achieved familiarity with the language.</p>
-  <p>The good news is that with the mental models you will learn in this book, lookups should be quick and painless because you will just be checking details like whether the function is called `LENGTH` or `LEN` instead of figuring out what approach to take.</p>
-  <p>For lookups, I often use <a href="https://www.w3schools.com/sql/default.asp">W3 Schools</a> and Stack Overflow.</p>
-</div>
-
 <sql-exercise
-  data-question="Find the number of inmates who have declined to give a last statement."
-  data-comment="For bonus points, try to do it in 3 ways:<br> 1) With a <code>WHERE</code> block,<br> 2) With a <code>CASE WHEN</code> block,<br> 3) With two <code>COUNT</code> functions."
-  data-default-text=""
-  data-solution='SELECT COUNT(*) FROM executions WHERE last_statement IS NULL
-SELECT COUNT(CASE WHEN last_statement IS NULL THEN 1 ELSE NULL END) FROM executions
-SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
-
-<sql-exercise
-  data-question="Find how many inmates where over the age of 50 at execution time."
+  data-question="Find how many inmates were over the age of 50 at execution time."
   data-comment="This illustrates that the <code>WHERE</code> block filters before aggregation occurs."
   data-default-text=""
   data-solution='SELECT COUNT(*) FROM executions WHERE ex_age > 50'></sql-exercise>
 
 <sql-exercise
+  data-question="Find the number of inmates who have declined to give a last statement."
+  data-comment="For bonus points, try to do it in 3 ways:<br> 1) With a <code>WHERE</code> block,<br> 2) With a <code>COUNT</code> and <code>CASE WHEN</code> block,<br> 3) With two <code>COUNT</code> functions."
+  data-default-text=""
+  data-solution='SELECT COUNT(*) FROM executions WHERE last_statement IS NULL
+SELECT COUNT(CASE WHEN last_statement IS NULL THEN 1 ELSE NULL END) FROM executions
+SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
+
+It is worthwhile to step back and think about the differences ways the computer handled these three queries. The `WHERE` version had it filter down to a small table first before aggregating while in the other two, it had to look through the full table. In the `COUNT` + `CASE WHEN` version, it only had to go through once, while the double `COUNT` version made it go through twice. So even though the output was identical, the performance was probably best in the first and worst in the third version.
+
+<sql-exercise
   data-question="Find the minimum, maximum and average age of inmates at time of execution."
-  data-comment="Use the <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> aggregation functions."
+  data-comment="Use the <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> aggregate functions."
   data-default-text="SELECT ex_age FROM executions"
   data-solution='SELECT MIN(ex_age), MAX(ex_age), AVG(ex_age) FROM executions'></sql-exercise>
 
+<a name="documentation"></a>
+<div class="sideNote">
+  <h3>Looking Up Documentation</h3>
+  <p>This book was never intended to be a comprehensive reference for the SQL language. For that, you will have to look up other online resources. This in a skill in itself, and one that is worth mastering because you will be looking up documentation years after you've achieved familiarity with the language.</p>
+  <p>The good news is that with the mental models you will learn in this book, lookups should be quick and painless because you will just be checking details like whether the function is called <code>AVERAGE</code> or <code>AVG</code> instead of figuring out what approach to take.</p>
+  <p>For lookups, I often use <a href="https://www.w3schools.com/sql/default.asp">W3 Schools</a>, Stack Overflow and the <a href="http://sqlite.org">official SQLite documentation</a>.</p>
+</div>
+
 <sql-exercise
   data-question="Find the average length (based on character count) of last statements in the dataset."
-  data-comment="You can compose functions together. Use the <code>LENGTH</code> function which returns the number of characters in a string."
+  data-comment='This exercise illustrates that you can compose functions. Look up the <a href="http://sqlite.org/lang_corefunc.html">documentation</a> to figure out which function which returns the number of characters in a string.'
   data-default-text=""
   data-solution='SELECT AVG(LENGTH(last_statement)) FROM executions'></sql-exercise>
 
@@ -126,18 +140,20 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
   data-default-text=""
   data-solution='SELECT DISTINCT county FROM executions'></sql-exercise>
 
+`SELECT DISTINCT` isn't really an aggregate function because it doesn't return a single number and because it operates on the output of the query rather than the underlying table. Nevertheless, I've included it here because it shares a common characteristic of operating on multiple rows.
+
 <br>
 <a name="strange"></a>
 ## A Strange Query
 Before we wrap up, let's take a look at this query:<br> `SELECT first_name, COUNT(*) FROM executions`.
 
-Doesn't it look strange? If you have a good mental model of aggregations, it should! `COUNT(*)` is trying to return a single entry consisting the length of the execution table. `first_name` is trying to return one entry for each row. Should the computer return one or multiple rows? If it returns one, which `first_name` should it pick? If it returns multiple, is it supposed to replicate the `COUNT(*)` result across all the rows? The the shapes of the output just don't match!
+Doesn't it look strange? If you have a good mental model of aggregations, it should! `COUNT(*)` is trying to return a single entry consisting the length of the execution table. `first_name` is trying to return one entry for each row. Should the computer return one or multiple rows? If it returns one, which `first_name` should it pick? If it returns multiple, is it supposed to replicate the `COUNT(*)` result across all the rows? The shapes of the output just don't match!
 
 <sql-exercise
   data-question="Let's try it anyway and see what happens."
   data-default-text="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
 
-In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on their default behavior. If you know you want the last entry, you should explicitly find it. Many SQL dialects have a `LAST` aggregation function which makes this trivial. Unfortunately SQLite doesn't, so a workaround is necessary.
+In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on their default behavior. If you know you want the last entry, you should explicitly find it. Many SQL dialects have a `LAST` aggregate function which makes this trivial. Unfortunately SQLite doesn't, so a workaround is necessary.
 
 <a name="dialects"></a>
 <div class="sideNote">
