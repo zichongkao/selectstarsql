@@ -74,6 +74,8 @@ contents:
     url: "#long_tails"
   - name: Group By
     url: "#groupby"
+  - name: Having
+    url: "#having"
   - name: Nested Queries
     url: "#nested"
   - name: Harris County

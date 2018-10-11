@@ -134,7 +134,7 @@ Let's take a quick quiz to cement your understanding.
 
 <sql-quiz
   data-title="Select the <code>WHERE</code> blocks with valid clauses."
-  data-description="These are tricky. Even if you've guessed correctly, read the hints to understand the reasoning.">
+  data-description="These are tricky. Even if you've guessed correctly, read the explanations to understand the reasoning.">
   <sql-quiz-option
     data-value="bool_literal"
     data-statement="WHERE 0"
