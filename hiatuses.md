@@ -201,3 +201,4 @@ Hiatus 2 was caused by a stay enacted by the Supreme Court while it weighed in o
 <a name="recap"></a>
 ## Recap
 
+The big idea behind `JOIN`s has been to create an augmented table because the original didn't contain the information we needed. This is a powerful concept because it frees us from the limitations of a single table and allows us to combine multiple tables in potentially complex ways. We've also seen that with this extra complexity, meticulous bookkeeping becomes important. Aliasing tables, renaming columns and defining good `JOIN ON` clauses are all techniques that help us maintain order.

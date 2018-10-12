@@ -104,10 +104,14 @@ contents:
     url: "#self_joins"
   - name: Recap
     url: "#recap"
-- title: Challenge Questions
+- title: Closing Remarks and Challenge Questions
   url: questions.html
-  blurb: "This final chapter is a collection of miscellaneous challenge questions."
+  blurb: "Chapter 5 provides closing remarks and a collection of miscellaneous user-added challenge questions."
   sections:
+  - name: Closing Remarks
+    url: "#closing_remarks"
+  - name: Challenge Questions
+    url: "#challenge_questions"
   - name: Call for Problems
     url: "#call_for_problems"
     sidenote: true
