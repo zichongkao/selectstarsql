@@ -280,7 +280,7 @@ class sqlExercise extends HTMLElement {
         if (submission_data.length > 0) {
           result_div.appendChild(datatable(submission_data));
         } else {
-          result_div.insertAdjacentHTML("beforeend", `No data returned`);
+          result_div.insertAdjacentHTML("beforeend", `לא הוחזרו נתונים`);
         }
       }
 
