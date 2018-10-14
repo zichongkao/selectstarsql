@@ -39,32 +39,32 @@ contents:
   - name: מרכאות
     url: "#quotes"
     sidenote: true
-  - name: Recap
+  - name: לסיכום
     url: "#recap"
-- title: Claims of Innocence
+- title: טענות לחפות מפשע
   url: he_innocence.html
-  blurb: "Chapter 2 estimates how many executed inmates may have been innocent. The technical theme is aggregating the entire table."
+  blurb: "פרק 2 בוחן כמה נדונים למוות יתכן והיו חפים מפשע. הנושא הטכני הוא צבירה של נתונים על פני כל הטבלה."
   sections:
-  - name: Possible Innocence
+  - name: חפות מפשע אפשרית
     url: "#possible_innocence"
-  - name: Aggregations
+  - name: צבירות (aggregations)
     url: "#aggregations"
-  - name: The COUNT Function
+  - name: הפונקציה COUNT
     url: "#count"
-  - name: Nulls
+  - name: ריק (Nulls)
     url: "#nulls"
     sidenote: true
-  - name: Variations on COUNT
+  - name: וריאציות על COUNT
     url: "#count_var"
   - name: Looking Up Documentation
     url: "#documentation"
     sidenote: true
-  - name: A Strange Query
+  - name: שאילתה מוזרה
     url: "#strange"
-  - name: SQL Dialects and Databases
+  - name: דיאלקטים ובסיסי נתונים של SQL
     url: "#dialects"
     sidenote: true
-  - name: Conclusion and Recap
+  - name: מסקנה וסיכום
     url: "#recap"
 - title: The Long Tail
   url: he_longtail.html
