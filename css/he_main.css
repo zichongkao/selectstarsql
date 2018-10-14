@@ -47,6 +47,7 @@ code, pre {
 
 pre {
     margin-left: 1em;
+    direction: ltr;
 }
 
 .codeblock {
