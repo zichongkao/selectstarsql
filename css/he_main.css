@@ -43,11 +43,11 @@ ol li {
 code, pre {
     font-family: Consolas,monospace;
     font-weight: 700;
+    direction: ltr;
 }
 
 pre {
     margin-left: 1em;
-    direction: ltr;
 }
 
 .codeblock {
@@ -184,6 +184,7 @@ a:hover {
     padding-right: 1em;
     font-size: 0.9em;
     border-right: 2px solid grey;
+    direction: rtl;
 }
 
 /* datatable */

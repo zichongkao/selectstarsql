@@ -66,19 +66,19 @@ contents:
     sidenote: true
   - name: מסקנה וסיכום
     url: "#recap"
-- title: The Long Tail
+- title: הזנב הארוך
   url: he_longtail.html
-  blurb: "Chapter 3 studies counties with unusually high numbers of executions. We generalize Chapter 2 by applying aggregations on groups of rows."
+  blurb: "פרק 3 חוקר את המחוזות עם מסרי ההוצאות להורג הגבוהות בצורה יוצאת דופן. אנחנו מרחיבים מפרק 2, על ידי יישום פונקציות אוגרות (aggregations) על קבוצות של שורות"
   sections:
-  - name: Long Tails
+  - name: זנבות ארוכים
     url: "#long_tails"
-  - name: Group By
+  - name: בלוק ה-Group By
     url: "#groupby"
-  - name: Nested Queries
+  - name: שאילתות מקוננות (nested queries)
     url: "#nested"
-  - name: Harris County
+  - name: מחוז האריס (Harris)
     url: "#harris"
-  - name: Recap
+  - name: סיכום
     url: "#recap"
   - name: MapReduce
     url: "#mapreduce"
