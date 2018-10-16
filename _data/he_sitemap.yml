@@ -1,6 +1,6 @@
 contents:
 - title: העניינים שלפני
-  url: he_frontmatter.html
+  url: frontmatter.html
   blurb: "הבסיס הפילוסופי והטכני של הפרוייקט."
   sections:
   - name: התמריץ
@@ -14,7 +14,7 @@ contents:
   - name: צרו קשר
     url: "#contact"
 - title: המלים האחרונות של ביזלי
-  url: he_beazley.html
+  url: beazley.html
   blurb: "הפרק הראשון בוחן את הטיעון של נפוליאון ביזלי כנגד עונש מוות. נלמד את המבנה של שאילתת SQL ופעולות שניתן לבצע על שורה בטבלה."
   sections:
   - name: המקרה של ביזלי (Beazley’s case)
@@ -42,7 +42,7 @@ contents:
   - name: לסיכום
     url: "#recap"
 - title: טענות לחפות מפשע
-  url: he_innocence.html
+  url: innocence.html
   blurb: "פרק 2 בוחן כמה נדונים למוות יתכן והיו חפים מפשע. הנושא הטכני הוא צבירה של נתונים על פני כל הטבלה."
   sections:
   - name: חפות מפשע אפשרית
@@ -67,7 +67,7 @@ contents:
   - name: מסקנה וסיכום
     url: "#recap"
 - title: הזנב הארוך
-  url: he_longtail.html
+  url: longtail.html
   blurb: "פרק 3 חוקר את המחוזות עם מסרי ההוצאות להורג הגבוהות בצורה יוצאת דופן. אנחנו מרחיבים מפרק 2, על ידי יישום פונקציות אוגרות (aggregations) על קבוצות של שורות"
   sections:
   - name: זנבות ארוכים
@@ -84,7 +84,7 @@ contents:
     url: "#mapreduce"
     sidenote: true
 - title: Execution Hiatuses
-  url: he_hiatuses.html
+  url: hiatuses.html
   blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
   sections:
   - name: Hiatuses
@@ -103,7 +103,7 @@ contents:
   - name: Recap
     url: "#recap"
 - title: Challenge Questions
-  url: he_questions.html
+  url: questions.html
   blurb: "This final chapter is a collection of miscellaneous challenge questions."
   sections:
   - name: Dates and Times

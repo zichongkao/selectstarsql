@@ -5,16 +5,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <!-- thanks to https://favicon.io/ -->
     <link rel="stylesheet" href='https://codemirror.net/lib/codemirror.css'>
-    <link rel="stylesheet" href='css/neat.css'>
+    <link rel="stylesheet" href='../css/neat.css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed">
-    <link rel="stylesheet" href="css/he_main.css">
+    <link rel="stylesheet" href="../css/rtl/rtl_main.css">
     <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
-    <script src="scripts/codemirror.js"></script>
-    <script src="scripts/codemirrorsql.js"></script>
-    <script src="scripts/autorefresh.js"></script>
-    <script src="scripts/he_main.js"></script>
+    <script src="../scripts/codemirror.js"></script>
+    <script src="../scripts/codemirrorsql.js"></script>
+    <script src="../scripts/autorefresh.js"></script>
+    <script src="../scripts/rtl/he_main.js"></script>
     <script>
-      window.onload = () => loadData('{{ page.dbFile }}');
+      window.onload = () => loadData('../{{ page.dbFile }}');
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46601509-2"></script>
@@ -30,8 +30,8 @@
   <body dir="rtl">
     <div id="column">
       <div class="header">
-        <img class="logo" src="favicon-256.png">&nbsp; &nbsp;
-        <a href="/"><div class="title">Select Star SQL
+        <img class="logo" src="../favicon-256.png">&nbsp; &nbsp;
+        <a href="/he/"><div class="title">Select Star SQL
           בעברית</a>
         </div>
       </div>
