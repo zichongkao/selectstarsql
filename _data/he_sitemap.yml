@@ -83,25 +83,25 @@ contents:
   - name: MapReduce
     url: "#mapreduce"
     sidenote: true
-- title: Execution Hiatuses
+- title: הפוגות בהוצאות להורג
   url: hiatuses.html
-  blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
+  blurb: "פרק 4 חוקר את פרקי הזמן הארוכים יחסית בהם לא התרחשו הוצאות להורג. נושא הפרק הוא החרבת הטבלאות בעזרת חיבורים."
   sections:
-  - name: Hiatuses
+  - name: הפוגות
     url: "#hiatuses"
-  - name: Thinking about Joins
+  - name: מחשבות על חיבורים (JOINs)
     url: "#joins"
-  - name: Disambiguating Columns
+  - name: פירוק טורים
     url: "#disam_cols"
     sidenote: true
-  - name: Types of Joins
+  - name:  סוגים של חיבורים (Joins)
     url: "#join_types"
-  - name: Dates
+  - name: תאריכים
     url: "#dates"
-  - name: Self Joins
+  - name:  חיבורים עצמיים (self joins)
     url: "#self_joins"
   - name: Recap
-    url: "#recap"
+    url: "#סיכום"
 - title: Challenge Questions
   url: questions.html
   blurb: "This final chapter is a collection of miscellaneous challenge questions."
