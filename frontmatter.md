@@ -6,7 +6,7 @@ dbFile: data/tx_deathrow_small.db
 
 <a name="impetus"></a>
 ## Impetus
-When I was a data scientist at Quora, I used to have people ask me for resources for learning SQL. I struggled to find something I could stand behind because I felt that a good resource had to be free, not require registration, and care about pedagogy &mdash; it had to genuinely care about its users and there was nothing like that around.
+When I was a data scientist at Quora, I used to have people ask me for resources for learning SQL. I struggled to find something I could stand behind because I felt that a good resource had to be free, not require registration, and care about pedagogy&mdash;it had to genuinely care about its users and there was nothing like that around.
 
 By overcoming some minor <a href="#technicals">technical hurdles</a>, I believe that **Select Star SQL** has met this standard. My hope is that like <a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> and <a href='https://beautifulracket.com'>Beautiful Racket</a> have done for Haskell and Racket, **Select Star SQL** will become the best place on the internet for learning SQL.
 
