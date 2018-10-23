@@ -158,13 +158,13 @@ class sqlQuiz extends HTMLElement {
 
     var submitButton = document.createElement('input');
     submitButton.type = 'submit';
-    submitButton.value = 'הפעלה';
+    submitButton.value = 'בדיקת תשובות';
     inputArea.appendChild(submitButton);
 
     var hintButton = document.createElement('input');
     hintButton.name = "hint";
     hintButton.type = "button";
-    hintButton.value = "הצגת רמזים";
+    hintButton.value = "הצגת הסברים";
     hintButton.onclick = (e) => {
       document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'table-row');
     };

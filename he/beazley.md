@@ -146,8 +146,7 @@ WHERE first_name = 'Raymond'
 
 <sql-quiz
   data-title="בחרו את כל הבלוקים <code>WHERE</code> עם הפסקאות התקינות."
-  data-description="אלה שאלות טריקיות. גם אם נחשתם נכון, קראו את הרמזים כדי להבין מה הסיבה לתשובה הנכונה.">
-  <sql-quiz-option
+  data-description="אלה שאלות טריקיות. גם אם נחשתם נכון, קראו את ההסברים כדי להבין מה הסיבה לתשובה הנכונה.">  <sql-quiz-option
     data-value="bool_literal"
     data-statement="WHERE 0"
     data-hint="code>1</code> ו-<code>0</code> הם ההצהרות הבוליאניות הכי בסיסיות. הבלוק הזה מבטיח ששום שורות לא יוחזרו."

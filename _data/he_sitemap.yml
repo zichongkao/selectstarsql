@@ -74,6 +74,8 @@ contents:
     url: "#long_tails"
   - name: בלוק ה-Group By
     url: "#groupby"
+  - name: בלוק ה-Having
+    url: "#having"
   - name: שאילתות מקוננות (nested queries)
     url: "#nested"
   - name: מחוז האריס (Harris)

@@ -6,11 +6,11 @@ dbFile: data/tx_deathrow_small.db
 
 <a name="long_tail"></a>
 ## זנבות ארוכים
-הכוונה בזנבות ארוכים היא למספר קטן של דגימות שמתרחשות מספר רב של פעמים. כאשר אנחנו מציגים אותם בגרף, הם נפרסים לרצועה דקה מימין למרכז, בצורה שמזכירה זנב. <img src="imgs/he_execution_tail.png"> זנבות ארוכים מסמנים את קיומם של קצוות עם התנהגות לא רגילה שעשויה לעניין אותנו. בטקסס, כמה מחוזות ידועים ככאלה עם הכי הרבה הוצאות להורג.
+הכוונה בזנבות ארוכים היא למספר קטן של דגימות שמתרחשות מספר רב של פעמים. כאשר אנחנו מציגים אותם בגרף, הם נפרסים לרצועה דקה מימין למרכז, בצורה שמזכירה זנב.  זנבות ארוכים מסמנים את קיומם של קצוות עם התנהגות לא רגילה שעשויה לעניין אותנו. <img src="imgs/he_execution_tail.png">בהקשר של הוצאות להורג בטקסס, משמעות הזנב הארוך היא מספר קטן של מחוזות שמוכרים ככאלה שביצעו מספר גדול של הוצאות להורג.
 
 בואו נמצא את אחוז ההוצאות להורג בכל מחוז כך שנוכל לאסוף את אלו שבזנב.
 
-המשימה הזו שונה מכל מה שראינו עד כה. הפרק על [ביזלי](beazley.html) עסק בשורות בודדות של נתונים, אבל זה ברור שאנחנו צריכים סוג של אגירה כדי למצוא מידע ברמת המחוז. הפרק שעסק ב[טענות לחפות מפשע](innocence.html) לימד אותנו פונקציות אגירה, אבל הפונקציות הללו מסכמם סט נתוניםי שלהם לתוך שורה, בזמן שמה שאנחנו באמת צריכים הוא שורה אחת מסכמת לכל מחוז.
+כפי שילך ויתברר, הצורה של הטבלאות מספרת לנו הרבה על הפעולות שאנחנו נדרשים לבצע (בדומה לניתוח מימדיי בפיסיקה). במקרה הזה, אנחנו יכולים להבחין שהשיטחות שכיסינו עד כה לא מתאימות: הפרק על [ביזלי](beazley.html) עסק בשורות בודדות של נתונים, אבל זה ברור שאנחנו צריכים סוג של אגירה כדי למצוא מידע ברמת המחוז. הפרק שעסק ב[טענות לחפות מפשע](innocence.html) לימד אותנו פונקציות אגירה, אבל הפונקציות הללו מסכמם סט נתוניםי שלהם לתוך שורה, בזמן שמה שאנחנו באמת צריכים הוא שורה אחת מסכמת לכל מחוז.
 
 <br>
 <a name="groupby"></a>
@@ -30,53 +30,40 @@ dbFile: data/tx_deathrow_small.db
 
 יתכן שגם שמתם לב לשימוש שלנו ב-`AS`. זה מה שאנחנו מכנים "הענקת כינוי" (aliasing). בבלוק ה-`SELECT`, <span dir="ltr"><code class="codeblock">&lt;expression&gt; AS &lt;alias&gt;</code></span> מספק כינוי, בו ניתן להשתמש מאוחר יותר בשאילתה, מה שחוסך מאיתנו את הצורך לכתוב את אותו ביטוי ארוך פעם נוספת, ויכול להבהיר את הכוונה של הביטוי.
 
-<sql-quiz
-  data-title="סמנו את ההצהרות הנכונות."
-  data-description="השאילתה <pre>
-SELECT
+<sql-exercise
+  data-question="שנו את השאילתה כדי למצוא את מספר ההוצאות להורג מכל מחוז שכוללות הצהרה אחרונה של הנדונים למוות, ואת מספר ההוצאות להורג שאינן כוללות הצהרה אחרונה."
+  data-default-text="SELECT
   county,
-  ex_age/10 AS decade_age,
   COUNT(*)
 FROM executions
-GROUP BY county, decade_age</pre>">
-</span>
-  <sql-quiz-option
-    data-value="valid"
-    data-statement="היא שאילתה תקינה (כלומר, לא תוצג הודעת שגיאה כשנריץ אותה)."
-    data-hint="האם נזרקתם לשגיאה על ידי <code>ex_age/10</code>? יצירת קבוצות באמצעות המרה של טורים היא גם בסדר."
-    data-correct="true"></sql-quiz-option>
-  <sql-quiz-option
-    data-value="gran"
-    data-statement="תחזיר יותר שורות אם נשתמר ב-<code>ex_age</code> במקום ב-<code>ex_age/10</code>."
-    data-hint="זכרו ש-<code>ex_age/10</code> מבצעת חלוקת מספרים שלמים שמעגלת את כל הגילאים ולכן מייצרת פחות קבוצות ייחודיות."
-    data-correct="true"></sql-quiz-option>
-  <sql-quiz-option
-    data-value="unique_combocc"
-    data-statement="תחזיר מספר שורות זהה למספר הצירופים הייחודיים בין מחוזות ו-decade_ages בסט הנתונים."
-    data-hint="זה נכון."
-    data-correct="true"></sql-quiz-option>
-  <sql-quiz-option
-    data-statement="תחזיר את הקבוצה <span dir=”ltr”> (`Bexar`, 6)</span>, למרות שלא היו נדונים למוות במחוז בקסר (Bexar) שהיו בגילאים 60-69 בעת ביצוע ההוצאה להורג."
-    data-hint="בלוק הקוד <code>GROUP BY</code> מוצא את כל הצירופים <i>בסט הנתונים</i> ולא את כל הצירופים האפשריים תיאורטית."
-    data-value="abstract_cartesian"></sql-quiz-option>
-  <sql-quiz-option
-    data-statement="תכלול ערך (שם) שונה של מחוז עבור כל שורה שתחזיר כפלט."
-    data-hint="זה יכול היה להיות נכון רק אם <code>county</code> (מחוז) היה הטור היחיד שמאוגד בקבוצות. כאן, יש לנו קבוצות רבות עבור אותו המחוז, אבל קבוצות גיל (decade_ages) שונות."
-    data-value="one_col_diff"></sql-quiz-option>
-  <sql-quiz-option
-    data-statement="היא תקינה גם אם נסיר את ה-<code>county</code> (מחוז) מבלוק ה-<code>SELECT</code>."
-    data-hint="הטורים שמקובצים בקבוצות לא חייבים להיות בבלוק ה-<code>SELECT</code>."
-    data-value="missing_gp_col"
-    data-correct="true"></sql-quiz-option>
-  <sql-quiz-option
-    data-statement="היא שאילתה הגיונית לאחר שנוסיף את הקוד <code>last_statement IS NULL</code> לבלוק ה-<code>SELECT</code> אבל לא לבלוק ה-<code>GROUP BY</code> block."
-    data-hint="למרות שזו תהיה שאילתה תקינה (ב-SQLite) מהסיבות שפורטו ב<a href='innocence.html#strange'>שאילתה המוזרה</a>, זהו מבנה נורא לכלול טורים ללא-אגירה וקבוצות בבלוק ה-<code>SELECT</code>. אל תעשו את זה!"
-    data-value="extra_gp_col"></sql-quiz-option>
-</sql-quiz>
+GROUP BY county"
+  data-solution="SELECT
+  county,
+  last_statement IS NULL AS has_last_statement,
+  COUNT(*)
+FROM executions
+GROUP BY county, has_last_statement"></sql-exercise>
+
+<br>
+<a name="having"></a>
+## בלוק ה-Having
+התרגיל הבא מדגים שסינון באמצעות בלוק `WHERE` מתרחש לפני הסידור בקבוצות והאגירה. זה מתבטא בסדר של הפקודה. אחרי הכל, בלוק ה-`WHERE` תמיד מקדים את בלוק ה-`GROUP BY`.
+
+<sql-exercise
+  data-question="ספרו את מספר הנדונים למוות שהיו בני 50 או יותר בכל מחוז."
+  data-comment="אתם אמורים להיות מסוגלים לעשות זאת בעזרת <code>CASE WHEN</code>, אבל נסו להשתמש בבלוק ה-<code>WHERE</code>."
+  data-default-text=""
+  data-solution="SELECT county, COUNT(*)
+FROM executions
+WHERE ex_age >= 50
+GROUP BY county"
+></sql-exercise>
+
+זה בסדר גמור, אבל מה קורה אם אנחנו רוצים לסנן את התוצאה של החיבור לקבוצות והאגירה? אנחנו הרי לא יכולםי לקפוץ קדימה לתוך העתיד ולמשוך משם את המידע. כדי לפתור בעיות שכאלה, אנחנו משתמשים ב-`HAVING`.
 
 <sql-exercise
   data-question="צרו רשימה של כל המוזות בהם הוצאו להורג 2 או יותר נדונים למוות בגילאים 50 ומעלה."
-  data-comment="השאילה הזו מבוססת על הרגיל הקודם. אנחנו צריכם מסנן נוסף &mdash; כזה שמשמש בתוצאה של הפונקציה האוגרת (aggregation). הכוונה הייא שהמסנן הנוסף לא יכול להיות בתוך בלוק ה-<code>WHERE</code> מפני שהמסננים רציים לפני פעולת האגירה. חפשו את ה<a href='https://www.w3schools.com/sql/sql_having.asp'>בלוק <code>HAVING</code>. </a> זהו בלוק <code>WHERE</code> שמבוצע לאחר האגירה (post-aggregation)."
+  data-comment="השאילתה הזו מבוססת על הרגיל הקודם. אנחנו צריכם מסנן נוסף &mdash; כזה שמשמש בתוצאה של הפונקציה האוגרת (aggregation). הכוונה הייא שהמסנן הנוסף לא יכול להיות בתוך בלוק ה-<code>WHERE</code> מפני שהמסננים רציים לפני פעולת האגירה. חפשו את ה<a href='https://www.w3schools.com/sql/sql_having.asp'>בלוק <code>HAVING</code>. </a> זהו בלוק <code>WHERE</code> שמבוצע לאחר האגירה (post-aggregation)."
   data-default-text=""
   data-solution="SELECT county
 FROM executions
@@ -84,6 +71,49 @@ WHERE ex_age >= 50
 GROUP BY county
 HAVING COUNT(*) > 2"
   ></sql-exercise>
+
+<sql-quiz
+  data-title="סמנו את ההצהרות הנכונות."
+  data-description="השאילתה הזו מוצאת את מספר הנדונים למוות מכל מחוז בטווח של 10 שנים. <pre>
+SELECT
+  county,
+  ex_age/10 AS decade_age,
+  COUNT(*)
+FROM executions
+GROUP BY county, decade_age</pre>">
+  <sql-quiz-option
+    data-value="valid"
+    data-statement="השאילתה תקינה (כלומר, לא תוצג הודעת שגיאה כשנריץ אותה)."
+    data-hint="האם נזרקתם לשגיאה על ידי <code>ex_age/10</code>? יצירת קבוצות באמצעות המרה של טורים היא גם בסדר."
+    data-correct="true"></sql-quiz-option>
+  <sql-quiz-option
+    data-value="gran"
+    data-statement="השאילתה תחזיר יותר שורות אם נשתמר ב-<code>ex_age</code> במקום ב-<code>ex_age/10</code>."    data-hint="זכרו ש-<code>ex_age/10</code> מבצעת חלוקת מספרים שלמים שמעגלת את כל הגילאים ולכן מייצרת פחות קבוצות ייחודיות."
+    data-correct="true"></sql-quiz-option>
+  <sql-quiz-option
+    data-value="unique_combocc"
+    data-statement="הפלט יכלול מספר שורות זהה למספר הצירופים הייחודיים בין מחוזות ו-decade_ages בסט הנתונים."
+    data-hint="זה נכון."
+    data-correct="true"></sql-quiz-option>
+  <sql-quiz-option
+    data-statement="הפלט יכלול את הקבוצה <span dir=”ltr”> (`Bexar`, 6)</span>, למרות שלא היו נדונים למוות במחוז בקסר (Bexar) שהיו בגילאים 60-69 בעת ביצוע ההוצאה להורג."
+    data-hint="בלוק הקוד <code>GROUP BY</code> מוצא את כל הצירופים <i>בסט הנתונים</i> ולא את כל הצירופים האפשריים תיאורטית."
+    data-value="abstract_cartesian"></sql-quiz-option>
+  <sql-quiz-option
+    data-statement="הפלט יכלול ערך (שם) שונה של מחוז עבור כל שורה שתחזיר כפלט."
+    data-hint="זה יכול היה להיות נכון רק אם <code>county</code> (מחוז) היה הטור היחיד שמאוגד בקבוצות. כאן, יש לנו קבוצות רבות עבור אותו המחוז, אבל קבוצות גיל (decade_ages) שונות."
+    data-value="one_col_diff"></sql-quiz-option>
+  <sql-quiz-option
+    data-statement="השאילתה תהיה תקינה גם אם לא נפרט מחוז (<code>county</code>) בבלוק ה-<code>SELECT</code>.”
+    data-hint="הטורים שמקובצים בקבוצות לא חייבים להיות בבלוק ה-<code>SELECT</code>."
+    data-value="missing_gp_col"
+    data-correct="true"></sql-quiz-option>
+  <sql-quiz-option
+    data-statement="יהיה הגיוני להוסיף שם משפחה (<code>last_name</code>) לבלוק ה-<code>SELECT</code> גם ללא סידור בקבוצות (grouping)."
+    data-hint="למרות שזו תהיה שאילתה תקינה (ב-SQLite) מהסיבות שפורטו ב<a href='innocence.html#strange'>שאילתה המוזרה</a>, הכללה של טורים ללא-אגירה וקבוצות בבלוק ה-<code>SELECT</code>. היא לא מעשה מוצלח."
+    data-value="extra_gp_col"></sql-quiz-option>
+</sql-quiz>
+
 
   <sql-exercise
     data-question="צרו רשימה עם כל שמות המחוזות היחודיים בסט הנתונים."
@@ -103,7 +133,7 @@ HAVING COUNT(*) > 2"
     FROM executions
     GROUP BY county
 
-אחוזים הם מדד כל כך מקובל &mdash; יכול להיות שיש כבר פונקציה שמחשבת אותם? למרבה הצער, לא, ואולי מסיבה טובה: פונקציה שכזו היתה צריכה לאגור את בתוך כל אחת מהקבוצות וגם לאורך סט הנתונים כולו כדי להגיע למונה (numerator) ולמכנה (demoniator) על מנת לחשב את האחוזים. אבל לכל אחת מהשאילתות יש או אין בלוק `GROUP BY`. אז מה שאנחנו באמת צריכים זה שתי שאילתות נפרדות, אחת שתאגור ותחשב בעזרת `GROUP BY` ואחרת שתאתגור ותמנה ללא בלוק ה-`GROUP BY`. אז נוכל לאחד ביניהן בעזרת טכניקה שנקראת "קינון", או "יצירת קינים" (nesting).
+אחוזים הם מדד כל כך מקובל &mdash;יכול להיות שיש כבר פונקציה שמחשבת אותם? למרבה הצער, לא, ואולי מסיבה טובה: פונקציה שכזו היתה צריכה לאגור את בתוך כל אחת מהקבוצות וגם לאורך סט הנתונים כולו כדי להגיע למונה (numerator) ולמכנה (demoniator) על מנת לחשב את האחוזים. אבל לכל אחת מהשאילתות יש או אין בלוק `GROUP BY`. אז מה שאנחנו באמת צריכים זה שתי שאילתות נפרדות, אחת שתאגור ותחשב בעזרת `GROUP BY` ואחרת שתאתגור ותמנה ללא בלוק ה-`GROUP BY`. אז נוכל לאחד ביניהן בעזרת טכניקה שנקראת "קינון", או "יצירת קינים" (nesting).
 
 הנה דוגמה לאיך עובדת שיטת הקינים. הסוגריים חשובות כדי לסמן את הגבול בין השאילתה הפנימית והשאילתה החיצונית:
 
@@ -122,7 +152,7 @@ HAVING COUNT(*) > 2"
          FROM executions)"></sql-exercise>
 
 
-עכשיו, ישמו את אותה שיטה כדי למצוא את אחוז ההוצאות להורג בכל אחד מהמחוזות.
+כדאי לחזור ולהדגיש, הכנסה של שאילתה לתוך קן הכרחית במקרה הזה מפני שבפסקת ה-`WHERE`, בזמן שהמחשב בודק כל שורה כדי להחליט אם עמודת ההצהרה האחרונה שלה היא באורך הנכון, הוא אינו יכול להסתכל החוצה ולברר מה האורך המקסימלי עבור כל סט הנתונים אנחנו צריכים למצוא דרך למצוא את האורך המקסימלי בנפרד ולהזין אותו לתוך הפסקה. עכשיו, בואו ניישם את אותה שיטה כדי למצוא את אחוז ההוצאות להורג בכל אחד מהמחוזות.
 
 <sql-exercise
   data-question="הכניסו את השאילתה &lt;<code>count-of-all-rows</code>&gt; כדי למצוא את אחוז ההוצאות מכל מחוז."
@@ -161,7 +191,7 @@ ORDER BY percentage DESC"
 
 - <p>שופטים בטקסס עומדים לבחירות והאוכלוסיה תמכה בעונש מוות. <a href="https://priceonomics.com/why-has-texas-executed-so-many-inmates/">(מקור)</a>.</p>
 
-- <p>מערכת האיזונים והבלמים במערכת המשפטית במחוז האריס (Harris) לא עבדה. <a href="http://www.houstonlawreview.org/wp-content/uploads/2018/05/3-Steiker-896.pdf">(מקור, ראו עמ’ 929)</a>.</p>
+- <p>מערכת האיזונים והבלמים במערכת המשפטית במחוז האריס (Harris) לא עבדה. <a href="https://houstonlawreview.org/article/3874-the-problem-of-rubber-stamping-in-state-capital-habeas-proceedings-a-harris-county-case-study">(מקור, ראו עמ’ 929)</a>.</p>
 
 
 <br>
