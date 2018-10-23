@@ -1,26 +1,29 @@
 ---
-layout: tutorial
-title: Challenge Questions
+layout: he_tutorial
+title: שאלות אתגר
 dbFile: data/114_congress_small.db
 ---
 
-This chapter contains a list of challenging questions. Less support is provided than before to help you become more independent. But don't worry! You already know how to look up documentation and debug error messages; and your mental model is complete enough to make educated guesses.
+הפרק הזה כולל רשימה של שאלות מתאגרות. הוא כולל פחות הכוונה מאשר החלקים הקודמים על מנת לסיע לכם להפוך לעצמאים יותר, אבל אל חשש! אתם כבר יודעים איך לחפש דוקומנטציה ואיך להתמודד ולדבג (debug) הודעות שגיאה; והדגם החשיבתי שלכם מספיק מוכן כדי לבצע ניחושים מושכלים.
+
 
 <a name="dataset"></a>
-## Dataset
-In this section, we introduce a new dataset from the 114th session of Congress (2015-2016) <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">compiled by James Fowler and others</a>. I reworked the dataset to allow us to study cosponsoring relationships between senators.
+## סט הנתונים
+בפרק הזה אנחנו מציגים סט נתונים חדש מהמושב ה-114 של הקונגרס (2015-2016) <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">שנערך על ידי ג’ימס פאולר (James Folwer) ואחרים</a>. התאמתי את סט הנתונים כדי לאפשר לנו לחקור שיתופי פעולה של סנאטורים.
 
-The senator who introduces the bill is called the "sponsor". Other senators can show their support by cosponsoring the bill. Cosponsors at the time of introduction are called "original cosponsors" (<a href="https://www.congress.gov/resources/display/content/How+Our+Laws+Are+Made+-+Learn+About+the+Legislative+Process#HowOurLawsAreMade-LearnAbouttheLegislativeProcess-IntroductionandReferraltoCommittee">Source</a>). Each row of the table shows the bill, the sponsor, an original cosponsor, and the states the senators represent. Note that there can be multiple cosponsors of a bill.
+הסטור שמציג הצעת חוק נקרא "יוזם" (“sponsot”). סנטורים אחרים יכולים להראות את תמיכתם בהצעה באמצעות הצטרפות ליוזמה. שותפות ביוזמת חקיקה בזמן הצגתה נקראת "הצטרפות ליוזמה במקור" (original cosponsors)  (<a href="https://www.congress.gov/resources/display/content/How+Our+Laws+Are+Made+-+Learn+About+the+Legislative+Process#HowOurLawsAreMade-LearnAbouttheLegislativeProcess-IntroductionandReferraltoCommittee">מקור</a>).
+כל שורה בטבלה מציגה את הצעת החקיקה, היוזם/יוזמת, מצטרפ/ת ליוזמה במקור והמדינות שהסנטור/ת מייצג/ת. שימו לב שיכולים להיות כמה מצטרפים ליוזמה במקור.
+
 
 <sql-exercise
-  data-question="Have a look at the dataset."
-  data-comment="At 15K rows, it's a little larger than the Texas dataset so best to avoid printing everything out."
+  data-question="סקרו את הנתונים."
+  data-comment="עם 15 אלף שורות, מדובר בסט יותר ארוך מסט הנתונים של טקסס, ולכן כדאי להמנע מהדפסה של הכל בבת אחת."
   data-default-text="SELECT * FROM cosponsors LIMIT 3"
   ></sql-exercise>
 
 <sql-exercise
-  data-question="Find the most networked senator. That is, the one with the most mutual cosponsorships."
-  data-comment="A mutual cosponsorship refers to two senators who have each cosponsored a bill sponsored by the other. Even if a pair of senators have cooperated on many bills, the relationship still counts as one."
+  data-question="מצאו את הסנטור/ית המקושרים ביותר. כלומר, הסנטור/ית עם הכי הרבה יוזמות חקיקה משותפות."
+  data-comment="הכוונה ביוזמה משותפת היא לשני סנטורים שכל אחד מהם הצטרף ליוזמה במקור של האחר. גם אם צמד סנטורים שיתפו פעולה בהרבה הצעות חקיקה, הקשר ביניהם יספר פעם אחת בלבד.”"
   data-solution="
 WITH mutuals AS (
   SELECT DISTINCT
@@ -36,12 +39,11 @@ SELECT senator, COUNT(*) AS mutual_count
 FROM mutuals
 GROUP BY senator
 ORDER BY mutual_count DESC
-LIMIT 1 "
-  ></sql-exercise>
+LIMIT 1 "></sql-exercise>
 
 <sql-exercise
-  data-question="Now find the most networked senator from each state."
-  data-comment="If multiple senators tie for top, show both. Return columns corresponding to state, senator and mutual cosponsorship count."
+  data-question="עכשיו, מצאו את הסנטור/ית הכי מקושרים מכל מדינה."
+  data-comment="אם כמה סנטורים מחזיקים במספר זהה בראש הדירוג, הציגו את שניהם. החזירו את הטורים התואמים למדינה (state), סנטור (senator) ומספר שותפויות (mutual cosponsorship)."
   data-solution="
 WITH mutual_counts AS (
   SELECT
@@ -79,7 +81,7 @@ JOIN state_max
   ></sql-exercise>
 
 <sql-exercise
-  data-question="Find the senators who cosponsored but didn't sponsor bills."
+  data-question="מצאו את הסנטורים שהצטרפו ליוזמות חקיקה אך לא יזמו בעצמם אף הצעה."
   data-comment=""
   data-solution="
 SELECT DISTINCT c1.cosponsor_name
@@ -93,4 +95,3 @@ WHERE c2.sponsor_name IS NULL
 -- rows. It's more efficient than WHERE ... NOT IN.
 "
   ></sql-exercise>
-
