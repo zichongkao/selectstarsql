@@ -102,9 +102,16 @@ contents:
     url: "#self_joins"
   - name: Recap
     url: "#סיכום"
-- title: Challenge Questions
+- title: הערות לסיום ושאלות אתגר
   url: questions.html
-  blurb: "This final chapter is a collection of miscellaneous challenge questions."
+  blurb: "פרק 5 כולל הערות לסיום ואוסף של שאלות שנוספו על ידי משתתפים כאתגר נוסף"
   sections:
-  - name: Dates and Times
-    url: "#date_time"
+  - name: הערות לסיום
+    url: "#closing_remarks"
+  - name: שאלות אתגר
+    url: "#challenge_questions"
+  - name: הזמנה להצגת בעיות
+    url: "#call_for_problems"
+    sidenote: true
+  - name: סט הנתונים ליוזמות חקיקה בסנאט
+    url: "#senate_cosponsorship"
