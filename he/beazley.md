@@ -37,11 +37,12 @@ dbFile: data/tx_deathrow_small.db
 
 
 <sql-exercise
-  data-question="שנו את השאילתה בעורך הקוד כדי לבחור את הטורים first_name, last_name ו-last_statement."
+  data-question="שנו את השאילתה בעורך הקוד כדי לבחור את ההצהרה האחרונה (last_statement) בנוסף לטורים האחרים."
   data-comment="כשתסיימו, ניתן ללחוץ על Shift+Enter כדי להריץ את השאילתה."
-  data-default-text="SELECT first_name, last_name FROM executions LIMIT 3"
+  data-default-text="SELECT first_name, last_name
+FROM executions
+ LIMIT 3"
   data-solution="SELECT first_name, last_name, last_statement FROM executions LIMIT 3"></sql-exercise>
-
 <a name="comments"></a>
 <div class="sideNote">
   <h3>הערות ב-SQL</h3>
@@ -63,8 +64,7 @@ dbFile: data/tx_deathrow_small.db
   data-default-text="SELECT first_name FROM execution LIMIT 3"
   data-solution="SELECT first_name FROM executions LIMIT 3"></sql-exercise>
 
-אנחנו לא צריכים את בלוק ה-`FROM` אם איננו משתמשים בפריט כלשהוא מטבלה.
-
+בדוגמה הבאה, שימו לב שאנחנו לא צריכים את בלוק ה-`FROM` אם איננו משתמשים בפריט כלשהוא מהטבלה.
 
 <sql-exercise
   data-question="שנו את השאילתה כך שתחלק את המספר 50 ואת המספר 51 ב-2."
@@ -72,7 +72,7 @@ dbFile: data/tx_deathrow_small.db
   data-default-text="SELECT 50 + 2, 51 * 2"
   data-solution="SELECT 50 / 2, 51 / 2"></sql-exercise>
 
-האם זה לא מוזר ש- `51/2` מציג `25` במקום `25.5`? זה קורה מפני ש-SQL מבצעת חלוקה בין מספרים שלמים (integers). על מנת לבצע חלוקה בין מספרים עשרוניים (decimals), לפחות אחד מן הגורמים (operands) חייב להיות מספר עשרוני, למשל `51.0/2`. זה טריק מקובל להכפיל את אחד המספרים ב-`1.0` כדי להמיר אותו למספר עשרוני.
+האם זה לא מוזר ש- `51/2` מציג `25` במקום `25.5`? זה קורה מפני ש-SQL מבצעת חלוקה בין מספרים שלמים (integers). על מנת לבצע חלוקה בין מספרים עשרוניים (decimals), לפחות אחד מן הגורמים (operands) חייב להיות מספר עשרוני, למשל `51.0/2`. זה טריק מקובל להכפיל את אחד המספרים ב-`1.0` כדי להמיר אותו למספר עשרוני. זה יהיה שימושי בפרקים הבאים.
 
 
 <a name="capitalization"></a>
@@ -103,7 +103,7 @@ data-comment="קרלה טוקר (Karla Tucker) היתה האישה הראשונ�
 
 
 <sql-exercise
-  data-question="מצאו את השם הפרטי ושם המשפחה של נדונים למוות בגיל 25 או צעירים יותר בעת ההוצאה להורג."
+  data-question="מצאו את השם הפרטי ושם המשפחה של נדונים למוות בגיל 25 או צעירים יותר בעת ההוצאה להורג (ex_age)."
   data-comment="בגלל שזמן המאסר הממוצע שנדונים למוות ישבו בכלא לפני ההוצאה להורג הוא 10.26 שנים, רק שישה נדונים למוות בגיל צעיר שכזה הוצאו להורג בטקסס מאז שנת 1976."
   data-default-text=""
   data-solution="SELECT first_name, last_name, ex_age
@@ -115,13 +115,13 @@ FROM executions WHERE ex_age <= 25"></sql-exercise>
 
 
 <sql-exercise
-    data-question="מצאו את מספר ההוצאה להורג של ריימונד לנדרי (Raymond Landry)."
+    data-question="שנו את השאילתה כדי לאתר את מספר ההוצאה להורג של ריימונד לנדרי (Raymond Landry)."
     data-comment="יתכן שתחשבו שזה קל, מכיוון שאנחנו כבר יודעים את השם הפרטי ושם המשפחה שלו, אבל אוספי נתונים מגיעים נקיים ומסודרים רק לעתים רחוקות. השתמשו באופרטור LIKE כך שלא תצטרכו לדעת את השם שלו באופן מושלם כדי לאתר את השורה."
-    data-default-text="SELECT ex_number
+data-default-text="SELECT first_name, last_name, ex_number
 FROM executions
 WHERE first_name = 'Raymond'
   AND last_name = 'Landry'"
-    data-solution="SELECT ex_number
+    data-solution="SELECT first_name, last_name, ex_number
 FROM executions
 WHERE first_name = 'Raymond'
   AND last_name LIKE '%Landry%'"></sql-exercise>
@@ -197,4 +197,4 @@ WHERE first_name = 'Napoleon'
 ## לסיכום
 המטרה של הפרק הזה היתה להציג את המקטע הבסיסי אך העוצמתי  <code class="codeblock">SELECT &lt;column&gt; FROM &lt;table&gt; WHERE &lt;clause&gt;</code>. הוא מאפשר לנו לסנן טבלה על ידי כך שהמחשב עובר שורה אחר שורה ובוחר את השורות עבורן פסקת ה-`WHERE` נכונה.למדנו גם איך לחבר חד כמה פסקות מורכבות יחסית שניתן להפעיל על תווים, מספרים וטורים עם ערכים בוליאנים (אמת/שקר).
 
-עד כה פעלנו רק ברמת השורה הבודדת, מה שהגביל אותנו לחיפוש ואיתור של נקודות מידע בודדות ונפרדות. בפרק הבא נתרכז בצבירות (aggregations) שיאפשרו לנו להבין תופעות ברמה המערכתית.
+עד כה פעלנו רק ברמת השורה הבודדת, מה שהגביל אותנו לחיפוש ואיתור של נקודות מידע בודדות ונפרדות. בפרק הבא נתרכז בצבירות (aggregations) שיאפשרו לנו לחקור תופעה ברמה המערכתית.

@@ -14,17 +14,20 @@ dbFile: data/tx_deathrow_small.db
 
 <br>
 <a name="aggregations"></a>
-## צבירות (aggregations)
-יש שני מספרים שאנחנו צריכים למצוא:
-1. <p>מספר ההוצאות להורג בהן הושמעה טענה לחפות מפשע.</p>
-2. <p>מספר ההוצאות להורג הכולל.</p>
+## פונקציות אגירה (aggregation functions)
+יש שני מספרים שדרושם לנו כדי לחשב את היחס:
+
+
+&nbsp;&nbsp;**המונה**: מספר ההוצאות להורג בהן הושמעה טענה לחפות מפשע.
+
+&nbsp;&nbsp;**המכנה**:מספר ההוצאות להורג הכולל.
 
 עד עכשיו, כל שורה של הפלט הגיעה משורה בודדת של הקלט. עם זאת, כאן יש לנו שבר שבו גם המונה (numerator) וגם המכנה (denominator) מתבססים על מידע מכמה שורות של הקלט. זה אומר שאנחנו צריכים להשתמש בפונקציות צוברות (aggregation functions) מפני שהן <i>לוקחות מספר שורות של מידע ומחברות אותן לתוך מספר אחד.</i>
 
 <br>
 <a name="count"></a>
 ## הפונקציה COUNT
-`COUNT` היא כנראה הפונקציה הצוברת הכי נפוצה בשימושה. כפי שהשם שלה מרמז, היא סופרת דברים! לדוגמה, <code class='codeblock'>COUNT(my_column)</code> תחזיר את מספר השורות ללא null בטור `my_column`.
+`COUNT` היא כנראה הפונקציה הצוברת הכי נפוצה בשימושה. כפי שהשם שלה מרמז, היא סופרת דברים! לדוגמה, <code class='codeblock' dir="ltr">COUNT(&lt;שם_הטור&gt;)</code> תחזיר את מספר השורות ללא null בטור.
 
 <sql-exercise
   data-question="ערכו את השאילתה כדי למצוא כמה נדונים למוות השמיעו הצהרה אחרונה לפנ ההוצאה להורג."
@@ -48,12 +51,12 @@ dbFile: data/tx_deathrow_small.db
       ></sql-exercise>
   </div>
 
-  עם זה, אנחנו יכולים להשלים את המשימה:
+  עם זה, אנחנו יכולים לגלות את המכנה עבור היחס שאנחנו מחשבים:
   <sql-exercise
   data-question="מצאו את מספר ההוצאות להורג שבסט הנתונים."
   data-comment="הרעיון כאן הוא לבחור את אחד הטורים שבהם אתם מבטוחים שאין <code>NULL</code> ולספור בו."
   data-default-text=""
-  data-solution="SELECT COUNT(first_name) FROM executions"></sql-exercise>
+  data-solution="SELECT COUNT(ex_number) FROM executions"></sql-exercise>
 
 
 <br>
@@ -94,7 +97,17 @@ data-solution="SELECT
 FROM executions"></sql-exercise>
 
 <br>
+
 ## אימון
+<sql-exercise
+  data-question=
+  "מצאו כמה נדונים למוות היו מבוגרים מגיל 50 בעת ההוצאה להורג."
+  data-comment="זה מראה ש-<code>WHERE</code> מסנן את הנתונים לפני שהפונקציה הצוברת (aggergative) מתרחשת."
+
+  data-default-text=""
+  data-solution='SELECT COUNT(*) FROM executions WHERE ex_age > 50'>
+</sql-exercise>
+
 
 <a name="documentation"></a>
 <div class="sideNote">
@@ -111,7 +124,7 @@ FROM executions"></sql-exercise>
   data-question="מצאו את מספר הנדונים למוות שסירבו להשמיע הצהרה האחרונה לפני ביצוע גזר הדין."
   data-comment="לניקוד נוסף, נסו לעשות זאת בשלוש דרכים: <br>
   1) עם בלוק <code>WHERE</code>,<br>
-  2) עם בלוק <code>CASE WHEN</code><br>
+  2) עם בלוק <code>COUNT</code> ו- <code>CASE WHEN</code><br>
   3) עם שתי פונקציות <code>COUNT</code>"
   data-default-text=""
   data-solution='SELECT COUNT(*) FROM executions WHERE last_statement IS NULL
@@ -119,24 +132,17 @@ FROM executions"></sql-exercise>
   SELECT COUNT(*) - COUNT(last_statement) FROM executions'>
 </sql-exercise>
 
-<sql-exercise
-  data-question=
-  "מצאו כמה נדונים למוות היו מבוגרים מגיל 50 בעת ההוצאה להורג."
-  data-comment="זה מראה ש-<code>WHERE</code> מסנן את הנתונים לפני שהפונקציה הצוברת (aggergative) מתרחשת."
-
-  data-default-text=""
-  data-solution='SELECT COUNT(*) FROM executions WHERE ex_age > 50'>
-</sql-exercise>
+כדאי לקחת צעד אחורנית ולחשוב על הדרכים השונות בהן המחשב מתמודד עם שלוש השאילתות הללו. הגרסה עם ה-`WHERE` קודם סיננה את זה לטבלה קטנה לפני ביצוע האגירה. בשתי הגרסאות האחרות צריך היה לעבור דרך הטבלה בשלמותה. בגרסה עם `COUNT` + `CASE WHEN`, צריך היה לעבור על כל הטבלה רק פעם אחת, ואילו בגרסה עם שני ה-`COUNT` צריך היה לעבור על כל הטבלה פעמיים. אז למרות שהפלט הוא זהה בשלוש הגרסאות, הביצוע הטוב ביויתר היה כנראה של הגרסה הראשונה, והביצוע הגרוע בייותר הוא בגרסה השלישית.
 
 <sql-exercise
   data-question="מצאו את גילאי המינימום, המקסימום והגיל הממוצע של הנדונים למוות בעת ההוצאה להורג."
-  data-comment="השתמשו בפונקציות הצוברות <code>MAX</code>, <code>MIN</code> וב-<code>AVG</code>."  
+  data-comment="השתמשו בפונקציות האוגרות <code>MAX</code>, <code>MIN</code> וב-<code>AVG</code>."  
   data-default-text="SELECT ex_age FROM executions"
   data-solution='SELECT MIN(ex_age), MAX(ex_age), AVG(ex_age) FROM executions'></sql-exercise>
 
   <sql-exercise
     data-question="מצאו את האורך הממוצע של ההצהרות האחרונות (בהתבסס על ספירת התווים בהצהרה) המופיעת בסט הנתונים."
-  data-comment="אתם יכולים לחבר יחד פונקציות. השתמשו בפונקציה <code>LENGTH</code> שמחזיה את מספר התווים במחרוזת טקסט."
+    data-comment='התרגיל הזה מדגים שאתם יכולםי לחבר פונקציות. ראו את <a href="http://sqlite.org/lang_corefunc.html">הדוקומנטציה</a> כדי להבין איזו פונקציה מחזירה את מספר התויים במחרוזת טקסט.'
     data-default-text=""
     data-solution='SELECT AVG(LENGTH(last_statement)) FROM executions'></sql-exercise>
 
@@ -145,6 +151,8 @@ FROM executions"></sql-exercise>
     data-comment="אנחנו יכולים לקבל ערכים יחודיים בעזרת <code>SELECT DISTINCT</code>. ראו את המידע שמופיע ב<a href='https://www.w3schools.com/sql/sql_distinct.asp'>תיעוד.</a>"
     data-default-text=""
     data-solution='SELECT DISTINCT county FROM executions'></sql-exercise>
+
+`SELECT DISTINCT` היא לא באמת פונקציה אוגרת, משום שהיא לא מחזירה מספר אחד ומשום שהיא פועלת על הפלט של השאילתה ולא על הטבלה הבסיסית. ובכל זאת, כללתי את הפקודה הזו פה משום שהיא חולקת את המאפייןי של פעולה על מספר שורות.
 
 <br>
 <a name="strange"></a>
@@ -176,7 +184,7 @@ FROM executions"></sql-exercise>
 חשבו מהו החלק היחסי של של הנדונים למוות שכללו טענה לחפות מפשע בהצהרתם האחרונה.
 <sql-exercise
   data-question="חשבו מהו החלק היחסי של של הנדונים למוות שכללו טענה לחפות מפשע בהצהרתם האחרונה."
-  data-comment="כדי לבצע חילוק עשרוני, ודאו שאחד מהגורמים הוא מספר עשרוני, באמצעות הכפלתו ב-1.0. השתמשו ב-<code>LIKE '%innocent%'</code> כדי לאתר טענות לחפות מפשע."
+  data-comment="כדי לבצע חילוק עשרוני, ודאו שאחד מהגורמים הוא מספר עשרוני, באמצעות הכפלתו ב-1.0. השתמשו ב-<code dir='ltr'>LIKE '%innocent%'</code> כדי לאתר טענות לחפות מפשע."
   data-solution="SELECT
 1.0 * COUNT(CASE WHEN last_statement LIKE '%innocent%'
     THEN 1 ELSE NULL END) / COUNT(*)
