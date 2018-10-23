@@ -23,11 +23,11 @@ dbFile: data/tx_deathrow_small.db
     SELECT
       last_ex_date AS start,
       ex_date AS end,
-      ex_date - last_ex_date AS day_delta
+       ex_date - last_ex_date AS day_difference
     FROM executions
     JOIN previous
       ON executions.ex_number = previous.ex_number
-    ORDER BY day_delta DESC
+    ORDER BY day_difference DESC
     LIMIT 10
 
 בלוק ה-`JOIN` הוא המיקוד של הפרק הזה. במקום לראות בו שורה נפרדת זה יותר יעיל לפעמים לראות בה משהו כזה:  <img src="../imgs/join_correctview.png"> זה מדגיש איך `JOIN` יוצר טבלה מאוחדת גדולה שאז מוזנת לתוך בלוק ה-`FROM` כמו כל טבלה אחרת.
@@ -42,7 +42,7 @@ dbFile: data/tx_deathrow_small.db
 <br>
 <a name="join_types">
 ## סוגים של חיבורים (Joins)
-בלוק ה-`JOIN` מתממשים בצורת <code class='codeblock'>&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>. הפסקה עובדת בדומה ל-`WHERE <clause>`. כלומר, זוהי הצהרה שמוערכת כאמת (true) או שקר (false), ובכל פעם ששורה מהטבלה הראשונה ושורה אחרת מהטבלה השניה עומדות עם הפסקה ומוערכות כביטוי אמת, שתי השורות מתחברות.
+בלוק ה-`JOIN` מתממשים בצורת <code class='codeblock'>&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>. הפסקה עובדת בדומה ל<code class='codeblock' dir="rtl">WHERE &lt;clause&gt;</code>. כלומר, זוהי הצהרה שמוערכת כאמת (true) או שקר (false), ובכל פעם ששורה מהטבלה הראשונה ושורה אחרת מהטבלה השניה עומדות עם הפסקה ומוערכות כביטוי אמת, שתי השורות מתחברות.
 
 <img src="../imgs/join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
@@ -105,7 +105,7 @@ dbFile: data/tx_deathrow_small.db
 ## תאריכים
 בואו ניקח הפסקה קצרה מחיבורים ונסתכל בשורה הזו בתבנית השאילתה הבא:
 
-      ex_date - last_ex_date AS day_delta
+       ex_date - last_ex_date AS day_difference
 
 הנחנו כאן הנחה משמעותית לפייה ניתן לבצע פעולת חיסור בין שני תאריכים. אבל דמייינו שאתם מחשב שמקבל שורה שכזו. האם תחזירו את מספר הימים בין התארכםי? מדוע לא את מספר השעות, או מספר השניות? כדי לסבך את העניינים, ל-SQLite אין ממש סוגי נתונים של תאריך או שעה (להבדיל מכמה צורות ודיאלקטים אחרים של SQL), כך שהטורים `ex_date` ו-`last_ex_date` יראו לכם כמו מחרוזות טקסט רגילות. זה כאילו אתם מתבקשים לבצע את הפעולה `hello`-`world`. מה המשמעות של זה בכלל?
 
@@ -113,9 +113,9 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
  data-question='חפשו ב<a href="https://www.sqlite.org/lang_datefunc.html">דוקומנטציה</a> איך לתקן את השאילתה כך שתחזיר את מספר הימים שבין שני התאריכםי.'
- data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_delta"
+ data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_difference"
  data-solution="
-SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
+SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_difference"
 ></sql-exercise>
 
 
@@ -129,17 +129,17 @@ SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_delta"
       last_ex_date AS start,
       ex_date AS end,
       JULIANDAY(ex_date) - JULIANDAY(last_ex_date)
-        AS day_delta
+        AS day_difference
     FROM executions
     JOIN previous
       ON executions.ex_number = previous.ex_number
-    ORDER BY day_delta DESC
+    ORDER BY day_difference DESC
     LIMIT 5
 
 הצעד הבא הוא לבנות את טבלת ה-`previous`.
 <sql-exercise
   data-question="כתבו שאילתה שמפיקה את טבלת ה-<code>previous</code>."
-  data-comment="זכרו להשתמש בשמות חלופיים (aliases) כדי לגשת לשמות הטורים <code>(ex_number, last_ex_date)</code>."
+  data-comment="זכרו להשתמש בשמות חלופיים (aliases) כדי לגשת לשמות הטורים <code>(ex_number, last_ex_date)</code>. רמז: במקום להסיט את התאריכים אחרונת, תוכלו להסיט את <code>ex_number</code> קדימה!"
   data-solution="
 SELECT
   ex_number + 1 AS ex_number,
@@ -155,17 +155,17 @@ WHERE ex_number < 553"></sql-exercise>
   data-default-text="
   SELECT last_ex_date AS start,
     ex_date AS end,
-    JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_delta
+    JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_difference
 FROM executions
 JOIN (<your-query>) previous
   ON executions.ex_number = previous.ex_number
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
   data-solution="
 SELECT
   last_ex_date AS start,
   ex_date AS end,
-  JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_delta
+  JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_difference
 FROM executions
 JOIN (
     SELECT
@@ -174,7 +174,7 @@ JOIN (
     FROM executions
   ) previous
   ON executions.ex_number = previous.ex_number
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"></sql-exercise>
 
 `previous` נובע מתוך `executions`, כך שאנחנו למעשה מחברים את טבלת ה-`executions` לעצמה. זה נקרא "חיבור עצמי" (“self join"), טכניקה רבת עוצמה שמאפשרת לשורות לגשת לנתונים מחלקים אחרים של אותה הטבלה.
@@ -188,22 +188,22 @@ LIMIT 10"></sql-exercise>
   previous.ex_date AS start,
   executions.ex_date AS end,
   JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
-    AS day_delta
+    AS day_difference
 FROM executions
 JOIN executions previous
   ON <your-clause>
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
   data-solution="
 SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
   JULIANDAY(executions.ex_date) - JULIANDAY(previous.ex_date)
-    AS day_delta
+    AS day_difference
 FROM executions
 JOIN executions previous
   ON executions.ex_number = previous.ex_number + 1
-ORDER BY day_delta DESC
+ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
