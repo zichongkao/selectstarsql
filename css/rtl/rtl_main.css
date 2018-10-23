@@ -102,10 +102,11 @@ body #column {
 }
 
 .footer {
-    margin-top: 6em;
+    margin-top: 8em;
     font-family: 'Roboto',sans-serif;
-    color: #333;
+    color: #666;
     font-weight: 200;
+    font-size: 100%;
 }
 
 .tutorial-nav {
