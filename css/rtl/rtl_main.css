@@ -178,6 +178,10 @@ a:hover {
     font-weight: bolder;
 }
 
+.language_switcher {
+  font-weight: 200;
+}
+
 
 /* sideNote */
 .sideNote {

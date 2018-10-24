@@ -20,14 +20,19 @@ layout: he_default
     </div>
   {% endif %}
 
-  <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}</div></div>
+  {% assign english_url = site.data.he_sitemap.contents[tutorial_index].english_url %}
+  <div class="section-sib">&#x21b5; <div class="cur-text">{{ page.title }}
+    {%if english_url %}
+      <a href="{{english_url}}" class="language_switcher">(To English)  </a>
+    {% endif %}
+  </div></div>
 
   {% for tutorial in site.data.he_sitemap.contents %}
     {% if tutorial.title == page.title %}
       {% for section in tutorial.sections %}
         {% unless section.sidenote %}
           <div class="childlinks">
-            &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
+            &#x21b5; <a href="{{ section.url }}">{{ section.name }}</a>
           </div>
         {% endunless %}
       {% endfor %}
@@ -37,7 +42,7 @@ layout: he_default
   {% if site.data.he_sitemap.contents[next].title %}
     {% assign next_tutorial = site.data.he_sitemap.contents[next] %}
     <div class="section-sib">
-      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
+      &#x21b5; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
     </div>
   {% endif %}
 </div>
