@@ -8,7 +8,7 @@ dbFile: data/tx_deathrow_small.db
 ## התמריץ
 כשהיייתי איש נתונים (data scientist) ב-Quora, אנשים נהגו לשאול אותי בנוגע למשאבים ללימוד SQL. התאמצתי למצוא משהו שארגיש נח להמליץ עלייו, מפני שלהבנתי מקור טוב צריך להיות חינמי, ללא צורך בהרשמה ולקחת בחשבון את הפדגוגיה המתאימה&mdash;הוא צריך לדאוג למשתמשים שלו ולא היה שום דבר כזה בסביבה.
 
-אנ מאמין ש **Select Star SQL** עומד ביעדים הללו, בזכות התמודדות עם כמה <a href="#technicals">מכשולים טכניים</a>. אני מקווה שבדומה למה ש<a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> ו-<a href='https://beautifulracket.com'>Beautiful Racket</a>עשו עבור Haskell ו-Racket,<br>**Select Star SQL** יהפך למקום הטוב ביותר באינטרנט ללמוד בו SQL.
+אנ מאמין ש **Select Star SQL** עומד ביעדים הללו, בזכות התמודדות עם כמה <a href="#technicals">מכשולים טכניים</a>. אני מקווה שבדומה למה ש<a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> ו-<a href='https://beautifulracket.com'>Beautiful Racket</a> עשו עבור Haskell ו-Racket,<br>**Select Star SQL** יהפך למקום הטוב ביותר באינטרנט ללמוד בו SQL.
 
 <br>
 <a name="pedagogy"></a>
@@ -58,5 +58,4 @@ LIMIT 3"></sql-exercise>
 - לתיקונים והצעות, כתבו לי (Kao) ב-[zichongkao@gmail.com](zichongkao@gmail.com).
 ניתן ללמוד עלי פרטים נוספים ב-<a href="http://kaomorphism.com">Kaomorphism</a>.
 
-- לתייקונים והצעות בנוגע לתרגום בעברית ניתן ליצור קשר עם נעם קסטל
-[noam@thepitz.io](noamoss@pitz.io) או ב [@pitz_the בטוויטר](http://twitter.com/pitz_the).
+- להערות והצעות בנוגע לתרגום העברי ניתן ליצור קשר עם הפיץ [באתר](https://thepitz.io/hebrew), [במייל (noam@thepitz.io)](noamoss@pitz.io/hebrew) או ב[טוויטר (pitz_the@)](http://twitter.com/pitz_the).
