@@ -1,6 +1,10 @@
 contents:
+- title: Select Star SQL בעברית
+  url: "/"
+  english_url: /
 - title: העניינים שלפני
   url: frontmatter.html
+  english_url: ../frontmatter.html
   blurb: "הבסיס הפילוסופי והטכני של הפרוייקט."
   sections:
   - name: התמריץ
@@ -15,6 +19,7 @@ contents:
     url: "#contact"
 - title: המלים האחרונות של ביזלי
   url: beazley.html
+  english_url: ../beazley.html
   blurb: "הפרק הראשון בוחן את הטיעון של נפוליאון ביזלי כנגד עונש מוות. נלמד את המבנה של שאילתת SQL ופעולות שניתן לבצע על שורה בטבלה."
   sections:
   - name: המקרה של ביזלי (Beazley’s case)
@@ -43,7 +48,8 @@ contents:
     url: "#recap"
 - title: טענות לחפות מפשע
   url: innocence.html
-  blurb: "פרק 2 בוחן כמה נדונים למוות יתכן והיו חפים מפשע. הנושא הטכני הוא צבירה של נתונים על פני כל הטבלה."
+  english_url: ../innocence.html
+  blurb: "פרק 2 בוחן כמה נדונים למוות יתכן והיו חפים מפשע. הנושא הטכני הוא אגירה של נתונים על פני כל הטבלה."
   sections:
   - name: חפות מפשע אפשרית
     url: "#possible_innocence"
@@ -68,6 +74,7 @@ contents:
     url: "#recap"
 - title: הזנב הארוך
   url: longtail.html
+  english_url: ../longtail.html
   blurb: "פרק 3 חוקר את המחוזות עם מסרי ההוצאות להורג הגבוהות בצורה יוצאת דופן. אנחנו מרחיבים מפרק 2, על ידי יישום פונקציות אוגרות (aggregations) על קבוצות של שורות"
   sections:
   - name: זנבות ארוכים
@@ -87,6 +94,7 @@ contents:
     sidenote: true
 - title: הפוגות בהוצאות להורג
   url: hiatuses.html
+  english_url: ../hiatuses.html
   blurb: "פרק 4 חוקר את פרקי הזמן הארוכים יחסית בהם לא התרחשו הוצאות להורג. נושא הפרק הוא החרבת הטבלאות בעזרת חיבורים."
   sections:
   - name: הפוגות
@@ -102,10 +110,11 @@ contents:
     url: "#dates"
   - name:  חיבורים עצמיים (self joins)
     url: "#self_joins"
-  - name: Recap
-    url: "#סיכום"
+  - name: סיכום
+    url: "#recap"
 - title: הערות לסיום ושאלות אתגר
   url: questions.html
+  english_url: ../questions.html
   blurb: "פרק 5 כולל הערות לסיום ואוסף של שאלות שנוספו על ידי משתתפים כאתגר נוסף"
   sections:
   - name: הערות לסיום
