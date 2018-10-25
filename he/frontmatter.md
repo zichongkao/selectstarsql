@@ -58,4 +58,4 @@ LIMIT 3"></sql-exercise>
 - לתיקונים והצעות, כתבו לי (Kao) ב-[zichongkao@gmail.com](zichongkao@gmail.com).
 ניתן ללמוד עלי פרטים נוספים ב-<a href="http://kaomorphism.com">Kaomorphism</a>.
 
-- להערות והצעות בנוגע לתרגום העברי ניתן ליצור קשר עם הפיץ [באתר](https://thepitz.io/hebrew), [במייל (noam@thepitz.io)](noamoss@pitz.io/hebrew) או ב[טוויטר (pitz_the@)](http://twitter.com/pitz_the).
+- להערות והצעות בנוגע לתרגום העברי, או לסיוע בהוספת תרגומים לשפות נוספות, ניתן ליצור קשר עם הפיץ [באתר](https://thepitz.io/hebrew), [במייל (noam@thepitz.io)](noamoss@pitz.io/hebrew) או ב[טוויטר (pitz_the@)](http://twitter.com/pitz_the).
