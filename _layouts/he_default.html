@@ -27,7 +27,6 @@
     <title>{{ page.title }}</title>
 
     <!-- add meta tag for ranslated version -->
-    {{page.title}}
     {% for hebrew_page in site.data.he_sitemap.contents %}
       {% if hebrew_page.title == page.title %}
         {% assign hebrew_page_index = forloop.index0 %}
