@@ -1,0 +1,316 @@
+/* font elements */
+h1,h2,h3,h4,h5,h6 {
+    color: #333;
+    font-family: Roboto,sans-serif;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0;
+}
+h1 {
+    display: block;
+    font-size: 2em;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+}
+
+h4 {
+    display: inline;
+    font-weight: 700;
+}
+
+p {
+    margin: 0.5em 0 0.5em 0;
+    line-height: 170%;
+    font-family: 'Libre Baskerville', serif;
+}
+
+ul li {
+    list-style-position: outside;
+}
+
+ol li {
+    list-style-position: outside;
+}
+
+code, pre {
+    font-family: Consolas,monospace;
+    font-weight: 700;
+    direction: ltr;
+}
+
+pre {
+    margin-left: 1em;
+}
+
+.codeblock {
+    border: solid 1px lightgrey;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+/* general */
+html {
+    font-size: 18px;
+}
+
+body {
+    color: #1b1e23;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    max-width: 45rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body #column {
+  max-width: 33rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+.content img {
+    width: 100%
+}
+
+
+.header {
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.header .logo {
+    height: 70px;
+    }
+
+.header .title {
+    display: inline-block;
+    font-family: 'Roboto Condensed',sans-serif;
+    color: #333;
+    font-weight: 800;
+    font-size: 2em;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+}
+
+.footer {
+    margin-top: 8em;
+    font-family: 'Roboto',sans-serif;
+    color: #666;
+    font-weight: 200;
+    font-size: 100%;
+}
+
+.tutorial-nav {
+    margin-top: 2em;
+}
+
+.tutorial-nav  .previous {
+    float: right;
+    max-width: 50%;
+}
+
+.tutorial-nav  .next {
+    float: left;
+    max-width: 50%;
+}
+
+/* hyperlinks */
+a {
+    color: #07a;
+    text-decoration: none;
+}
+
+a:hover {
+    background: #f2f8fa;
+}
+
+/* index page */
+.index_section {
+    margin-top: 1em;
+}
+
+.index_section p{
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-weight: 200;
+    line-height: 120%;
+}
+
+/* tutorial nav links */
+.section-nav {
+    color: #1b1e23;
+    font-family: Roboto, sans-serif;
+    font-size: 1.2em;
+    line-height: 150%;
+    margin-bottom: 2em;
+}
+
+.section-nav .section-sib {
+    margin-left: 1em;
+}
+
+.section-nav .section-sib a.here {
+    background: #fbfbfb;
+    font-weight: bolder;
+}
+
+.section-nav .cur-text {
+    display: inline-block;
+    font-weight: 700;
+}
+
+
+.section-nav .childlinks {
+    margin-right: 3em;
+    font-weight: 200;
+}
+.section-nav .childlinks a.here {
+    background: #fbfbfb;
+    font-weight: bolder;
+}
+
+.language_switcher {
+  font-weight: 200;
+}
+
+
+/* sideNote */
+.sideNote {
+    margin: 1em 0em;
+    padding-right: 1em;
+    font-size: 0.9em;
+    border-right: 2px solid grey;
+    direction: rtl;
+}
+
+/* datatable */
+.datatable {
+    border: solid 1px grey;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.datatable thead, td {
+    padding: 5px;
+    border: solid 1px grey;
+}
+
+.datatable thead {
+    background: lightgrey;
+}
+
+
+/* sql quiz component */
+sql-quiz .sqlQuizHomeDiv {
+    margin: 1em 0em;
+    background: #f9f9f9;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: 200;
+}
+
+sql-quiz .sqlQuizTitle {
+    font-weight: 700;
+}
+
+sql-quiz .sqlQuizDescription {
+}
+
+sql-quiz .sqlQuizInputArea {
+    line-height: 130%;
+    min-width: 100%;
+}
+sql-quiz .sqlQuizInputArea .sqlOption {
+    min-width: 100%;
+    margin: 0.5em 0em;
+}
+
+sql-quiz input[type=checkbox] {
+  transform: scale(1.5);
+  float: right;
+}
+
+sql-quiz .sqlOption .optionText {
+    display: table;
+}
+
+sql-quiz .sqlOption .hintSpan {
+    /*when revealed, display: table-row;*/
+    display: none;
+    color: blue;
+    font-weight: 200;
+}
+
+sql-quiz .sqlQuizInputArea input {
+    margin-left: 1em;
+    background: none;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+sql-quiz .sqlQuizOutputArea .returnOkay {
+    margin-top: 0.5em;
+}
+
+/* sql exercise component */
+sql-exercise .sqlExHomeDiv{
+    margin: 1em 0em;
+    font-family: Roboto, sans-serif;
+    background: #f9f9f9;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+sql-exercise .sqlExQuestion {
+    font-weight: 700;
+}
+
+sql-exercise .sqlExComment {
+    font-weight: 200;
+}
+
+sql-exercise form {
+    display: block;
+}
+
+sql-exercise .sqlExInputArea {
+    line-height: 130%;
+    min-width: 100%;
+}
+
+sql-exercise .sqlExOutputArea {
+    max-height: 12em;
+    max-width: 52rem;
+    overflow: auto;
+    background: #f9f9f9;
+}
+
+sql-exercise .sqlExOutputArea .returnOkay {
+    margin-top: 0.5em;
+}
+
+sql-exercise .sqlExOutputArea .returnError {
+    margin-top: 0.5em;
+    color: red;
+}
+
+sql-exercise .CodeMirror {
+    margin: 0.5em 0em;
+}
+
+sql-exercise .sqlExInputArea input {
+    margin-right: 1em;
+    background: none;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 200;
+}

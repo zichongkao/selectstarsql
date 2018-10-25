@@ -1,0 +1,128 @@
+contents:
+- title: Select Star SQL בעברית
+  url: "/"
+  english_url: /
+- title: העניינים שלפני
+  url: frontmatter.html
+  english_url: ../frontmatter.html
+  blurb: "הבסיס הפילוסופי והטכני של הפרוייקט."
+  sections:
+  - name: התמריץ
+    url: "#impetus"
+  - name: הפדגוגיה
+    url: "#pedagogy"
+  - name: סט הנתונים
+    url: "#dataset"
+  - name: העניינים הטכניים
+    url: "#technicals"
+  - name: צרו קשר
+    url: "#contact"
+- title: המלים האחרונות של ביזלי
+  url: beazley.html
+  english_url: ../beazley.html
+  blurb: "הפרק הראשון בוחן את הטיעון של נפוליאון ביזלי כנגד עונש מוות. נלמד את המבנה של שאילתת SQL ופעולות שניתן לבצע על שורה בטבלה."
+  sections:
+  - name: המקרה של ביזלי (Beazley’s case)
+    url: "#המקרה-של-ביזלי-beazleys-case"
+  - name: שאילתת SQL ראשונה
+    url: "#first"
+  - name: בלוק ה-SELECT
+    url: "#select"
+  - name: הערות ב-SQL
+    url: "#comments"
+    sidenote: true
+  - name: בלוק ה-FROM
+    url: "#from"
+  - name: אותיות אנגליות גדולות (Capitalization)
+    url: "#capitalization"
+    sidenote: true
+  - name: רווחים
+    url: "#whitespace"
+    sidenote: true
+  - name: בלוק ה-WHERE
+    url: "#where"
+  - name: מרכאות
+    url: "#quotes"
+    sidenote: true
+  - name: לסיכום
+    url: "#recap"
+- title: טענות לחפות מפשע
+  url: innocence.html
+  english_url: ../innocence.html
+  blurb: "פרק 2 בוחן כמה נדונים למוות יתכן והיו חפים מפשע. הנושא הטכני הוא אגירה של נתונים על פני כל הטבלה."
+  sections:
+  - name: חפות מפשע אפשרית
+    url: "#possible_innocence"
+  - name: צבירות (aggregations)
+    url: "#aggregations"
+  - name: הפונקציה COUNT
+    url: "#count"
+  - name: ריק (Nulls)
+    url: "#nulls"
+    sidenote: true
+  - name: וריאציות על COUNT
+    url: "#count_var"
+  - name: Looking Up Documentation
+    url: "#documentation"
+    sidenote: true
+  - name: שאילתה מוזרה
+    url: "#strange"
+  - name: דיאלקטים ובסיסי נתונים של SQL
+    url: "#dialects"
+    sidenote: true
+  - name: מסקנה וסיכום
+    url: "#recap"
+- title: הזנב הארוך
+  url: longtail.html
+  english_url: ../longtail.html
+  blurb: "פרק 3 חוקר את המחוזות עם מסרי ההוצאות להורג הגבוהות בצורה יוצאת דופן. אנחנו מרחיבים מפרק 2, על ידי יישום פונקציות אוגרות (aggregations) על קבוצות של שורות"
+  sections:
+  - name: זנבות ארוכים
+    url: "#long_tails"
+  - name: בלוק ה-Group By
+    url: "#groupby"
+  - name: בלוק ה-Having
+    url: "#having"
+  - name: שאילתות מקוננות (nested queries)
+    url: "#nested"
+  - name: מחוז האריס (Harris)
+    url: "#harris"
+  - name: סיכום
+    url: "#recap"
+  - name: MapReduce
+    url: "#mapreduce"
+    sidenote: true
+- title: הפוגות בהוצאות להורג
+  url: hiatuses.html
+  english_url: ../hiatuses.html
+  blurb: "פרק 4 חוקר את פרקי הזמן הארוכים יחסית בהם לא התרחשו הוצאות להורג. נושא הפרק הוא החרבת הטבלאות בעזרת חיבורים."
+  sections:
+  - name: הפוגות
+    url: "#hiatuses"
+  - name: מחשבות על חיבורים (JOINs)
+    url: "#joins"
+  - name: פירוק טורים
+    url: "#disam_cols"
+    sidenote: true
+  - name:  סוגים של חיבורים (Joins)
+    url: "#join_types"
+  - name: תאריכים
+    url: "#dates"
+  - name:  חיבורים עצמיים (self joins)
+    url: "#self_joins"
+  - name: סיכום
+    url: "#recap"
+- title: הערות לסיום ושאלות אתגר
+  url: questions.html
+  english_url: ../questions.html
+  blurb: "פרק 5 כולל הערות לסיום ואוסף של שאלות שנוספו על ידי משתתפים כאתגר נוסף"
+  sections:
+  - name: הערות לסיום
+    url: "#closing_remarks"
+  - name: שאלות אתגר
+    url: "#challenge_questions"
+  - name: הזמנה להצגת אתגרים
+    url: "#call_for_problems"
+    sidenote: true
+  - name: סט נתוני שותפויות החקיקה בסנאט
+    url: "#senate_cosponsorship"

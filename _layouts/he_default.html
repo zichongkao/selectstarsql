@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="he">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="../imgs/favicon.ico">
+    <!-- thanks to https://favicon.io/ -->
+    <link rel="stylesheet" href='https://codemirror.net/lib/codemirror.css'>
+    <link rel="stylesheet" href='../css/neat.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed">
+    <link rel="stylesheet" href="../css/rtl/rtl_main.css">
+    <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
+    <script src="../scripts/codemirror.js"></script>
+    <script src="../scripts/codemirrorsql.js"></script>
+    <script src="../scripts/autorefresh.js"></script>
+    <script src="../scripts/rtl/he_main.js"></script>
+    <script>
+      window.onload = () => loadData('../{{ page.dbFile }}');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46601509-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46601509-2');
+    </script>
+    <title>{{ page.title }}</title>
+
+    <!-- add meta tag for ranslated version -->
+    {{page.title}}
+    {% for hebrew_page in site.data.he_sitemap.contents %}
+      {% if hebrew_page.title == page.title %}
+        {% assign hebrew_page_index = forloop.index0 %}
+        {% assign english_url = site.data.he_sitemap.contents[hebrew_page_index].english_url %}
+      {% endif %}
+    {% endfor %}
+
+    {% if english_url %}
+    <link rel="alternate" hreflang="he" href="{{ page.url}}">
+    <link rel="alternate" hreflang="en" href="{{ english_url }}">
+    {% endif %}
+  </head>
+
+  <body dir="rtl">
+    <div id="column">
+      <div class="header">
+        <a href="/he/"><img class="logo" src="../imgs/favicon-256.png"></a>
+        <a href="/he/"><div class="title">&#160;Select Star SQL
+          בעברית</a>
+        </div>
+      </div>
+      <div class="content">
+        {{content}}
+      </div>
+      <div class="footer">
+        המלל עבור <a href="/">SelectStarSql.com</a> מוגש על ידי <a href="https://kaomorphism.com/">Zi Chong Kao</a> ברשיון  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0 License</a>. הקוד והנתונים מפורסמים למרחב הציבורי ב<a href="https://creativecommons.org/publicdomain/zero/1.0/">רישיון Creative Commons CC0 License</a>.      </div>
+    </div>
+  </body>
+</html>
