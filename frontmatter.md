@@ -47,7 +47,9 @@ On one level, the data is simply a part of a mundane programming book. On anothe
 
 <br>
 <a name="contact"></a>
-## Contact
-For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com.
+## Credits and Contact
+For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com. You can find out more about me at <a href="http://kaomorphism.com">Kaomorphism</a>.
 
-You can find out more about me at <a href="http://kaomorphism.com">Kaomorphism</a>.
+<a href="https://thepitz.io/">Noah Castel</a> did an amazing job on the <a href="/he/">Hebrew translation</a>. Please reach out to him for kudos and suggestions for the Hebrew version.
+
+Much thanks to Sonja Lea Heinze, Quinn Batten, and Nicholas Retallack for providing valuable feedback.
