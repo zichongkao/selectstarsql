@@ -68,7 +68,7 @@ dbFile: data/tx_deathrow_small.db
 
 
 <sql-exercise
-data-question="ודאו ש-<code>COUNT(*)</code> נותן תוצאה זהה לתוצאה הקודמת
+data-question="ודאו ש-<code>(*)COUNT</code> נותן תוצאה זהה לתוצאה הקודמת
 ."
 data-default-text="SELECT COUNT(*) FROM executions"></sql-exercise>
 
