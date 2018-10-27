@@ -52,4 +52,4 @@ For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com. 
 
 <a href="https://thepitz.io/">Noah Castel</a> did an amazing job on the <a href="/he/">Hebrew translation</a>. Please reach out to him for kudos and suggestions for the Hebrew version.
 
-Much thanks to Sonja Lea Heinze, Quinn Batten, and Nicholas Retallack for providing valuable feedback.
+Much thanks to Sonja Lea Heinze, Quinn Batten, and <a href="https://nickretallack.com">Nicholas Retallack</a> for providing valuable feedback.
