@@ -27,7 +27,6 @@
     <title>{{ page.title }}</title>
 
     <!-- add meta tag for ranslated version -->
-    {{page.title}}
     {% for hebrew_page in site.data.he_sitemap.contents %}
       {% if hebrew_page.title == page.title %}
         {% assign hebrew_page_index = forloop.index0 %}
@@ -53,7 +52,6 @@
         {{content}}
       </div>
       <div class="footer">
-        המלל עבור <a href="/">SelectStarSql.com</a> מוגש על ידי <a href="https://kaomorphism.com/">Zi Chong Kao</a> ברשיון  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0 License</a>. הקוד והנתונים מפורסמים למרחב הציבורי ב<a href="https://creativecommons.org/publicdomain/zero/1.0/">רישיון Creative Commons CC0 License</a>.      </div>
-    </div>
+        המלל והתרגום עבור <a href="/">SelectStarSql.com</a> מוגשים על ידי <a href="https://kaomorphism.com/">Zi Chong Kao</a> ברשיון  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0 License</a>. הקוד והנתונים מפורסמים למרחב הציבורי ב<a href="https://creativecommons.org/publicdomain/zero/1.0/">רישיון Creative Commons CC0 License</a>.      </div>    </div>
   </body>
 </html>

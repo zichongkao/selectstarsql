@@ -50,6 +50,6 @@ On one level, the data is simply a part of a mundane programming book. On anothe
 ## Credits and Contact
 For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com. You can find out more about me at <a href="http://kaomorphism.com">Kaomorphism</a>.
 
-<a href="https://thepitz.io/">Noah Castel</a> did an amazing job on the <a href="/he/">Hebrew translation</a>. Please reach out to him for kudos and suggestions for the Hebrew version.
+<a href="https://thepitz.io/">Noam Castel</a> did an amazing job on the <a href="/he/">Hebrew translation</a>. Please reach out to him for kudos and suggestions for the Hebrew version, or if you are interested translating it into other languages.
 
 Much thanks to Sonja Lea Heinze, Quinn Batten, and <a href="https://nickretallack.com">Nicholas Retallack</a> for providing valuable feedback.
