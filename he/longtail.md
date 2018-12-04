@@ -39,7 +39,7 @@ FROM executions
 GROUP BY county"
   data-solution="SELECT
   county,
-  last_statement IS NULL AS has_last_statement,
+  last_statement IS NOT NULL AS has_last_statement,
   COUNT(*)
 FROM executions
 GROUP BY county, has_last_statement"></sql-exercise>
