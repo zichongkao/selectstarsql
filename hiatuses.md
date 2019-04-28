@@ -46,14 +46,14 @@ But what happens to rows which have no matches? In this case, the `previous` tab
  The <code>JOIN</code> command defaults to performing what is called an "inner join" in which unmatched rows are dropped.
 <img src="imgs/join_inner.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
-To preserve all the rows of the left table, we use a <code>LEFT JOIN</code> in in place of the vanilla <code>JOIN</code>. The empty parts of the row are left alone, which means they evaluate to <code>NULL</code>.
+To preserve all the rows of the left table, we use a <code>LEFT JOIN</code> in place of the vanilla <code>JOIN</code>. The empty parts of the row are left alone, which means they evaluate to <code>NULL</code>.
 <img src="imgs/join_left.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 The <code>RIGHT JOIN</code> can be used to preserve unmatched rows in the right table, and the <code>OUTER JOIN</code> can be used to preserve unmatched rows in both.
 
 The final subtlety is handling multiple matches. Say we have a `duplicated_previous` table which contains two copies of each row of the `previous` table. Each row of `executions` now matches two rows in `duplicated_previous`.
 <img src="imgs/join_dup_pre.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
-The join creates enough rows of `executions` so that each matching row of `duplicated_previous` gets its own partner. In this way, joins can create tables that are larger than the their constituents.
+The join creates enough rows of `executions` so that each matching row of `duplicated_previous` gets its own partner. In this way, joins can create tables that are larger than their constituents.
 <img src="imgs/join_dup_post.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
 
 <sql-quiz
