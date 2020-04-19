@@ -115,7 +115,7 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 It is worthwhile to step back and think about the different ways the computer handled these three queries. The `WHERE` version had it filter down to a small table first before aggregating while in the other two, it had to look through the full table. In the `COUNT` + `CASE WHEN` version, it only had to go through once, while the double `COUNT` version made it go through twice. So even though the output was identical, the performance was probably best in the first and worst in the third version.
 
 <sql-exercise
-  data-question="Find the minimum, maximum and average age of inmates at time of execution."
+  data-question="Find the minimum, maximum and average age of inmates at the time of execution."
   data-comment="Use the <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> aggregate functions."
   data-default-text="SELECT ex_age FROM executions"
   data-solution='SELECT MIN(ex_age), MAX(ex_age), AVG(ex_age) FROM executions'></sql-exercise>

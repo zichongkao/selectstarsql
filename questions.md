@@ -28,7 +28,7 @@ The exercises in the previous chapters were designed to reduce complexity to cre
 <a name="call_for_problems"></a>
 <div class="sideNote">
   <H3>Call for Problems</H3>
-  <p>Good problems make or break a tutorial. If you have an idea for a new problem or section, I'd love to help you post it up here with full credit going to you. Email me at <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> or submit a <a href="https://github.com/zichongkao/selectstarsql">pull request</a>. Remember that good problems aren't necessary hard&mdash;they showcase techniques that have wide-ranging applications.</p>
+  <p>Good problems make or break a tutorial. If you have an idea for a new problem or section, I'd love to help you post it up here with full credit going to you. Email me at <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> or submit a <a href="https://github.com/zichongkao/selectstarsql">pull request</a>. Remember that good problems aren't necessarily hard&mdash;they showcase techniques that have wide-ranging applications.</p>
 </div>
 
 <br />

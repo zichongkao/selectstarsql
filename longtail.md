@@ -141,7 +141,7 @@ Now, you may ask, wouldn't we be done if we could just run something like this?
     FROM executions
     GROUP BY county
 
-Percentages are such a common metric&mdash;shouldn't such a function exist? Unfortunately not, and perhaps for good reason: Such a function would need to aggregate both within the groups (to get the numerator) and throughout the dataset (to get the denominator). But each query either has a `GROUP BY` block or doesn't. So what we really need are two separate queries, one which aggregates with a `GROUP BY` and another that aggregates without. We can them combine them using a technique called "nesting".
+Percentages are such a common metric&mdash;shouldn't such a function exist? Unfortunately not, and perhaps for good reason: Such a function would need to aggregate both within the groups (to get the numerator) and throughout the dataset (to get the denominator). But each query either has a `GROUP BY` block or doesn't. So what we really need are two separate queries, one which aggregates with a `GROUP BY` and another that aggregates without. We can then combine them using a technique called "nesting".
 
 Here's an example of how nesting works. The parentheses are important for demarcating the boundary between the inner query and the outer one:
 

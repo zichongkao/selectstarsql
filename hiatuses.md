@@ -191,7 +191,7 @@ ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
-We can now use the precise dates of the hiatuses to research what happened over each period. In the years immediately after the ban on capital punishment was lifted, there were long periods without executions due to the low number death sentences, coupled with legal challenges to the new ruling. We thus exclude intermissions before 1993 and focus on two major hiatuses since.<img src="imgs/exno_time_annotated.png">
+We can now use the precise dates of the hiatuses to research what happened over each period. In the years immediately after the ban on capital punishment was lifted, there were long periods without executions due to the low number of death sentences, coupled with legal challenges to the new ruling. We thus exclude intermissions before 1993 and focus on two major hiatuses since.<img src="imgs/exno_time_annotated.png">
 
 Hiatus 1 was due to legal challenges to the <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a> created in response to the 1993 World Trade Center and 1995 Oklahoma City bombings. The act limited the appeals process  to make the death penalty more effective especially for terrorism cases (<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Source</a>).
 
