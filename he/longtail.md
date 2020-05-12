@@ -39,10 +39,11 @@ FROM executions
 GROUP BY county"
   data-solution="SELECT
   county,
-  last_statement IS NOT NULL AS has_last_statement,
-  COUNT(*)
+  COUNT(last_statement) AS with_last_statement,
+  COUNT(CASE WHEN last_statement IS NULL THEN 1 ELSE NULL END) AS without_last_statement
 FROM executions
-GROUP BY county, has_last_statement"></sql-exercise>
+GROUP BY county"
+  ></sql-exercise>
 
 <br>
 <a name="having"></a>
