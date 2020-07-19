@@ -9,7 +9,7 @@ All the pages are stored as markdown(.md) files in the top-level directory. Jeky
 The main technical complexity lies in the interactive sql exercises. These are implemented as a custom html tag in `/scripts/main.js`. Firefox doesn't support custom html elements by default, so we pulled in the `custom-elements.min.js` library from unpkg. (See `_layouts/default.html`.)
 
 To contribute, either email me directly at zichongkao@gmail.com, or submit a pull request by following these steps:
-- Install [Jekyll](http://jekyllrb.com)
+- Install [Jekyll](http://jekyllrb.com) and other project dependencies (`bundle install`)
 - Fork this repo (button on the top right)
 - Clone your forked repo `git clone https://github.com/MYUSERNAME/selectstarsql/`
 - Make your changes
