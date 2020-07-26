@@ -27,10 +27,10 @@ GROUP BY county"></sql-exercise>
 
 If you recall <a href='innocence.html#strange'>A Strange Query</a>, alarm bells would be going off in your head. Didn't we just learn not to mix aggregated and non-aggregated columns? The difference here is that grouping columns are the only columns allowed to be non-aggregate. After all, all the rows in that group must have the same values on those columns so there's no ambiguity in the value that should be returned.
 
-You may have also noticed our use of `AS`. It's what we call "aliasing". In the `SELECT` block, <code class="codeblock">&lt;expression&gt; AS &lt;alias&gt;</code> provides an alias that can be referred to later in the query. This saves us from having to write out long expressions again, and can clarify the purpose of the expression.
+You may have also noticed our use of `AS`. It's what we call "aliasing". In the `SELECT` block, <code class="codeblock">&lt;expression&gt; AS &lt;alias&gt;</code> provides an alias that can be referred to later in the query. This saves us from rewriting long expressions, and allows us to clarify the purpose of the expression.
 
 <sql-exercise
-  data-question="Modify this query to find the number of executions from each county with and without a last statement."
+  data-question="Modify this query so there are up to two rows per county &mdash; one counting executions with a last statement and another without."
   data-default-text="SELECT
   county,
   COUNT(*)
@@ -47,7 +47,7 @@ GROUP BY county, has_last_statement"
 <br>
 <a name="having"></a>
 ## The HAVING Block
-This next exercise illustrates that filtering via the `WHERE` block happens before grouping and aggregation. This is reflected in the order of syntax. After all, the `WHERE` block always precedes the `GROUP BY` block.
+This next exercise illustrates that filtering via the `WHERE` block happens before grouping and aggregation. This is reflected in the order of syntax since the `WHERE` block always precedes the `GROUP BY` block.
 
 <sql-exercise
   data-question="Count the number of inmates aged 50 or older that were executed in each county."
@@ -114,7 +114,7 @@ GROUP BY county, decade_age</pre>">
     data-value="count_zero"></sql-quiz-option>
   <sql-quiz-option
     data-statement="The query would be valid even if we don't specify <code>county</code> in the <code>SELECT</code> block."
-    data-hint="The grouping columns don't necessarily have to be in the <code>SELECT</code> block."
+    data-hint="The grouping columns don't necessarily have to be in the <code>SELECT</code> block. It would be valid, but not make much sense because we wouldn't know which counts are for which county."
     data-value="missing_gp_col"
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option

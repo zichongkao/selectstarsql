@@ -249,6 +249,8 @@ sql-quiz .sqlQuizInputArea input {
     border-radius: 4px;
     font-size: 0.8em;
     font-weight: 200;
+    border-width: thin;
+    height: 2em;
 }
 
 sql-quiz .sqlQuizOutputArea .returnOkay {
@@ -307,4 +309,6 @@ sql-exercise .sqlExInputArea input {
     border-radius: 4px;
     font-size: 0.8em;
     font-weight: 200;
+    border-width: thin;
+    height: 2em;
 }
