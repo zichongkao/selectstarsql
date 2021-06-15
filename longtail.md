@@ -146,7 +146,7 @@ Percentages are such a common metric&mdash;shouldn't such a function exist? Unfo
 Here's an example of how nesting works. The parentheses are important for demarcating the boundary between the inner query and the outer one:
 
 <sql-exercise
-  data-question="Find the first and last name of the the inmate with the longest last statement (by character count)."
+  data-question="Find the first and last name of the inmate with the longest last statement (by character count)."
   data-comment="Write in a suitable query to nest in &lt;<code>length-of-longest-last-statement</code>&gt;."
   data-default-text="SELECT first_name, last_name
 FROM executions
