@@ -12,7 +12,7 @@ The main technical complexity lies in the interactive sql exercises. These are i
 
 ## Contributing
 To contribute, either email me directly at zichongkao@gmail.com, or submit a pull request by following these steps:
-- Install [Jekyll](http://jekyllrb.com)
+- Install [Jekyll](http://jekyllrb.com) and other project dependencies (`bundle install`)
 - Fork this repo (button on the top right)
 - Clone your forked repo `git clone https://github.com/MYUSERNAME/selectstarsql/`
 - Make your changes

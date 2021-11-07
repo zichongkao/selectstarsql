@@ -13,7 +13,7 @@ At this point, we've covered most of the important SQL commands and functions, b
  - <p>Examining where the information we require resides. Is it in an adjacent row? Or a group? Or the entire dataset?</p>
  - <p>Interpreting queries in the right logical structure. For instance, viewing clauses as essentially a true or false; viewing <code>&lt;table1&gt; JOIN &lt;table2&gt; ON ...</code> as a great big table.</p>
 
-Looking forward, to complete your SQL education, it is probably worth it to look into window functions and common table expressions. You can replicate their behavior with techniques you've learned here, but they make life a lot easier and introduce you to a valuable new paradigm. I've omitted these concepts because SQLite doesn't support window functions, and I wanted to avoid the complexity of a new database and SQL dialect.
+Looking forward, to complete your SQL education, it is probably worth it to look into window functions and common table expressions. You can replicate their behavior with techniques you've learned here, but they make life a lot easier and introduce you to a valuable new paradigm. I've omitted these concepts because at the time of writing SQLite [didn't support window functions](https://www.sqlite.org/windowfunctions.html#history), and I wanted to avoid the complexity of a new database and SQL dialect.
 
 Up till now we've also only learned about consuming data (querying). There is a whole other area of SQL for manipulating data. These deal with actions like table creation and data insertion and deletion. Understanding these concepts can be useful even if you don't administer databases because it helps you understand, among other things, why tables are structured the way they are.
 
