@@ -153,7 +153,7 @@ Doesn't it look strange? If you have a good mental model of aggregations, it sho
   data-question="Let's try it anyway and see what happens."
   data-default-text="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
 
-In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brook's Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on their default behavior. If you know you want the last entry, you should explicitly find it. Many SQL dialects have a `LAST` aggregate function which makes this trivial. Unfortunately SQLite doesn't, so a workaround is necessary.
+In practice, databases try to return something sensible even though you pass in nonsense. In this case, our database picks the first name from the last entry in our table. Since our table is in reverse chronological order, the last entry is Charlie Brooks Jr., the first person executed since the Supreme Court lifted the ban on the death penalty. Different databases will handle this case differently so it's best not to count on their default behavior. If you know you want the last entry, you should explicitly find it. Many SQL dialects have a `LAST` aggregate function which makes this trivial. Unfortunately SQLite doesn't, so a workaround is necessary.
 
 <a name="dialects"></a>
 <div class="sideNote">
