@@ -6,7 +6,7 @@ dbFile: data/tx_deathrow_small.db
 
 <a name="long_tail"></a>
 ## Long Tails
-Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. Long tails indicate the presence of outliers whose unusual behaviors may be of interest to us.<img src="imgs/execution_tail.png"> In context of Texas executions, the long tail refers to a small number of counties which have been known to conduct a large number of executions.
+Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. They indicate the presence of outliers whose unusual behaviors may be of interest to us.<img src="imgs/execution_tail.png"> In context of Texas executions, the long tail refers to a small number of counties which have been known to conduct a large number of executions.
 
 Let's find the percentage of executions from each county so that we can pick out the ones in the tail.
 
@@ -30,18 +30,19 @@ If you recall <a href='innocence.html#strange'>A Strange Query</a>, alarm bells 
 You may have also noticed our use of `AS`. It's what we call "aliasing". In the `SELECT` block, <code class="codeblock">&lt;expression&gt; AS &lt;alias&gt;</code> provides an alias that can be referred to later in the query. This saves us from rewriting long expressions, and allows us to clarify the purpose of the expression.
 
 <sql-exercise
-  data-question="Modify this query so there are up to two rows per county &mdash; one counting executions with a last statement and another without."
+  data-question="This query counts the executions with and without last statements. Modify it to further break it down by county."
+  data-comment="The clause <code>last_statement IS NOT NULL</code> acts as an indicator variable where 1 means true and 0 means false."
   data-default-text="SELECT
-  county,
-  COUNT(*)
-FROM executions
-GROUP BY county"
-  data-solution="SELECT
-  county,
   last_statement IS NOT NULL AS has_last_statement,
   COUNT(*)
 FROM executions
-GROUP BY county, has_last_statement"
+GROUP BY has_last_statement"
+  data-solution="SELECT
+  last_statement IS NOT NULL AS has_last_statement,
+  county,
+  COUNT(*)
+FROM executions
+GROUP BY has_last_statement, county"
   ></sql-exercise>
 
 <br>
