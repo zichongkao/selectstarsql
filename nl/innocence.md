@@ -1,33 +1,30 @@
 ---
-layout: tutorial
+layout: nl_tutorial
 title: Claims of Innocence
 dbFile: data/tx_deathrow_small.db
 ---
 
 <a name="possible_innocence"></a>
-## Possible Innocence
-Opponents of the death penalty have argued that the risk of mistakenly executing an innocent person is too great a cost to bear. In this chapter, we attempt to approximate how many innocent people may have been executed.
+## Mogelijke onschuld
+Tegenstanders van de doodstraf hebben geargumenteerd dat het risico van het per ongeluk executeren van een onschuldig persoon een te grote kostenpost is om te dragen. In dit hoofdstuk proberen we bij benadering vast te stellen hoeveel onschuldige mensen er geëxecuteerd zijn.
 
-The main caveat is that a claim of innocence, even if made on one's deathbed, does not constitute innocence. Furthermore, even if the inmate is truthful, there are many interpretations of innocence: The inmate could have been accused of murdering two people but is only innocent of killing one; or he may have killed the bystander but not the cop. These aren't just quibbles though: In Texas, murder alone doesn't warrant the death penalty. The inmate must have committed a [capital crime](https://en.wikipedia.org/wiki/Capital_punishment_in_Texas#Capital_crimes) like killing a public safety officer or multiple people. Hence the inmate may be innocent in a strict judicial sense, though perhaps not by common standards of morality.
-
-Nevertheless, there is still something unsettling about claims of innocence persisting to the cusp of execution when there is little left to gain. Our task here is to find how frequently this happens by calculating the proportion of last statements where there is a claim of innocence.
+Het belangrijkste voorbehoud is dat een bewering van onschuld, zelfs als deze op iemands sterfbed wordt gedaan, geen onschuld inhoudt. Bovendien, zelfs als de gevangene de waarheid spreekt, zijn er vele interpretaties van onschuld: De gevangene kan beschuldigd zijn van de moord op twee mensen maar is slechts onschuldig aan de moord op één; of hij kan de omstander hebben gedood maar niet de agent. Dit zijn echter niet alleen maar spitsvondigheden: in Texas rechtvaardigt moord alleen niet de doodstraf. De gevangene moet een [halsmisdaad](https://en.wikipedia.org/wiki/Capital_punishment_in_Texas#Capital_crimes) begaan hebben, zoals het doden van een veiligheidsagent of meerdere mensen. De gevangene kan dus onschuldig zijn in strikte juridische zin, maar misschien niet volgens de gangbare morele normen.
 
 <br>
 <a name="aggregations"></a>
-## Aggregate Functions
-There are two numbers we need to calculate the proportion:
+## Geaggregeerde functies
+We hebben twee getallen nodig om de verhouding te berekenen:
 
 &nbsp;&nbsp;**Numerator**: Number of executions with claims of innocence.
 
 &nbsp;&nbsp;**Denominator**: Number of executions in total.
 
-Until now, each row in the output has come from a single row of input. However, here we have both the numerator and denominator requiring information from multiple rows of input. This tells us we need to use an aggregate function. To "aggregate" means to combine multiple elements into a whole. Similarly, aggregation functions <i>take multiple rows of data and combine them into one number.</i>
-
+Tot nu toe is elke rij in de uitvoer afkomstig van een enkele rij invoer. Hier hebben we echter voor zowel de teller als de noemer informatie nodig uit meerdere invoerrijen. Dit vertelt ons dat we een aggregaatfunctie moeten gebruiken. "Samenvoegen" betekent meerdere elementen combineren tot een geheel. Op dezelfde manier *nemen* aggregatiefuncties *meerdere rijen gegevens en combineren deze tot één getal.*
 
 <br>
 <a name="count"></a>
-## The COUNT Function
-`COUNT` is probably the most widely-used aggregate function. As the name suggests, it counts things! For instance, <code class='codeblock'>COUNT(&lt;column&gt;)</code> returns the number of non-null rows in the column.
+## De COUNT-functie
+`COUNT` is waarschijnlijk de meest gebruikte aggregatiefunctie. Zoals de naam al zegt, telt deze functie dingen! <code class="codeblock">COUNT(&lt;kolom&gt;)</code> geeft bijvoorbeeld het aantal niet-nul rijen in de kolom.<br>
 
 <sql-exercise
   data-question="Edit the query to find how many inmates provided last statements."
@@ -35,11 +32,11 @@ Until now, each row in the output has come from a single row of input. However, 
   data-default-text="SELECT COUNT(first_name) FROM executions"
   data-solution="SELECT COUNT(last_statement) FROM executions"></sql-exercise>
 
-As you can tell, the `COUNT` function is intrinsically tied to the concept of `NULL`s. Let's make a small digression to learn about `NULL`s.
+Zoals je kunt zien, is de `COUNT-functie` intrinsiek verbonden met het concept van `NULLs`. Laten we een kleine uitweiding maken om meer te leren over `NULLs`.
 <a name="nulls"></a>
 <div class="sideNote">
-  <h3>Nulls</h3>
-  <p>In SQL, <code>NULL</code> is the value of an empty entry. This is different from the empty string <code>''</code> and the integer <code>0</code>, both of which  are <i>not</i> considered <code>NULL</code>. To check if an entry is <code>NULL</code>, use <code>IS</code> and <code>IS NOT</code> instead of <code>=</code> and <code>!=</code>.</p>
+  <h3>Nullen</h3>
+  <p>In SQL is <code>NULL</code> de waarde van een lege invoer. Dit is anders dan de lege tekenreeks <code>''</code> en het gehele getal <code>0</code>, die beide <i>niet</i> als <code>NULL</code> worden beschouwd. Om te controleren of een invoer <code>NULL</code> is, gebruik je <code>IS</code> en <code>IS NOT</code> in plaats van <code>=</code> en <code>!=</code>.</p>
 
   <sql-exercise
     data-question="Verify that 0 and the empty string are not considered NULL."
@@ -48,7 +45,7 @@ As you can tell, the `COUNT` function is intrinsically tied to the concept of `N
     ></sql-exercise>
 </div>
 
-With this, we can find the denominator for our proportion:
+Hiermee kunnen we de noemer voor onze verhouding vinden:
 <sql-exercise
   data-question="Find the total number of executions in the dataset."
   data-comment="The idea here is to pick one of the columns that you're confident has no <code>NULL</code>s and count it."
@@ -57,8 +54,8 @@ With this, we can find the denominator for our proportion:
 
 <br>
 <a name="count_var">
-## Variations on COUNT
-So far so good. But what if we don't know which columns are `NULL`-free? Worse still, what if none of the columns are `NULL`-free? Surely there must still be a way to find the length of the table!
+## Variaties op COUNT
+Tot zover alles goed. Maar wat als we niet weten welke kolommen `NULL`-vrij zijn? Erger nog, wat als geen van de kolommen `NULL`-vrij is? Er moet toch een manier zijn om de lengte van de tabel te vinden!
 
 The solution is `COUNT(*)`. This is reminiscent of `SELECT *` where the `*` represents all columns. In practice `COUNT(*)` counts rows as long as *any one* of their columns is non-null. This helps us find table lengths because a table shouldn't have rows that are completely null.
 
@@ -96,7 +93,7 @@ FROM executions"
 FROM executions"></sql-exercise>
 
 <br>
-## Practice
+## Praktijk
 
 <sql-exercise
   data-question="Find how many inmates were over the age of 50 at execution time."
@@ -114,6 +111,7 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 
 It is worthwhile to step back and think about the different ways the computer handled these three queries. The `WHERE` version had it filter down to a small table first before aggregating while in the other two, it had to look through the full table. In the `COUNT` + `CASE WHEN` version, it only had to go through once, while the double `COUNT` version made it go through twice. So even though the output was identical, the performance was probably best in the first and worst in the third version.
 
+
 <sql-exercise
   data-question="Find the minimum, maximum and average age of inmates at the time of execution."
   data-comment="Use the <code>MIN</code>, <code>MAX</code>, and <code>AVG</code> aggregate functions."
@@ -122,10 +120,10 @@ It is worthwhile to step back and think about the different ways the computer ha
 
 <a name="documentation"></a>
 <div class="sideNote">
-  <h3>Looking Up Documentation</h3>
-  <p>This book was never intended to be a comprehensive reference for the SQL language. For that, you will have to look up other online resources. This is a skill in itself, and one that is worth mastering because you will be looking up documentation years after you've achieved familiarity with the language.</p>
-  <p>The good news is that with the mental models you will learn in this book, lookups should be quick and painless because you will just be checking details like whether the function is called <code>AVERAGE</code> or <code>AVG</code> instead of figuring out what approach to take.</p>
-  <p>For lookups, I often use <a href="https://www.w3schools.com/sql/default.asp">W3 Schools</a>, Stack Overflow and the <a href="http://sqlite.org">official SQLite documentation</a>.</p>
+  <h3>Documentatie opzoeken</h3>
+  <p>Dit boek is nooit bedoeld als een allesomvattende referentie voor de SQL taal. Daarvoor zult u andere online bronnen moeten opzoeken. Dit is een vaardigheid op zich, die het waard is om onder de knie te krijgen omdat u jaren nadat u bekend bent met de taal nog documentatie zult opzoeken.</p>
+  <p>Het goede nieuws is dat met de mentale modellen die je in dit boek leert, opzoekingen snel en pijnloos zouden moeten zijn, omdat je alleen details controleert zoals of de functie <code>AVERAGE</code> of <code>AVG</code> heet in plaats van uit te zoeken welke aanpak je moet kiezen.</p>
+  <p>Voor opzoekingen gebruik ik vaak <a href="https://www.w3schools.com/sql/default.asp">W3 Schools</a>, Stack Overflow en de <a href="http://sqlite.org">officiële SQLite documentatie</a>.</p>
 </div>
 
 <sql-exercise
@@ -142,10 +140,12 @@ It is worthwhile to step back and think about the different ways the computer ha
 
 `SELECT DISTINCT` isn't really an aggregate function because it doesn't return a single number and because it operates on the output of the query rather than the underlying table. Nevertheless, I've included it here because it shares a common characteristic of operating on multiple rows.
 
+
+
 <br>
 <a name="strange"></a>
-## A Strange Query
-Before we wrap up, let's take a look at this query:<br> `SELECT first_name, COUNT(*) FROM executions`.
+## Een vreemde query
+Laten we, voordat we afsluiten, eens kijken naar deze query:<br> `SELECT first_name, COUNT(*) FROM executions`.
 
 Doesn't it look strange? If you have a good mental model of aggregations, it should! `COUNT(*)` is trying to return a single entry consisting the length of the execution table. `first_name` is trying to return one entry for each row. Should the computer return one or multiple rows? If it returns one, which `first_name` should it pick? If it returns multiple, is it supposed to replicate the `COUNT(*)` result across all the rows? The shapes of the output just don't match!
 
@@ -157,27 +157,23 @@ In practice, databases try to return something sensible even though you pass in 
 
 <a name="dialects"></a>
 <div class="sideNote">
-  <h3>SQL Dialects and Databases</h3>
-  <p>Although we've called this a book about SQL, if we want to be pedantic it really is a book about <i>SQLite</i>. This is because SQL is an imaginary concept, a platonic ideal. In reality, there are only dialects that try to conform to the SQL specifications.</p>
-  <p>SQL is also under-specified, meaning that some functionality is not specified by the standards. For instance, the standards don't say whether the string length-finding function should be called <code>LEN</code> (SQL Server) or <code>LENGTH</code> (SQLite); or how identifiers like table or column names should be quoted (<code>`</code> in MySQL, <code>"</code> in SQLite).</p>
-  <p>To make matters worse, even a single query in a single dialect can be processed differently because the underlying databases can have different architectures. For instance, the PostgreSQL dialect can be used on databases distributed over many different physical machines, and ones consisting a single file. It means that the mental models we develop here are just a crutch. They may not reflect exactly what the database is doing.</p>
-  <p>We've picked SQLite, which is both a dialect and an implementation, because it's one of the most common databases. We've also tried to focus on the core functionality and mental model of SQL rather than distinctive parts of SQLite. With a robust mental model in place, it's easy to switch between SQL dialects and databases.
+  <h3>SQL Dialecten en Databases</h3>
+  <p>Hoewel we dit een boek over SQL hebben genoemd, is het eigenlijk een boek over <i>SQLite</i>. Dit komt omdat SQL een denkbeeldig concept is, een platonisch ideaal. In werkelijkheid zijn er alleen dialecten die proberen te voldoen aan de SQL specificaties.</p>
+  <p>SQL is ook ondergespecificeerd, wat betekent dat sommige functionaliteit niet gespecificeerd wordt door de standaarden. De standaarden zeggen bijvoorbeeld niet of de functie voor het vinden van de lengte van een string <code>LEN</code> (SQL Server) of <code>LENGTH</code> (SQLite) moet heten; of hoe identifiers zoals tabel- of kolomnamen moeten worden aangehaald<code>(`</code> in MySQL, <code>"</code> in SQLite).</p>
+  <p>Om het nog erger te maken, zelfs een enkele query in een enkel dialect kan verschillend verwerkt worden omdat de onderliggende databases verschillende architecturen kunnen hebben. Het PostgreSQL dialect kan bijvoorbeeld gebruikt worden op databases die verdeeld zijn over veel verschillende fysieke machines, en databases die bestaan uit een enkel bestand. Dit betekent dat de mentale modellen die we hier ontwikkelen slechts een hulpmiddel zijn. Ze weerspiegelen misschien niet precies wat de database doet.</p>
+  <p>We hebben SQLite gekozen, wat zowel een dialect als een implementatie is, omdat het een van de meest gebruikte databases is. We hebben ook geprobeerd ons te richten op de kernfunctionaliteit en het mentale model van SQL in plaats van op onderscheidende onderdelen van SQLite. Met een robuust mentaal model is het eenvoudig om te wisselen tussen SQL-dialecten en -databases.
   </p>
 </div>
 
 <br>
 <a name="recap"></a>
-## Conclusion and Recap
-Let's use what we've learned so far to complete our task:
-<sql-exercise
-  data-question="Find the proportion of inmates with claims of innocence in their last statements."
-  data-comment="To do decimal division, ensure that one of the numbers is a decimal by multiplying it by 1.0. Use <code>LIKE '%innocent%'</code> to find claims of innocence."
-  data-solution="SELECT
+## Conclusie en samenvatting
+Laten we wat we tot nu toe geleerd hebben gebruiken om onze taak te voltooien:
+<sql-exercise data-question="Find the proportion of inmates with claims of innocence in their last statements." data-comment="To do decimal division, ensure that one of the numbers is a decimal by multiplying it by 1.0. Use <code>LIKE '%innocent%'</code> to find claims of innocence." data-solution="SELECT
 1.0 * COUNT(CASE WHEN last_statement LIKE '%innocent%'
     THEN 1 ELSE NULL END) / COUNT(*)
-FROM executions"
-></sql-exercise>
+FROM executions"></sql-exercise>
 
-This method of finding claims of innocence is admittedly rather inaccurate because innocence can be expressed in other terms like "not guilty". Nevertheless, I suspect it underestimates the real number, and is probably of the right order of magnitude. The question we are left with then, is whether we are willing to accept the possibility that up to 5% percent of people we execute are actually innocent. ([Paul Graham is not.](http://paulgraham.com/prop62.html))
+Deze methode voor het vinden van onschuldclaims is weliswaar nogal onnauwkeurig omdat onschuld kan worden uitgedrukt in andere termen zoals "niet schuldig". Desondanks vermoed ik dat het echte aantal onderschat wordt en waarschijnlijk van de juiste orde van grootte is. De vraag waar we dan nog mee zitten is of we bereid zijn om de mogelijkheid te accepteren dat tot 5% procent van de mensen die we executeren daadwerkelijk onschuldig is. ([Paul Graham is dat niet.](http://paulgraham.com/prop62.html))
 
 To recap, we've moved from row-level operations in the previous section, to using aggregate functions on multiple rows in the dataset. This has opened up an avenue to study system-level behavior. In the next section, we'll learn to apply aggregate functions on multiple subgroups of the dataset using the `GROUP BY` block.

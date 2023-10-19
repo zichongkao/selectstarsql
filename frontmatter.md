@@ -20,7 +20,7 @@ These principles have guided the design of this project:
      To quote <a href="https://www.fastcompany.com/40435064/what-alan-kay-thinks-about-the-iphone-and-technology-now">Alan Kay</a>: "You never let [the learner] do something that isn’t the real thing&mdash;but you have to work your ass off to figure out what the real thing is in the context of the way their minds are working at that developmental level."</p>
      <p>Likewise, the exercises here have been designed to introduce increasingly sophisticated SQL techniques while exploring the dataset in ways that people would actually be interested in.</p>
    - <p><strong>Learning to program is learning a mental model</strong><br>
-     Our goal here isn't to learn the rules for how to use <code>GROUP BY</code> or when to pick a <code>LEFT JOIN</code> over an <code>INNER JOIN</code>. We know we've been successful if after writing a SQL query, you can close your eyes and imagine what the computer would do and what output it would give. Only then will you be able to solve real-world problems with SQL.
+     Our goal here isn't to learn the rules for how to use <code>GROUP BY</code> or when to pick a <code>LEFT JOIN</code> over an <code>INNER JOIN</code>. We know we've been successful if after writing a SQL query, you can close your eyes and imagine what the computer would do and what output it would give. Only then will you be able to solve real-world problems with SQL.</p>
 
 <br>
 <a name="dataset"></a>
@@ -50,6 +50,6 @@ On one level, the data is simply a part of a mundane programming book. On anothe
 ## Credits and Contact
 For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com. You can find out more about me at <a href="http://kaomorphism.com">Kaomorphism</a>.
 
-<a href="https://thepitz.io/">Noam Castel</a> did an amazing job on the <a href="/he/">Hebrew translation</a>. Please reach out to him for kudos and suggestions for the Hebrew version, or if you are interested translating it into other languages.
+<a href="https://thepitz.io/">Noam Castel</a> and Jowan Vogel did an amazing job on the <a href="/he/">Hebrew</a> and <a href="/nl">Dutch</a> translations. Please reach out to them for kudos and suggestions, or if you are interested translating it into other languages.
 
 Much thanks to Sonja Lea Heinze, Quinn Batten, and <a href="https://nickretallack.com">Nicholas Retallack</a> for providing valuable feedback.

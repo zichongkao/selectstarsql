@@ -63,7 +63,7 @@ SELECT senator, COUNT(*) AS mutual_count
 FROM mutuals
 GROUP BY senator
 ORDER BY mutual_count DESC
-LIMIT 1 "
+LIMIT 1"
   ></sql-exercise>
 
 <sql-exercise

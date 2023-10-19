@@ -124,11 +124,11 @@ WHERE first_name = 'Raymond'
 As you've seen in the previous exercise, complex clauses can be made out of simple ones using Boolean operators like `NOT`, `AND` and `OR`. SQL gives most precedence to `NOT` and then `AND` and finally `OR`. But if, like me, you're too lazy to remember the order of precedence, you can use parenthesis to clarify the order you want.
 
 <sql-exercise
-    data-question="Insert a pair of parenthesis so that this statement returns 0."
-    data-comment="Here we're relying on the fact that 1 means true and 0 means false."
-    data-default-text="SELECT 0 AND 0 OR 1"
-    data-solution="SELECT 0 AND (0 OR 1)"
-    ></sql-exercise>
+  data-question="Insert a pair of parenthesis so that this statement returns 0."
+  data-comment="Here we're relying on the fact that 1 means true and 0 means false."
+  data-default-text="SELECT 0 AND 0 OR 1"
+  data-solution="SELECT 0 AND (0 OR 1)"
+  ></sql-exercise>
 
 Let's take a quick quiz to cement your understanding.
 

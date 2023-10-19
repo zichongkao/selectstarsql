@@ -17,70 +17,70 @@ contents:
   url: beazley.html
   blurb: "Chapter 1 examines Napoleon Beazley's argument against capital punishment. We learn the structure of a SQL query and row operations on a table."
   sections:
-  - name: The Beazley Case
+  - name: De zaak Beazley
     url: "#beazley_case"
-  - name: A first SQL Query
+  - name: Een eerste SQL-query
     url: "#first"
-  - name: The SELECT Block
+  - name: Het SELECT-blok
     url: "#select"
-  - name: SQL Comments
+  - name: SQL-opmerkingen
     url: "#comments"
     sidenote: true
-  - name: The FROM Block
+  - name: Het FROM Blok
     url: "#from"
-  - name: Capitalization
+  - name: Hoofdletters
     url: "#capitalization"
     sidenote: true
-  - name: Whitespace
+  - name: Witruimte
     url: "#whitespace"
     sidenote: true
-  - name: The WHERE Block
+  - name: Het WHERE Blok
     url: "#where"
-  - name: Quotes
+  - name: Aanhalingstekens
     url: "#quotes"
     sidenote: true
-  - name: Recap
+  - name: Samenvatting
     url: "#recap"
 - title: Claims of Innocence
   url: innocence.html
   blurb: "Chapter 2 estimates how many executed inmates may have been innocent. The technical theme is aggregating the entire table."
   sections:
-  - name: Possible Innocence
+  - name: Mogelijke onschuld
     url: "#possible_innocence"
-  - name: Aggregations
+  - name: Geaggregeerde functies
     url: "#aggregations"
-  - name: The COUNT Function
+  - name: De COUNT-functie
     url: "#count"
-  - name: Nulls
+  - name: Nullen
     url: "#nulls"
     sidenote: true
-  - name: Variations on COUNT
+  - name: Variaties op COUNT
     url: "#count_var"
-  - name: Looking Up Documentation
+  - name: Documentatie opzoeken
     url: "#documentation"
     sidenote: true
-  - name: A Strange Query
+  - name: Een vreemde query
     url: "#strange"
-  - name: SQL Dialects and Databases
+  - name: SQL Dialecten en Databases
     url: "#dialects"
     sidenote: true
-  - name: Conclusion and Recap
+  - name: Conclusie en samenvatting 
     url: "#recap"
 - title: The Long Tail
   url: longtail.html
   blurb: "Chapter 3 studies counties with unusually high numbers of executions. We generalize Chapter 2 by applying aggregations on groups of rows."
   sections:
-  - name: Long Tails
+  - name: Lange staart
     url: "#long_tails"
-  - name: Group By
+  - name: Het GROUP BY blok
     url: "#groupby"
-  - name: Having
+  - name: Het blok HAVING
     url: "#having"
-  - name: Nested Queries
+  - name: Geneste Queries
     url: "#nested"
-  - name: Harris County
+  - name: Provincie Harris
     url: "#harris"
-  - name: Recap
+  - name: Samenvatting
     url: "#recap"
   - name: MapReduce
     url: "#mapreduce"
@@ -89,31 +89,31 @@ contents:
   url: hiatuses.html
   blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
   sections:
-  - name: Hiatuses
+  - name: Hiatussen
     url: "#hiatuses"
-  - name: Thinking about Joins
+  - name: Denken over Joins
     url: "#joins"
-  - name: Disambiguating Columns
+  - name: Kolommen desambigueren
     url: "#disam_cols"
     sidenote: true
-  - name: Types of Joins
+  - name: Soorten Verbindingen 
     url: "#join_types"
-  - name: Dates
+  - name: Data
     url: "#dates"
-  - name: Self Joins
+  - name: Zelf Verbinden
     url: "#self_joins"
-  - name: Recap
+  - name: Recapitulatie
     url: "#recap"
 - title: Closing Remarks and Challenge Questions
   url: questions.html
   blurb: "Chapter 5 provides closing remarks and a collection of miscellaneous user-added challenge questions."
   sections:
-  - name: Closing Remarks
+  - name: Slotopmerkingen
     url: "#closing_remarks"
-  - name: Challenge Questions
+  - name: Uitdagingsvragen
     url: "#challenge_questions"
-  - name: Call for Problems
+  - name: Oproep voor Problemen
     url: "#call_for_problems"
     sidenote: true
-  - name: Senate Cosponsorship Dataset
+  - name: Senaat Cosponsorschap Dataset
     url: "#senate_cosponsorship"
