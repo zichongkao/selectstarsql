@@ -66,7 +66,8 @@ This is all good but what happens if we want to filter on the result of the grou
   data-question="List the counties in which more than 2 inmates aged 50 or older have been executed."
   data-comment="This builds on the previous exercise. We need an additional filter&mdash;one that uses the result of the aggregation. This means it cannot exist in the <code>WHERE</code> block because those filters are run before aggregation. Look up the <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> block</a>. You can think of it as a post-aggregation <code>WHERE</code> block."
   data-default-text=""
-  data-solution="SELECT county
+  data-solution="
+SELECT county
 FROM executions
 WHERE ex_age >= 50
 GROUP BY county

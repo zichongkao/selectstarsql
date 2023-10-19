@@ -250,7 +250,6 @@ sql-quiz .sqlQuizInputArea input {
     font-size: 0.8em;
     font-weight: 200;
     border-width: thin;
-    height: 2em;
 }
 
 sql-quiz .sqlQuizOutputArea .returnOkay {

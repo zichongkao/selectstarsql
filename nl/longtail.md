@@ -47,10 +47,10 @@ GROUP BY has_last_statement, county"
 <br>
 <a name="having"></a>
 ## Het blok HAVING
-De volgende oefening illustreert dat filteren via het `WAAR` blok gebeurt vóór groeperen en aggregeren. Dit wordt weerspiegeld in de volgorde van de syntax aangezien het `WAAR` blok altijd voorafgaat aan het `GROEPEN BY` blok.
+De volgende oefening illustreert dat filteren via het `WHERE` blok gebeurt vóór groeperen en aggregeren. Dit wordt weerspiegeld in de volgorde van de syntax aangezien het `WHERE` blok altijd voorafgaat aan het `GROUP BY` blok.
 
 <sql-exercise 
-  data-question="Tel het aantal gevangenen van 50 jaar of ouder die zijn geëxecuteerd in elke county." data-comment="Je zou dit moeten kunnen doen met <code>CASE WHEN</code>, maar probeer hier het <code>WHERE<code> blok te gebruiken." data-default-text=""
+  data-question="Tel het aantal gevangenen van 50 jaar of ouder die zijn geëxecuteerd in elke county." data-comment="Je zou dit moeten kunnen doen met <code>CASE WHEN</code>, maar probeer hier het <code>WHERE</code> blok te gebruiken." data-default-text=""
   data-solution="SELECT county, COUNT(*)
 FROM executions
 WHERE ex_age >= 50
@@ -61,12 +61,13 @@ Dit is allemaal goed en wel, maar wat gebeurt er als we willen filteren op het r
 
 <sql-exercise 
   data-question="Maak een lijst van de provincies waarin meer dan 2 gedetineerden van 50 jaar of ouder zijn geëxecuteerd."
-  data-comment="Dit bouwt voort op de vorige oefening. We hebben een extra filter nodig-een die het resultaat van de aggregatie gebruikt. Dit betekent dat het niet kan bestaan in het <code>WHERE</code> blok omdat die filters worden uitgevoerd vóór de aggregatie. Zoek het <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> blok</a> op. Je kunt het zien als een post-aggregatie <code>WHERE</code> blok." data-default-text=""
-  data-solution="SELECT county
+  data-comment="Dit bouwt voort op de vorige oefening. We hebben een extra filter nodig&mdash;een die het resultaat van de aggregatie gebruikt. Dit betekent dat het niet kan bestaan in het <code>WHERE</code> blok omdat die filters worden uitgevoerd vóór de aggregatie. Zoek het <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> blok</a> op. Je kunt het zien als een post-aggregatie <code>WHERE</code> blok." data-default-text=""
+  data-solution="
+SELECT county
 FROM executions
 WHERE ex_age >= 50
 GROUP BY county
-HAVING COUNT(\*) > 2"
+HAVING COUNT(*) > 2"
   ></sql-exercise>
 
 <br>

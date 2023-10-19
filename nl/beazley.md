@@ -101,7 +101,7 @@ FROM executions WHERE ex_age <= 25"></sql-exercise>
 
 Het is duidelijk hoe we rekenkundige operatoren zoals `<` en `<=` kunnen gebruiken om voorwaarden te formuleren. Er zijn ook een aantal string-operatoren om met tekst te werken.
 
-De krachtigste hiervan is waarschijnlijk <code>LIKE</code>. Hiermee kunnen we wildcards zoals `%`` en `_` gebruiken om verschillende tekens te matchen. Bijvoorbeeld, `first_name LIKE '%roy'` zal waar zijn voor rijen met voornamen 'roy', 'Troy' en 'Deroy', maar niet voor 'royman'. Het jokerteken `_` zal slechts één teken matchen, dus `first_name LIKE '_roy'` zal alleen overeenkomen met 'Troy'.
+De krachtigste hiervan is waarschijnlijk <code>LIKE</code>. Hiermee kunnen we wildcards zoals `%` en `_` gebruiken om verschillende tekens te matchen. Bijvoorbeeld, `first_name LIKE '%roy'` zal waar zijn voor rijen met voornamen 'roy', 'Troy' en 'Deroy', maar niet voor 'royman'. Het jokerteken `_` zal slechts één teken matchen, dus `first_name LIKE '_roy'` zal alleen overeenkomen met 'Troy'.
 
 <sql-exercise
   data-question="Pas de query aan om het resultaat voor Raymond Landry te vinden."
