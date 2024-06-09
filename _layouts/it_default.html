@@ -28,11 +28,11 @@
 
     <!-- add meta tag for translated version -->
     {% assign current_page = page.url | replace:'/','' | replace:'..','' %}
-    {% for dutch_page in site.data.nl_sitemap.contents %}
-      {% assign dutch_page_source_url = dutch_page.english_url | replace:'/','' | replace:'..','' %}
-      {% if current_page == dutch_page_source_url %}
+    {% for italian_page in site.data.it_sitemap.contents %}
+      {% assign italian_page_source_url = italian_page.english_url | replace:'/','' | replace:'..','' %}
+      {% if current_page == italian_page_source_url %}
     <link rel="alternate" hreflang="en" href="{{ page.url }}">
-    <link rel="alternate" hreflang="nl" href="/nl/{{ dutch_page.url  }}">
+    <link rel="alternate" hreflang="it" href="/it/{{ italian_page.url  }}">
       {% endif %}
     {% endfor %}
 
@@ -41,8 +41,8 @@
   <body>
     <div id="column">
       <div class="header">
-        <a href="/nl/"><img class="logo" src="/imgs/favicon-256.png"></a>
-        <a href="/nl/"><div class="title">Select Star SQL</div></a>
+        <a href="/it/"><img class="logo" src="/imgs/favicon-256.png"></a>
+        <a href="/it/"><div class="title">Select Star SQL</div></a>
       </div>
       <div class="content">
         {{content}}

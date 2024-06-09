@@ -19,7 +19,6 @@ Up till now we've also only learned about consuming data (querying). There is a 
 
 Most importantly, you still need lots of practice to become effective on real world problems. The next section provides some exercises but the difficulty increases sharply. You might want to go out into the world and practice what we've covered so far and come back when you're ready.
 
-
 <br />
 <a name="challenge_questions"></a>
 ## Challenge Questions

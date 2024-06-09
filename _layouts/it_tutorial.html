@@ -1,8 +1,8 @@
 ---
-layout: nl_default
+layout: it_default
 ---
 
-{% for tutorial in site.data.nl_sitemap.contents %}
+{% for tutorial in site.data.it_sitemap.contents %}
   {% if tutorial.title == page.title %}
     {% assign tutorial_index = forloop.index0 %}
     {% assign content_length = forloop.length %}
@@ -12,22 +12,22 @@ layout: nl_default
 {% endfor %}
 
 <div class="section-nav">
-  <a href="/nl/">Home</a>
+  <a href="/it/">Home</a>
   {% if previous >= 0 %}
-    {% assign previous_tutorial = site.data.nl_sitemap.contents[previous] %}
+    {% assign previous_tutorial = site.data.it_sitemap.contents[previous] %}
     <div class="section-sib">
       &#x21b3; <a href="{{ previous_tutorial.url }}">{{ previous_tutorial.title }}</a>
     </div>
   {% endif %}
 
-  {% assign english_url = site.data.nl_sitemap.contents[tutorial_index].english_url %}
-  <div class="section-sib">&#x21b5; <div class="cur-text">{{ page.title }}
+  {% assign english_url = site.data.it_sitemap.contents[tutorial_index].english_url %}
+  <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}
     {%if english_url %}
       <a href="{{english_url}}" class="language_switcher">(To English)  </a>
     {% endif %}
   </div></div>
 
-  {% for tutorial in site.data.nl_sitemap.contents %}
+  {% for tutorial in site.data.it_sitemap.contents %}
     {% if tutorial.title == page.title %}
       {% for section in tutorial.sections %}
         {% unless section.sidenote %}
@@ -39,8 +39,8 @@ layout: nl_default
     {% endif %}
   {% endfor %}
 
-  {% if site.data.nl_sitemap.contents[next].title %}
-    {% assign next_tutorial = site.data.nl_sitemap.contents[next] %}
+  {% if site.data.it_sitemap.contents[next].title %}
+    {% assign next_tutorial = site.data.it_sitemap.contents[next] %}
     <div class="section-sib">
       &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
     </div>
@@ -50,15 +50,15 @@ layout: nl_default
 {{content}}
 
 <div class="tutorial-nav">
-    {% if site.data.nl_sitemap.contents[next].title %}
-      {% assign next_tutorial = site.data.nl_sitemap.contents[next] %}
-      <div class="next">Volgende<a href="{{ next_tutorial.url }}">
+    {% if site.data.it_sitemap.contents[next].title %}
+      {% assign next_tutorial = site.data.it_sitemap.contents[next] %}
+      <div class="next">Prossimo<a href="{{ next_tutorial.url }}">
       {{ next_tutorial.title }}</a></div>
     {% endif %}
 
   {% if previous >= 0 %}
-    {% assign previous_tutorial = site.data.nl_sitemap.contents[previous] %}
-    <div class="previous">Vorig<a href="{{ previous_tutorial.url }}">
+    {% assign previous_tutorial = site.data.it_sitemap.contents[previous] %}
+    <div class="previous">Precedente<a href="{{ previous_tutorial.url }}">
     {{ previous_tutorial.title }}</a></div>
   {% endif %}
 </div>

@@ -1,0 +1,119 @@
+contents:
+- title: Prefazione
+  url: frontmatter.html
+  blurb: "The philosophical and technical underpinnings of this project."
+  sections:
+  - name: Impeto
+    url: "#impetus"
+  - name: Pedagogia
+    url: "#pedagogy"
+  - name: Dataset
+    url: "#dataset"
+  - name: Aspetti tecnici
+    url: "#technicals"
+  - name: Crediti e contatti
+    url: "#contact"
+- title: Le ultime parole di Beazley
+  url: beazley.html
+  blurb: "Chapter 1 examines Napoleon Beazley's argument against capital punishment. We learn the structure of a SQL query and row operations on a table."
+  sections:
+  - name: Il caso Beazley
+    url: "#beazley_case"
+  - name: Una prima query SQL
+    url: "#first"
+  - name: Il blocco SELECT
+    url: "#select"
+  - name: Commenti SQL
+    url: "#comments"
+    sidenote: true
+  - name: Il blocco FROM
+    url: "#from"
+  - name: Maiuscole
+    url: "#capitalization"
+    sidenote: true
+  - name: Spazi bianchi
+    url: "#whitespace"
+    sidenote: true
+  - name: Il blocco WHERE
+    url: "#where"
+  - name: Virgolette
+    url: "#quotes"
+    sidenote: true
+  - name: Riassunto
+    url: "#recap"
+- title: Dichiarazioni di innocenza
+  url: innocence.html
+  blurb: "Chapter 2 estimates how many executed inmates may have been innocent. The technical theme is aggregating the entire table."
+  sections:
+  - name: Possibile innocenza
+    url: "#possible_innocence"
+  - name: Funzioni aggregate
+    url: "#aggregations"
+  - name: La funzione COUNT
+    url: "#count"
+  - name: Null
+    url: "#nulls"
+    sidenote: true
+  - name: Variazioni di COUNT
+    url: "#count_var"
+  - name: Ricerca della documentazione
+    url: "#documentation"
+    sidenote: true
+  - name: Una query strana
+    url: "#strange"
+  - name: Dialetti SQL e database
+    url: "#dialects"
+    sidenote: true
+  - name: Conclusioni e riepilogo
+    url: "#recap"
+- title: La coda lunga
+  url: longtail.html
+  blurb: "Chapter 3 studies counties with unusually high numbers of executions. We generalize Chapter 2 by applying aggregations on groups of rows."
+  sections:
+  - name: Code lunghe
+    url: "#long_tails"
+  - name: Il blocco GROUP BY
+    url: "#groupby"
+  - name: Il blocco HAVING
+    url: "#having"
+  - name: Query annidate
+    url: "#nested"
+  - name: Contea di Harris
+    url: "#harris"
+  - name: In sintesi
+    url: "#recap"
+  - name: MapReduce
+    url: "#mapreduce"
+    sidenote: true
+- title: Interruzioni dell'esecuzione
+  url: hiatuses.html
+  blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
+  sections:
+  - name: Interruzioni
+    url: "#hiatuses"
+  - name: Pensando ai Join (unioni)
+    url: "#joins"
+  - name: Discernere le colonne
+    url: "#disam_cols"
+    sidenote: true
+  - name: Tipi di Join (unione)
+    url: "#join_types"
+  - name: Date
+    url: "#dates"
+  - name: Self Join
+    url: "#self_joins"
+  - name: Riepilogo
+    url: "#recap"
+- title: Osservazioni finali e domande sfidanti
+  url: questions.html
+  blurb: "Chapter 5 provides closing remarks and a collection of miscellaneous user-added challenge questions."
+  sections:
+  - name: Osservazioni finali
+    url: "#closing_remarks"
+  - name: Domande di sfida
+    url: "#challenge_questions"
+  - name: Chiamata per i problemi
+    url: "#call_for_problems"
+    sidenote: true
+  - name: Set di dati sulla cosponsorizzazione del Senato
+    url: "#senate_cosponsorship"
