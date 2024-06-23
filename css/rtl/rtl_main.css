@@ -309,8 +309,10 @@ sql-exercise .CodeMirror {
 
 sql-exercise .sqlExInputArea input {
     margin-right: 1em;
-    background: none;
+    background: #f9f9f9;
     border-radius: 4px;
     font-size: 0.8em;
     font-weight: 200;
+    border: thin solid black;
+    border-radius: 4px;
 }
