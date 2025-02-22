@@ -108,7 +108,7 @@ GROUP BY county, decade_age</pre>">
     data-value="abstract_cartesian"></sql-quiz-option>
   <sql-quiz-option
     data-statement="The output will have a different value of county for every row it returns."
-    data-hint="This would be true only if <code>county</code> was the only grouping column. Here, we can have many groups with the same county but different decade_ages."
+    data-hint="This would be true only if <code>county</code> were the only grouping column. Here, we can have many groups with the same county but different decade_ages."
     data-value="one_col_diff"></sql-quiz-option>
   <sql-quiz-option
     data-statement="The output can have groups where the count is 0."
