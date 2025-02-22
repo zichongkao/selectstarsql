@@ -145,7 +145,7 @@ Maintenant, vous pouvez demander, ne serions-nous pas fini si nous pouvions simp
     FROM executions
     GROUP BY county
 
-Les pourcentages sont une mesure si commune qu’une telle fonction ne devrait pas exister? Malheureusement non, et peut-être pour une bonne raison : Une telle fonction devrait agréger à la fois dans les groupes (pour obtenir le numérateur) et dans tout l’ensemble de données (pour obtenir le dénominateur). Mais chaque requête a un bloc `GROUP BY` ou pas. Donc ce dont nous avons vraiment besoin, c’est de deux requêtes séparées, l’une qui s’aggregre avec `GROUP BY` et l’autre qui s’aggregre sans GROUP BY. Nous pouvons ensuite les combiner en utilisant une technique appelée « imbrication ».
+Les pourcentages sont une mesure si commune qu’une telle fonction ne devrait pas exister? Malheureusement non, et peut-être pour une bonne raison : Une telle fonction devrait agréger à la fois dans les groupes (pour obtenir le numérateur) et dans tout l’ensemble de données (pour obtenir le dénominateur). Mais chaque requête a un bloc `GROUP BY` ou pas. Donc ce dont nous avons vraiment besoin, c’est de deux requêtes séparées, l’une qui s’agrège avec `GROUP BY` et l’autre qui s’agrège sans GROUP BY. Nous pouvons ensuite les combiner en utilisant une technique appelée « imbrication ».
 
 Voici un exemple de fonctionnement de l'imbrication . Les parenthèses sont importantes pour délimiter la frontière entre la requête interne et la requête externe :
 

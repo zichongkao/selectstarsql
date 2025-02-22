@@ -174,7 +174,7 @@ ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
-`previous` est dérivé des `executions`, donc nous sommes effectivement en train d’ajouter `executions` à lui-même. On appelle cela une « auto-jointure » et c’est une technique puissante qui permet aux lignes d’obtenir des informations à partir d’autres parties de la même table.
+La table `previous` est dérivé de la table `executions`, donc nous sommes effectivement en train d’ajouter `executions` à elle-même. On appelle cela une « auto-jointure » et c’est une technique puissante qui permet aux lignes d’obtenir des informations à partir d’autres parties de la même table.
 
 Nous avons créé le tableau `previous` pour clarifier l’objectif qu’il sert. Mais nous pouvons écrire la requête de manière plus élégante en joignant directement à elle-même la table `executions`.
 
