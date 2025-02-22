@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="/imgs/favicon.ico">
@@ -28,11 +28,11 @@
 
     <!-- add meta tag for translated version -->
     {% assign current_page = page.url | replace:'/','' | replace:'..','' %}
-    {% for italian_page in site.data.it_sitemap.contents %}
-      {% assign italian_page_source_url = italian_page.english_url | replace:'/','' | replace:'..','' %}
-      {% if current_page == italian_page_source_url %}
+    {% for french_page in site.data.fr_sitemap.contents %}
+      {% assign french_page_source_url = french_page.english_url | replace:'/','' | replace:'..','' %}
+      {% if current_page == french_page_source_url %}
     <link rel="alternate" hreflang="en" href="{{ page.url }}">
-    <link rel="alternate" hreflang="it" href="/it/{{ italian_page.url  }}">
+    <link rel="alternate" hreflang="fr" href="/fr/{{ french_page.url  }}">
       {% endif %}
     {% endfor %}
 
@@ -41,14 +41,14 @@
   <body>
     <div id="column">
       <div class="header">
-        <a href="/it/"><img class="logo" src="/imgs/favicon-256.png"></a>
-        <a href="/it/"><div class="title">Select Star SQL</div></a>
+        <a href="/fr/"><img class="logo" src="/imgs/favicon-256.png"></a>
+        <a href="/fr/"><div class="title">Select Star SQL</div></a>
       </div>
       <div class="content">
         {{content}}
       </div>
       <div class="footer">
-        Prose for <a href="/">SelectStarSql.com</a> is licensed by <a href="https://kaomorphism.com/">Zi Chong Kao</a> under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0 License</a>. The <a href="/he/">Hebrew translation</a> is by <a href="https://thepitz.io/">Noam Castel</a>, the <a href="/nl/">Dutch translation</a> is by Jowan Vogel, the <a href="/it/">Italian translation</a> is by Stefano Caglio, and the <a href='/fr/'>French Translation</a> is by April Tao. Code and data are released into the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 License</a>.
+        La texte pour <a href="/">SelectStarSql.com</a> est publié par <a href="https://kaomorphism.com/">Zi Chong Kao</a> sous la licence <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0</a>. La  <a href="/he/">traduction en hébreu</a> est de <a href="https://thepitz.io/">Noam Castel</a>, la <a href="/nl/">traduction en néerlandais</a> est de Jowan Vogel, la <a href="/it/">traduction en italien</a> est de  Stefano Caglio, et la <a href="/fr/">traduction en français</a> est d'<a href='https://github.com/apriltaoyvr'>April Tao</a>. Le code et les données sont diffusés dans le domaine public sous la licence <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0</a>.
       </div>
     </div>
   </body>

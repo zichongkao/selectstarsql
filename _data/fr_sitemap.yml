@@ -1,0 +1,119 @@
+contents:
+- title: Preface
+  url: frontmatter.html
+  blurb: "Les fondations philosophiques et techniques de ce projet.."
+  sections:
+  - name: Impetus
+    url: "#impetus"
+  - name: Pédagogie
+    url: "#pedagogy"
+  - name: Jeu de données
+    url: "#dataset"
+  - name: Aspects techniques
+    url: "#technicals"
+  - name: Crédits et contacts
+    url: "#contact"
+- title: Les dernières paroles de Beazley
+  url: beazley.html
+  blurb: "Le chapitre 1 examine l’argument de Napoleon Beazley contre la peine capitale. Nous découvrons la structure d'une requête SQL et les opérations des lignes sur une table."
+  sections:
+  - name: Le cas de Beazley
+    url: "#beazley_case"
+  - name: Une première requête SQL
+    url: "#first"
+  - name: Le bloc SELECT
+    url: "#select"
+  - name: Les comments SQL
+    url: "#comments"
+    sidenote: true
+  - name: Le bloc FROM
+    url: "#from"
+  - name: Les majuscules
+    url: "#capitalization"
+    sidenote: true
+  - name: Des trous à compléter
+    url: "#whitespace"
+    sidenote: true
+  - name: Le bloc WHERE
+    url: "#where"
+  - name: Les guillemets
+    url: "#quotes"
+    sidenote: true
+  - name: Récapitulatif
+    url: "#recap"
+- title: Les prétentions d’innocence
+  url: innocence.html
+  blurb: "Le chapitre 2 estime combien de détenus exécutés pourraient être innocents. Le principe technique consiste à agréger l'ensemble de la table."
+  sections:
+  - name: L'innocence possible
+    url: "#possible_innocence"
+  - name: Les fonctions d'agrégation
+    url: "#aggregations"
+  - name: La fonction COUNT
+    url: "#count"
+  - name: Les NULLs
+    url: "#nulls"
+    sidenote: true
+  - name: Les variations de COUNT
+    url: "#count_var"
+  - name: Recherche de la documentation
+    url: "#documentation"
+    sidenote: true
+  - name: Une requête bizarre
+    url: "#strange"
+  - name: Les dialectes SQL et les databases
+    url: "#dialects"
+    sidenote: true
+  - name: Les conclusions et le résumé
+    url: "#recap"
+- title: La longue traîne
+  url: longtail.html
+  blurb: "Le chapitre 3 examine les comtés qui ont un nombre inhabituellement élevé d'exécutions. Nous résumons en appliquant des agrégations sur les groupes de lignes."
+  sections:
+  - name: Les longues traînes
+    url: "#long_tails"
+  - name: Le bloc GROUP BY
+    url: "#groupby"
+  - name: Le bloc HAVING
+    url: "#having"
+  - name: Les requêtes imbriquées
+    url: "#nested"
+  - name: Le comté de Harris
+    url: "#harris"
+  - name: En résumé
+    url: "#recap"
+  - name: Le MapReduce
+    url: "#mapreduce"
+    sidenote: true
+- title: Les interruptions d’exécutions
+  url: hiatuses.html
+  blurb: "Le chapitre 4 explore les périodes prolongées où aucune exécution n'est survenue. Le thème de ce chapitre est l’extension des tables avec les jointures."
+  sections:
+  - name: Les interruptions
+    url: "#hiatuses"
+  - name: Les réflexions sur les joints
+    url: "#joins"
+  - name: Désambiguïsation des colonnes
+    url: "#disam_cols"
+    sidenote: true
+  - name: Les types de joints
+    url: "#join_types"
+  - name: Les dates
+    url: "#dates"
+  - name: Les auto-jointures
+    url: "#self_joins"
+  - name: Les récapitulatifs
+    url: "#recap"
+- title: Les remarques finales et les questions défi
+  url: questions.html
+  blurb: "Le chapitre 5 fournit des remarques finales et une collection de questions défi ajoutées par les utilisateurs."
+  sections:
+  - name: Les remarques finales
+    url: "#closing_remarks"
+  - name: Les questions défi
+    url: "#challenge_questions"
+  - name: La participation collective
+    url: "#call_for_problems"
+    sidenote: true
+  - name: Le coparrainage du Sénat sur le jeu de données
+    url: "#senate_cosponsorship"
