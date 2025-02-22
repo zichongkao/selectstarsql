@@ -6,7 +6,7 @@ dbFile: data/tx_deathrow_small.db
 
 <a name="long_tail"></a>
 ## Long Tails
-Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. They indicate the presence of outliers whose unusual behaviors may be of interest to us.<img src="imgs/execution_tail.png"> In context of Texas executions, the long tail refers to a small number of counties which have been known to conduct a large number of executions.
+Long tails refer to small numbers of samples which occur a large number of times. When we plot these out, they form a small sliver far to the right of the center of mass which looks like a tail. They indicate the presence of outliers whose unusual behaviors may be of interest to us.<img src="imgs/execution_tail.png"> In the context of executions in Texas, the long tail refers to a small number of counties which have been known to conduct a large number of executions.
 
 Let's find the percentage of executions from each county so that we can pick out the ones in the tail.
 
@@ -108,7 +108,7 @@ GROUP BY county, decade_age</pre>">
     data-value="abstract_cartesian"></sql-quiz-option>
   <sql-quiz-option
     data-statement="The output will have a different value of county for every row it returns."
-    data-hint="This would be true only if <code>county</code> were the only grouping column. Here, we can have many groups with the same county but different decade_ages."
+    data-hint="This would be true only if <code>county</code> was the only grouping column. Here, we can have many groups with the same county but different decade_ages."
     data-value="one_col_diff"></sql-quiz-option>
   <sql-quiz-option
     data-statement="The output can have groups where the count is 0."
@@ -204,7 +204,7 @@ In this section, we've learned to aggregate over groups and to use nesting to us
 <a name="mapreduce"></a>
 <div class="sideNote">
   <h3>MapReduce</h3>
-  <p>An interesting addendum is that we've actually just learned to do MapReduce in SQL. MapReduce is a famous programming paradigm which views computations as occuring in a "map" and "reduce" step. You can learn more about MapReduce <a href="https://stackoverflow.com/questions/28982/simple-explanation-of-mapreduce">here</a>.</p>
+  <p>An interesting addendum is that we've actually just learned to do MapReduce in SQL. MapReduce is a famous programming paradigm which views computations as occurring in a "map" and "reduce" step. You can learn more about MapReduce <a href="https://stackoverflow.com/questions/28982/simple-explanation-of-mapreduce">here</a>.</p>
   <p>The <a href="beazley.html">Beazley</a> chapter was all about mapping because it showed us how to map various operations out to all the rows. For example, <code>SELECT LENGTH(last_statement) FROM executions</code> maps the length function out to all the rows. This chapter showed us how to reduce various groups of data using aggregation functions; and the previous <a href="innocence.html">Claims of Innocence</a> chapter was just a special case in which the entire table is one group.</p>
 </div>
 
