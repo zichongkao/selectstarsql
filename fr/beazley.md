@@ -113,7 +113,7 @@ FROM executions WHERE ex_age <= 25"></sql-exercise>
 
 Il est clair que nous pouvons utiliser des opérateurs arithmétiques comme `<` et `<=` pour construire des clauses. Il existe également une collection d’opérateurs de chaîne pour travailler avec des chaînes.
 
-Le plus puissant est probablement `LIKE`. Il nous permet d’utiliser des caractères de remplacement tels que `%` et `_` pour correspondre à divers caractères. Par exemple, ```first_name LIKE '%roy'``` renvoie `true` pour les lignes avec les prénoms « roy », « Troy » et « Deroy » mais pas « royman ». Le caractère générique `_` correspond à un seul caractère, de sorte que ```first_name LIKE '_roy'`` ne correspond qu’à « Troy ».
+Le plus puissant est probablement `LIKE`. Il nous permet d’utiliser des caractères de remplacement tels que `%` et `_` pour correspondre à divers caractères. Par exemple, `first_name LIKE '%roy'` renvoie `true` pour les lignes avec les prénoms « roy », « Troy » et « Deroy » mais pas « royman ». Le caractère générique `_` correspond à un seul caractère, de sorte que `first_name LIKE '_roy'` ne correspond qu’à « Troy ».
 
 <sql-exercise
     data-question="Modifiez la requête pour trouver le résultat de Raymond Landry."

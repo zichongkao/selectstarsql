@@ -27,7 +27,7 @@ Jusqu’à présent, chaque ligne de la sortie provenait d’une seule ligne d�
 <br>
 <a name="count"></a>
 ## La fonction COUNT
-`COUNT` (litt. « compter ») est probablement la fonction d’agrégation la plus utilisée. Comme son nom l’indique, elle compte les choses! Par exemple, <code class='codeblock'>COUNT(&lt;column&gt;)</code> renvoie le nombre de lignes non nulles dans la colonne.
+`COUNT` (litt. « compter ») est probablement la fonction d’agrégation la plus utilisée. Comme son nom l’indique, elle compte les choses ! Par exemple, <code class='codeblock'>COUNT(&lt;column&gt;)</code> renvoie le nombre de lignes non nulles dans la colonne.
 
 <sql-exercise
   data-question="Modifier la requête pour trouver le nombre de détenus ayant fourni les derniers relevés."
@@ -152,7 +152,7 @@ Il est utile de prendre du recul et de réfléchir aux différentes façons dont
 ## Une requête bizarre
 Avant de conclure, jetons un coup d’œil à cette requête :<br> `SELECT first_name, COUNT(*) FROM executions`.
 
-Ça fait bizarre n'est-ce pas ? Si vous avez un bon modèle mental d'agrégation, ça devrait ! `COUNT(*)` tente de renvoyer une seule entrée correspondant à la longueur de la table d’exécution. La colonne `first_name` essaie de renvoyer une entrée pour chaque ligne. Est-ce que l’ordinateur doit renvoyer une ou plusieurs lignes? S’il en renvoie une, quel `first_name` doit‐il choisir? Si elle renvoie plusieurs, est-ce qu’elle doit répliquer le résultat `COUNT(*)` sur toutes les lignes? Les formes de la sortie ne correspondent pas!
+Ça fait bizarre n'est-ce pas ? Si vous avez un bon modèle mental d'agrégation, ça devrait ! `COUNT(*)` tente de renvoyer une seule entrée correspondant à la longueur de la table d’exécution. La colonne `first_name` essaie de renvoyer une entrée pour chaque ligne. Est-ce que l’ordinateur doit renvoyer une ou plusieurs lignes? S’il en renvoie une, quel `first_name` doit‐il choisir? Si elle renvoie plusieurs, est-ce qu’elle doit répliquer le résultat `COUNT(*)` sur toutes les lignes? Les formes de la sortie ne correspondent pas !
 
 <sql-exercise
   data-question="Essayons quand même et voyons ce qui se passe."

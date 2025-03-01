@@ -13,7 +13,7 @@ Merci d’avoir suivi jusqu’à la fin! J’espère que ce fut une lecture agr�
 
  - <p>Comparer la forme des tableaux disponibles avec le résultat souhaité pour décider de l’agrégation à faire.</p>
  - <p>Examiner où se trouve l’information dont nous avons besoin. Est-ce dans une ligne adjacente? Ou un groupe? Ou tout l’ensemble de données ?</p>
- - <p>Interprétation des requêtes dans la bonne structure logique. Par exemple, voir les clauses comme étant essentiellement vrai ou faux ; voir <code>&lt;table1&gt; JOIN &lt;table2&gt; ON ...</code> comme une grande table.</p>
+ - <p>Interprétation des requêtes dans la bonne structure logique. Par exemple, voir les clauses comme étant essentiellement vrai ou faux; voir <code>&lt;table1&gt; JOIN &lt;table2&gt; ON ...</code> comme une grande table.</p>
 
 D’aller plus loin dans son apprentissage de SQL, il vaut probablement la peine d’examiner les window functions (fonctions de fenêtrage) et les expressions courantes des tables. Vous pouvez reproduire leur comportement avec les techniques que vous avez apprises ici, mais elles facilitent la vie et vous présentent un nouveau paradigme précieux. J’ai omis ces concepts parce qu’[au moment de la rédaction SQLite ne supportait pas les fonctions de fenêtre](https://www.sqlite.org/windowfunctions.html#history), et je voulais éviter la complexité d’une nouvelle base de données et du dialecte SQL.
 
@@ -30,7 +30,7 @@ Les exercices des chapitres précédents ont été conçus pour réduire la comp
 <div class="sideNote">
   <H3>La participation collective</H3>
   <p>De bons problèmes font ou cassent un tutoriel. Si vous avez une idée pour un nouveau problème ou section, je serais heureux de vous aider à le poster ici avec crédit complet allant à vous. Envoyez-moi un courriel à <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> ou soumettez <a href="https://github.com/zichongkao/selectstarsql">une demande de tirage</a>. 
-  Gardez à l'esprit  que les bons problèmes ne sont pas nécessairement difficiles : ils mettent des techniques qui ont de nombreuses applications..</p>
+  Gardez à l'esprit  que les bons problèmes ne sont pas nécessairement difficiles : ils mettent des techniques qui ont de nombreuses applications.</p>
 </div>
 
 <br />
@@ -115,11 +115,11 @@ SELECT DISTINCT c1.cosponsor_name
 FROM cosponsors c1
 LEFT JOIN cosponsors c2
  ON c1.cosponsor_name = c2.sponsor_name
- -- This join identifies cosponsors
- -- who have sponsored bills
+ -- Ce lien identifie les coparrainés
+ -- qui ont parrainé des projets de loi
 WHERE c2.sponsor_name IS NULL
--- LEFT JOIN + NULL is a standard trick for excluding
--- rows. It's more efficient than WHERE ... NOT IN.
+-- LEFT JOIN + NULL est une astuce standard pour exclure
+-- les lignes. C’est plus efficace que WHERE ... NOT IN.
 "
   ></sql-exercise>
 
