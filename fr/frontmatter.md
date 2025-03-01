@@ -14,7 +14,7 @@ En surmontant quelques <a href="#technicals">obstacles techniques</a> mineurs, j
 <a name="pedagogy"></a>
 ## Pédagogie
 Ces principes ont guidé la conception de ce projet :
-    - <p><strong>La meilleure façon d’apprendre la programmation est en programmant.</strong><br> Une grande proportion de ces matériaux construit des exercices et ils devraient occuper la plupart de votre temps.</p>
+   - <p><strong>La meilleure façon d’apprendre la programmation est en programmant.</strong><br> Une grande proportion de ces matériaux construit des exercices et ils devraient occuper la plupart de votre temps.</p>
    - <p><strong>Les exercices devraient être réalistes et substantifs.</strong><br>
      Pour citer Alan Kay <a href="https://www.fastcompany.com/40435064/what-alan-kay-thinks-about-the-iphone-and-technology-now">Alan Kay</a> : « Vous ne laissez jamais [l’apprenant] faire quelque chose qui n’est pas authentique—mais vous devrez trimer pour comprendre quelles sont les choses authentiques dans le contexte de sa compréhension à ce niveau d’apprentissage. »</p>
      <p>De même, on a dessiné les exercices à introduire les techniques de plus en plus sophistiqués et en même temps explore l’ensemble de données d’une manière qui intéresse réellement les gens.</p>
@@ -34,12 +34,12 @@ Les données brutes sont disponibles en format csv à <a href="data/tx_deathrow_
 FROM executions
 LIMIT 3"></sql-exercise>
 
-D’une part, les données sont simplement une partie d’un manuel de programmation banal. Sur un autre, chaque ligne représente une immense souffrance, des vies perdues et dans certains cas une rédemption et une acceptation étonnantes. En préparant ce jeu de données, certaines d'énoncé m’a ému profondément et je me trouvais à reevaluer ma position sur la peine capitale. J’espère que vous aussi réfléchirez à des questions plus profondes en jeu pendant notre examen des données.
+D’une part, les données sont simplement une partie d’un manuel de programmation banal. Sur un autre, chaque ligne représente une immense souffrance, des vies perdues et dans certains cas une rédemption et une acceptation étonnantes. En préparant ce jeu de données, certaines d'énoncé m’a ému profondément et je me trouvais à réévaluer ma position sur la peine capitale. J’espère que vous aussi réfléchirez à des questions plus profondes en jeu pendant notre examen des données.
 
 <br>
 <a name="technicals"></a>
 ## Aspects techniques
-   - <p><strong>Les jeux de données client-side</strong>. L’un des défis pendant la réalisation de ce site était l'évitement de player pour l’hébergement web. En général, on devrait l'héberger et payer pour un back-end pour donner aux utilisateurs une expérience pratique avec une base de données (voir <a href="#pedagogy">Pédagogie</a>). Heureusement, il existe des bases de données client-side. Ils me permettent d’utiliser l’hébergement de pages statiques gratuit sur <a href="https://pages.github.com">Github Pages'</a> où les pages exécutent la base de données SQLite sur votre navigateur. Alon Zakai et d’autres ont rendu cela possible en portant le code SQLite C dans Javascript avec <a href="https://github.com/kripken/sql.js">Emscripten</a>.</p>
+   - <p><strong>Les jeux de données client-side</strong>. L’un des défis pendant la réalisation de ce site était l'évitement de player pour l’hébergement web. En général, on devrait l'héberger et payer pour un back-end pour donner aux utilisateurs une expérience pratique avec une base de données (voir <a href="#pedagogy">Pédagogie</a>). Heureusement, il existe des bases de données client-side. Ils me permettent d’utiliser l’hébergement de pages statiques gratuit sur <a href="https://pages.github.com">Github Pages</a> où les pages exécutent la base de données SQLite sur votre navigateur. Alon Zakai et d’autres ont rendu cela possible en portant le code SQLite C dans Javascript avec <a href="https://github.com/kripken/sql.js">Emscripten</a>.</p>
    - <p><strong>Matthew Butterick</strong>. J’ai rencontré Matthew à <a href="https://summer-school.racket-lang.org/2018/">Racket Summer School</a> et j’ai été très impressionné par le travail qu’il a fait sur <a href="http://beautifulracket.com">Beautiful Racket</a> et <a href="http://practicaltypography.com">Practical Typography</a>. Peut-être que ça se voit que j’ai emprunté beaucoup d'idées de conception de lui.</p>
    - <p><strong>Jekyll</strong>. Si ce n’était pas pour <a href="https://jekyllrb.com/">Jekyll</a>, j’aurais fait tout le html à la main. Dieu merci pour Jekyll.</p>
    - <p><strong>Web Components</strong>. Je pourrais réutiliser beaucoup de code en écrivant les exercices et les composant des quiz en tant que <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">balises html personnalisées</a>. Il s’agit d’un développement relativement nouveau à ma connaissance et j'espère que le W3C continuera de pousser pour l’adoption plus large.</p>
@@ -49,6 +49,6 @@ D’une part, les données sont simplement une partie d’un manuel de programma
 ## Crédits et contacts
 Pour les corrections et suggestions, s'il vous plaît écrivez-moi (Kao) à zichongkao@gmail.com. Vous pouvez en apprendre plus sur moi à <a href="http://kaomorphism.com">Kaomorphism</a>.
 
-<a href="https://thepitz.io/">Noam Castel</a> et Jowan Vogel ont fait un travail remarquable sur les traductions en <a href="/he/">hebreu </a> et en <a href="/nl">néerlandais</a> translations. Veuillez communiquer avec eux pour donner des compliments et des suggestions, ou si vous êtes intéressé à le traduire dans d’autres langues.
+<a href="https://thepitz.io/">Noam Castel</a> et Jowan Vogel ont fait un travail remarquable sur les traductions en <a href="/he/">hébreu </a> et en <a href="/nl">néerlandais</a> translations. Veuillez communiquer avec eux pour donner des compliments et des suggestions, ou si vous êtes intéressé à le traduire dans d’autres langues.
 
 Beaucoup de remerciements à Sonja Lea Heinze, Quinn Batten et <a href="https://nickretallack.com">Nicholas Retallack</a> pour leur précieux retour d’information.

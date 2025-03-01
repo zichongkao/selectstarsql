@@ -1,7 +1,7 @@
 contents:
 - title: Preface
   url: frontmatter.html
-  blurb: "Les fondations philosophiques et techniques de ce projet.."
+  blurb: "Les fondations philosophiques et techniques de ce projet."
   sections:
   - name: Impetus
     url: "#impetus"
