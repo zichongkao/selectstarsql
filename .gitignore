@@ -1,5 +1,6 @@
 _site
 .sass-cache
 .jekyll-metadata
+.jekyll-cache
 .DS_Store
 .ruby*

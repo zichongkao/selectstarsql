@@ -1,0 +1,64 @@
+---
+layout: fr_default
+---
+
+{% for tutorial in site.data.fr_sitemap.contents %}
+  {% if tutorial.title == page.title %}
+    {% assign tutorial_index = forloop.index0 %}
+    {% assign content_length = forloop.length %}
+    {% assign previous = tutorial_index | minus: 1 %}
+    {% assign next = tutorial_index | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+<div class="section-nav">
+  <a href="/fr/">Accueil</a>
+  {% if previous >= 0 %}
+    {% assign previous_tutorial = site.data.fr_sitemap.contents[previous] %}
+    <div class="section-sib">
+      &#x21b3; <a href="{{ previous_tutorial.url }}">{{ previous_tutorial.title }}</a>
+    </div>
+  {% endif %}
+
+  {% assign english_url = site.data.fr_sitemap.contents[tutorial_index].english_url %}
+  <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}
+    {%if english_url %}
+      <a href="{{english_url}}" class="language_switcher">(To English)  </a>
+    {% endif %}
+  </div></div>
+
+  {% for tutorial in site.data.fr_sitemap.contents %}
+    {% if tutorial.title == page.title %}
+      {% for section in tutorial.sections %}
+        {% unless section.sidenote %}
+          <div class="childlinks">
+            &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if site.data.fr_sitemap.contents[next].title %}
+    {% assign next_tutorial = site.data.fr_sitemap.contents[next] %}
+    <div class="section-sib">
+      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
+    </div>
+  {% endif %}
+</div>
+
+{{content}}
+
+<div class="tutorial-nav">
+    {% if site.data.fr_sitemap.contents[next].title %}
+      {% assign next_tutorial = site.data.fr_sitemap.contents[next] %}
+      <div class="next">Suivant<a href="{{ next_tutorial.url }}">
+      {{ next_tutorial.title }}</a></div>
+    {% endif %}
+
+  {% if previous >= 0 %}
+    {% assign previous_tutorial = site.data.fr_sitemap.contents[previous] %}
+    <div class="previous">Précédent<a href="{{ previous_tutorial.url }}">
+    {{ previous_tutorial.title }}</a></div>
+  {% endif %}
+</div>
