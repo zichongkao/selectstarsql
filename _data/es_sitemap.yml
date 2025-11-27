@@ -1,0 +1,119 @@
+contents:
+  - title: Front Matter
+    url: frontmatter.html
+    blurb: "Los fundamentos filosóficos y técnicos de este proyecto."
+    sections:
+      - name: Motivación
+        url: "#impetus"
+      - name: Pedagogía
+        url: "#pedagogy"
+      - name: Conjunto de datos
+        url: "#dataset"
+      - name: Aspectos técnicos
+        url: "#technicals"
+      - name: Contacto
+        url: "#contact"
+  - title: La última declaración de Beazley
+    url: beazley.html
+    blurb: "El capítulo 1 examina el argumento de Napoleon Beazley contra la pena capital. Aprendemos la estructura de una consulta SQL y operaciones a nivel de fila."
+    sections:
+      - name: El caso Beazley
+        url: "#beazley_case"
+      - name: Una primera consulta SQL
+        url: "#first"
+      - name: El bloque SELECT
+        url: "#select"
+      - name: Comentarios en SQL
+        url: "#comments"
+        sidenote: true
+      - name: El bloque FROM
+        url: "#from"
+      - name: Mayúsculas
+        url: "#capitalization"
+        sidenote: true
+      - name: Espacios en blanco
+        url: "#whitespace"
+        sidenote: true
+      - name: El bloque WHERE
+        url: "#where"
+      - name: Comillas
+        url: "#quotes"
+        sidenote: true
+      - name: Resumen
+        url: "#recap"
+  - title: Reclamaciones de inocencia
+    url: innocence.html
+    blurb: "El capítulo 2 estima cuántos ejecutados pueden haber sido inocentes. El tema técnico es agregar sobre la tabla completa."
+    sections:
+      - name: Posible inocencia
+        url: "#possible_innocence"
+      - name: Agregaciones
+        url: "#aggregations"
+      - name: La función COUNT
+        url: "#count"
+      - name: Nulos
+        url: "#nulls"
+        sidenote: true
+      - name: Variaciones de COUNT
+        url: "#count_var"
+      - name: Búsqueda de documentación
+        url: "#documentation"
+        sidenote: true
+      - name: Una consulta extraña
+        url: "#strange"
+      - name: Dialectos de SQL y bases de datos
+        url: "#dialects"
+        sidenote: true
+      - name: Conclusión y resumen
+        url: "#recap"
+  - title: La larga cola
+    url: longtail.html
+    blurb: "El capítulo 3 estudia condados con números inusualmente altos de ejecuciones. Generalizamos el capítulo 2 aplicando agregaciones por grupos."
+    sections:
+      - name: Colas largas
+        url: "#long_tails"
+      - name: GROUP BY
+        url: "#groupby"
+      - name: El bloque HAVING
+        url: "#having"
+      - name: Consultas anidadas
+        url: "#nested"
+      - name: Condado Harris
+        url: "#harris"
+      - name: Resumen
+        url: "#recap"
+      - name: MapReduce
+        url: "#mapreduce"
+        sidenote: true
+  - title: Pausas en ejecuciones
+    url: hiatuses.html
+    blurb: "El capítulo 4 explora periodos extendidos sin ejecuciones. Su tema es ampliar la tabla usando joins."
+    sections:
+      - name: Pausas
+        url: "#hiatuses"
+      - name: Pensando en JOINs
+        url: "#joins"
+      - name: Desambiguar columnas
+        url: "#disam_cols"
+        sidenote: true
+      - name: Tipos de joins
+        url: "#join_types"
+      - name: Fechas
+        url: "#dates"
+      - name: Self Joins
+        url: "#self_joins"
+      - name: Resumen
+        url: "#recap"
+  - title: Comentarios finales y preguntas de desafío
+    url: questions.html
+    blurb: "El capítulo 5 contiene comentarios finales y una colección de preguntas de desafío enviadas por usuarios."
+    sections:
+      - name: Comentarios finales
+        url: "#closing_remarks"
+      - name: Preguntas de desafío
+        url: "#challenge_questions"
+      - name: Llamado para problemas
+        url: "#call_for_problems"
+        sidenote: true
+      - name: Conjunto de cosponsorship del Senado
+        url: "#senate_cosponsorship"

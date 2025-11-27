@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+      charset="utf-8" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="imgs/favicon.ico" />
+    <!-- thanks to https://favicon.io/ -->
+    <link
+      rel="stylesheet"
+      href="css/codemirror.css" />
+    <link
+      rel="stylesheet"
+      href="css/neat.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed" />
+    <link
+      rel="stylesheet"
+      href="css/main.css" />
+    <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
+    <script src="scripts/codemirror.js"></script>
+    <script src="scripts/codemirrorsql.js"></script>
+    <script src="scripts/autorefresh.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+      window.onload = () => loadData("{{ page.dbFile }}");
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-46601509-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-46601509-2");
+    </script>
+    <title>{{ page.title }}</title>
+
+    <!-- add meta tag for translated version -->
+    {% assign current_page = page.url | replace:'/','' | replace:'..','' %} {%
+    for hebrew_page in site.data.he_sitemap.contents %} {% assign
+    hebrew_page_source_url = hebrew_page.english_url | replace:'/','' |
+    replace:'..','' %} {% if current_page == hebrew_page_source_url %}
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="{{ page.url }}" />
+    <link
+      rel="alternate"
+      hreflang="he"
+      href="/he/{{ hebrew_page.url  }}" />
+    {% endif %} {% endfor %}
+  </head>
+
+  <body>
+    <div id="column">
+      <div class="header">
+        <a href="/"
+          ><img
+            class="logo"
+            src="imgs/favicon-256.png"
+        /></a>
+        <a href="/"><div class="title">Select Star SQL</div></a>
+      </div>
+      <div class="content">{{content}}</div>
+      <div class="footer">
+        La prosa de <a href="/">SelectStarSql.com</a> está licenciada por
+        <a href="https://kaomorphism.com/">Zi Chong Kao</a> bajo una
+        <a
+          rel="license"
+          href="http://creativecommons.org/licenses/by-sa/4.0/"
+          >Licencia Creative Commons BY-SA 4.0</a
+        >. La traducción al hebreo es de
+        <a href="https://thepitz.io/">Noam Castel</a>, la traducción al
+        neerlandés es de Jowan Vogel, la traducción al italiano es de Stefano
+        Caglio, y la traducción al francés es de April Tao. El código y los
+        datos están en el dominio público bajo la
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/"
+          >licencia CC0</a
+        >.
+      </div>
+    </div>
+  </body>
+</html>
