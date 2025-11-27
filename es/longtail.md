@@ -91,39 +91,39 @@ SELECT
 	COUNT(*)
 FROM executions
 GROUP BY county, decade_age</pre>">
-	<sql-quiz-option
+<sql-quiz-option
 		data-value="valid"
 		data-statement="La consulta es válida (no lanzará error)."
 		data-hint="¿Te desconcertó <code>ex_age/10</code>? Agrupar por columnas transformadas también es válido."
 		data-correct="true"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-value="gran"
 		data-statement="La consulta devolvería más filas si usáramos <code>ex_age</code> en lugar de <code>ex_age/10</code>."
 		data-hint="Recuerda que <code>ex_age/10</code> es división entera que redondea las edades, produciendo menos grupos únicos."
 		data-correct="true"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-value="unique_combocc"
 		data-statement="La salida tendrá tantas filas como combinaciones únicas de condado y decade_age en el dataset."
 		data-hint="Esto es correcto."
 		data-correct="true"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-statement="La salida tendrá un grupo ('Bexar', 6) aunque no haya reclusos de Bexar entre 60 y 69."
 		data-hint="GROUP BY encuentra combinaciones <i>en el dataset</i>, no todas las combinaciones teóricas."
 		data-value="abstract_cartesian"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-statement="La salida tendrá un valor distinto de county para cada fila."
 		data-hint="Eso sería cierto solo si county fuera la única columna de agrupamiento. Aquí podemos tener muchos grupos con el mismo county pero diferente decade_age."
 		data-value="one_col_diff"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-statement="La salida puede tener grupos con conteo 0."
 		data-hint="Si no hay filas para ('Bexar', 6), el grupo simplemente no aparece."
 		data-value="count_zero"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-statement="La consulta sería válida aun sin especificar county en SELECT."
 		data-hint="Las columnas de agrupamiento no tienen que aparecer en SELECT, sería válido pero confuso."
 		data-value="missing_gp_col"
 		data-correct="true"></sql-quiz-option>
-	<sql-quiz-option
+<sql-quiz-option
 		data-statement="Es razonable añadir <code>last_name</code> en SELECT sin agrupar por ella."
 		data-hint="Aunque SQLite lo permitiría (ver 'Una consulta extraña'), es mala práctica mezclar columnas no agregadas y no agrupadas."
 		data-value="extra_gp_col"></sql-quiz-option>
@@ -141,11 +141,11 @@ GROUP BY county, decade_age</pre>">
 ## Consultas anidadas
 En apariencia podríamos querer algo como:
 
-		SELECT
-			county,
-			PERCENT_COUNT(*)
-		FROM executions
-		GROUP BY county
+    	SELECT
+    		county,
+    		PERCENT_COUNT(*)
+    	FROM executions
+    	GROUP BY county
 
 ¿No sería útil una función así? No existe porque requeriría agregar dentro de grupos (numerador) y en toda la tabla (denominador) a la vez. La solución es usar dos consultas y combinarlas mediante anidamiento.
 
@@ -198,10 +198,10 @@ Estudios han sugerido varias razones: procesos de enjuiciamiento bien financiado
 En esta sección aprendimos a agregar por grupos y a usar anidamiento para usar la salida de una consulta interna en una externa. Estas técnicas permiten calcular porcentajes y otros indicadores.
 
 <a name="mapreduce"></a>
+
 <div class="sideNote">
 	<h3>MapReduce</h3>
 	<p>Un apéndice interesante: hemos aprendido a hacer MapReduce en SQL. MapReduce es un paradigma que ve los cálculos como pasos de "map" y "reduce". El capítulo <a href="beazley.html">Beazley</a> fue sobre mapping; este capítulo muestra cómo reducir grupos usando agregación.</p>
 </div>
 
 En el siguiente capítulo aprenderemos sobre `JOIN`s que permiten trabajar con múltiples tablas.
-

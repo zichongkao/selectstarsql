@@ -19,12 +19,11 @@ No obstante, sigue siendo inquietante que las declaraciones de inocencia persist
 ## Funciones de agregación
 Hay dos números que necesitamos para calcular la proporción:
 
-	**Numerador**: Número de ejecuciones con reclamaciones de inocencia.
+    **Numerador**: Número de ejecuciones con reclamaciones de inocencia.
 
-	**Denominador**: Número total de ejecuciones.
+    **Denominador**: Número total de ejecuciones.
 
 Hasta ahora, cada fila en la salida provenía de una sola fila de entrada. Sin embargo, aquí tanto el numerador como el denominador requieren información de múltiples filas. Esto nos dice que necesitamos usar una función de agregación. Agregar significa combinar múltiples elementos en un todo; de forma similar, las funciones de agregación toman varias filas y las combinan en un solo número.
-
 
 <br>
 <a name="count"></a>
@@ -39,15 +38,17 @@ Hasta ahora, cada fila en la salida provenía de una sola fila de entrada. Sin e
 
 Como puedes ver, la función `COUNT` está ligada al concepto de `NULL`. Hagamos una pequeña digresión para aprender sobre `NULL`s.
 <a name="nulls"></a>
+
 <div class="sideNote">
 	<h3>Nulos</h3>
 	<p>En SQL, <code>NULL</code> es el valor de una entrada vacía. Esto es diferente de la cadena vacía <code>''</code> y del entero <code>0</code>, ambos no considerados <code>NULL</code>. Para comprobar si una entrada es <code>NULL</code>, usa <code>IS</code> y <code>IS NOT</code> en lugar de <code>=</code> y <code>!=</code>.</p>
 
-	<sql-exercise
-		data-question="Verifica que 0 y la cadena vacía no se consideran NULL."
-		data-comment="Recuerda que esto es una cláusula compuesta. Ambas condiciones <code>IS NOT NULL</code> deben ser verdaderas para que la consulta devuelva <code>true</code>."
-		data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL) "
-		></sql-exercise>
+    <sql-exercise
+    	data-question="Verifica que 0 y la cadena vacía no se consideran NULL."
+    	data-comment="Recuerda que esto es una cláusula compuesta. Ambas condiciones <code>IS NOT NULL</code> deben ser verdaderas para que la consulta devuelva <code>true</code>."
+    	data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL) "
+    	></sql-exercise>
+
 </div>
 
 Con esto, podemos encontrar el denominador de nuestra proporción:
@@ -62,7 +63,7 @@ Con esto, podemos encontrar el denominador de nuestra proporción:
 ## Variaciones de COUNT
 Hasta ahora todo bien. Pero ¿y si no sabemos qué columnas están libres de `NULL`? ¿O si ninguna lo está? ¿Cómo obtener la longitud de la tabla?
 
-La solución es `COUNT(*)`. Esto recuerda a `SELECT *` donde `*` representa todas las columnas. En la práctica `COUNT(*)` cuenta filas siempre que *alguna* de sus columnas no sea nula. Esto ayuda a obtener la longitud de la tabla porque no debería haber filas completamente nulas.
+La solución es `COUNT(*)`. Esto recuerda a `SELECT *` donde `*` representa todas las columnas. En la práctica `COUNT(*)` cuenta filas siempre que _alguna_ de sus columnas no sea nula. Esto ayuda a obtener la longitud de la tabla porque no debería haber filas completamente nulas.
 
 <sql-exercise
 	data-question="Verifica que <code>COUNT(*)</code> da el mismo resultado que antes."
@@ -72,12 +73,12 @@ Otra variación común es contar un subconjunto de la tabla. Por ejemplo, contar
 
 La solución es usar `CASE WHEN`, que actúa como un gran if-else. Tiene el formato:
 
-		CASE
-				WHEN <clause> THEN <result>
-				WHEN <clause> THEN <result>
-				...
-				ELSE <result>
-		END
+    	CASE
+    			WHEN <clause> THEN <result>
+    			WHEN <clause> THEN <result>
+    			...
+    			ELSE <result>
+    	END
 
 Es una parte algo tosca de SQL; un error común es olvidar el `END` o la cláusula `ELSE`.
 
@@ -123,6 +124,7 @@ Es útil pensar en cómo el motor ejecuta estas consultas: la versión con `WHER
 	data-solution='SELECT MIN(ex_age), MAX(ex_age), AVG(ex_age) FROM executions'></sql-exercise>
 
 <a name="documentation"></a>
+
 <div class="sideNote">
 	<h3>Buscar documentación</h3>
 	<p>Este libro no pretende ser una referencia exhaustiva de SQL. Para eso tendrás que mirar otros recursos en línea. Es una habilidad importante porque seguirás consultando documentación incluso después de familiarizarte con el lenguaje.</p>
@@ -158,6 +160,7 @@ Antes de terminar, veamos esta consulta: `SELECT first_name, COUNT(*) FROM execu
 En la práctica, las bases de datos tratan de devolver algo razonable. En nuestro caso, la base de datos elige el nombre correspondiente a la última fila de la tabla. Dado que la tabla está en orden cronológico inverso, la última fila es Charlie Brooks Jr. Las diferentes bases de datos pueden comportarse distinto, así que no conviene confiar en este comportamiento implícito.
 
 <a name="dialects"></a>
+
 <div class="sideNote">
 	<h3>Dialectos de SQL y bases de datos</h3>
 	<p>Aunque llamamos a esto un libro sobre SQL, en realidad es un libro sobre <i>SQLite</i>. SQL es una idea general; en la práctica existen dialectos que implementan distintas partes del estándar.</p>
@@ -181,4 +184,3 @@ FROM executions"
 Este método es impreciso porque la inocencia puede expresarse de otras formas como "not guilty". Aun así, probablemente subestima el número real y da una estimación aproximada. La pregunta que queda es si estamos dispuestos a aceptar la posibilidad de que hasta un 5% de las personas ejecutadas sean inocentes. ([Paul Graham no está dispuesto.](http://paulgraham.com/prop62.html))
 
 Para recapitular, hemos pasado de operaciones a nivel de fila a funciones de agregación sobre múltiples filas. Esto abre la posibilidad de estudiar comportamientos a nivel de sistema. En el siguiente capítulo aprenderemos a aplicar agregaciones por subgrupos usando `GROUP BY`.
-
