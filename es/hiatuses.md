@@ -8,7 +8,7 @@ dbFile: data/tx_deathrow_small.db
 
 ## Pausas
 
-Este gráfico muestra las ejecuciones a lo largo del tiempo.<img src="imgs/exno_time.png"> Observa que ha habido varios periodos prolongados sin ejecuciones. Nuestro objetivo es averiguar exactamente cuándo ocurrieron y estudiar sus causas.
+Este gráfico muestra las ejecuciones a lo largo del tiempo.<img src="/imgs/exno_time.png"> Observa que ha habido varios periodos prolongados sin ejecuciones. Nuestro objetivo es averiguar exactamente cuándo ocurrieron y estudiar sus causas.
 
 Nuestra estrategia es preparar la tabla de modo que cada fila contenga también la fecha de la ejecución anterior. Luego podemos calcular la diferencia entre ambas fechas, ordenarlas en orden descendente y leer las pausas más largas.
 
@@ -29,7 +29,7 @@ Supongamos que la información adicional que queremos existe en una tabla llamad
     ORDER BY day_difference DESC
     LIMIT 10
 
-El bloque `JOIN` es el foco de esta sección. En lugar de verlo como una línea aislada, a menudo es útil visualizarlo así: <img src="imgs/join_correctview.png"> Esto enfatiza cómo `JOIN` crea una gran tabla combinada que luego se alimenta al bloque `FROM` como cualquier otra tabla.
+El bloque `JOIN` es el foco de esta sección. En lugar de verlo como una línea aislada, a menudo es útil visualizarlo así: <img src="/imgs/join_correctview.png"> Esto enfatiza cómo `JOIN` crea una gran tabla combinada que luego se alimenta al bloque `FROM` como cualquier otra tabla.
 <a name="disam_cols"></a>
 
 <div class="sideNote">
