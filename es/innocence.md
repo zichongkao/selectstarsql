@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: es_tutorial
 title: Reclamaciones de inocencia
 dbFile: data/tx_deathrow_small.db
 ---
@@ -73,12 +73,12 @@ Otra variación común es contar un subconjunto de la tabla. Por ejemplo, contar
 
 La solución es usar `CASE WHEN`, que actúa como un gran if-else. Tiene el formato:
 
-    	CASE
-    			WHEN <clause> THEN <result>
-    			WHEN <clause> THEN <result>
-    			...
-    			ELSE <result>
-    	END
+    CASE
+    	WHEN <clause> THEN <result>
+    	WHEN <clause> THEN <result>
+    	...
+    	ELSE <result>
+    END
 
 Es una parte algo tosca de SQL; un error común es olvidar el `END` o la cláusula `ELSE`.
 
@@ -86,16 +86,16 @@ Es una parte algo tosca de SQL; un error común es olvidar el `END` o la cláusu
 	data-question="Esta consulta cuenta las ejecuciones de Harris y Bexar. Sustituye los `SUM` por `COUNT` y ajusta los `CASE WHEN` para que funcione correctamente."
 	data-comment="Cambiar solo `SUM` por `COUNT` no basta porque `COUNT` cuenta ceros ya que 0 no es nulo."
 	data-default-text="SELECT
-		SUM(CASE WHEN county='Harris' THEN 1
-				ELSE 0 END),
-		SUM(CASE WHEN county='Bexar' THEN 1
-				ELSE 0 END)
+	SUM(CASE WHEN county='Harris' THEN 1
+		ELSE 0 END),
+	SUM(CASE WHEN county='Bexar' THEN 1
+		ELSE 0 END)
 FROM executions"
 	data-solution="SELECT
-		COUNT(CASE WHEN county='Harris' THEN 1
-				ELSE NULL END),
-		COUNT(CASE WHEN county='Bexar' THEN 1
-				ELSE NULL END)
+	COUNT(CASE WHEN county='Harris' THEN 1
+		ELSE NULL END),
+	COUNT(CASE WHEN county='Bexar' THEN 1
+		ELSE NULL END)
 FROM executions"></sql-exercise>
 
 <br>
@@ -177,7 +177,7 @@ Usemos lo aprendido para completar nuestra tarea:
 	data-comment="Para obtener división decimal, asegura que uno de los números sea decimal multiplicando por 1.0. Usa <code>LIKE '%innocent%'</code> para encontrar reclamaciones de inocencia." 
 	data-solution="SELECT
 1.0 * COUNT(CASE WHEN last_statement LIKE '%innocent%'
-		THEN 1 ELSE NULL END) / COUNT(*)
+	THEN 1 ELSE NULL END) / COUNT(*)
 FROM executions"
 ></sql-exercise>
 

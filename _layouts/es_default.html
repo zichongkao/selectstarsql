@@ -8,27 +8,27 @@
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="imgs/favicon.ico" />
+      href="/imgs/favicon.ico" />
     <!-- thanks to https://favicon.io/ -->
     <link
       rel="stylesheet"
-      href="css/codemirror.css" />
+      href="/css/codemirror.css" />
     <link
       rel="stylesheet"
-      href="css/neat.css" />
+      href="/css/neat.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed" />
     <link
       rel="stylesheet"
-      href="css/main.css" />
+      href="/css/main.css" />
     <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
-    <script src="scripts/codemirror.js"></script>
-    <script src="scripts/codemirrorsql.js"></script>
-    <script src="scripts/autorefresh.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="/scripts/codemirror.js"></script>
+    <script src="/scripts/codemirrorsql.js"></script>
+    <script src="/scripts/autorefresh.js"></script>
+    <script src="/scripts/main.js"></script>
     <script>
-      window.onload = () => loadData("{{ page.dbFile }}");
+      window.onload = () => loadData('../{{ page.dbFile }}');
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -45,30 +45,25 @@
     <title>{{ page.title }}</title>
 
     <!-- add meta tag for translated version -->
-    {% assign current_page = page.url | replace:'/','' | replace:'..','' %} {%
-    for hebrew_page in site.data.he_sitemap.contents %} {% assign
-    hebrew_page_source_url = hebrew_page.english_url | replace:'/','' |
-    replace:'..','' %} {% if current_page == hebrew_page_source_url %}
-    <link
-      rel="alternate"
-      hreflang="en"
-      href="{{ page.url }}" />
-    <link
-      rel="alternate"
-      hreflang="he"
-      href="/he/{{ hebrew_page.url  }}" />
-    {% endif %} {% endfor %}
+    {% assign current_page = page.url | replace:'/','' | replace:'..','' %}
+    {% for spanish_page in site.data.es_sitemap.contents %}
+      {% assign spanish_page_source_url = spanish_page.english_url | replace:'/','' | replace:'..','' %}
+      {% if current_page == spanish_page_source_url %}
+    <link rel="alternate" hreflang="en" href="{{ page.url }}">
+    <link rel="alternate" hreflang="es" href="/es/{{ spanish_page.url  }}">
+      {% endif %}
+    {% endfor %}
   </head>
 
   <body>
     <div id="column">
       <div class="header">
-        <a href="/"
+        <a href="/es/"
           ><img
             class="logo"
-            src="imgs/favicon-256.png"
+            src="/imgs/favicon-256.png"
         /></a>
-        <a href="/"><div class="title">Select Star SQL</div></a>
+        <a href="/es/"><div class="title">Select Star SQL</div></a>
       </div>
       <div class="content">{{content}}</div>
       <div class="footer">
@@ -81,7 +76,7 @@
         >. La traducción al hebreo es de
         <a href="https://thepitz.io/">Noam Castel</a>, la traducción al
         neerlandés es de Jowan Vogel, la traducción al italiano es de Stefano
-        Caglio, y la traducción al francés es de April Tao. El código y los
+        Caglio, la traducción al español es de Daniel René Piedra, y la traducción al francés es de April Tao. El código y los
         datos están en el dominio público bajo la
         <a href="https://creativecommons.org/publicdomain/zero/1.0/"
           >licencia CC0</a
