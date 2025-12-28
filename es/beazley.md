@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: es_tutorial
 title: La última declaración de Beazley
 dbFile: data/tx_deathrow_small.db
 ---

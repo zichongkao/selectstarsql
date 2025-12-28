@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: es_tutorial
 title: Información general
 dbFile: data/tx_deathrow_small.db
 ---

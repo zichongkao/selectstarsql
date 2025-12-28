@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: es_tutorial
 title: La larga cola
 dbFile: data/tx_deathrow_small.db
 ---
@@ -86,100 +86,100 @@ Este quiz está diseñado para desafiar tu comprensión. Lee las explicaciones a
 	data-title="Marca las afirmaciones verdaderas."
 	data-description="Esta consulta encuentra el número de reclusos por condado y por rango de edad de 10 años. <pre>
 SELECT
-	county,
-	ex_age/10 AS decade_age,
-	COUNT(*)
+  county,
+  ex_age/10 AS decade_age,
+  COUNT(*)
 FROM executions
 GROUP BY county, decade_age</pre>">
 <sql-quiz-option
-		data-value="valid"
-		data-statement="La consulta es válida (no lanzará error)."
-		data-hint="¿Te desconcertó <code>ex_age/10</code>? Agrupar por columnas transformadas también es válido."
-		data-correct="true"></sql-quiz-option>
+  data-value="valid"
+  data-statement="La consulta es válida (no lanzará error)."
+  data-hint="¿Te desconcertó <code>ex_age/10</code>? Agrupar por columnas transformadas también es válido."
+  data-correct="true"></sql-quiz-option>
 <sql-quiz-option
-		data-value="gran"
-		data-statement="La consulta devolvería más filas si usáramos <code>ex_age</code> en lugar de <code>ex_age/10</code>."
-		data-hint="Recuerda que <code>ex_age/10</code> es división entera que redondea las edades, produciendo menos grupos únicos."
-		data-correct="true"></sql-quiz-option>
+  data-value="gran"
+  data-statement="La consulta devolvería más filas si usáramos <code>ex_age</code> en lugar de <code>ex_age/10</code>."
+  data-hint="Recuerda que <code>ex_age/10</code> es división entera que redondea las edades, produciendo menos grupos únicos."
+  data-correct="true"></sql-quiz-option>
 <sql-quiz-option
-		data-value="unique_combocc"
-		data-statement="La salida tendrá tantas filas como combinaciones únicas de condado y decade_age en el dataset."
-		data-hint="Esto es correcto."
-		data-correct="true"></sql-quiz-option>
+  data-value="unique_combocc"
+  data-statement="La salida tendrá tantas filas como combinaciones únicas de condado y decade_age en el dataset."
+  data-hint="Esto es correcto."
+  data-correct="true"></sql-quiz-option>
 <sql-quiz-option
-		data-statement="La salida tendrá un grupo ('Bexar', 6) aunque no haya reclusos de Bexar entre 60 y 69."
-		data-hint="GROUP BY encuentra combinaciones <i>en el dataset</i>, no todas las combinaciones teóricas."
-		data-value="abstract_cartesian"></sql-quiz-option>
+  data-statement="La salida tendrá un grupo ('Bexar', 6) aunque no haya reclusos de Bexar entre 60 y 69."
+  data-hint="GROUP BY encuentra combinaciones <i>en el dataset</i>, no todas las combinaciones teóricas."
+  data-value="abstract_cartesian"></sql-quiz-option>
 <sql-quiz-option
-		data-statement="La salida tendrá un valor distinto de county para cada fila."
-		data-hint="Eso sería cierto solo si county fuera la única columna de agrupamiento. Aquí podemos tener muchos grupos con el mismo county pero diferente decade_age."
-		data-value="one_col_diff"></sql-quiz-option>
+  data-statement="La salida tendrá un valor distinto de county para cada fila."
+  data-hint="Eso sería cierto solo si county fuera la única columna de agrupamiento. Aquí podemos tener muchos grupos con el mismo county pero diferente decade_age."
+  data-value="one_col_diff"></sql-quiz-option>
 <sql-quiz-option
-		data-statement="La salida puede tener grupos con conteo 0."
-		data-hint="Si no hay filas para ('Bexar', 6), el grupo simplemente no aparece."
-		data-value="count_zero"></sql-quiz-option>
+  data-statement="La salida puede tener grupos con conteo 0."
+  data-hint="Si no hay filas para ('Bexar', 6), el grupo simplemente no aparece."
+  data-value="count_zero"></sql-quiz-option>
 <sql-quiz-option
-		data-statement="La consulta sería válida aun sin especificar county en SELECT."
-		data-hint="Las columnas de agrupamiento no tienen que aparecer en SELECT, sería válido pero confuso."
-		data-value="missing_gp_col"
-		data-correct="true"></sql-quiz-option>
+  data-statement="La consulta sería válida aun sin especificar county en SELECT."
+  data-hint="Las columnas de agrupamiento no tienen que aparecer en SELECT, sería válido pero confuso."
+  data-value="missing_gp_col"
+  data-correct="true"></sql-quiz-option>
 <sql-quiz-option
-		data-statement="Es razonable añadir <code>last_name</code> en SELECT sin agrupar por ella."
-		data-hint="Aunque SQLite lo permitiría (ver 'Una consulta extraña'), es mala práctica mezclar columnas no agregadas y no agrupadas."
-		data-value="extra_gp_col"></sql-quiz-option>
+  data-statement="Es razonable añadir <code>last_name</code> en SELECT sin agrupar por ella."
+  data-hint="Aunque SQLite lo permitiría (ver 'Una consulta extraña'), es mala práctica mezclar columnas no agregadas y no agrupadas."
+  data-value="extra_gp_col"></sql-quiz-option>
 </sql-quiz>
 
 <sql-exercise
-	data-question="Lista todos los condados distintos en el dataset."
-	data-comment="Lo hicimos antes con <code>SELECT DISTINCT</code>. Ahora usa <code>GROUP BY</code>."
-	data-default-text=""
-	data-solution="SELECT county FROM executions GROUP BY county"
-	></sql-exercise>
+  data-question="Lista todos los condados distintos en el dataset."
+  data-comment="Lo hicimos antes con <code>SELECT DISTINCT</code>. Ahora usa <code>GROUP BY</code>."
+  data-default-text=""
+  data-solution="SELECT county FROM executions GROUP BY county"
+></sql-exercise>
 
 <br>
 <a name="nested"></a>
 ## Consultas anidadas
 En apariencia podríamos querer algo como:
 
-    	SELECT
-    		county,
-    		PERCENT_COUNT(*)
-    	FROM executions
-    	GROUP BY county
+	SELECT
+      county,
+      PERCENT_COUNT(*)
+    FROM executions
+    GROUP BY county
 
 ¿No sería útil una función así? No existe porque requeriría agregar dentro de grupos (numerador) y en toda la tabla (denominador) a la vez. La solución es usar dos consultas y combinarlas mediante anidamiento.
 
 <sql-exercise
-	data-question="Encuentra el nombre del recluso con la declaración más larga (por número de caracteres)."
-	data-comment="Escribe la consulta adecuada para anidar en &lt;<code>length-of-longest-last-statement</code>&gt;."
-	data-default-text="SELECT first_name, last_name
+  data-question="Encuentra el nombre del recluso con la declaración más larga (por número de caracteres)."
+  data-comment="Escribe la consulta adecuada para anidar en &lt;<code>length-of-longest-last-statement</code>&gt;."
+  data-default-text="SELECT first_name, last_name
 FROM executions
 WHERE LENGTH(last_statement) =
-		(<length-of-longest-last-statement>)"
-	data-solution="SELECT first_name, last_name
+  (<length-of-longest-last-statement>)"
+  data-solution="SELECT first_name, last_name
 FROM executions
 WHERE LENGTH(last_statement) =
-		(SELECT MAX(LENGTH(last_statement))
-		 FROM executions)"></sql-exercise>
+  (SELECT MAX(LENGTH(last_statement))
+   FROM executions)"></sql-exercise>
 
 <sql-exercise
-	data-question="Inserta la subconsulta <code>&lt;count-of-all-rows&gt;</code> para hallar el porcentaje de ejecuciones por condado."
-	data-comment="100.0 es decimal para obtener porcentajes con decimales."
-	data-default-text="SELECT
-	county,
-	100.0 * COUNT(*) / (<count-of-all-rows>)
-		AS percentage
+  data-question="Inserta la subconsulta <code>&lt;count-of-all-rows&gt;</code> para hallar el porcentaje de ejecuciones por condado."
+  data-comment="100.0 es decimal para obtener porcentajes con decimales."
+  data-default-text="SELECT
+  county,
+  100.0 * COUNT(*) / (<count-of-all-rows>)
+    AS percentage
 FROM executions
 GROUP BY county
 ORDER BY percentage DESC"
-	data-solution="SELECT
-	county,
-	100.0 * COUNT(*) / (SELECT COUNT(*) FROM executions)
-		AS percentage
+  data-solution="SELECT
+  county,
+  100.0 * COUNT(*) / (SELECT COUNT(*) FROM executions)
+    AS percentage
 FROM executions
 GROUP BY county
 ORDER BY percentage DESC"
-	></sql-exercise>
+></sql-exercise>
 
 He añadido silenciosamente un `ORDER BY`. Su formato es <code class="codeblock">ORDER BY &lt;column&gt;, &lt;column&gt;, ...</code> y puede modificarse con `DESC` para orden descendente.
 
@@ -200,8 +200,8 @@ En esta sección aprendimos a agregar por grupos y a usar anidamiento para usar 
 <a name="mapreduce"></a>
 
 <div class="sideNote">
-	<h3>MapReduce</h3>
-	<p>Un apéndice interesante: hemos aprendido a hacer MapReduce en SQL. MapReduce es un paradigma que ve los cálculos como pasos de "map" y "reduce". El capítulo <a href="beazley.html">Beazley</a> fue sobre mapping; este capítulo muestra cómo reducir grupos usando agregación.</p>
+  <h3>MapReduce</h3>
+  <p>Un apéndice interesante: hemos aprendido a hacer MapReduce en SQL. MapReduce es un paradigma que ve los cálculos como pasos de "map" y "reduce". El capítulo <a href="beazley.html">Beazley</a> fue sobre mapping; este capítulo muestra cómo reducir grupos usando agregación.</p>
 </div>
 
 En el siguiente capítulo aprenderemos sobre `JOIN`s que permiten trabajar con múltiples tablas.

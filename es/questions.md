@@ -1,5 +1,5 @@
 ---
-layout: tutorial
+layout: es_tutorial
 title: Comentarios finales y preguntas de desafío
 dbFile: data/114_congress_small.db
 ---
@@ -32,8 +32,8 @@ Los ejercicios de los capítulos previos fueron diseñados para reducir la compl
 <a name="call_for_problems"></a>
 
 <div class="sideNote">
-	<H3>Llamado para problemas</H3>
-	<p>Los buenos problemas hacen o deshacen un tutorial. Si tienes una idea para un nuevo problema o sección, estaré encantado de ayudarte a publicarlo con crédito completo para ti. Envíame un correo a <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> o presenta un <a href="https://github.com/zichongkao/selectstarsql">pull request</a>. Recuerda que los buenos problemas no tienen por qué ser difíciles: muestran técnicas con amplia aplicabilidad.</p>
+  <H3>Llamado para problemas</H3>
+  <p>Los buenos problemas hacen o deshacen un tutorial. Si tienes una idea para un nuevo problema o sección, estaré encantado de ayudarte a publicarlo con crédito completo para ti. Envíame un correo a <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> o presenta un <a href="https://github.com/zichongkao/selectstarsql">pull request</a>. Recuerda que los buenos problemas no tienen por qué ser difíciles: muestran técnicas con amplia aplicabilidad.</p>
 </div>
 
 <br />
@@ -45,23 +45,23 @@ En esta sección introducimos un nuevo conjunto de datos de la 114ª sesión del
 El senador que presenta un proyecto se llama "sponsor". Otros senadores pueden apoyar presentándose como cosponsors. Los cosponsors al momento de la introducción se llaman "original cosponsors". Cada fila muestra el proyecto, el sponsor, un cosponsor original y los estados que representan. Puede haber múltiples cosponsors por proyecto.
 
 <sql-exercise
-	data-question="Echa un vistazo al dataset."
-	data-comment="Con 15K filas es algo más grande que el dataset de Texas, así que evita imprimir todo."
-	data-default-text="SELECT * FROM cosponsors LIMIT 3"
-	></sql-exercise>
+  data-question="Echa un vistazo al dataset."
+  data-comment="Con 15K filas es algo más grande que el dataset de Texas, así que evita imprimir todo."
+  data-default-text="SELECT * FROM cosponsors LIMIT 3"
+></sql-exercise>
 
 <sql-exercise
-data-question="Encuentra el senador más 'conectado', es decir, el que tiene más cosponsorizaciones mutuas."
-data-comment="Una cosponsorización mutua se da cuando dos senadores han cosponsorizado proyectos del otro. Aunque un par haya cooperado en muchos proyectos, la relación cuenta solo una vez."
-data-solution="
+  data-question="Encuentra el senador más 'conectado', es decir, el que tiene más cosponsorizaciones mutuas."
+  data-comment="Una cosponsorización mutua se da cuando dos senadores han cosponsorizado proyectos del otro. Aunque un par haya cooperado en muchos proyectos, la relación cuenta solo una vez."
+  data-solution="
 WITH mutuals AS (
-SELECT DISTINCT
-c1.sponsor_name AS senator,
-c2.sponsor_name AS senator2
-FROM cosponsors c1
-JOIN cosponsors c2
-ON c1.sponsor_name = c2.cosponsor_name
-AND c2.sponsor_name = c1.cosponsor_name
+  SELECT DISTINCT
+    c1.sponsor_name AS senator,
+    c2.sponsor_name AS senator2
+  FROM cosponsors c1
+  JOIN cosponsors c2
+    ON c1.sponsor_name = c2.cosponsor_name
+    AND c2.sponsor_name = c1.cosponsor_name
 )
 
 SELECT senator, COUNT(\*) AS mutual_count
@@ -71,55 +71,54 @@ ORDER BY mutual_count DESC
 LIMIT 1" ></sql-exercise>
 
 <sql-exercise
-data-question="Ahora encuentra el senador más conectado por estado."
-data-comment="Si varios empatan en el primer puesto, muestra ambos. Devuelve columnas: estado, senador y número de cosponsorizaciones mutuas."
-data-solution="
+  data-question="Ahora encuentra el senador más conectado por estado."
+  data-comment="Si varios empatan en el primer puesto, muestra ambos. Devuelve columnas: estado, senador y número de cosponsorizaciones mutuas."
+  data-solution="
 WITH mutual_counts AS (
-SELECT
-senator, state, COUNT(\*) AS mutual_count
-FROM (
-SELECT DISTINCT
-c1.sponsor_name AS senator,
-c1.sponsor_state AS state,
-c2.sponsor_name AS senator2
-FROM cosponsors c1
-JOIN cosponsors c2
-ON c1.sponsor_name = c2.cosponsor_name
-AND c2.sponsor_name = c1.cosponsor_name
-)
-GROUP BY senator, state
+  SELECT
+    senator, state, COUNT(\*) AS mutual_count
+  FROM (
+    SELECT DISTINCT
+      c1.sponsor_name AS senator,
+      c1.sponsor_state AS state,
+      c2.sponsor_name AS senator2
+    FROM cosponsors c1
+    JOIN cosponsors c2
+      ON c1.sponsor_name = c2.cosponsor_name
+      AND c2.sponsor_name = c1.cosponsor_name
+  )
+  GROUP BY senator, state
 ),
 
 state_max AS (
-SELECT
-state,
-MAX(mutual_count) AS max_mutual_count
-FROM mutual_counts
-GROUP BY state
+  SELECT
+    state,
+    MAX(mutual_count) AS max_mutual_count
+  FROM mutual_counts
+  GROUP BY state
 )
 
 SELECT
-mutual_counts.state,
-mutual_counts.senator,
-mutual_counts.mutual_count
+  mutual_counts.state,
+  mutual_counts.senator,
+  mutual_counts.mutual_count
 FROM mutual_counts
 JOIN state_max
-ON mutual_counts.state = state_max.state
-AND mutual_counts.mutual_count = state_max.max_mutual_count
-" ></sql-exercise>
+  ON mutual_counts.state = state_max.state
+  AND mutual_counts.mutual_count = state_max.max_mutual_count
+"></sql-exercise>
 
 <sql-exercise
-	data-question="Encuentra los senadores que cosponsorearon pero no fueron sponsors."
-	data-comment=""
-	data-solution="
+  data-question="Encuentra los senadores que cosponsorearon pero no fueron sponsors."
+  data-comment=""
+  data-solution="
 SELECT DISTINCT c1.cosponsor_name
 FROM cosponsors c1
 LEFT JOIN cosponsors c2
- ON c1.cosponsor_name = c2.sponsor_name
- -- This join identifies cosponsors
- -- who have sponsored bills
+  ON c1.cosponsor_name = c2.sponsor_name
+  -- This join identifies cosponsors
+  -- who have sponsored bills
 WHERE c2.sponsor_name IS NULL
--- LEFT JOIN + NULL is a standard trick for excluding
--- rows. It's more efficient than WHERE ... NOT IN.
-"
-	></sql-exercise>
+  -- LEFT JOIN + NULL is a standard trick for excluding
+  -- rows. It's more efficient than WHERE ... NOT IN.
+"></sql-exercise>
