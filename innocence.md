@@ -44,7 +44,7 @@ As you can tell, the `COUNT` function is intrinsically tied to the concept of `N
   <sql-exercise
     data-question="Verify that 0 and the empty string are not considered NULL."
     data-comment="Recall that this is a compound clause. Both of the two <code>IS NOT NULL</code> clauses have to be true for the query to return <code>true</code>."
-    data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL) "
+    data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL)"
     ></sql-exercise>
 </div>
 
@@ -71,10 +71,10 @@ Another common variation is to count a subset of the table. For instance, counti
 The solution is to apply a `CASE WHEN` block which acts as a big if-else statement. It has two formats and the one I like is:
 
     CASE
-        WHEN <clause> THEN <result>
-        WHEN <clause> THEN <result>
-        ...
-        ELSE <result>
+      WHEN <clause> THEN <result>
+      WHEN <clause> THEN <result>
+      ...
+      ELSE <result>
     END
 
 This is admittedly one of the clunkier parts of SQL. A common mistake is to miss out the `END` command and the `ELSE` condition which is a catchall in case all the prior clauses are false. Also recall from the previous chapter that clauses are expressions that can be evaluated to be true or false. This makes it important to think about the boolean value of whatever you stuff in there.
@@ -83,16 +83,16 @@ This is admittedly one of the clunkier parts of SQL. A common mistake is to miss
   data-question="This query counts the number of Harris and Bexar county executions. Replace <code>SUM</code>s with <code>COUNT</code>s and edit the <code>CASE WHEN</code> blocks so the query still works."
   data-comment="Switching <code>SUM</code> for <code>COUNT</code> alone isn't enough because <code>COUNT</code> still counts the 0 since 0 is non-null."
   data-default-text="SELECT
-    SUM(CASE WHEN county='Harris' THEN 1
-        ELSE 0 END),
-    SUM(CASE WHEN county='Bexar' THEN 1
-        ELSE 0 END)
+  SUM(CASE WHEN county='Harris' THEN 1
+    ELSE 0 END),
+  SUM(CASE WHEN county='Bexar' THEN 1
+    ELSE 0 END)
 FROM executions"
   data-solution="SELECT
-    COUNT(CASE WHEN county='Harris' THEN 1
-        ELSE NULL END),
-    COUNT(CASE WHEN county='Bexar' THEN 1
-        ELSE NULL END)
+  COUNT(CASE WHEN county='Harris' THEN 1
+    ELSE NULL END),
+  COUNT(CASE WHEN county='Bexar' THEN 1
+    ELSE NULL END)
 FROM executions"></sql-exercise>
 
 <br>
