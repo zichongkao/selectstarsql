@@ -1,0 +1,125 @@
+contents:
+- title: Prefácio
+  url: frontmatter.html
+  english_url: ../frontmatter.html
+  blurb: "Os fundamentos filosóficos e técnicos deste projeto."
+  sections:
+  - name: Motivação
+    url: "#impetus"
+  - name: Pedagogia
+    url: "#pedagogy"
+  - name: Conjunto de dados
+    url: "#dataset"
+  - name: Aspectos técnicos
+    url: "#technicals"
+  - name: Créditos e contato
+    url: "#contact"
+- title: Última declaração de Beazley
+  url: beazley.html
+  english_url: ../beazley.html
+  blurb: "O capítulo 1 examina o argumento de Napoleon Beazley contra a pena de morte. Aprendemos a estrutura de uma consulta SQL e operações sobre linhas de uma tabela."
+  sections:
+  - name: O caso Beazley
+    url: "#beazley_case"
+  - name: Uma primeira consulta SQL
+    url: "#first"
+  - name: O bloco SELECT
+    url: "#select"
+  - name: Comentários em SQL
+    url: "#comments"
+    sidenote: true
+  - name: O bloco FROM
+    url: "#from"
+  - name: Uso de maiúsculas e minúsculas
+    url: "#capitalization"
+    sidenote: true
+  - name: Espaços em branco
+    url: "#whitespace"
+    sidenote: true
+  - name: O bloco WHERE
+    url: "#where"
+  - name: Aspas
+    url: "#quotes"
+    sidenote: true
+  - name: Recapitulação
+    url: "#recap"
+- title: Alegações de Inocência
+  url: innocence.html
+  english_url: ../innocence.html
+  blurb: "O capítulo 2 estima quantos detentos executados podem ter sido inocentes. O tema técnico é agregar a tabela inteira."
+  sections:
+  - name: Possível inocência
+    url: "#possible_innocence"
+  - name: Funções de agregação
+    url: "#aggregations"
+  - name: A função COUNT
+    url: "#count"
+  - name: NULLs
+    url: "#nulls"
+    sidenote: true
+  - name: Variações de COUNT
+    url: "#count_var"
+  - name: Consultando a documentação
+    url: "#documentation"
+    sidenote: true
+  - name: Uma consulta estranha
+    url: "#strange"
+  - name: Dialetos SQL e bancos de dados
+    url: "#dialects"
+    sidenote: true
+  - name: Conclusão e revisão
+    url: "#recap"
+- title: A Cauda Longa
+  url: longtail.html
+  english_url: ../longtail.html
+  blurb: "O capítulo 3 estuda condados com números incomumente altos de execuções. Generalizamos o capítulo 2 aplicando agregações a grupos de linhas."
+  sections:
+  - name: Caudas Longas
+    url: "#long_tail"
+  - name: O Bloco GROUP BY
+    url: "#groupby"
+  - name: O Bloco HAVING
+    url: "#having"
+  - name: Consultas Aninhadas
+    url: "#nested"
+  - name: Condado de Harris
+    url: "#harris"
+  - name: Recapitulação
+    url: "#recap"
+  - name: MapReduce
+    url: "#mapreduce"
+    sidenote: true
+- title: Intervalos sem Execuções
+  url: hiatuses.html
+  english_url: ../hiatuses.html
+  blurb: "O capítulo 4 explora períodos prolongados em que nenhuma execução ocorreu. O tema é estender a tabela usando joins."
+  sections:
+  - name: Intervalos sem Execuções
+    url: "#hiatuses"
+  - name: Pensando em JOINs
+    url: "#joins"
+  - name: Desambiguando Colunas
+    url: "#disam_cols"
+    sidenote: true
+  - name: Tipos de JOINs
+    url: "#join_types"
+  - name: Datas
+    url: "#dates"
+  - name: Auto-junções
+    url: "#self_joins"
+  - name: Recapitulação
+    url: "#recap"
+- title: Considerações Finais e Questões Desafio
+  url: questions.html
+  english_url: ../questions.html
+  blurb: "O capítulo 5 traz considerações finais e uma coleção de questões desafio adicionadas por leitores."
+  sections:
+  - name: Considerações Finais
+    url: "#closing_remarks"
+  - name: Questões Desafio
+    url: "#challenge_questions"
+  - name: Convite para Problemas
+    url: "#call_for_problems"
+    sidenote: true
+  - name: Conjunto de Dados de Coautoria no Senado
+    url: "#senate_cosponsorship"
