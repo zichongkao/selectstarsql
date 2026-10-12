@@ -36,6 +36,13 @@
       {% endif %}
     {% endfor %}
 
+    {% for pt_br_page in site.data.pt_br_sitemap.contents %}
+      {% assign pt_br_page_source_url = pt_br_page.english_url | replace:'/','' | replace:'..','' %}
+      {% if current_page == pt_br_page_source_url %}
+    <link rel="alternate" hreflang="pt-BR" href="/pt-br/{{ pt_br_page.url }}">
+      {% endif %}
+    {% endfor %}
+
   </head>
 
   <body>
@@ -53,7 +60,8 @@
          the <a href="/nl/">Dutch translation</a> is by Jowan Vogel,
          the <a href="/it/">Italian translation</a> is by Stefano Caglio,
          the <a href="/es/">Spanish translation</a> is by Daniel René Piedra,
-         and the <a href='/fr/'>French Translation</a> is by April Tao. Code and data are released into the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 License</a>.
+         the <a href='/fr/'>French translation</a> is by April Tao,
+         and the <a href="/pt-br/">Brazilian Portuguese translation</a> is by Samuel Capetinga Bomtempo. Code and data are released into the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 License</a>.
       </div>
     </div>
   </body>
