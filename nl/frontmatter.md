@@ -57,6 +57,6 @@ Het boek is genereus vertaald door vrijwilligers. Neem gerust contact met hen op
 - <a href="/he/">Hebreeuws</a>: <a href="https://thepitz.io/">Noam Castel</a>
 - <a href="/it/">Italiaans</a>: Stefano Caglio
 - <a href="/nl/">Nederlands</a>: Jowan Vogel
-- <a href="/pt-br/">Braziliaans-Portugees</a>: Samuel Capetinga Bomtempo (<a href="mailto:sam.makes.programs@gmail.com">sam.makes.programs@gmail.com</a>)
+- <a href="/pt-br/">Braziliaans-Portugees</a>: Samuel Capetinga Bomtempo
 
 Veel dank aan Sonja Lea Heinze, Quinn Batten en <a href="https://nickretallack.com">Nicholas Retallack</a> voor hun waardevolle feedback.
