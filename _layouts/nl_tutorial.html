@@ -12,7 +12,7 @@ layout: nl_default
 {% endfor %}
 
 <div class="section-nav">
-  <a href="/nl/">Home</a>
+  <a href="/nl/">Startpagina</a>
   {% if previous >= 0 %}
     {% assign previous_tutorial = site.data.nl_sitemap.contents[previous] %}
     <div class="section-sib">
@@ -52,13 +52,13 @@ layout: nl_default
 <div class="tutorial-nav">
     {% if site.data.nl_sitemap.contents[next].title %}
       {% assign next_tutorial = site.data.nl_sitemap.contents[next] %}
-      <div class="next">Volgende<a href="{{ next_tutorial.url }}">
+      <div class="next">Volgende: <a href="{{ next_tutorial.url }}">
       {{ next_tutorial.title }}</a></div>
     {% endif %}
 
   {% if previous >= 0 %}
     {% assign previous_tutorial = site.data.nl_sitemap.contents[previous] %}
-    <div class="previous">Vorig<a href="{{ previous_tutorial.url }}">
+    <div class="previous">Vorige: <a href="{{ previous_tutorial.url }}">
     {{ previous_tutorial.title }}</a></div>
   {% endif %}
 </div>

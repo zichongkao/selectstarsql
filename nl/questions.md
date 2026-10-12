@@ -1,52 +1,53 @@
 ---
 layout: nl_tutorial
-title: Closing Remarks and Challenge Questions
+title: Slotopmerkingen en uitdagingsvragen
 dbFile: data/114_congress_small.db
 ---
 
 <a name="closing_remarks"></a>
 ## Slotopmerkingen
-Bedankt voor het blijven hangen tot het einde! Ik hoop dat het aangenaam en verhelderend was om te lezen.
+Bedankt dat je het tot het einde hebt volgehouden! Ik hoop dat het aangenaam en verhelderend was om te lezen.
 
-Op dit punt hebben we de meeste belangrijke SQL-commando's en -functies behandeld, maar ik hoop dat je vooral de technieken en heuristieken voor het bedenken van queries hebt geleerd. Enkele van de belangrijkste waren:
-- <p>De vorm van beschikbare tabellen vergelijken met het gewenste resultaat om te beslissen welke aggregatie we moeten doen.</p>
-- <p>Onderzoeken waar de informatie die we nodig hebben zich bevindt. Zit het in een aangrenzende rij? Of in een groep? Of in de hele dataset?</p>
-- <p>Queries interpreteren in de juiste logische structuur. Bijvoorbeeld, clausules zien als in wezen waar of onwaar; <code>&lt;table1&gt; JOIN &lt;table2&gt; ON ...</code> zien als een grote tabel.</p>
+We hebben nu de meeste belangrijke SQL-commando's en -functies behandeld, maar ik hoop dat je vooral de technieken en vuistregels om over queries na te denken zult onthouden. Enkele van de belangrijkste waren:
+ - <p>De vorm van de beschikbare tabellen vergelijken met het gewenste resultaat om te bepalen welke aggregatie nodig is.</p>
+ - <p>Nagaan waar de informatie die we nodig hebben zich bevindt. Zit die in een aangrenzende rij? In een groep? Of in de hele dataset?</p>
+ - <p>Queries interpreteren in de juiste logische structuur. Bijvoorbeeld voorwaarden zien als in wezen waar of onwaar; <code>&lt;tabel1&gt; JOIN &lt;tabel2&gt; ON ...</code> zien als één grote tabel.</p>
 
-Vooruitkijkend is het, om je SQL-opleiding af te ronden, waarschijnlijk de moeite waard om je te verdiepen in windowfuncties en algemene tabeluitdrukkingen. Je kunt hun gedrag repliceren met technieken die je hier hebt geleerd, maar ze maken het leven een stuk eenvoudiger en introduceren je in een waardevol nieuw paradigma. Ik heb deze concepten weggelaten omdat op het moment van schrijven SQLite nog geen [windowfuncties ondersteunde](https://www.sqlite.org/windowfunctions.html#history) en ik de complexiteit van een nieuwe database en SQL-dialect wilde vermijden.
+Als je je SQL-opleiding wilt afronden, is het waarschijnlijk de moeite waard om je te verdiepen in windowfuncties en common table expressions. Je kunt hun gedrag nabootsen met technieken die je hier hebt geleerd, maar ze maken het leven een stuk eenvoudiger en laten je kennismaken met een waardevol nieuw paradigma. Ik heb deze concepten weggelaten omdat SQLite op het moment van schrijven [nog geen windowfuncties ondersteunde](https://www.sqlite.org/windowfunctions.html#history), en ik de complexiteit van een nieuwe database en een nieuw SQL-dialect wilde vermijden.
 
-Tot nu toe hebben we ook alleen maar geleerd over het consumeren van gegevens (query's). Er is een heel ander gebied van SQL voor het manipuleren van gegevens. Deze gaan over acties zoals het aanmaken van tabellen en het invoegen en verwijderen van gegevens. Het begrijpen van deze concepten kan nuttig zijn, zelfs als je geen databases beheert, omdat het je onder andere helpt te begrijpen waarom tabellen zijn gestructureerd zoals ze zijn.
+Tot nu toe hebben we ook alleen geleerd hoe je gegevens opvraagt (querying). Er is een heel ander deel van SQL voor het bewerken van gegevens. Dat gaat over handelingen zoals het aanmaken van tabellen en het invoegen en verwijderen van gegevens. Deze concepten begrijpen kan nuttig zijn, ook als je zelf geen databases beheert, omdat het je onder andere helpt te begrijpen waarom tabellen zijn opgebouwd zoals ze zijn.
 
-Het belangrijkste is dat je nog steeds veel oefening nodig hebt om effectief te worden in echte wereldproblemen. Het volgende hoofdstuk geeft een aantal oefeningen, maar de moeilijkheidsgraad neemt sterk toe. Je zou de wereld in kunnen gaan en oefenen wat we tot nu toe behandeld hebben en terugkomen als je er klaar voor bent.
+Het belangrijkste is dat je nog veel oefening nodig hebt om echte problemen effectief te kunnen aanpakken. Het volgende gedeelte bevat een aantal oefeningen, maar de moeilijkheidsgraad neemt sterk toe. Misschien wil je eerst de wereld in om te oefenen met wat we tot nu toe hebben behandeld, en terugkomen als je er klaar voor bent.
 
-<br/>
+<br />
 <a name="challenge_questions"></a>
 ## Uitdagingsvragen
-De oefeningen in de vorige hoofdstukken waren bedoeld om de complexiteit te verminderen en een stimulerende omgeving te creëren. Dit hoofdstuk markeert de grens naar de wilde, ongetemde wereld van SQL problemen. Het idee hier is trial-by-fire&mdash;de vragen zijn geoptimaliseerd voor bruikbaarheid in plaats van leergemak. Zelfs ervaren SQL schrijvers kunnen worstelen; en er zit veel waarde in deze worsteling.
+De oefeningen in de vorige hoofdstukken waren bedoeld om de complexiteit te beperken en zo een veilige leeromgeving te creëren. Dit hoofdstuk markeert de grens naar de wilde, ongetemde wereld van SQL-problemen. Het idee is een vuurdoop&mdash;de vragen zijn gekozen op hun praktisch nut in plaats van op leergemak. Zelfs ervaren SQL-schrijvers kunnen ermee worstelen; en juist in die worsteling zit veel waarde.
 
 <a name="call_for_problems"></a>
 <div class="sideNote">
-  <H3>Oproep voor Problemen</H3>
-  <p>Goede problemen maken of breken een tutorial. Als je een idee hebt voor een nieuw probleem of een nieuwe sectie, dan help ik je graag om het hier te plaatsen met volledige eer voor jou. Stuur een e-mail naar <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> of dien een <a href="https://github.com/zichongkao/selectstarsql">pull-verzoek</a> in. Onthoud dat goede problemen niet per se moeilijk zijn&mdash;ze laten technieken zien die brede toepassingen hebben.</p>
+  <H3>Oproep voor problemen</H3>
+  <p>Goede problemen maken of breken een tutorial. Als je een idee hebt voor een nieuw probleem of een nieuw gedeelte, help ik je graag om het hier te plaatsen, met alle eer voor jou. Stuur me een e-mail op <a href="mailto:zichongkao+web@gmail.com">zichongkao@gmail.com</a> of dien een <a href="https://github.com/zichongkao/selectstarsql">pull request</a> in. Onthoud dat goede problemen niet per se moeilijk zijn&mdash;ze laten technieken zien die breed toepasbaar zijn.</p>
 </div>
 
 <br />
 <a name="senate_cosponsorship"></a>
-## Senaat Cosponsorschap Dataset
+## Dataset over cosponsorschap in de Senaat
 ### Geschreven door: Kao
-In dit gedeelte introduceren we een nieuwe dataset van de 114e sessie van het Congres (2015-2016) <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">, samengesteld door James Fowler en anderen</a>. Ik heb de dataset bewerkt zodat we de cosponsorrelaties tussen senatoren kunnen bestuderen.
+In dit gedeelte introduceren we een nieuwe dataset over de 114e zitting van het Congres (2015-2016), <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">samengesteld door James Fowler en anderen</a>. Ik heb de dataset bewerkt zodat we de cosponsorrelaties tussen senatoren kunnen bestuderen.
 
-De senator die het wetsvoorstel indient, wordt de "sponsor" genoemd. Andere senatoren kunnen hun steun betuigen door het wetsvoorstel te steunen. Cosponsors op het moment van de introductie worden "oorspronkelijke cosponsors" genoemd([Bron](https://www.congress.gov/resources/display/content/How+Our+Laws+Are+Made+-+Learn+About+the+Legislative+Process#HowOurLawsAreMade-LearnAbouttheLegislativeProcess-IntroductionandReferraltoCommittee)). Elke rij van de tabel toont het wetsvoorstel, de sponsor, een oorspronkelijke mede-indiener en de staten die de senatoren vertegenwoordigen. Merk op dat er meerdere mede-indieners van een wetsvoorstel kunnen zijn.
+De senator die een wetsvoorstel indient, wordt de "sponsor" genoemd. Andere senatoren kunnen hun steun betuigen door het wetsvoorstel te cosponsoren. Cosponsors op het moment van indiening worden "original cosponsors" genoemd (<a href="https://www.congress.gov/resources/display/content/How+Our+Laws+Are+Made+-+Learn+About+the+Legislative+Process#HowOurLawsAreMade-LearnAbouttheLegislativeProcess-IntroductionandReferraltoCommittee">Bron</a>). Elke rij van de tabel toont het wetsvoorstel, de sponsor, een original cosponsor en de staten die de senatoren vertegenwoordigen. Merk op dat een wetsvoorstel meerdere cosponsors kan hebben.
 
 <sql-exercise
-  data-question="Kijk eens naar de dataset."
-  data-comment="Met 15K rijen is het een beetje groter dan de Texas dataset, dus het beste is om niet alles uit te printen."
+  data-question="Bekijk de dataset."
+  data-comment="Met 15K rijen is deze dataset iets groter dan de dataset over Texas, dus je kunt beter niet alles laten weergeven."
   data-default-text="SELECT * FROM cosponsors LIMIT 3"
-></sql-exercise>
+  ></sql-exercise>
 
 <sql-exercise
-  data-question="Vind de senator met het meeste netwerk. Dat wil zeggen, degene met de meeste wederzijdse cosponsorschappen."
-  data-comment="Een wederzijdse cosponsorschap verwijst naar twee senatoren die elk een wetsvoorstel van de ander hebben gesponsord. Zelfs als een paar senatoren hebben samengewerkt aan veel wetsvoorstellen, telt de relatie nog steeds als één." data-solution="
+  data-question="Vind de senator met het grootste netwerk, dat wil zeggen degene met de meeste wederzijdse cosponsorschappen."
+  data-comment="Er is sprake van wederzijds cosponsorschap als twee senatoren elk een wetsvoorstel hebben gecosponsord dat door de ander is ingediend. Ook als twee senatoren aan veel wetsvoorstellen hebben samengewerkt, telt de relatie nog steeds als één."
+  data-solution="
 WITH mutuals AS (
   SELECT DISTINCT
     c1.sponsor_name AS senator,
@@ -65,8 +66,8 @@ LIMIT 1"
   ></sql-exercise>
 
 <sql-exercise
-  data-question="Vind nu de senator met het meeste netwerk uit elke staat."
-  data-comment="Als er meerdere senatoren gelijk staan, toon ze dan allebei. Geef kolommen die overeenkomen met de staat, senator en het aantal wederzijdse sponsorschappen."
+  data-question="Vind nu per staat de senator met het grootste netwerk."
+  data-comment="Als meerdere senatoren gedeeld eerste zijn, toon ze dan allemaal. Geef kolommen terug voor de staat, de senator en het aantal wederzijdse cosponsorschappen."
   data-solution="
 WITH mutual_counts AS (
   SELECT
@@ -81,12 +82,12 @@ WITH mutual_counts AS (
       ON c1.sponsor_name = c2.cosponsor_name
       AND c2.sponsor_name = c1.cosponsor_name
     )
-    GROUP BY senator, state
+  GROUP BY senator, state
 ),
 
 state_max AS (
   SELECT
-    staat,
+    state,
     MAX(mutual_count) AS max_mutual_count
   FROM mutual_counts
   GROUP BY state
@@ -104,17 +105,17 @@ JOIN state_max
   ></sql-exercise>
 
 <sql-exercise
-  data-question="Vind de senatoren die wetsvoorstellen sponsorden maar niet sponsorden."
+  data-question="Vind de senatoren die wel wetsvoorstellen hebben gecosponsord, maar zelf nooit een wetsvoorstel hebben ingediend."
   data-comment=""
   data-solution="
 SELECT DISTINCT c1.cosponsor_name
 FROM cosponsors c1
 LEFT JOIN cosponsors c2
-  ON c1.cosponsor_name = c2.sponsor_name
-  -- Deze join identificeert cosponsors
-  -- die wetsvoorstellen hebben gesponsord
+ ON c1.cosponsor_name = c2.sponsor_name
+ -- This join identifies cosponsors
+ -- who have sponsored bills
 WHERE c2.sponsor_name IS NULL
--- LEFT JOIN + NULL is een standaard truc om
--- rijen uit te sluiten. Het is efficiënter dan WHERE ... NOT IN.
+-- LEFT JOIN + NULL is a standard trick for excluding
+-- rows. It's more efficient than WHERE ... NOT IN.
 "
   ></sql-exercise>

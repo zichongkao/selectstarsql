@@ -1,21 +1,21 @@
 contents:
-- title: Front Matter
+- title: Voorwoord
   url: frontmatter.html
-  blurb: "The philosophical and technical underpinnings of this project."
+  blurb: "De filosofische en technische fundamenten van dit project."
   sections:
-  - name: Impetus
+  - name: Aanleiding
     url: "#impetus"
-  - name: Pedagogy
+  - name: Pedagogiek
     url: "#pedagogy"
   - name: Dataset
     url: "#dataset"
-  - name: Technicals
+  - name: Technische details
     url: "#technicals"
   - name: Contact
     url: "#contact"
-- title: Beazley's Last Statement
+- title: De laatste verklaring van Beazley
   url: beazley.html
-  blurb: "Chapter 1 examines Napoleon Beazley's argument against capital punishment. We learn the structure of a SQL query and row operations on a table."
+  blurb: "Hoofdstuk 1 onderzoekt het betoog van Napoleon Beazley tegen de doodstraf. We leren hoe een SQL-query is opgebouwd en hoe je bewerkingen op de rijen van een tabel uitvoert."
   sections:
   - name: De zaak Beazley
     url: "#beazley_case"
@@ -26,7 +26,7 @@ contents:
   - name: SQL-opmerkingen
     url: "#comments"
     sidenote: true
-  - name: Het FROM Blok
+  - name: Het FROM-blok
     url: "#from"
   - name: Hoofdletters
     url: "#capitalization"
@@ -34,24 +34,24 @@ contents:
   - name: Witruimte
     url: "#whitespace"
     sidenote: true
-  - name: Het WHERE Blok
+  - name: Het WHERE-blok
     url: "#where"
   - name: Aanhalingstekens
     url: "#quotes"
     sidenote: true
   - name: Samenvatting
     url: "#recap"
-- title: Claims of Innocence
+- title: Beweringen van onschuld
   url: innocence.html
-  blurb: "Chapter 2 estimates how many executed inmates may have been innocent. The technical theme is aggregating the entire table."
+  blurb: "Hoofdstuk 2 schat in hoeveel geëxecuteerde gevangenen mogelijk onschuldig waren. Het technische thema is het aggregeren van de hele tabel."
   sections:
   - name: Mogelijke onschuld
     url: "#possible_innocence"
-  - name: Geaggregeerde functies
+  - name: Aggregatiefuncties
     url: "#aggregations"
   - name: De COUNT-functie
     url: "#count"
-  - name: Nullen
+  - name: NULL-waarden
     url: "#nulls"
     sidenote: true
   - name: Variaties op COUNT
@@ -61,59 +61,59 @@ contents:
     sidenote: true
   - name: Een vreemde query
     url: "#strange"
-  - name: SQL Dialecten en Databases
+  - name: SQL-dialecten en databases
     url: "#dialects"
     sidenote: true
-  - name: Conclusie en samenvatting 
+  - name: Conclusie en samenvatting
     url: "#recap"
-- title: The Long Tail
+- title: De lange staart
   url: longtail.html
-  blurb: "Chapter 3 studies counties with unusually high numbers of executions. We generalize Chapter 2 by applying aggregations on groups of rows."
+  blurb: "Hoofdstuk 3 bestudeert counties met een opvallend hoog aantal executies. We breiden hoofdstuk 2 uit door aggregaties toe te passen op groepen rijen."
   sections:
-  - name: Lange staart
+  - name: Lange staarten
     url: "#long_tails"
-  - name: Het GROUP BY blok
+  - name: Het GROUP BY-blok
     url: "#groupby"
-  - name: Het blok HAVING
+  - name: Het HAVING-blok
     url: "#having"
-  - name: Geneste Queries
+  - name: Geneste queries
     url: "#nested"
-  - name: Provincie Harris
+  - name: Harris County
     url: "#harris"
   - name: Samenvatting
     url: "#recap"
   - name: MapReduce
     url: "#mapreduce"
     sidenote: true
-- title: Execution Hiatuses
+- title: Hiaten in executies
   url: hiatuses.html
-  blurb: "Chapter 4 explores extended periods when no executions have occurred. Its theme is extending the table using joins."
+  blurb: "Hoofdstuk 4 verkent langere periodes waarin geen executies plaatsvonden. Het thema is het uitbreiden van de tabel met behulp van joins."
   sections:
-  - name: Hiatussen
+  - name: Hiaten
     url: "#hiatuses"
-  - name: Denken over Joins
+  - name: Nadenken over joins
     url: "#joins"
-  - name: Kolommen desambigueren
+  - name: Kolommen ondubbelzinnig maken
     url: "#disam_cols"
     sidenote: true
-  - name: Soorten Verbindingen 
+  - name: Soorten joins
     url: "#join_types"
-  - name: Data
+  - name: Datums
     url: "#dates"
-  - name: Zelf Verbinden
+  - name: Self joins
     url: "#self_joins"
-  - name: Recapitulatie
+  - name: Samenvatting
     url: "#recap"
-- title: Closing Remarks and Challenge Questions
+- title: Slotopmerkingen en uitdagingsvragen
   url: questions.html
-  blurb: "Chapter 5 provides closing remarks and a collection of miscellaneous user-added challenge questions."
+  blurb: "Hoofdstuk 5 bevat slotopmerkingen en een verzameling uiteenlopende uitdagingsvragen, aangedragen door gebruikers."
   sections:
   - name: Slotopmerkingen
     url: "#closing_remarks"
   - name: Uitdagingsvragen
     url: "#challenge_questions"
-  - name: Oproep voor Problemen
+  - name: Oproep voor problemen
     url: "#call_for_problems"
     sidenote: true
-  - name: Senaat Cosponsorschap Dataset
+  - name: Dataset over cosponsorschap in de Senaat
     url: "#senate_cosponsorship"
