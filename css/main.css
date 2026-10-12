@@ -104,7 +104,7 @@ body #column {
 .lang-switcher {
     position: relative;
     margin-inline-start: auto;
-    margin-top: 1.2em;
+    align-self: center;
     font-family: 'Roboto',sans-serif;
     font-weight: 300;
     font-size: 0.9em;
@@ -114,9 +114,7 @@ body #column {
 .lang-switcher summary {
     cursor: pointer;
     list-style: none;
-    padding: 0.2em 0.5em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0.2em 0;
     white-space: nowrap;
 }
 
