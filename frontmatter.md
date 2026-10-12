@@ -8,7 +8,7 @@ dbFile: data/tx_deathrow_small.db
 ## Impetus
 When I was a data scientist at Quora, I used to have people ask me for resources for learning SQL. I struggled to find something I could stand behind because I felt that a good resource had to be free, not require registration, and care about pedagogy&mdash;it had to genuinely care about its users and there was nothing like that around.
 
-By overcoming some minor <a href="#technicals">technical hurdles</a>, I believe that **Select Star SQL** has met this standard. My hope is that like <a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> and <a href='https://beautifulracket.com'>Beautiful Racket</a> have done for Haskell and Racket, **Select Star SQL** will become the best place on the internet for learning SQL.
+By overcoming some minor <a href="#technicals">technical hurdles</a>, I believe that **Select Star SQL** has met this standard. My hope is that like <a href='https://learnyouahaskell.github.io/chapters.html'>Learn You a Haskell for Great Good!</a> and <a href='https://beautifulracket.com'>Beautiful Racket</a> have done for Haskell and Racket, **Select Star SQL** will become the best place on the internet for learning SQL.
 
 <br>
 <a name="pedagogy"></a>
@@ -50,6 +50,13 @@ On one level, the data is simply a part of a mundane programming book. On anothe
 ## Credits and Contact
 For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com. You can find out more about me at <a href="http://kaomorphism.com">Kaomorphism</a>.
 
-<a href="https://thepitz.io/">Noam Castel</a> and Jowan Vogel did an amazing job on the <a href="/he/">Hebrew</a> and <a href="/nl">Dutch</a> translations. Please reach out to them for kudos and suggestions, or if you are interested translating it into other languages.
+The book has been generously translated by volunteers. Please reach out to them for kudos and suggestions on their translations, or reach out to me if you are interested in translating it into another language.
+
+- <a href="/es/">Spanish</a>: Daniel René Piedra
+- <a href="/fr/">French</a>: April Tao
+- <a href="/he/">Hebrew</a>: <a href="https://thepitz.io/">Noam Castel</a>
+- <a href="/it/">Italian</a>: Stefano Caglio
+- <a href="/nl/">Dutch</a>: Jowan Vogel
+- <a href="/pt-br/">Brazilian Portuguese</a>: Samuel Capetinga Bomtempo (<a href="mailto:sam.makes.programs@gmail.com">sam.makes.programs@gmail.com</a>)
 
 Much thanks to Sonja Lea Heinze, Quinn Batten, and <a href="https://nickretallack.com">Nicholas Retallack</a> for providing valuable feedback.

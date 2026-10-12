@@ -84,6 +84,7 @@ body #column {
 
 .header {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 1em;
 }
 
@@ -99,6 +100,56 @@ body #column {
     font-size: 2em;
     margin-left: 0.5em;
     margin-top: 0.5em;
+}
+
+.lang-switcher {
+    position: relative;
+    margin-inline-start: auto;
+    margin-top: 1.2em;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.lang-switcher summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.2em 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.lang-switcher summary::-webkit-details-marker {
+    display: none;
+}
+
+.lang-switcher summary::after {
+    content: " \25BE";
+}
+
+.lang-switcher ul {
+    position: absolute;
+    inset-inline-end: 0;
+    z-index: 10;
+    margin: 0.3em 0 0;
+    padding: 0.3em 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.lang-switcher li a {
+    display: block;
+    padding: 0.25em 1em;
+    white-space: nowrap;
+}
+
+.lang-switcher li a[aria-current] {
+    font-weight: 500;
 }
 
 .footer {

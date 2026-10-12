@@ -1,0 +1,23 @@
+# Languages shown in the header language switcher.
+# `path` is the site prefix; translated pages share filenames with the English ones.
+- code: en
+  name: English
+  path: /
+- code: es
+  name: Español
+  path: /es/
+- code: fr
+  name: Français
+  path: /fr/
+- code: he
+  name: עברית
+  path: /he/
+- code: it
+  name: Italiano
+  path: /it/
+- code: nl
+  name: Nederlands
+  path: /nl/
+- code: pt-br
+  name: Português (Brasil)
+  path: /pt-br/

@@ -1,0 +1,22 @@
+{% comment %}
+  Header dropdown linking to the current page in every language.
+  Usage: {% include language_switcher.html lang="pt-br" %}
+  Falls back to a language's home page when that page isn't translated.
+{% endcomment %}
+{% assign current_lang = site.data.languages | where: "code", include.lang | first %}
+{% assign page_name = page.url | remove_first: current_lang.path %}
+<details class="lang-switcher">
+  <summary>{{ current_lang.name }}</summary>
+  <ul>
+    {% for lang in site.data.languages %}
+      {% assign target = lang.path | append: page_name %}
+      {% assign exists = site.pages | where: "url", target | first %}
+      {% if exists %}
+        {% assign href = target %}
+      {% else %}
+        {% assign href = lang.path %}
+      {% endif %}
+      <li><a href="{{ href }}" lang="{{ lang.code }}" hreflang="{{ lang.code }}"{% if lang.code == include.lang %} aria-current="true"{% endif %}>{{ lang.name }}</a></li>
+    {% endfor %}
+  </ul>
+</details>
