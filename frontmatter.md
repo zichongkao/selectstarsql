@@ -57,6 +57,6 @@ The book has been generously translated by volunteers. Please reach out to them 
 - <a href="/he/">Hebrew</a>: <a href="https://thepitz.io/">Noam Castel</a>
 - <a href="/it/">Italian</a>: Stefano Caglio
 - <a href="/nl/">Dutch</a>: Jowan Vogel
-- <a href="/pt-br/">Brazilian Portuguese</a>: Samuel Capetinga Bomtempo (<a href="mailto:sam.makes.programs@gmail.com">sam.makes.programs@gmail.com</a>)
+- <a href="/pt-br/">Brazilian Portuguese</a>: Samuel Capetinga Bomtempo
 
 Much thanks to Sonja Lea Heinze, Quinn Batten, and <a href="https://nickretallack.com">Nicholas Retallack</a> for providing valuable feedback.
