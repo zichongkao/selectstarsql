@@ -8,7 +8,7 @@ dbFile: data/tx_deathrow_small.db
 ## Impeto
 Quando lavoravo come data scientist in Quora, capitava spesso che la gente mi chiedesse delle risorse per imparare SQL. Faticavo a trovare qualcosa di valido perché sentivo che una buona risorsa dovesse essere gratuita, non richiedere registrazione e prendere in considerazione la pedagogia &mdash; avrebbe dovuto preoccuparsi in modo genuino dei propri utenti &mdash; e non c'era nulla di simile in giro.
 
-Superando alcuni piccoli <a href="#technicals">ostacoli tecnici</a>, spero che **Select Star SQL** ha raggiunto questi standard. La mia speranza è che come <a href='http://learnyouahaskell.com/chapters'>Learn You a Haskell for Great Good!</a> e <a href='https://beautifulracket.com'>Beautiful Racket</a> hanno fatto per Haskell e Racket, **Select Star SQL** diventerà il miglior luogo in internet per imparare SQL.
+Superando alcuni piccoli <a href="#technicals">ostacoli tecnici</a>, spero che **Select Star SQL** ha raggiunto questi standard. La mia speranza è che come <a href='https://learnyouahaskell.github.io/chapters.html'>Learn You a Haskell for Great Good!</a> e <a href='https://beautifulracket.com'>Beautiful Racket</a> hanno fatto per Haskell e Racket, **Select Star SQL** diventerà il miglior luogo in internet per imparare SQL.
 
 <br>
 <a name="pedagogy"></a>
