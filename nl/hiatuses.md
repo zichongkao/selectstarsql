@@ -1,21 +1,21 @@
 ---
 layout: nl_tutorial
-title: Execution Hiatuses
+title: Hiaten in executies
 dbFile: data/tx_deathrow_small.db
 ---
 
 <a name="hiatuses"></a>
-## Hiatussen
-Deze grafiek toont de executies in de tijd.![](../imgs/exno_time.png) Merk op dat er verschillende lange periodes zijn geweest waarin geen executies plaatsvonden. Ons doel is om uit te zoeken wanneer dat precies was en de oorzaken te achterhalen.
+## Hiaten
+Deze grafiek toont de executies door de tijd heen.<img src="../imgs/exno_time.png"> Merk op dat er meerdere lange periodes zijn geweest waarin geen executies plaatsvonden. Ons doel is om uit te zoeken wanneer dat precies was en de oorzaken ervan te onderzoeken.
 
-Onze strategie is om de tabel in een staat te krijgen waar elke rij ook de datum van de executie ervoor bevat. We kunnen dan het tijdsverschil tussen de twee data vinden, ze ordenen in aflopende volgorde en de langste hiaten aflezen.
+Onze strategie is om de tabel in een vorm te krijgen waarin elke rij ook de datum van de executie daarvoor bevat. We kunnen dan het tijdsverschil tussen de twee datums berekenen, ze in aflopende volgorde sorteren en de langste hiaten aflezen.
 
 <br>
 <a name="joins"></a>
-## Denken over Joins
-Geen van de technieken die we tot nu toe hebben geleerd zijn hier afdoende. Onze gewenste tabel heeft dezelfde lengte als de originele `executions` tabel, dus we kunnen aggregaties uitsluiten die een kleinere tabel opleveren. Het [Beazley](beazley.html) hoofdstuk leerde ons alleen rij operaties die ons beperken tot het werken met informatie die al in de rijen staat. De datum van de vorige uitvoering ligt echter buiten een rij, dus we moeten `JOIN` gebruiken om de extra informatie binnen te halen.
+## Nadenken over joins
+Geen van de technieken die we tot nu toe hebben geleerd volstaat hier. De tabel die we willen hebben, is even lang als de oorspronkelijke tabel `executions`, dus we kunnen aggregaties uitsluiten, omdat die een kleinere tabel opleveren. Het hoofdstuk over [Beazley](beazley.html) leerde ons alleen bewerkingen op rijen, en die beperken ons tot informatie die al in de rijen staat. De datum van de vorige executie ligt echter buiten de rij, dus we moeten `JOIN` gebruiken om de extra informatie binnen te halen.
 
-Laten we aannemen dat de extra informatie die we willen hebben, bestaat in een tabel met de naam `previous` die twee kolommen heeft `(ex_number, last_ex_date)`. We zouden de volgende query kunnen uitvoeren om onze taak te voltooien:
+Stel dat de extra informatie die we willen hebben in een tabel met de naam `previous` staat, met twee kolommen `(ex_number, last_ex_date)`. Dan zouden we de volgende query kunnen uitvoeren om onze taak te voltooien:
 
     SELECT
       last_ex_date AS start,
@@ -27,88 +27,87 @@ Laten we aannemen dat de extra informatie die we willen hebben, bestaat in een t
     ORDER BY day_difference DESC
     LIMIT 10
 
-Het `JOIN` blok is de focus van deze sectie. In plaats van het te bekijken als een regel op zichzelf, is het vaak handig om er zo naar te kijken: ![](../imgs/join_correctview.png) Dit benadrukt hoe `JOIN` een grote gecombineerde tabel creëert die vervolgens wordt ingevoerd in het `FROM`-blok, net als elke andere tabel.
-<a name="disam-cols"></a>
+Het `JOIN`-blok staat centraal in dit hoofdstuk. In plaats van het als een losse regel te zien, is het vaak handig om er zo naar te kijken: <img src="../imgs/join_correctview.png"> Dit benadrukt hoe `JOIN` een grote gecombineerde tabel maakt, die vervolgens net als elke andere tabel aan het `FROM`-blok wordt doorgegeven.
+<a name="disam_cols"></a>
 <div class="sideNote">
-  <h3>Kolommen Desambigueren</h3>
-  <p>De bovenstaande query is ook opmerkelijk omdat de clausule <code>executions.ex_number = previous.ex_number</code> het formaat <code>&lt;table&gt;.&lt;column&gt;</code> gebruikt om kolommen te specificeren. Dit is hier alleen nodig omdat beide tabellen een kolom met de naam <code>ex_number</code> hebben.</p>
+  <h3>Kolommen ondubbelzinnig maken</h3>
+  <p>De bovenstaande query is ook opmerkelijk omdat de voorwaarde <code>executions.ex_number = previous.ex_number</code> de vorm <code>&lt;tabel&gt;.&lt;kolom&gt;</code> gebruikt om kolommen aan te duiden. Dat is hier alleen nodig omdat beide tabellen een kolom met de naam <code>ex_number</code> hebben.</p>
 </div>
 
 <br>
 <a name="join_types">
-## Soorten Verbindingen
-Het blok `JOIN` heeft de vorm <code class="codeblock">&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>. De clausule werkt op dezelfde manier als in <code class="codeblock">WHERE &lt;clausule&gt;</code>. Dat wil zeggen, het is een instructie die evalueert naar waar of onwaar, en elke keer dat een rij uit de eerste tabel en een rij uit de tweede op een rij staan waarbij de clausule waar is, worden de twee aan elkaar gekoppeld:
-<img src="../imgs/join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto"/>
+## Soorten joins
+Het `JOIN`-blok heeft de vorm <code class='codeblock'>&lt;tabel1&gt; JOIN &lt;tabel2&gt; ON &lt;voorwaarde&gt;</code>. De voorwaarde werkt op dezelfde manier als in <code class='codeblock'>WHERE &lt;voorwaarde&gt;</code>. Dat wil zeggen: het is een bewering die als waar of onwaar wordt geëvalueerd, en telkens wanneer een rij uit de eerste tabel en een rij uit de tweede tabel de voorwaarde waar maken, worden de twee aan elkaar gekoppeld:
+<img src="../imgs/join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
-Maar wat gebeurt er met rijen die niet overeenkomen? In dit geval had de `vorige` tabel geen rij voor uitvoering nummer 1 omdat er geen eerdere uitvoeringen zijn.
+Maar wat gebeurt er met rijen waarvoor geen overeenkomst is? In dit geval had de tabel `previous` geen rij voor executie nummer 1, omdat er geen executies aan voorafgingen.
 <img src="../imgs/join_unmatched.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
-Het `JOIN` commando voert standaard een zogenaamde "inner join" uit, waarbij niet-gematchte rijen worden verwijderd.
+ Het commando <code>JOIN</code> voert standaard een zogenaamde "inner join" uit, waarbij rijen zonder overeenkomst worden weggelaten.
 <img src="../imgs/join_inner.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
-Om alle rijen van de linkertabel te behouden, gebruiken we een `LEFT JOIN` in plaats van de vanilla `JOIN`. De lege delen van de rij worden met rust gelaten, wat betekent dat ze evalueren naar <code>NULL</code>.
+Om alle rijen van de linkertabel te behouden, gebruiken we een <code>LEFT JOIN</code> in plaats van de gewone <code>JOIN</code>. De lege delen van de rij worden met rust gelaten, wat betekent dat ze de waarde <code>NULL</code> krijgen.
 <img src="../imgs/join_left.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
-De <code>RIGHT JOIN</code> kan worden gebruikt om niet-gematchte rijen in de rechtertabel te behouden en de `OUTER JOIN` kan worden gebruikt om niet-gematchte rijen in beide tabellen te behouden.
+Met <code>RIGHT JOIN</code> kun je rijen zonder overeenkomst in de rechtertabel behouden, en met <code>OUTER JOIN</code> rijen zonder overeenkomst in beide tabellen.
 
-De laatste subtiliteit is het omgaan met meerdere matches. Stel dat we een `duplicated_previous` tabel hebben die twee kopieën bevat van elke rij van de `previous` tabel. Elke rij van `executions` komt nu overeen met twee rijen in `duplicated_previous`.
+De laatste subtiliteit is hoe meerdere overeenkomsten worden afgehandeld. Stel dat we een tabel `duplicated_previous` hebben die van elke rij van de tabel `previous` twee kopieën bevat. Elke rij van `executions` komt nu overeen met twee rijen in `duplicated_previous`.
 <img src="../imgs/join_dup_pre.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
-De join maakt genoeg rijen van `executions` zodat elke overeenkomende rij van `duplicated_previous` zijn eigen partner krijgt. Op deze manier kunnen joins tabellen maken die groter zijn dan hun bestanddelen.
+De join maakt genoeg rijen van `executions` aan, zodat elke overeenkomende rij van `duplicated_previous` een eigen partner krijgt. Op deze manier kunnen joins tabellen opleveren die groter zijn dan de tabellen waaruit ze bestaan.
 <img src="../imgs/join_dup_post.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
 
 <sql-quiz
-  data-title="Mark the true statements."
-  data-description="Suppose we have tableA with 3 rows and tableB with 5 rows.">
+  data-title="Markeer de beweringen die waar zijn."
+  data-description="Stel dat we tableA hebben met 3 rijen en tableB met 5 rijen.">
   <sql-quiz-option
     data-value="cartesian_prod"
-    data-statement="<code>tableA JOIN tableB ON 1</code> returns 15 rows."
-    data-hint="The <code>ON 1</code> clause is always true, so every row of tableA is matched against every row of tableB."
+    data-statement="<code>tableA JOIN tableB ON 1</code> geeft 15 rijen terug."
+    data-hint="De voorwaarde <code>ON 1</code> is altijd waar, dus elke rij van tableA wordt gekoppeld aan elke rij van tableB."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="bad_cartesian"
-    data-statement="<code>tableA JOIN tableB ON 0</code> returns 0 rows."
-    data-hint="For the same reason that <code>ON 1</code> returns 15 rows."
+    data-statement="<code>tableA JOIN tableB ON 0</code> geeft 0 rijen terug."
+    data-hint="Om dezelfde reden waarom <code>ON 1</code> 15 rijen teruggeeft."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="left_join_bad"
-    data-statement="<code>tableA LEFT JOIN tableB ON 0</code> returns 3 rows."
-    data-hint="The left join preserves all the rows of tableA even though no rows of tableB match."
+    data-statement="<code>tableA LEFT JOIN tableB ON 0</code> geeft 3 rijen terug."
+    data-hint="De left join behoudt alle rijen van tableA, ook al komt geen enkele rij van tableB overeen."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="outer_join_bad"
-    data-statement="<code>tableA OUTER JOIN tableB ON 0</code> returns 8 rows."
-    data-hint="The outer join preserves all the rows of tableA and tableB even though none of them are paired."
+    data-statement="<code>tableA OUTER JOIN tableB ON 0</code> geeft 8 rijen terug."
+    data-hint="De outer join behoudt alle rijen van tableA en tableB, ook al wordt geen enkele rij gekoppeld."
     data-correct="true"></sql-quiz-option>
   <sql-quiz-option
     data-value="outer_join_good"
-    data-statement="<code>tableA OUTER JOIN tableB ON 1</code> returns 15 rows."
-    data-hint="All the rows of tableA match all of the rows of tableB because of the <code>on 1</code> clause, so any join will return 15 rows. The different joins only differ in how they handle unmatched rows."
+    data-statement="<code>tableA OUTER JOIN tableB ON 1</code> geeft 15 rijen terug."
+    data-hint="Door de voorwaarde <code>on 1</code> komen alle rijen van tableA overeen met alle rijen van tableB, dus elke soort join geeft 15 rijen terug. De verschillende joins verschillen alleen in hoe ze omgaan met rijen zonder overeenkomst."
     data-correct="true"></sql-quiz-option>
 </sql-quiz>
 
-
 <br>
 <a name="dates"></a>
-## Data
-Laten we even afstand nemen van joins en kijken naar deze regel in onze template query:
+## Datums
+Laten we de joins even laten rusten en kijken naar deze regel in onze sjabloonquery:
 
       ex_date - last_ex_date AS day_difference
 
-We hebben een grote aanname gedaan dat we datums van elkaar kunnen aftrekken. Maar stel je voor dat jij de computer bent die een regel als deze ontvangt. Geef je dan het aantal dagen tussen de datums terug? Waarom geen uren of seconden? Om het nog erger te maken, SQLite heeft eigenlijk geen datum- of tijdtypes (in tegenstelling tot de meeste andere SQL dialecten) dus de kolommen `ex_date` en `last_ex_date` zien er voor jou uit als gewone strings. Je wordt in feite gevraagd om `'hallo' - 'wereld'` te doen. Wat betekent dat eigenlijk?
+We zijn er zomaar van uitgegaan dat we datums van elkaar kunnen aftrekken. Maar stel je voor dat jij de computer bent die een regel als deze ontvangt. Geef je dan het aantal dagen tussen de datums terug? Waarom geen uren of seconden? Om het nog erger te maken, heeft SQLite eigenlijk geen datum- of tijdtypes (in tegenstelling tot de meeste andere SQL-dialecten), dus de kolommen `ex_date` en `last_ex_date` zien er voor jou uit als gewone tekenreeksen. Je wordt in feite gevraagd om `'hello' - 'world'` uit te rekenen. Wat zou dat überhaupt moeten betekenen?
 
-Gelukkig bevat SQLite een heleboel functies om de computer te vertellen: "Hé, deze strings die ik doorgeef bevatten eigenlijk datums of tijden. Gebruik ze als een datum."
+Gelukkig bevat SQLite een heleboel functies waarmee je de computer kunt vertellen: "Hé, deze tekenreeksen die ik je geef, bevatten eigenlijk datums of tijden. Behandel ze zoals je een datum zou behandelen."
 
-<sql-exercise 
-  data-question='Zoek in [de documentatie](https://www.sqlite.org/lang_datefunc.html) om de query zo te maken dat deze het aantal dagen tussen de datums teruggeeft.' 
-  data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_difference"
-  data-solution="
+<sql-exercise
+ data-question='Zoek in <a href="https://www.sqlite.org/lang_datefunc.html">de documentatie</a> hoe je de query kunt verbeteren zodat hij het aantal dagen tussen de datums teruggeeft.'
+ data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_difference"
+ data-solution="
 SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_difference"
 ></sql-exercise>
 
 <br>
 <a name="self_joins"></a>
-## Zelf Verbinden
-Met wat we geleerd hebben over datums, kunnen we onze sjabloonquery corrigeren:
+## Self joins
+Met wat we over datums hebben geleerd, kunnen we onze sjabloonquery verbeteren:
 
     SELECT
       last_ex_date AS start,
@@ -121,10 +120,10 @@ Met wat we geleerd hebben over datums, kunnen we onze sjabloonquery corrigeren:
     ORDER BY day_difference DESC
     LIMIT 5
 
-De volgende stap is het uitbouwen van de `previous` tabel.
+De volgende stap is het opbouwen van de tabel `previous`.
 <sql-exercise
-  data-question="Write a query to produce the <code>previous</code> table."
-  data-comment="Remember to use aliases to form the column names<code>(ex_number, last_ex_date)</code>. Hint: Instead of shifting dates back, you could shift <code>ex_number</code> forward!"
+  data-question="Schrijf een query die de tabel <code>previous</code> oplevert."
+  data-comment="Vergeet niet aliassen te gebruiken om de kolomnamen <code>(ex_number, last_ex_date)</code> te vormen. Tip: in plaats van de datums naar achteren te schuiven, kun je ook <code>ex_number</code> naar voren schuiven!"
   data-solution="
 SELECT
   ex_number + 1 AS ex_number,
@@ -132,10 +131,10 @@ SELECT
 FROM executions
 WHERE ex_number < 553"></sql-exercise>
 
-Nu kunnen we deze query nesten in ons sjabloon hierboven: 
+Nu kunnen we deze query nesten in ons sjabloon hierboven:
 <sql-exercise
-  data-question="Nest de query die de `previous` tabel genereert in het sjabloon."
-  data-comment='Merk op dat we hier een tabel alias gebruiken, door het resultaat van de geneste query "previous" te noemen.'
+  data-question="Nest de query die de tabel <code>previous</code> genereert in het sjabloon."
+  data-comment='Merk op dat we hier een tabelalias gebruiken: we noemen het resultaat van de geneste query "previous".'
   data-default-text="SELECT
   last_ex_date AS start,
   ex_date AS end,
@@ -148,9 +147,9 @@ ORDER BY day_difference DESC
 LIMIT 10"
   data-solution="
 SELECT
-   last_ex_date AS start,
-   ex_date AS end,
-   JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_difference
+  last_ex_date AS start,
+  ex_date AS end,
+  JULIANDAY(ex_date) - JULIANDAY(last_ex_date) AS day_difference
 FROM executions
 JOIN (
     SELECT
@@ -159,16 +158,16 @@ JOIN (
     FROM executions
   ) previous
   ON executions.ex_number = previous.ex_number
- ORDER BY day_difference DESC
- LIMIT 10"
+ORDER BY day_difference DESC
+LIMIT 10"
 ></sql-exercise>
 
-`previous` is afgeleid van `executions`, dus we voegen effectief `executions` aan zichzelf toe. Dit wordt een "self join" genoemd en is een krachtige techniek om rijen informatie te laten halen uit andere delen van dezelfde tabel.
+`previous` is afgeleid van `executions`, dus in feite koppelen we `executions` aan zichzelf. Dit heet een "self join" en is een krachtige techniek waarmee rijen informatie kunnen halen uit andere delen van dezelfde tabel.
 
-We hebben de `previous` tabel gemaakt om te verduidelijken welk doel hij dient. Maar we kunnen de query eleganter schrijven door de `executions` tabel direct aan zichzelf te koppelen. 
+We hebben de tabel `previous` gemaakt om duidelijk te maken welk doel hij dient. Maar we kunnen de query eigenlijk eleganter schrijven door de tabel `executions` rechtstreeks aan zichzelf te koppelen.
 <sql-exercise
-  data-question="Vul de `JOIN ON` clausule in om een elegantere versie van de vorige query te voltooien."
-  data-comment="Merk op dat we nog steeds één kopie een alias moeten geven om ervoor te zorgen dat we er ondubbelzinnig naar kunnen verwijzen."
+  data-question="Vul de <code>JOIN ON</code>-voorwaarde in om een elegantere versie van de vorige query te maken."
+  data-comment="Merk op dat we één kopie nog steeds een alias moeten geven, zodat we er ondubbelzinnig naar kunnen verwijzen."
   data-default-text="SELECT
   previous.ex_date AS start,
   executions.ex_date AS end,
@@ -192,14 +191,14 @@ ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
-We kunnen nu de precieze data van de onderbrekingen gebruiken om te onderzoeken wat er in elke periode is gebeurd. In de jaren direct nadat het verbod op de doodstraf werd opgeheven, waren er lange perioden zonder executies vanwege het lage aantal doodvonnissen, in combinatie met juridische uitdagingen tegen de nieuwe uitspraak. We sluiten daarom onderbrekingen vóór 1993 uit en richten ons op twee grote onderbrekingen sindsdien.![](../imgs/exno_time_annotated.png)
+We kunnen nu de precieze datums van de hiaten gebruiken om te onderzoeken wat er in elke periode is gebeurd. In de jaren direct nadat het verbod op de doodstraf was opgeheven, waren er lange periodes zonder executies, door het lage aantal doodvonnissen en de juridische aanvechtingen van de nieuwe uitspraak. We laten de onderbrekingen van vóór 1993 daarom buiten beschouwing en richten ons op de twee grote hiaten sindsdien.<img src="../imgs/exno_time_annotated.png">
 
-Hiaat 1 was het gevolg van juridische uitdagingen tegen de [Antiterrorism and Effective Death Penalty Act van 1996](https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of\_1996), gecreëerd als reactie op de bomaanslagen op het World Trade Center in 1993 en Oklahoma City in 1995. De wet beperkte het beroepsproces om de doodstraf effectiever te maken, vooral voor terrorismezaken([Bron](https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf)).
+Hiaat 1 werd veroorzaakt door juridische aanvechtingen van de <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act van 1996</a>, die werd ingevoerd als reactie op de bomaanslagen op het World Trade Center in 1993 en in Oklahoma City in 1995. De wet beperkte de beroepsmogelijkheden om de doodstraf effectiever te maken, vooral in terrorismezaken (<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">Bron</a>).
 
-Hiatus 2 werd veroorzaakt door een schorsing door het Hooggerechtshof terwijl het zich boog over [Baze v. Rees](https://en.wikipedia.org/wiki/Baze_v.\_Rees), waarin onderzocht werd of dodelijke injecties in strijd zijn met het Achtste Amendement dat "wrede en ongebruikelijke straffen" verbiedt. Dit had gevolgen voor executies in heel Amerika omdat de meeste staten dezelfde cocktail van medicijnen gebruikten als Kentucky. Het Hooggerechtshof bevestigde uiteindelijk de beslissing van de rechtbank in Kentucky en een paar maanden later werden de executies in Texas hervat.
+Hiaat 2 werd veroorzaakt door een opschorting die het Hooggerechtshof instelde terwijl het zich boog over <a href="https://en.wikipedia.org/wiki/Baze_v._Rees">Baze v. Rees</a>, een zaak waarin werd onderzocht of de dodelijke injectie in strijd is met het Achtste Amendement, dat "wrede en ongebruikelijke straffen" verbiedt. Dit had gevolgen voor executies in heel Amerika, omdat de meeste staten dezelfde medicijncocktail gebruikten als Kentucky. Het Hooggerechtshof bevestigde uiteindelijk de uitspraak van de rechtbank in Kentucky, en een paar maanden later werden de executies in Texas hervat.
 
 <br>
 <a name="recap"></a>
-## Recapitulatie
+## Samenvatting
 
-Het grote idee achter `JOIN`s is om een uitgebreide tabel te maken omdat de originele tabel niet de informatie bevat die we nodig hebben. Dit is een krachtig concept omdat het ons bevrijdt van de beperkingen van een enkele tabel en ons in staat stelt om meerdere tabellen te combineren op potentieel complexe manieren. We hebben ook gezien dat met deze extra complexiteit een nauwgezette boekhouding belangrijk wordt. Aliassen van tabellen, hernoemen van kolommen en het definiëren van goede `JOIN ON` clausules zijn allemaal technieken die ons helpen orde te bewaren.
+Het grote idee achter `JOIN`s is het maken van een uitgebreide tabel, omdat de oorspronkelijke tabel niet de informatie bevatte die we nodig hadden. Dit is een krachtig concept, omdat het ons bevrijdt van de beperkingen van één enkele tabel en ons in staat stelt meerdere tabellen op mogelijk complexe manieren te combineren. We hebben ook gezien dat met deze extra complexiteit een nauwgezette boekhouding belangrijk wordt. Tabellen een alias geven, kolommen hernoemen en goede `JOIN ON`-voorwaarden opstellen zijn allemaal technieken die ons helpen de orde te bewaren.

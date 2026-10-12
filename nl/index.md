@@ -3,8 +3,8 @@ layout: nl_default
 title: Select Star SQL
 ---
 <div class="index_content">
-  <p>This is an interactive book which aims to be the best place on the internet for learning SQL. It is free of charge, free of ads and doesn't require registration or downloads. It helps you learn by running queries against a real-world dataset to complete projects of consequence. It is not a mere reference page &mdash; it conveys a mental model for writing SQL.</p>
-  <p>I expect little to no coding knowledge. Each chapter is designed to take about 30 minutes. As more of the world's data is stored in databases, I expect that this time will pay rich dividends!</p>
+  <p>Dit is een interactief boek dat de beste plek op internet wil zijn om SQL te leren. Het is gratis, bevat geen advertenties en vereist geen registratie of downloads. Je leert door queries uit te voeren op een echte dataset en zo projecten van betekenis af te ronden. Het is niet zomaar een naslagwerk &mdash; het brengt je een mentaal model bij voor het schrijven van SQL.</p>
+  <p>Je hebt weinig tot geen programmeerkennis nodig. Elk hoofdstuk kost ongeveer 30 minuten. Nu steeds meer van 's werelds gegevens in databases worden opgeslagen, verwacht ik dat deze tijd zich ruimschoots zal terugbetalen!</p>
   <br>
   {% for tutorial in site.data.nl_sitemap.contents %}
   <div class="index_section">
