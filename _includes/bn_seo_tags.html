@@ -1,0 +1,32 @@
+{% comment %}
+  Self-referencing canonical and reciprocal hreflang tags for English and Bengali.
+  Usage: {% include bn_seo_tags.html lang="en" %} or {% include bn_seo_tags.html lang="bn" %}
+{% endcomment %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+{% if include.lang == "en" %}
+  {% if page.url == "/" %}
+    {% assign bn_target = "/bn/" %}
+  {% else %}
+    {% assign bn_target = "/bn" | append: page.url %}
+  {% endif %}
+  {% assign bn_exists = site.pages | where: "url", bn_target | first %}
+  <link rel="alternate" hreflang="en" href="{{ page.url | absolute_url }}">
+  {% if bn_exists %}
+  <link rel="alternate" hreflang="bn" href="{{ bn_target | absolute_url }}">
+  {% endif %}
+  <link rel="alternate" hreflang="x-default" href="{{ page.url | absolute_url }}">
+{% elsif include.lang == "bn" %}
+  {% if page.url == "/bn/" or page.url == "/bn" %}
+    {% assign en_target = "/" %}
+  {% else %}
+    {% assign en_target = page.url | remove_first: "/bn" %}
+  {% endif %}
+  {% assign en_exists = site.pages | where: "url", en_target | first %}
+  {% if en_exists %}
+  <link rel="alternate" hreflang="en" href="{{ en_target | absolute_url }}">
+  <link rel="alternate" hreflang="bn" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ en_target | absolute_url }}">
+  {% else %}
+  <link rel="alternate" hreflang="bn" href="{{ page.url | absolute_url }}">
+  {% endif %}
+{% endif %}

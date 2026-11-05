@@ -52,6 +52,7 @@ For corrections and suggestions, please write me (Kao) at zichongkao@gmail.com. 
 
 The book has been generously translated by volunteers. Please reach out to them for kudos and suggestions on their translations, or reach out to me if you are interested in translating it into another language.
 
+- <a href="/bn/">Bengali</a>
 - <a href="/es/">Spanish</a>: Daniel René Piedra
 - <a href="/fr/">French</a>: April Tao
 - <a href="/he/">Hebrew</a>: <a href="https://thepitz.io/">Noam Castel</a>
