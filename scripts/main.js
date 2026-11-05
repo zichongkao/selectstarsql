@@ -79,6 +79,53 @@ function datatable (data) {
 
 
 //////////////////////////
+// Localization Dictionary
+//////////////////////////
+
+var I18N = {
+  en: {
+    checkAnswers: 'Check Answers',
+    showExplanations: 'Show Explanations',
+    allCorrect: 'All correct!',
+    mistakeCount: function(n) {
+      return n === 1 ? '1 mistake' : n + ' mistakes';
+    },
+    run: 'Run &#x21e9;',
+    correct: 'Correct',
+    incorrect: 'Incorrect',
+    noDataReturned: 'No data returned',
+    showSolution: 'Show Solution',
+    reset: 'Reset'
+  },
+  bn: {
+    checkAnswers: 'উত্তর যাচাই করুন',
+    showExplanations: 'ব্যাখ্যা দেখুন',
+    allCorrect: 'সব উত্তর সঠিক!',
+    mistakeCount: function(n) {
+      var bnDigits = '০১২৩৪৫৬৭৮৯';
+      var bnNum = String(n).replace(/\d/g, function(d) { return bnDigits[d]; });
+      return bnNum + 'টি ভুল';
+    },
+    run: 'চালান &#x21e9;',
+    correct: 'সঠিক উত্তর',
+    incorrect: 'ভুল উত্তর',
+    noDataReturned: 'কোন তথ্য পাওয়া যায়নি',
+    showSolution: 'সমাধান দেখুন',
+    reset: 'রিসেট'
+  }
+};
+
+function getLocale() {
+  var lang = (document.documentElement && document.documentElement.lang) || 'en';
+  var prefix = lang.toLowerCase().split('-')[0];
+  if (prefix === 'bn') {
+    return I18N.bn;
+  }
+  return I18N.en;
+}
+
+
+//////////////////////////
 // SQL Quiz Component
 //////////////////////////
 
@@ -126,6 +173,7 @@ class sqlQuiz extends HTMLElement {
   }
 
   connectedCallback() {
+    var t = getLocale();
     var title = this.getAttribute('data-title') || '';
     var description = this.getAttribute('data-description') || '';
 
@@ -158,13 +206,13 @@ class sqlQuiz extends HTMLElement {
 
     var submitButton = document.createElement('input');
     submitButton.type = 'submit';
-    submitButton.value = 'Check Answers';
+    submitButton.value = t.checkAnswers;
     inputArea.appendChild(submitButton);
 
     var hintButton = document.createElement('input');
     hintButton.name = "hint";
     hintButton.type = "button";
-    hintButton.value = "Show Explanations";
+    hintButton.value = t.showExplanations;
     hintButton.onclick = (e) => {
       document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'table-row');
     };
@@ -186,8 +234,7 @@ class sqlQuiz extends HTMLElement {
       var value = Array.prototype.filter.call(form.input, i => i.checked).map(i => i.value);
       var correct = Array.prototype.filter.call(form.input, i => i.dataset.correct === "true").map(i => i.value);
       var mistakes = setdiff(correct, value).size + setdiff(value, correct).size;
-      var res = mistakes >= 2 ? mistakes + " mistakes" :
-          mistakes == 1 ? mistakes + " mistake" : "All correct!"
+      var res = mistakes >= 1 ? t.mistakeCount(mistakes) : t.allCorrect;
       form.output.innerHTML = `<div class='returnOkay'>${res}</div>`;
     };
 
@@ -207,6 +254,7 @@ class sqlExercise extends HTMLElement {
   }
 
   connectedCallback() {
+    var t = getLocale();
     var question = this.getAttribute('data-question') || '';
     var comment = this.getAttribute('data-comment') || '';
     var defaultText = this.getAttribute('data-default-text') || '';
@@ -251,7 +299,7 @@ class sqlExercise extends HTMLElement {
     editor.setSize('100%', 'auto');
     editor.refresh();
 
-    var runButton = `<input class="sql-exercise-submit" type="submit" value="Run &#x21e9;" disabled>`;
+    var runButton = `<input class="sql-exercise-submit" type="submit" value="${t.run}" disabled>`;
     inputArea.insertAdjacentHTML("beforeend", runButton);
 
     form['onsubmit'] = (e) => {
@@ -272,7 +320,7 @@ class sqlExercise extends HTMLElement {
                 submission_u.sort();
                 solution_u.sort();
             }
-            var verdict = arraysEqual(submission_u, solution_u) ? "Correct" : "Incorrect";
+            var verdict = arraysEqual(submission_u, solution_u) ? t.correct : t.incorrect;
             // http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
             verdict_div.innerText = verdict;
           });
@@ -280,7 +328,7 @@ class sqlExercise extends HTMLElement {
         if (submission_data.length > 0) {
           result_div.appendChild(datatable(submission_data));
         } else {
-          result_div.insertAdjacentHTML("beforeend", `No data returned`);
+          result_div.insertAdjacentHTML("beforeend", t.noDataReturned);
         }
       }
 
@@ -305,7 +353,7 @@ class sqlExercise extends HTMLElement {
       var solutionButton = document.createElement('input');
       solutionButton.name = 'solution';
       solutionButton.type = 'button';
-      solutionButton.value = 'Show Solution';
+      solutionButton.value = t.showSolution;
       solutionButton.onclick = (e) => {
         var existingCode = editor.getValue();
         editor.setValue(existingCode + "\n/* " + solution);
@@ -315,7 +363,7 @@ class sqlExercise extends HTMLElement {
 
     var resetButton = document.createElement('input');
     resetButton.type = 'button';
-    resetButton.value = 'Reset';
+    resetButton.value = t.reset;
     resetButton.onclick = (e) => {
       editor.setValue(defaultText);
       outputBox.textContent = '';
