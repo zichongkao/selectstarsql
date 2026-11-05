@@ -2,6 +2,9 @@
   Self-referencing canonical and reciprocal hreflang tags for English and Bengali.
   Usage: {% include bn_seo_tags.html lang="en" %} or {% include bn_seo_tags.html lang="bn" %}
 {% endcomment %}
+{% if page.url == "/404.html" %}
+<meta name="robots" content="noindex">
+{% else %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 {% if include.lang == "en" %}
   {% if page.url == "/" %}
@@ -29,4 +32,5 @@
   {% else %}
   <link rel="alternate" hreflang="bn" href="{{ page.url | absolute_url }}">
   {% endif %}
+{% endif %}
 {% endif %}
