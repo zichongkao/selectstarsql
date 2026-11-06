@@ -1,0 +1,144 @@
+<!-- SQL Sandbox Modal (Bengali Modern UI — Professional IDE Layout) -->
+<div id="bnSandboxModalOverlay" class="bn-modal-overlay" aria-hidden="true">
+  <div id="bnSandboxBackdrop" class="bn-modal-backdrop"></div>
+
+  <div id="bnSandboxModal" class="bn-modal-dialog bn-sandbox-dialog" role="dialog" aria-modal="true" aria-labelledby="bnSandboxTitle" tabindex="-1">
+
+    <!-- Compact Modal Header (Single Horizontal Row ~56px) -->
+    <header class="bn-sandbox-header">
+      <div class="bn-sandbox-header-left">
+        <span class="bn-sandbox-icon" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+        </span>
+        <h2 id="bnSandboxTitle" class="bn-sandbox-title">SQL Sandbox</h2>
+        <span class="bn-sandbox-descriptor">মুক্ত SQL অনুশীলন</span>
+      </div>
+
+      <div class="bn-sandbox-header-right">
+        <div id="bnSandboxDbBadge" class="bn-sandbox-db-badge" aria-live="polite">
+          <span class="bn-sandbox-db-dot"></span>
+          <span id="bnSandboxDbName" class="bn-sandbox-db-text">লোড হচ্ছে...</span>
+        </div>
+
+        <button type="button" id="bnSandboxCloseBtn" class="bn-sandbox-close-btn" aria-label="স্যান্ডবক্স বন্ধ করুন" title="বন্ধ করুন (Esc)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Modal Body / IDE Workspace Shell -->
+    <div class="bn-sandbox-body">
+
+      <!-- Notice for Homepage where no DB is loaded -->
+      <div id="bnSandboxNoDbNotice" class="bn-sandbox-nodb-notice" style="display: none;">
+        <div class="bn-sandbox-nodb-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="12" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="bn-sandbox-nodb-content">
+          <h4>কোনো ডেটাবেস সক্রিয় নেই</h4>
+          <p>SQL Sandbox ব্যবহার করতে প্রথমে বামের সূচিপত্র থেকে একটি Tutorial Chapter (অধ্যায় ১ থেকে ৫) খুলুন। প্রতিটি অধ্যায়ে তার নিজস্ব SQLite ডেটাসেট স্বয়ংক্রিয়ভাবে লোড থাকে।</p>
+        </div>
+      </div>
+
+      <!-- Main Two-Panel Workspace -->
+      <div id="bnSandboxWorkspace" class="bn-sandbox-workspace">
+
+        <!-- LEFT PANEL: SQL Editor & Action Controls -->
+        <section class="bn-sandbox-panel bn-sandbox-panel-editor" aria-label="SQL Editor Panel">
+          <div class="bn-sandbox-editor-header">
+            <div class="bn-sandbox-editor-meta">
+              <span class="bn-sandbox-editor-label">SQL EDITOR</span>
+              <span class="bn-sandbox-engine-badge">
+                <span class="bn-sandbox-engine-dot"></span>
+                <span>SQLite</span>
+              </span>
+            </div>
+            <div class="bn-sandbox-preset-wrapper">
+              <select id="bnSandboxPresetSelect" class="bn-sandbox-preset-select" aria-label="নমুনা কুয়েরি নির্বাচন করুন">
+                <option value="" disabled selected>নমুনা কুয়েরি (Preset Queries)...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bn-sandbox-cm-container">
+            <textarea id="bnSandboxTextarea" class="bn-sandbox-textarea" placeholder="এখানে আপনার SQL কুয়েরি লিখুন..."></textarea>
+          </div>
+
+          <!-- Reset Confirmation Banner (Inline inside Editor Panel) -->
+          <div id="bnSandboxResetConfirm" class="bn-sandbox-confirm-banner" style="display: none;" role="alert">
+            <div class="bn-sandbox-confirm-text">
+              <strong>স্যান্ডবক্স রিসেট:</strong> সকল পরিবর্তন মুছে মূল ডেটাবেস কপি পুনর্স্থাপিত হবে। আপনি কি নিশ্চিত?
+            </div>
+            <div class="bn-sandbox-confirm-actions">
+              <button type="button" id="bnSandboxConfirmYes" class="sqlBtnDanger bn-sandbox-btn-sm">হ্যাঁ, রিসেট করুন</button>
+              <button type="button" id="bnSandboxConfirmNo" class="sqlBtnTertiary bn-sandbox-btn-sm">বাতিল</button>
+            </div>
+          </div>
+
+          <!-- Compact Action Toolbar -->
+          <div class="bn-sandbox-toolbar">
+            <div class="bn-sandbox-toolbar-actions">
+              <button type="button" id="bnSandboxRunBtn" class="sql-exercise-submit sqlBtnPrimary bn-sandbox-run-btn" title="কুয়েরি চালান (Shift+Enter)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span id="bnSandboxRunBtnText">কুয়েরি চালান</span>
+                <span class="sqlBtnKbdHint">(Shift+Enter)</span>
+              </button>
+
+              <button type="button" id="bnSandboxClearBtn" class="sqlBtnTertiary bn-sandbox-btn-sm" title="এডিটর ও ফলাফল খালি করুন">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>এডিটর পরিষ্কার</span>
+              </button>
+            </div>
+
+            <div class="bn-sandbox-toolbar-reset">
+              <button type="button" id="bnSandboxResetDataBtn" class="sqlBtnSecondary bn-sandbox-btn-sm" title="স্যান্ডবক্স ডেটাবেস মূল অবস্থায় পুনর্স্থাপন করুন">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                <span>Sandbox Data Reset</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT PANEL: Query Results Viewer -->
+        <section class="bn-sandbox-panel bn-sandbox-panel-result" aria-label="Query Result Panel">
+          <div id="bnSandboxOutputArea" class="bn-sandbox-output-area">
+            <div id="bnSandboxInitialPrompt" class="bn-sandbox-initial-prompt">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+              <div class="bn-sandbox-prompt-text">
+                <h4>এসকিউএল ফলাফল উইন্ডো</h4>
+                <p>বামপাশের এডিটরে কুয়েরি লিখে <strong>'কুয়েরি চালান'</strong> বাটনে ক্লিক করুন অথবা কীবোর্ডে <code>Shift + Enter</code> চাপুন।</p>
+              </div>
+            </div>
+
+            <!-- Dynamic Results Container -->
+            <output id="bnSandboxOutputBox" name="sandbox-output" class="bn-sandbox-output-box"></output>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</div>

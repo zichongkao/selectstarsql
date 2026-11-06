@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="bn">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ '/imgs/favicon.ico' | relative_url }}">
+    <!-- thanks to https://favicon.io/ -->
+    <link rel="stylesheet" href="{{ '/css/codemirror.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/neat.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/bn-modern.css' | relative_url }}">
+    <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
+    <script src="{{ '/scripts/codemirror.js' | relative_url }}"></script>
+    <script src="{{ '/scripts/codemirrorsql.js' | relative_url }}"></script>
+    <script src="{{ '/scripts/autorefresh.js' | relative_url }}"></script>
+    <script src="{{ '/scripts/main.js' | relative_url }}"></script>
+    {% if page.dbFile %}
+    <script>
+      window.onload = () => loadData('../{{ page.dbFile }}');
+    </script>
+    {% endif %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46601509-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46601509-2');
+    </script>
+    <title>{{ page.title }}</title>
+    {% include bn_seo_tags.html lang="bn" %}
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('selectstar_bn_theme');
+          if (t === 'dark') {
+            document.documentElement.classList.add('bn-theme-dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+
+  <body class="bn-layout" data-db-file="{{ page.dbFile }}">
+    <a href="#column" class="bn-skip-link">মূল বিষয়বস্তুতে যান</a>
+    {% include bn_header.html %}
+    <div class="bn-shell">
+      {% include bn_sidebar.html %}
+      <div id="bnSidebarBackdrop" class="bn-sidebar-backdrop"></div>
+      <main class="bn-main" id="column" tabindex="-1">
+        <div class="content bn-content">
+          {{content}}
+        </div>
+      </main>
+    </div>
+    {% include bn_footer.html %}
+    {% include bn_schema_modal.html %}
+    {% include bn_sandbox_modal.html %}
+    <script src="{{ '/scripts/bn-modern.js' | relative_url }}"></script>
+  </body>
+</html>

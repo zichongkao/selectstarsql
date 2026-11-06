@@ -1,0 +1,119 @@
+contents:
+- title: শুরুর কথা
+  url: frontmatter.html
+  blurb: "এই প্রকল্পের দার্শনিক ও কারিগরি ভিত্তি।"
+  sections:
+  - name: প্রেরণা
+    url: "#impetus"
+  - name: শিক্ষণপদ্ধতি
+    url: "#pedagogy"
+  - name: উপাত্ত
+    url: "#dataset"
+  - name: কারিগরি দিক
+    url: "#technicals"
+  - name: যোগাযোগ
+    url: "#contact"
+- title: বিজলির শেষ জবানবন্দি
+  url: beazley.html
+  blurb: "অধ্যায় ১-এ নেপোলিয়ন বিজলির মৃত্যুদণ্ডবিরোধী যুক্তি পর্যালোচনা করা হয়েছে। এখানে আমরা এসকিউএল (SQL) কুয়েরির গঠন এবং টেবিলের সারিভিত্তিক কার্যক্রম শিখব।"
+  sections:
+  - name: বিজলি মামলা
+    url: "#beazley_case"
+  - name: প্রথম এসকিউএল কুয়েরি
+    url: "#first"
+  - name: SELECT ব্লক
+    url: "#select"
+  - name: এসকিউএল কমেন্ট
+    url: "#comments"
+    sidenote: true
+  - name: FROM ব্লক
+    url: "#from"
+  - name: ক্যাপিটালাইজেশন বা বড় হাতের অক্ষর
+    url: "#capitalization"
+    sidenote: true
+  - name: হোয়াইটস্পেস বা ফাঁকা জায়গা
+    url: "#whitespace"
+    sidenote: true
+  - name: WHERE ব্লক
+    url: "#where"
+  - name: কোটেশন বা উদ্ধৃতি চিহ্ন
+    url: "#quotes"
+    sidenote: true
+  - name: সারসংক্ষেপ
+    url: "#recap"
+- title: নির্দোষিতার দাবি
+  url: innocence.html
+  blurb: "অধ্যায় ২-এ মৃত্যুদণ্ড কার্যকর হওয়া বন্দিদের মধ্যে কতজন নির্দোষ হতে পারে তার অনুমান করা হয়েছে। এর মূল কারিগরি বিষয় হলো সম্পূর্ণ টেবিল জুড়ে এগ্রিগেশন।"
+  sections:
+  - name: নির্দোষ হওয়ার সম্ভাবনা
+    url: "#possible_innocence"
+  - name: এগ্রিগেশন
+    url: "#aggregations"
+  - name: COUNT ফাংশন
+    url: "#count"
+  - name: নাল (Nulls)
+    url: "#nulls"
+    sidenote: true
+  - name: COUNT-এর প্রকারভেদ
+    url: "#count_var"
+  - name: ডকুমেন্টেশন দেখা
+    url: "#documentation"
+    sidenote: true
+  - name: একটি অদ্ভুত কুয়েরি
+    url: "#strange"
+  - name: এসকিউএল ডায়ালেক্ট ও ডেটাবেজ
+    url: "#dialects"
+    sidenote: true
+  - name: উপসংহার ও সারসংক্ষেপ
+    url: "#recap"
+- title: দ্য লং টেইল
+  url: longtail.html
+  blurb: "অধ্যায় ৩-এ যেসব কাউন্টিতে অস্বাভাবিক বেশি মৃত্যুদণ্ড কার্যকর হয়েছে সেগুলো বিশ্লেষণ করা হয়েছে। সারিগুলোর গ্রুপে এগ্রিগেশন প্রয়োগ করে আমরা অধ্যায় ২-এর ধারণাকে আরও বিস্তৃত করব।"
+  sections:
+  - name: লং টেইল
+    url: "#long_tails"
+  - name: Group By
+    url: "#groupby"
+  - name: Having
+    url: "#having"
+  - name: নেস্টেড কুয়েরি
+    url: "#nested"
+  - name: হ্যারিস কাউন্টি
+    url: "#harris"
+  - name: সারসংক্ষেপ
+    url: "#recap"
+  - name: ম্যাপরিডিউস
+    url: "#mapreduce"
+    sidenote: true
+- title: মৃত্যুদণ্ড কার্যকরের বিরতি
+  url: hiatuses.html
+  blurb: "অধ্যায় ৪-এ দীর্ঘ বিরতির সময়কাল অন্বেষণ করা হয়েছে যখন কোনো মৃত্যুদণ্ড কার্যকর হয়নি। এর মূল বিষয় হলো জয়েন (JOIN) ব্যবহার করে টেবিল সম্প্রসারণ করা।"
+  sections:
+  - name: বিরতিসমূহ
+    url: "#hiatuses"
+  - name: জয়েন (JOIN) সম্পর্কিত ধারণা
+    url: "#joins"
+  - name: কলাম দ্ব্যর্থতাহীন করা
+    url: "#disam_cols"
+    sidenote: true
+  - name: জয়েনের প্রকারভেদ
+    url: "#join_types"
+  - name: তারিখ (Dates)
+    url: "#dates"
+  - name: সেলফ জয়েন
+    url: "#self_joins"
+  - name: সারসংক্ষেপ
+    url: "#recap"
+- title: সমাপনী মন্তব্য ও চ্যালেঞ্জ প্রশ্ন
+  url: questions.html
+  blurb: "অধ্যায় ৫-এ সমাপনী মন্তব্য এবং ব্যবহারকারীদের পাঠানো বিভিন্ন চ্যালেঞ্জ প্রশ্নের সংকলন রয়েছে।"
+  sections:
+  - name: সমাপনী মন্তব্য
+    url: "#closing_remarks"
+  - name: চ্যালেঞ্জ প্রশ্নসমূহ
+    url: "#challenge_questions"
+  - name: নতুন সমস্যার আহ্বান
+    url: "#call_for_problems"
+    sidenote: true
+  - name: সিনেট কো-স্পন্সরশিপ ডেটাসেট
+    url: "#senate_cosponsorship"

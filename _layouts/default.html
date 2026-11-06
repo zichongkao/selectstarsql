@@ -25,13 +25,13 @@
       gtag('config', 'UA-46601509-2');
     </script>
     <title>{{ page.title }}</title>
+    {% include bn_seo_tags.html lang="en" %}
 
     <!-- add meta tag for translated version -->
     {% assign current_page = page.url | replace:'/','' | replace:'..','' %}
     {% for hebrew_page in site.data.he_sitemap.contents %}
       {% assign hebrew_page_source_url = hebrew_page.english_url | replace:'/','' | replace:'..','' %}
       {% if current_page == hebrew_page_source_url %}
-    <link rel="alternate" hreflang="en" href="{{ page.url }}">
     <link rel="alternate" hreflang="he" href="/he/{{ hebrew_page.url  }}">
       {% endif %}
     {% endfor %}

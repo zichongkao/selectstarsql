@@ -3,6 +3,9 @@
 - code: en
   name: English
   path: /
+- code: bn
+  name: বাংলা
+  path: /bn/
 - code: es
   name: Español
   path: /es/
