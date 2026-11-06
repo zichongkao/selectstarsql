@@ -17,6 +17,7 @@ dbFile: data/tx_deathrow_small.db
 ## প্রথম এসকিউএল কুয়েরি
 <sql-exercise
   data-question="'executions' টেবিলের প্রথম ৩টি সারি দেখার জন্য এই কুয়েরিটি চালান।"
+  data-en-question="Run this query to find the first 3 rows of the 'executions' table."
   data-comment="টেবিলটিতে কী কী কলাম রয়েছে তা জানার জন্য প্রথম কয়েকটি সারি দেখে নেওয়া একটি চমৎকার উপায়। পরবর্তী ব্যবহারের সুবিধার্থে কলামগুলোর নাম মনে রাখার চেষ্টা করুন।"
   data-default-text="SELECT * FROM executions LIMIT 3"></sql-exercise>
 
@@ -33,6 +34,7 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
   data-question="নিচের কোড এডিটরে বিদ্যমান কলামগুলোর পাশাপাশি last_statement কলামটি নির্বাচন করতে কুয়েরিটি সংশোধন করুন।"
+  data-en-question="In the code editor below, revise the query to select the last_statement column in addition to the existing columns."
   data-comment="কোড লেখা শেষ হলে, কুয়েরিটি চালাতে Shift+Enter চাপতে পারেন।"
   data-default-text="SELECT first_name, last_name
 FROM executions
@@ -53,6 +55,7 @@ LIMIT 3"
 
 <sql-exercise
   data-question="প্রদত্ত কুয়েরিটি চালান এবং এটি যে ত্রুটি (error) প্রদর্শন করে তা পর্যবেক্ষণ করুন। এরপর কুয়েরিটি ঠিক করুন।"
+  data-en-question="Run the given query and observe the error it produces. Fix the query."
   data-comment="কোনো কিছু ভুল হলে ত্রুটির বার্তা (error message) ভালো করে দেখার অভ্যাস গড়ে তুলুন। নিছক অনুমানের ওপর ভিত্তি করে কোড ঠিক করার চেষ্টা এড়িয়ে চলুন।"
   data-default-text="SELECT first_name FROM execution LIMIT 3"
   data-solution="SELECT first_name FROM executions LIMIT 3"></sql-exercise>
@@ -61,6 +64,7 @@ LIMIT 3"
 
 <sql-exercise
   data-question="৫০ এবং ৫১-কে ২ দিয়ে ভাগ করতে কুয়েরিটি পরিবর্তন করুন।"
+  data-en-question="Modify the query to divide 50 and 51 by 2."
   data-comment="এসকিউএল সমস্ত প্রচলিত গাণিতিক ক্রিয়া সমর্থন করে।"
   data-default-text="SELECT 50 + 2, 51 * 2"
   data-solution="SELECT 50 / 2, 51 / 2"></sql-exercise>
@@ -81,6 +85,7 @@ LIMIT 3"
 
 <sql-exercise
   data-question="অক্ষরের আকার (capitalization) এবং ফাঁকা জায়গা (whitespace) এলোমেলো করলেও যে কুয়েরিটি সঠিকভাবে কাজ করে তা যাচাই করুন।"
+  data-en-question="Verify that messing up capitalization and whitespace still gives a valid query."
   data-comment="কার্লা টাকার (Karla Tucker) ছিলেন গৃহযুদ্ধের পর টেক্সাসে মৃত্যুদণ্ড কার্যকর হওয়া প্রথম নারী। ১৯৮৩ সালের একটি ডাকাতির ঘটনায় দুজনকে হত্যার দায়ে তাঁকে মৃত্যুদণ্ড দেওয়া হয়েছিল।"
   data-default-text="   SeLeCt   first_name,last_name
   fRoM      executions
@@ -94,6 +99,7 @@ LIMIT 3"
 
 <sql-exercise
   data-question="মৃত্যুদণ্ড কার্যকরের সময় যাদের বয়স ২৫ বছর বা তার কম ছিল এমন আসামিদের প্রথম নাম, শেষ নাম এবং বয়স (ex_age) খুঁজে বের করুন।"
+  data-en-question="Find the first and last names and ages (ex_age) of inmates who were 25 or younger at the time of execution."
   data-comment="মৃত্যুদণ্ড কার্যকরের আগে আসামিরা গড়ে ১০.২৬ বছর কারাগারে মৃত্যু সারিতে (death row) কাটায়। ফলে ১৯৭৬ সালের পর থেকে টেক্সাসে এত অল্প বয়সে মৃত্যুদণ্ড কার্যকর হওয়া আসামির সংখ্যা মাত্র ৬ জন।"
   data-default-text=""
   data-solution="SELECT first_name, last_name, ex_age
@@ -105,6 +111,7 @@ FROM executions WHERE ex_age <= 25"></sql-exercise>
 
 <sql-exercise
     data-question="রেমন্ড ল্যান্ড্রির (Raymond Landry) তথ্য পাওয়ার জন্য কুয়েরিটি পরিবর্তন করুন।"
+    data-en-question="Modify the query to find the result for Raymond Landry."
     data-comment="আপনার মনে হতে পারে যে এটি খুবই সহজ, কারণ আমরা ইতিমধ্যেই তাঁর প্রথম এবং শেষ নাম জানি। কিন্তু বাস্তব জীবনের ডেটাসেট কদাচিৎ এত নিখুঁত থাকে। LIKE অপারেটরটি ব্যবহার করুন যাতে তাঁর নামের বানান হুবহু না জেনেও সারিটি খুঁজে পাওয়া যায়।"
     data-default-text="SELECT first_name, last_name, ex_number
 FROM executions
@@ -125,6 +132,7 @@ WHERE first_name = 'Raymond'
 
 <sql-exercise
   data-question="এই স্টেটমেন্টটি যেন ০ প্রদান করে সেজন্য এক জোড়া প্রথম বন্ধনী যুক্ত করুন।"
+  data-en-question="Insert a pair of parentheses so that this statement returns 0."
   data-comment="এখানে আমরা এই তথ্যের ওপর নির্ভর করছি যে ১ মানে সত্য (true) এবং ০ মানে মিথ্যা (false)।"
   data-default-text="SELECT 0 AND 0 OR 1"
   data-solution="SELECT 0 AND (0 OR 1)"
@@ -134,7 +142,9 @@ WHERE first_name = 'Raymond'
 
 <sql-quiz
   data-title="সঠিক ক্লজযুক্ত <code>WHERE</code> ব্লকগুলো নির্বাচন করুন।"
-  data-description="এগুলো কিছুটা সূক্ষ্ম ও বিভ্রান্তিকর হতে পারে। আপনি সঠিকভাবে অনুমান করতে পারলেও এর পেছনের কারণটি বুঝতে প্রতিটি ব্যাখ্যা ভালো করে পড়ুন।">
+  data-en-title="Select the <code>WHERE</code> blocks with valid clauses."
+  data-description="এগুলো কিছুটা সূক্ষ্ম ও বিভ্রান্তিকর হতে পারে। আপনি সঠিকভাবে অনুমান করতে পারলেও এর পেছনের কারণটি বুঝতে প্রতিটি ব্যাখ্যা ভালো করে পড়ুন।"
+  data-en-description="These are tricky. Even if you've guessed correctly, read the explanations to understand the reasoning.">
   <sql-quiz-option
     data-value="bool_literal"
     data-statement="WHERE 0"
@@ -171,6 +181,7 @@ WHERE first_name = 'Raymond'
 এখন আমাদের মূল কাজটি সম্পন্ন করার জন্য প্রয়োজনীয় সমস্ত হাতিয়ার আপনার কাছে রয়েছে।
 <sql-exercise
   data-question="নেপোলিয়ন বিজলির শেষ জবানবন্দিটি খুঁজে বের করুন।"
+  data-en-question="Find Napoleon Beazley's last statement."
   data-default-text=""
   data-solution="SELECT last_statement
 FROM executions

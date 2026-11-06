@@ -58,7 +58,9 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-quiz
   data-title="যে বাক্যগুলো সত্য সেগুলোতে টিক চিহ্ন দিন।"
-  data-description="ধরা যাক আমাদের কাছে ৩টি সারির tableA এবং ৫টি সারির tableB রয়েছে।">
+  data-en-title="Mark the true statements."
+  data-description="ধরা যাক আমাদের কাছে ৩টি সারির tableA এবং ৫টি সারির tableB রয়েছে।"
+  data-en-description="Suppose we have tableA with 3 rows and tableB with 5 rows.">
   <sql-quiz-option
     data-value="cartesian_prod"
     data-statement="<code>tableA JOIN tableB ON 1</code> ১৫টি সারি প্রদান করে।"
@@ -99,6 +101,7 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
  data-question='তারিখ দুটির মধ্যবর্তী দিনের সংখ্যা ফেরত পেতে কুয়েরিটি ঠিক করতে <a href="https://www.sqlite.org/lang_datefunc.html">ডকুমেন্টেশন</a> দেখে নিন।'
+ data-en-question='Look up <a href="https://www.sqlite.org/lang_datefunc.html">the documentation</a> to fix the query so that it returns the number of days between the dates.'
  data-default-text="SELECT '1993-08-10' - '1989-07-07' AS day_difference"
  data-solution="
 SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_difference"
@@ -123,6 +126,7 @@ SELECT JULIANDAY('1993-08-10') - JULIANDAY('1989-07-07') AS day_difference"
 পরবর্তী ধাপ হলো `previous` টেবিলটি তৈরি করা।
 <sql-exercise
   data-question="<code>previous</code> টেবিলটি তৈরি করার জন্য একটি কুয়েরি লিখুন।"
+  data-en-question="Write a query to produce the <code>previous</code> table."
   data-comment="কলামগুলোর নাম <code>(ex_number, last_ex_date)</code> তৈরি করতে অ্যালাইয়াস (alias) ব্যবহার করতে ভুলবেন না। ইঙ্গিত: তারিখগুলোকে পেছনে নেওয়ার বদলে আপনি <code>ex_number</code>-কে এক ধাপ এগিয়ে নিতে পারেন!"
   data-solution="
 SELECT
@@ -134,6 +138,7 @@ WHERE ex_number < 553"></sql-exercise>
 এখন আমরা এই কুয়েরিটিকে আমাদের উপরের টেমপ্লেটে নেস্ট করতে পারি:
 <sql-exercise
   data-question="টেমপ্লেটের ভেতরে <code>previous</code> টেবিল তৈরি করা কুয়েরিটি নেস্ট করুন।"
+  data-en-question="Nest the query which generates the <code>previous</code> table into the template."
   data-comment='লক্ষ্য করুন যে আমরা এখানে একটি টেবিল অ্যালাইয়াস (table alias) ব্যবহার করছি, যেখানে নেস্টেড কুয়েরির ফলাফলটির নাম দেওয়া হয়েছে "previous"।'
   data-default-text="SELECT
   last_ex_date AS start,
@@ -167,6 +172,7 @@ LIMIT 10"
 আমরা `previous` টেবিলটি তৈরি করেছিলাম মূলত এটি যে উদ্দেশ্য পূরণ করে তা স্পষ্ট করার জন্য। কিন্তু আমরা আসলে `executions` টেবিলটিকে সরাসরি তার নিজের সাথেই জয়েন করে কুয়েরিটিকে আরও মার্জিতভাবে লিখতে পারি।
 <sql-exercise
   data-question="পূর্ববর্তী কুয়েরিটির একটি আরও মার্জিত সংস্করণ সম্পন্ন করতে <code>JOIN ON</code> ক্লজটি পূরণ করুন।"
+  data-en-question="Fill in the <code>JOIN ON</code> clause to complete a more elegant version of the previous query."
   data-comment="মনে রাখবেন, আমরা যেন দ্ব্যর্থতাহীনভাবে যেকোনো একটি কপিকে নির্দিষ্ট করতে পারি, সেজন্য একটি কপিকে অবশ্যই একটি অ্যালাইয়াস দিতে হবে।"
   data-default-text="SELECT
   previous.ex_date AS start,

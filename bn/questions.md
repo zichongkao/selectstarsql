@@ -40,12 +40,14 @@ dbFile: data/114_congress_small.db
 
 <sql-exercise
   data-question="ডেটাসেটটি এক নজরে দেখে নিন।"
+  data-en-question="Have a look at the dataset."
   data-comment="১৫ হাজার (15K) সারির এই ডেটাসেটটি টেক্সাসের ডেটাসেটের তুলনায় কিছুটা বড়, তাই একবারে সমস্ত ডেটা প্রিন্ট করা এড়িয়ে চলাই ভালো।"
   data-default-text="SELECT * FROM cosponsors LIMIT 3"
   ></sql-exercise>
 
 <sql-exercise
   data-question="সবচেয়ে বেশি পারস্পরিক নেটওয়ার্কযুক্ত সিনেটরকে খুঁজে বের করুন। অর্থাৎ, যাঁর পারস্পরিক সহ-পৃষ্ঠপোষকতা (mutual cosponsorship) সবচেয়ে বেশি।"
+  data-en-question="Find the most networked senator. That is, the one with the most mutual cosponsorships."
   data-comment="পারস্পরিক সহ-পৃষ্ঠপোষকতা (mutual cosponsorship) বলতে এমন দুজন সিনেটরকে বোঝায় যাঁরা একে অপরের উত্থাপিত বিলে সহ-পৃষ্ঠপোষক হিসেবে স্বাক্ষর করেছেন। এই দুই সিনেটর একাধিক বিলে একসাথে কাজ করলেও, তাঁদের পারস্পরিক সম্পর্কটিকে একটি হিসেবেই গণনা করা হবে।"
   data-solution="
 WITH mutuals AS (
@@ -67,6 +69,7 @@ LIMIT 1"
 
 <sql-exercise
   data-question="এবার প্রতিটি অঙ্গরাজ্য থেকে সবচেয়ে বেশি নেটওয়ার্কযুক্ত সিনেটরকে খুঁজে বের করুন।"
+  data-en-question="Now find the most networked senator from each state."
   data-comment="যদি একাধিক সিনেটর যৌথভাবে শীর্ষে থাকেন, তবে উভয়কেই প্রদর্শন করুন। অঙ্গরাজ্য (state), সিনেটর (senator) এবং পারস্পরিক সহ-পৃষ্ঠপোষকতার সংখ্যা (mutual cosponsorship count)-এর সাথে সঙ্গতিপূর্ণ কলামগুলো ফলাফল হিসেবে প্রদর্শন করুন।"
   data-solution="
 WITH mutual_counts AS (
@@ -106,6 +109,7 @@ JOIN state_max
 
 <sql-exercise
   data-question="যেসব সিনেটর অন্যান্যদের বিলে সহ-পৃষ্ঠপোষকতা করেছেন কিন্তু নিজেরা কোনো বিল উত্থাপন (sponsor) করেননি, তাঁদের খুঁজে বের করুন।"
+  data-en-question="Find the senators who cosponsored bills but didn't sponsor any bills themselves."
   data-comment=""
   data-solution="
 SELECT DISTINCT c1.cosponsor_name

@@ -8,35 +8,10 @@
     <link rel="stylesheet" href="{{ '/css/neat.css' | relative_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed">
     <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
-    <style>
-      body {
-        font-family: 'Hind Siliguri', Roboto, sans-serif;
-      }
-      p {
-        font-family: 'Noto Serif Bengali', 'Libre Baskerville', serif;
-        line-height: 1.85;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Hind Siliguri', Roboto, sans-serif;
-        line-height: 1.35;
-      }
-      .header .title {
-        font-family: 'Hind Siliguri', 'Roboto Condensed', sans-serif;
-      }
-      .lang-switcher, .footer, .section-nav, .tutorial-nav, .index_section p {
-        font-family: 'Hind Siliguri', Roboto, sans-serif;
-      }
-      .sideNote {
-        font-family: 'Hind Siliguri', Roboto, sans-serif;
-        line-height: 1.7;
-      }
-      code, pre, .CodeMirror {
-        font-family: Consolas, monospace;
-      }
-    </style>
+    <link rel="stylesheet" href="{{ '/css/bn-modern.css' | relative_url }}">
     <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
     <script src="{{ '/scripts/codemirror.js' | relative_url }}"></script>
     <script src="{{ '/scripts/codemirrorsql.js' | relative_url }}"></script>
@@ -57,19 +32,18 @@
     {% include bn_seo_tags.html lang="bn" %}
   </head>
 
-  <body>
-    <div id="column">
-      <div class="header">
-        <a href="{{ '/bn/' | relative_url }}"><img class="logo" src="{{ '/imgs/favicon-256.png' | relative_url }}"></a>
-        <a href="{{ '/bn/' | relative_url }}"><div class="title">Select Star SQL</div></a>
-        {% include language_switcher.html lang="bn" %}
-      </div>
-      <div class="content">
-        {{content}}
-      </div>
-      <div class="footer">
-        <a href="{{ '/' | relative_url }}">SelectStarSql.com</a>-এর রচনায় স্বত্বাধিকারী <a href="https://kaomorphism.com/">Zi Chong Kao</a>, যা একটি <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0 লাইসেন্স</a>-এর আওতাভুক্ত। অনুবাদসমূহের স্বীকৃতি রয়েছে <a href="{{ '/bn/frontmatter.html#contact' | relative_url }}">শুরুর কথায়</a>। কোড এবং উপাত্তসমূহ <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0 লাইসেন্স</a>-এর অধীনে পাবলিক ডোমেইনে উন্মুক্ত।
-      </div>
+  <body class="bn-layout">
+    {% include bn_header.html %}
+    <div class="bn-shell">
+      {% include bn_sidebar.html %}
+      <div id="bnSidebarBackdrop" class="bn-sidebar-backdrop"></div>
+      <main class="bn-main" id="column">
+        <div class="content bn-content">
+          {{content}}
+        </div>
+      </main>
     </div>
+    {% include bn_footer.html %}
+    <script src="{{ '/scripts/bn-modern.js' | relative_url }}"></script>
   </body>
 </html>

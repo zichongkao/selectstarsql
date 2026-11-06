@@ -19,6 +19,7 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
   data-question="এই কুয়েরিটি প্রতি কাউন্টিতে মৃত্যুদণ্ড কার্যকরের সংখ্যা নিয়ে আসে।"
+  data-en-question="This query pulls the execution counts per county."
   data-default-text="SELECT
   county,
   COUNT(*) AS county_executions
@@ -31,6 +32,7 @@ GROUP BY county"></sql-exercise>
 
 <sql-exercise
   data-question="এই কুয়েরিটি শেষ জবানবন্দিসহ এবং শেষ জবানবন্দি ছাড়া মৃত্যুদণ্ডের সংখ্যা গণনা করে। কাউন্টি অনুসারে এটিকে আরও বিস্তারিতভাবে বিভাজন করতে কুয়েরিটি সংশোধন করুন।"
+  data-en-question="This query counts the executions with and without last statements. Modify it to further break it down by county."
   data-comment="<code>last_statement IS NOT NULL</code> ক্লজটি একটি নির্দেশক চলক (indicator variable) হিসেবে কাজ করে, যেখানে ১ মানে সত্য এবং ০ মানে মিথ্যা।"
   data-default-text="SELECT
   last_statement IS NOT NULL AS has_last_statement,
@@ -52,6 +54,7 @@ GROUP BY has_last_statement, county"
 
 <sql-exercise
   data-question="প্রতিটি কাউন্টিতে কার্যকর হওয়া ৫০ বছর বা তার বেশি বয়সী বন্দিদের সংখ্যা গণনা করুন।"
+  data-en-question="Count the number of inmates aged 50 or older that were executed in each county."
   data-comment="আপনি <code>CASE WHEN</code> ব্যবহার করেও এটি করতে পারেন, তবে এখানে <code>WHERE</code> ব্লক ব্যবহার করার চেষ্টা করুন।"
   data-default-text=""
   data-solution="SELECT county, COUNT(*)
@@ -64,6 +67,7 @@ GROUP BY county"
 
 <sql-exercise
   data-question="যেসব কাউন্টিতে ৫০ বছর বা তার বেশি বয়সী ২ জনের বেশি বন্দির মৃত্যুদণ্ড কার্যকর করা হয়েছে সেগুলোর তালিকা তৈরি করুন।"
+  data-en-question="List the counties in which more than 2 inmates aged 50 or older have been executed."
   data-comment="এটি পূর্ববর্তী অনুশীলনের ওপর ভিত্তি করে তৈরি। আমাদের একটি অতিরিক্ত ফিল্টার প্রয়োজন—যা এগ্রিগেশনের ফলাফলকে ব্যবহার করে। এর অর্থ হলো এটি <code>WHERE</code> ব্লকে থাকতে পারে না, কারণ সেই ফিল্টারগুলো এগ্রিগেশনের আগেই পরিচালিত হয়। <a href='https://www.w3schools.com/sql/sql_having.asp'><code>HAVING</code> ব্লক</a> সংক্রান্ত ডকুমেন্টেশন দেখুন। আপনি এটিকে এগ্রিগেশন-পরবর্তী <code>WHERE</code> ব্লক হিসেবে ভাবতে পারেন।"
   data-default-text=""
   data-solution="
@@ -80,7 +84,15 @@ HAVING COUNT(*) > 2"
 
 <sql-quiz
   data-title="যে বাক্যগুলো সত্য সেগুলোতে টিক চিহ্ন দিন।"
+  data-en-title="Mark the statements that are true."
   data-description="নিচের কুয়েরিটি প্রতিটি কাউন্টি এবং ১০ বছর বয়সী বয়সভিত্তিক পরিসরের (age range) বন্দিদের সংখ্যা বের করে। <pre>
+SELECT
+  county,
+  ex_age/10 AS decade_age,
+  COUNT(*)
+FROM executions
+GROUP BY county, decade_age</pre>"
+  data-en-description="This query finds the number of inmates from each county and 10 year age range. <pre>
 SELECT
   county,
   ex_age/10 AS decade_age,
@@ -127,6 +139,7 @@ GROUP BY county, decade_age</pre>">
 
 <sql-exercise
   data-question="ডেটাসেটের সমস্ত স্বতন্ত্র (distinct) কাউন্টির তালিকা তৈরি করুন।"
+  data-en-question="List all the distinct counties in the dataset."
   data-comment="পূর্ববর্তী অধ্যায়ে আমরা <code>SELECT DISTINCT</code> কমান্ড ব্যবহার করে এটি করেছিলাম। এবার সাধারণ <code>SELECT</code> ব্যবহার করুন এবং <code>GROUP BY</code> প্রয়োগ করুন।"
   data-default-text=""
   data-solution="SELECT county FROM executions GROUP BY county"
@@ -149,6 +162,7 @@ GROUP BY county, decade_age</pre>">
 
 <sql-exercise
   data-question="সবচেয়ে দীর্ঘ শেষ জবানবন্দি দেওয়া (অক্ষরের সংখ্যার ভিত্তিতে) বন্দির প্রথম এবং শেষ নাম খুঁজে বের করুন।"
+  data-en-question="Find the first and last name of the inmate with the longest last statement (by character count)."
   data-comment="&lt;<code>length-of-longest-last-statement</code>&gt; এর স্থানে নেস্ট করার জন্য একটি উপযুক্ত কুয়েরি লিখুন।"
   data-default-text="SELECT first_name, last_name
 FROM executions
@@ -164,6 +178,7 @@ WHERE LENGTH(last_statement) =
 
 <sql-exercise
   data-question="প্রতিটি কাউন্টি থেকে মৃত্যুদণ্ডের শতকরা হার বের করতে &lt;<code>count-of-all-rows</code>&gt; কুয়েরিটি স্থাপন করুন।"
+  data-en-question="Insert the &lt;<code>count-of-all-rows</code>&gt; query to find the percentage of executions from each county."
   data-comment="<code>100.0</code> একটি দশমিক সংখ্যা যাতে আমরা দশমিক শতকরা হার পেতে পারি।"
   data-default-text="SELECT
   county,

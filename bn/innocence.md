@@ -31,6 +31,7 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
   data-question="কতজন বন্দি শেষ জবানবন্দি দিয়েছেন তা খুঁজে বের করতে কুয়েরিটি সম্পাদনা করুন।"
+  data-en-question="Edit the query to find how many inmates provided last statements."
   data-comment="আমরা এখানে <code>COUNT</code> ব্যবহার করতে পারি, কারণ যেসব ক্ষেত্রে কোনো জবানবন্দি নেই সেখানে <code>NULL</code> মান রাখা হয়েছে।"
   data-default-text="SELECT COUNT(first_name) FROM executions"
   data-solution="SELECT COUNT(last_statement) FROM executions"></sql-exercise>
@@ -43,6 +44,7 @@ dbFile: data/tx_deathrow_small.db
 
   <sql-exercise
     data-question="যাচাই করে দেখুন যে ০ এবং ফাঁকা স্ট্রিং-কে NULL হিসেবে গণ্য করা হয় না।"
+    data-en-question="Verify that 0 and the empty string are not considered NULL."
     data-comment="মনে রাখবেন, এটি একটি যৌগিক শর্ত। কুয়েরিটির ফলাফল <code>true</code> হতে হলে উভয় <code>IS NOT NULL</code> শর্তকেই সত্য হতে হবে।"
     data-default-text="SELECT (0 IS NOT NULL) AND ('' IS NOT NULL)"
     ></sql-exercise>
@@ -51,6 +53,7 @@ dbFile: data/tx_deathrow_small.db
 এর মাধ্যমে আমরা আমাদের অনুপাতের হর (denominator) বের করতে পারি:
 <sql-exercise
   data-question="ডেটাসেটের মোট কার্যকর হওয়া মৃত্যুদণ্ডের সংখ্যা বের করুন।"
+  data-en-question="Find the total number of executions in the dataset."
   data-comment="এখানে মূল বিষয় হলো এমন একটি কলাম বেছে নেওয়া যাতে কোনো <code>NULL</code> মান নেই বলে আপনি নিশ্চিত, এবং সেটিকে গণনা করা।"
   data-default-text=""
   data-solution="SELECT COUNT(ex_number) FROM executions"></sql-exercise>
@@ -64,6 +67,7 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
   data-question="যাচাই করুন যে <code>COUNT(*)</code> আগের মতোই একই ফলাফল দেয়।"
+  data-en-question="Verify that <code>COUNT(*)</code> gives the same result as before."
   data-default-text="SELECT COUNT(*) FROM executions"></sql-exercise>
 
 আরেকটি প্রচলিত কৌশল হলো টেবিলের একটি নির্দিষ্ট অংশের সারি গণনা করা। যেমন, হ্যারিস কাউন্টির (Harris county) মৃত্যুদণ্ড গণনা করা। আমরা `SELECT COUNT(*) FROM executions WHERE county='Harris'` চালাতে পারি, যা প্রথমে হ্যারিস কাউন্টির মৃত্যুদণ্ডপ্রাপ্তদের ফিল্টার করে একটি ছোট ডেটাসেটে রূপান্তর করে এবং তারপর সারিগুলো গণনা করে। কিন্তু আমরা যদি একই সাথে বেক্সার কাউন্টির (Bexar county) মৃত্যুদণ্ডের সংখ্যাও বের করতে চাই, তবে কী করব?
@@ -81,6 +85,7 @@ dbFile: data/tx_deathrow_small.db
 
 <sql-exercise
   data-question="এই কুয়েরিটি হ্যারিস এবং বেক্সার কাউন্টির মৃত্যুদণ্ডের সংখ্যা গণনা করে। <code>SUM</code>-এর পরিবর্তে <code>COUNT</code> ব্যবহার করুন এবং <code>CASE WHEN</code> ব্লকগুলো এমনভাবে সম্পাদনা করুন যেন কুয়েরিটি সঠিকভাবে কাজ করে।"
+  data-en-question="This query counts the number of executions in Harris and Bexar counties. Replace <code>SUM</code> with <code>COUNT</code> and edit the <code>CASE WHEN</code> blocks so the query still works."
   data-comment="কেবল <code>SUM</code>-এর জায়গায় <code>COUNT</code> বসানোই যথেষ্ট নয়, কারণ ০ কোনো নাল মান নয়—ফলে <code>COUNT</code> তখনও ০-কে একটি মান হিসেবে গণনা করে ফেলবে।"
   data-default-text="SELECT
   SUM(CASE WHEN county='Harris' THEN 1
@@ -100,12 +105,14 @@ FROM executions"></sql-exercise>
 
 <sql-exercise
   data-question="মৃত্যুদণ্ড কার্যকরের সময় যাদের বয়স ৫০ বছরের বেশি ছিল এমন বন্দির সংখ্যা বের করুন।"
+  data-en-question="Find how many inmates were over the age of 50 at execution time."
   data-comment="এটি প্রদর্শন করে যে এগ্রিগেশন সম্পন্ন হওয়ার আগেই <code>WHERE</code> ব্লক সারিগুলোকে ফিল্টার করে ফেলে।"
   data-default-text=""
   data-solution='SELECT COUNT(*) FROM executions WHERE ex_age > 50'></sql-exercise>
 
 <sql-exercise
   data-question="শেষ জবানবন্দি দিতে অস্বীকৃতি জানিয়েছেন এমন বন্দির সংখ্যা বের করুন।"
+  data-en-question="Find the number of inmates who have declined to give a last statement."
   data-comment="অতিরিক্ত দক্ষতা অর্জনের জন্য এটি ৩টি উপায়ে করার চেষ্টা করুন:<br> ১) একটি <code>WHERE</code> ব্লক দিয়ে,<br> ২) একটি <code>COUNT</code> এবং <code>CASE WHEN</code> ব্লক দিয়ে,<br> ৩) দুটি <code>COUNT</code> ফাংশনের মাধ্যমে।"
   data-default-text=""
   data-solution='SELECT COUNT(*) FROM executions WHERE last_statement IS NULL
@@ -116,6 +123,7 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="মৃত্যুদণ্ড কার্যকরের সময় বন্দিদের সর্বনিম্ন, সর্বোচ্চ এবং গড় বয়স বের করুন।"
+  data-en-question="Find the minimum, maximum and average age of inmates at the time of execution."
   data-comment="<code>MIN</code>, <code>MAX</code>, এবং <code>AVG</code> এগ্রিগেশন ফাংশনগুলো ব্যবহার করুন।"
   data-default-text="SELECT ex_age FROM executions"
   data-solution='SELECT MIN(ex_age), MAX(ex_age), AVG(ex_age) FROM executions'></sql-exercise>
@@ -130,12 +138,14 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="ডেটাসেটের শেষ জবানবন্দিগুলোর গড় দৈর্ঘ্য (অক্ষরের সংখ্যার ওপর ভিত্তি করে) বের করুন।"
+  data-en-question="Find the average length (based on character count) of last statements in the dataset."
   data-comment='এই অনুশীলনটি দেখায় যে ফাংশনগুলোকে একটির ভেতর আরেকটি সাজিয়ে (compose করে) ব্যবহার করা যায়। স্ট্রিংয়ে অক্ষরের সংখ্যা প্রদান করে এমন ফাংশন খুঁজে বের করতে <a href="http://sqlite.org/lang_corefunc.html">ডকুমেন্টেশন</a> দেখে নিন।'
   data-default-text=""
   data-solution='SELECT AVG(LENGTH(last_statement)) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="ডেটাসেটে উল্লেখিত সমস্ত কাউন্টির নাম পুনরাবৃত্তি ছাড়া (unique ভাবে) তালিকাভুক্ত করুন।"
+  data-en-question="List all the counties in the dataset without duplication."
   data-comment="আমরা <code>SELECT DISTINCT</code> ব্যবহার করে অনন্য বা ডুপ্লিকেটহীন এন্ট্রি পেতে পারি। <a href='https://www.w3schools.com/sql/sql_distinct.asp'>ডকুমেন্টেশন</a> দেখুন।"
   data-default-text=""
   data-solution='SELECT DISTINCT county FROM executions'></sql-exercise>
@@ -151,6 +161,7 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 
 <sql-exercise
   data-question="চলুন তবুও এটি চালিয়ে দেখা যাক কী ঘটে।"
+  data-en-question="Let's try it anyway and see what happens."
   data-default-text="SELECT first_name, COUNT(*) FROM executions"></sql-exercise>
 
 বাস্তবে, কোনো অযৌক্তিক কুয়েরি পাঠালেও ডেটাবেজগুলো কোনো না কোনো গ্রহণযোগ্য ফলাফল দেখানোর চেষ্টা করে। এই ক্ষেত্রে আমাদের ডেটাবেজটি টেবিলের সর্বশেষ এন্ট্রি থেকে প্রথম নামটি বেছে নেয়। যেহেতু আমাদের টেবিলটি উল্টো কালানুক্রমিক ক্রমে (reverse chronological order) সাজানো রয়েছে, তাই সর্বশেষ এন্ট্রিটি হলো চার্লি ব্রুকস জুনিয়র (Charlie Brooks Jr.)—সুপ্রিম কোর্ট মৃত্যুদণ্ডের স্থগিতাদেশ তুলে নেওয়ার পর কার্যকর হওয়া প্রথম ব্যক্তি। বিভিন্ন ডেটাবেজ এই পরিস্থিতিকে ভিন্নভাবে মোকাবিলা করে, তাই তাদের ডিফল্ট আচরণের ওপর নির্ভর না করাই বুদ্ধিমানের কাজ। আপনি যদি নিশ্চিত জানেন যে আপনার সর্বশেষ এন্ট্রিটিই প্রয়োজন, তবে সুস্পষ্টভাবে সেটি খোঁজা উচিত। অনেক এসকিউএল ডায়ালেক্টে একটি `LAST` এগ্রিগেশন ফাংশন থাকে যা এই কাজটিকে অত্যন্ত সহজ করে দেয়। দুর্ভাগ্যবশত SQLite-এ এমন ফাংশন নেই, ফলে বিকল্প কৌশলের প্রয়োজন হয়।
@@ -171,6 +182,7 @@ SELECT COUNT(*) - COUNT(last_statement) FROM executions'></sql-exercise>
 চলুন এ পর্যন্ত যা শিখেছি তা কাজে লাগিয়ে আমাদের মূল কাজটি সম্পন্ন করি:
 <sql-exercise
   data-question="শেষ জবানবন্দিতে নির্দোষিতার দাবি করেছেন এমন বন্দিদের অনুপাত নির্ণয় করুন।"
+  data-en-question="Find the proportion of inmates with claims of innocence in their last statements."
   data-comment="দশমিকে ভাগ করার জন্য যেকোনো একটি সংখ্যাকে 1.0 দিয়ে গুণ করে দশমিকে রূপান্তর করে নিন। নির্দোষিতার দাবি খুঁজে পেতে <code>LIKE '%innocent%'</code> ব্যবহার করুন।"
   data-solution="SELECT
 1.0 * COUNT(CASE WHEN last_statement LIKE '%innocent%'

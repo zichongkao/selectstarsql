@@ -1,0 +1,69 @@
+<aside class="bn-sidebar" id="bnSidebar" aria-label="অধ্যায় সূচিপত্র">
+  <div class="bn-sidebar-top">
+    <!-- Mobile-only drawer header with close button -->
+    <div class="bn-sidebar-mobile-header">
+      <div class="bn-sidebar-mobile-brand">
+        <span class="bn-brand-mark-sm">*</span>
+        <span class="bn-sidebar-mobile-title">সূচিপত্র</span>
+      </div>
+      <button type="button" class="bn-sidebar-close-btn" id="bnSidebarCloseBtn" aria-label="মেনু বন্ধ করুন">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop sidebar header -->
+    <div class="bn-sidebar-desktop-header">
+      <span class="bn-sidebar-heading">সূচিপত্র (Contents)</span>
+    </div>
+
+    <!-- Navigation Tree -->
+    <nav class="bn-sidebar-nav">
+      {% assign is_home = false %}
+      {% if page.url == '/bn/' or page.url == '/bn/index.html' %}
+        {% assign is_home = true %}
+      {% endif %}
+      <a href="{{ '/bn/' | relative_url }}" class="bn-sidebar-item{% if is_home %} is-active{% endif %}"{% if is_home %} aria-current="page"{% endif %}>
+        <span class="bn-sidebar-item-text">নীড়পাতা</span>
+      </a>
+
+      {% for tutorial in site.data.bn_sitemap.contents %}
+        {% assign tutorial_url = '/bn/' | append: tutorial.url | relative_url %}
+        {% assign is_active = false %}
+        {% if page.title == tutorial.title or page.url == tutorial_url %}
+          {% assign is_active = true %}
+        {% endif %}
+
+        <div class="bn-sidebar-group{% if is_active %} is-expanded{% endif %}">
+          <a href="{{ tutorial_url }}" class="bn-sidebar-item{% if is_active %} is-active{% endif %}"{% if is_active %} aria-current="page"{% endif %}>
+            <span class="bn-sidebar-item-text">{{ tutorial.title }}</span>
+          </a>
+
+          {% if is_active and tutorial.sections %}
+            <ul class="bn-sidebar-sections">
+              {% for section in tutorial.sections %}
+                {% unless section.sidenote %}
+                  <li class="bn-sidebar-section-item">
+                    <a href="{{ section.url }}" class="bn-sidebar-section-link">
+                      <span class="bn-tree-arrow">&#x21b3;</span>
+                      <span class="bn-section-name">{{ section.name }}</span>
+                    </a>
+                  </li>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </nav>
+  </div>
+
+  <div class="bn-sidebar-footer">
+    <p class="bn-sidebar-credit">
+      মূল লেখক: <a href="https://selectstarsql.com/" target="_blank" rel="noopener">Zi Chong Kao</a> (CC BY-SA 4.0)<br>
+      সকল SQL Keyword এবং Technical Term ইংরেজিতে অপরিবর্তিত রাখা হয়েছে।
+    </p>
+  </div>
+</aside>

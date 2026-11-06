@@ -1,0 +1,28 @@
+<header class="bn-header">
+  <div class="bn-header-inner">
+    <div class="bn-header-left">
+      <button type="button" class="bn-menu-btn" id="bnMenuBtn" aria-label="সূচিপত্র খুলুন" aria-expanded="false" aria-controls="bnSidebar">
+        <svg class="bn-menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="{{ '/bn/' | relative_url }}" class="bn-brand-link">
+        <span class="bn-brand-mark">*</span>
+        <div class="bn-brand-text">
+          <div class="bn-brand-title">
+            <span>Select Star SQL</span>
+            <span class="bn-brand-badge">বাংলা</span>
+          </div>
+          <span class="bn-brand-subtitle">An Interactive SQL Book • Technical Terms in English</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="bn-header-right">
+      {% include language_switcher.html lang="bn" %}
+    </div>
+  </div>
+</header>

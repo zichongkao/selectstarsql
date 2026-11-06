@@ -5,55 +5,85 @@ layout: bn_default
 {% for tutorial in site.data.bn_sitemap.contents %}
   {% if tutorial.title == page.title %}
     {% assign tutorial_index = forloop.index0 %}
+    {% assign current_tutorial = tutorial %}
     {% assign content_length = forloop.length %}
     {% assign previous = tutorial_index | minus: 1 %}
     {% assign next = tutorial_index | plus: 1 %}
   {% endif %}
 {% endfor %}
 
-<div class="section-nav">
-  <a href="{{ '/bn/' | relative_url }}">নীড়পাতা</a>
-  {% if previous >= 0 %}
-    {% assign previous_tutorial = site.data.bn_sitemap.contents[previous] %}
-    <div class="section-sib">
-      &#x21b3; <a href="{{ previous_tutorial.url }}">{{ previous_tutorial.title }}</a>
-    </div>
-  {% endif %}
+{% case tutorial_index %}
+  {% when 1 %}{% assign chapter_number_text = "অধ্যায় ১" %}
+  {% when 2 %}{% assign chapter_number_text = "অধ্যায় ২" %}
+  {% when 3 %}{% assign chapter_number_text = "অধ্যায় ৩" %}
+  {% when 4 %}{% assign chapter_number_text = "অধ্যায় ৪" %}
+  {% when 5 %}{% assign chapter_number_text = "অধ্যায় ৫" %}
+  {% else %}{% assign chapter_number_text = "" %}
+{% endcase %}
 
-  <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}</div></div>
+<article class="bn-tutorial-article">
+  <!-- Chapter Hero & Breadcrumbs -->
+  <header class="bn-chapter-hero">
+    <nav class="bn-breadcrumbs" aria-label="ব্রেডক্রাম্ব নেভিগেশন">
+      <ol class="bn-breadcrumbs-list">
+        <li class="bn-breadcrumbs-item">
+          <a href="{{ '/bn/' | relative_url }}" class="bn-breadcrumbs-link">
+            <svg class="bn-breadcrumbs-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>নীড়পাতা</span>
+          </a>
+        </li>
+        <li class="bn-breadcrumbs-separator" aria-hidden="true">/</li>
+        <li class="bn-breadcrumbs-item bn-breadcrumbs-current" aria-current="page">
+          {{ page.title }}
+        </li>
+      </ol>
+    </nav>
 
-  {% for tutorial in site.data.bn_sitemap.contents %}
-    {% if tutorial.title == page.title %}
-      {% for section in tutorial.sections %}
-        {% unless section.sidenote %}
-          <div class="childlinks">
-            &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
-          </div>
-        {% endunless %}
-      {% endfor %}
+    {% if chapter_number_text != "" %}
+      <div class="bn-chapter-eyebrow">
+        <span class="bn-chapter-badge">{{ chapter_number_text }}</span>
+      </div>
     {% endif %}
-  {% endfor %}
 
-  {% if site.data.bn_sitemap.contents[next].title %}
-    {% assign next_tutorial = site.data.bn_sitemap.contents[next] %}
-    <div class="section-sib">
-      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
-    </div>
-  {% endif %}
-</div>
+    <h1 class="bn-chapter-title">{{ page.title }}</h1>
 
-{{content}}
+    {% if current_tutorial.blurb %}
+      <p class="bn-chapter-blurb">{{ current_tutorial.blurb }}</p>
+    {% endif %}
 
-<div class="tutorial-nav">
-  {% if previous >= 0 %}
-    {% assign previous_tutorial = site.data.bn_sitemap.contents[previous] %}
-    <div class="previous">পূর্ববর্তী: <a href="{{ previous_tutorial.url }}">
-    {{ previous_tutorial.title }}</a></div>
-  {% endif %}
+    <div class="bn-chapter-divider" aria-hidden="true"></div>
+  </header>
 
-  {% if site.data.bn_sitemap.contents[next].title %}
-    {% assign next_tutorial = site.data.bn_sitemap.contents[next] %}
-    <div class="next">পরবর্তী: <a href="{{ next_tutorial.url }}">
-    {{ next_tutorial.title }}</a></div>
-  {% endif %}
-</div>
+  <!-- Chapter Educational Content -->
+  <div class="bn-chapter-body prose-book">
+    {{content}}
+  </div>
+
+  <!-- Chapter Navigation Pager -->
+  <nav class="tutorial-nav bn-tutorial-pager" aria-label="অধ্যায় নেভিগেশন">
+    {% if previous >= 0 %}
+      {% assign previous_tutorial = site.data.bn_sitemap.contents[previous] %}
+      <div class="previous">
+        <a href="{{ '/bn/' | append: previous_tutorial.url | relative_url }}" class="bn-pager-card bn-pager-prev">
+          <span class="bn-pager-direction">&#x2190; পূর্ববর্তী অধ্যায়</span>
+          <span class="bn-pager-title">{{ previous_tutorial.title }}</span>
+        </a>
+      </div>
+    {% else %}
+      <div class="bn-pager-placeholder"></div>
+    {% endif %}
+
+    {% if site.data.bn_sitemap.contents[next].title %}
+      {% assign next_tutorial = site.data.bn_sitemap.contents[next] %}
+      <div class="next">
+        <a href="{{ '/bn/' | append: next_tutorial.url | relative_url }}" class="bn-pager-card bn-pager-next">
+          <span class="bn-pager-direction">পরবর্তী অধ্যায় &#x2192;</span>
+          <span class="bn-pager-title">{{ next_tutorial.title }}</span>
+        </a>
+      </div>
+    {% endif %}
+  </nav>
+</article>

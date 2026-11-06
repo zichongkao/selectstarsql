@@ -30,6 +30,7 @@ dbFile: data/tx_deathrow_small.db
 মূল উপাত্তটি <a href="../data/tx_deathrow_full.csv">ডাউনলোড</a> করার জন্য একটি সিএসভি (CSV) ফাইল হিসেবে উন্মুক্ত রয়েছে। হাতে শ্রমসাধ্য তথ্য সংগ্রহ ও পরিমার্জনের ফলে এটি সম্ভবত ইন্টারনেটে টেক্সাসের মৃত্যুদণ্ড সংক্রান্ত তথ্যের সবচেয়ে পূর্ণাঙ্গ ডেটাসেট। এই বইয়ের জন্য বিশেষভাবে তৈরি করা ডেটাসেটের একটি সংক্ষিপ্ত অংশ আপনি নিচে পরীক্ষা করে দেখতে পারেন:
 <sql-exercise
   data-question="এটি একটি ইন্টার‍্যাক্টিভ কোড এডিটর। আপনি নিচের কুয়েরিটি সম্পাদনা করতে পারেন।"
+  data-en-question="This is an interactive code editor. You can edit the query below."
   data-comment="কুয়েরি চালানোর কিবোর্ড শর্টকাট হলো Shift+Enter।"
   data-default-text="SELECT *
 FROM executions

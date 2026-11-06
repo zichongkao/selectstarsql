@@ -1,0 +1,2653 @@
+/**
+ * Select Star SQL — Bengali Modern UI Foundation & Typography
+ * Scoped strictly under .bn-layout to protect all other language versions.
+ */
+
+:root {
+  /* Color Palette — Light Theme */
+  --bn-bg-canvas: #fdfbf7;
+  --bn-bg-surface: #ffffff;
+  --bn-bg-soft: #f8f4ec;
+  --bn-bg-subtle: #f2ece0;
+
+  --bn-text-primary: #1c1917;
+  --bn-text-secondary: #57534e;
+  --bn-text-tertiary: #78716c;
+
+  --bn-border-light: #e7e5e4;
+  --bn-border-card: #e2dbce;
+  --bn-border-strong: #d6d3d1;
+
+  --bn-crimson-600: #b91c1c;
+  --bn-crimson-700: #991b1b;
+  --bn-crimson-800: #7f1d1d;
+  --bn-crimson-tint: rgba(153, 27, 27, 0.08);
+  --bn-crimson-border: rgba(153, 27, 27, 0.18);
+
+  --bn-success: #059669;
+  --bn-success-bg: #ecfdf5;
+  --bn-success-border: #a7f3d0;
+
+  --bn-error: #be123c;
+  --bn-error-bg: #fff1f2;
+  --bn-error-border: #fecdd3;
+
+  /* Typography */
+  --bn-font-sans: 'Hind Siliguri', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bn-font-serif: 'Noto Serif Bengali', 'Georgia', serif;
+  --bn-font-mono: 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  --bn-lh-body: 1.85;
+  --bn-lh-heading: 1.35;
+  --bn-lh-tight: 1.25;
+
+  /* Shadows */
+  --bn-shadow-xs: 0 1px 2px 0 rgba(28, 25, 23, 0.04);
+  --bn-shadow-sm: 0 1px 3px 0 rgba(28, 25, 23, 0.06), 0 1px 2px -1px rgba(28, 25, 23, 0.04);
+  --bn-shadow-md: 0 4px 6px -1px rgba(28, 25, 23, 0.07), 0 2px 4px -2px rgba(28, 25, 23, 0.04);
+  --bn-shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.08), 0 4px 6px -4px rgba(28, 25, 23, 0.03);
+
+  /* Radii */
+  --bn-radius-sm: 6px;
+  --bn-radius-md: 10px;
+  --bn-radius-lg: 14px;
+  --bn-radius-full: 9999px;
+
+  /* Transitions */
+  --bn-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   1. Scoped Body & Canvas
+   ========================================================================== */
+
+body.bn-layout {
+  background-color: var(--bn-bg-canvas);
+  color: var(--bn-text-primary);
+  font-family: var(--bn-font-sans);
+  font-size: 17px;
+  line-height: var(--bn-lh-body);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.bn-layout #column,
+body.bn-layout .bn-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 6rem;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. Typography — Headings, Paragraphs & Spacing
+   ========================================================================== */
+
+.bn-layout h1,
+.bn-layout h2,
+.bn-layout h3,
+.bn-layout h4,
+.bn-layout h5,
+.bn-layout h6 {
+  color: var(--bn-text-primary);
+  font-family: var(--bn-font-sans);
+  line-height: var(--bn-lh-heading);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 2rem;
+  margin-bottom: 0.85rem;
+}
+
+.bn-layout h1 {
+  font-size: 2.15rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.025em;
+}
+
+.bn-layout h2 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--bn-border-light);
+}
+
+.bn-layout h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.bn-layout h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bn-layout p {
+  font-family: var(--bn-font-serif);
+  font-size: 1.0625rem;
+  line-height: var(--bn-lh-body);
+  color: var(--bn-text-primary);
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+   3. Inline Code, Preformatted Blocks & CodeMirror
+   ========================================================================== */
+
+.bn-layout code:not(pre code) {
+  font-family: var(--bn-font-mono);
+  font-size: 0.875em;
+  font-weight: 500;
+  padding: 0.18rem 0.45rem;
+  border-radius: var(--bn-radius-sm);
+  background-color: var(--bn-crimson-tint);
+  color: var(--bn-crimson-700);
+  border: 1px solid var(--bn-crimson-border);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.bn-layout pre {
+  font-family: var(--bn-font-mono);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  background-color: #1c1917;
+  color: #f5f5f4;
+  padding: 1.15rem 1.35rem;
+  border-radius: var(--bn-radius-md);
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  box-shadow: var(--bn-shadow-sm);
+  border: 1px solid var(--bn-border-strong);
+}
+
+.bn-layout pre code {
+  font-family: var(--bn-font-mono);
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  border: none;
+  font-weight: 400;
+  white-space: pre;
+}
+
+.bn-layout .codeblock {
+  font-family: var(--bn-font-mono);
+  font-size: 0.88em;
+  background-color: var(--bn-bg-soft);
+  color: var(--bn-text-primary);
+  border: 1px solid var(--bn-border-card);
+  border-radius: var(--bn-radius-sm);
+  padding: 0.15rem 0.45rem;
+}
+
+.bn-layout .CodeMirror {
+  font-family: var(--bn-font-mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-radius: var(--bn-radius-md);
+}
+
+/* ==========================================================================
+   4. Lists & Blockquotes
+   ========================================================================== */
+
+.bn-layout ul,
+.bn-layout ol {
+  font-family: var(--bn-font-serif);
+  font-size: 1.0625rem;
+  line-height: var(--bn-lh-body);
+  color: var(--bn-text-primary);
+  margin-top: 0;
+  margin-bottom: 1.35rem;
+  padding-left: 1.85rem;
+}
+
+.bn-layout li {
+  margin-bottom: 0.6rem;
+}
+
+.bn-layout li p {
+  margin-bottom: 0.5rem;
+}
+
+.bn-layout li strong {
+  font-family: var(--bn-font-sans);
+  color: var(--bn-text-primary);
+}
+
+.bn-layout blockquote {
+  font-family: var(--bn-font-serif);
+  margin: 1.75rem 0;
+  padding: 1rem 1.35rem;
+  background-color: var(--bn-bg-soft);
+  border-left: 4px solid var(--bn-crimson-700);
+  border-radius: 0 var(--bn-radius-md) var(--bn-radius-md) 0;
+  color: var(--bn-text-secondary);
+  box-shadow: var(--bn-shadow-xs);
+}
+
+/* ==========================================================================
+   5. Sidenotes & Editorial Callouts
+   ========================================================================== */
+
+.bn-layout .sideNote {
+  font-family: var(--bn-font-sans);
+  margin: 1.85rem 0;
+  padding: 1.25rem 1.4rem;
+  background: var(--bn-bg-soft);
+  border: 1px solid var(--bn-border-card);
+  border-left: 4px solid var(--bn-crimson-700);
+  border-radius: 0 var(--bn-radius-md) var(--bn-radius-md) 0;
+  box-shadow: var(--bn-shadow-sm);
+}
+
+.bn-layout .sideNote h3 {
+  font-family: var(--bn-font-sans);
+  font-size: 1.15rem;
+  color: var(--bn-crimson-700);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  letter-spacing: normal;
+}
+
+.bn-layout .sideNote p {
+  font-family: var(--bn-font-sans);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--bn-text-secondary);
+  margin-bottom: 0.65rem;
+}
+
+.bn-layout .sideNote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   6. Links & Anchor Styling
+   ========================================================================== */
+
+.bn-layout a {
+  color: var(--bn-crimson-700);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: var(--bn-transition);
+}
+
+.bn-layout a:hover {
+  color: var(--bn-crimson-800);
+  text-decoration-thickness: 2px;
+}
+
+/* ==========================================================================
+   7. Header, Logo & Title Area
+   ========================================================================== */
+
+.bn-layout .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid var(--bn-border-light);
+}
+
+.bn-layout .header .logo {
+  height: 52px;
+  width: auto;
+  border-radius: var(--bn-radius-sm);
+  transition: var(--bn-transition);
+  display: block;
+}
+
+.bn-layout .header .logo:hover {
+  transform: scale(1.03);
+}
+
+.bn-layout .header .title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--bn-font-sans);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--bn-text-primary);
+  letter-spacing: -0.02em;
+  margin: 0 0 0 0.5rem;
+  text-decoration: none;
+}
+
+.bn-layout .header a {
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   8. Language Switcher Dropdown
+   ========================================================================== */
+
+.bn-layout .lang-switcher {
+  font-family: var(--bn-font-sans);
+  margin-inline-start: auto;
+  position: relative;
+}
+
+.bn-layout .lang-switcher summary {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--bn-radius-full);
+  background: var(--bn-bg-surface);
+  border: 1px solid var(--bn-border-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--bn-text-primary);
+  box-shadow: var(--bn-shadow-xs);
+  transition: var(--bn-transition);
+  user-select: none;
+}
+
+.bn-layout .lang-switcher summary:hover {
+  border-color: var(--bn-crimson-700);
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .lang-switcher ul {
+  background: var(--bn-bg-surface);
+  border: 1px solid var(--bn-border-light);
+  border-radius: var(--bn-radius-md);
+  box-shadow: var(--bn-shadow-md);
+  padding: 0.4rem 0;
+  min-width: 170px;
+}
+
+.bn-layout .lang-switcher li a {
+  display: block;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  color: var(--bn-text-primary);
+  text-decoration: none;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .lang-switcher li a:hover {
+  background: var(--bn-bg-soft);
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .lang-switcher li a[aria-current="true"] {
+  font-weight: 600;
+  color: var(--bn-crimson-700);
+  background: var(--bn-crimson-tint);
+}
+
+/* ==========================================================================
+   9. Navigation Components (Section Nav & Tutorial Nav)
+   ========================================================================== */
+
+.bn-layout .section-nav {
+  font-family: var(--bn-font-sans);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--bn-bg-surface);
+  border: 1px solid var(--bn-border-card);
+  border-radius: var(--bn-radius-md);
+  box-shadow: var(--bn-shadow-xs);
+}
+
+.bn-layout .section-nav a {
+  color: var(--bn-text-secondary);
+  text-decoration: none;
+}
+
+.bn-layout .section-nav a:hover {
+  color: var(--bn-crimson-700);
+  text-decoration: underline;
+}
+
+.bn-layout .section-nav .cur-text {
+  font-weight: 600;
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .tutorial-nav {
+  font-family: var(--bn-font-sans);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--bn-border-light);
+}
+
+.bn-layout .tutorial-nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--bn-radius-md);
+  background: var(--bn-bg-surface);
+  border: 1px solid var(--bn-border-light);
+  color: var(--bn-crimson-700);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: var(--bn-shadow-xs);
+  transition: var(--bn-transition);
+}
+
+.bn-layout .tutorial-nav a:hover {
+  background: var(--bn-bg-soft);
+  border-color: var(--bn-crimson-700);
+  transform: translateY(-1px);
+  box-shadow: var(--bn-shadow-sm);
+}
+
+/* ==========================================================================
+   10. Content Images & Media
+   ========================================================================== */
+
+.bn-layout .content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--bn-radius-md);
+  border: 1px solid var(--bn-border-card);
+  box-shadow: var(--bn-shadow-sm);
+  margin: 1.75rem 0;
+  display: block;
+}
+
+/* ==========================================================================
+   11. Footer
+   ========================================================================== */
+
+.bn-layout .footer {
+  font-family: var(--bn-font-sans);
+  font-size: 0.875rem;
+  color: var(--bn-text-secondary);
+  line-height: 1.75;
+  border-top: 1px solid var(--bn-border-light);
+  padding-top: 2rem;
+  margin-top: 4rem;
+}
+
+.bn-layout .footer a {
+  color: var(--bn-text-primary);
+  font-weight: 500;
+}
+
+.bn-layout .footer a:hover {
+  color: var(--bn-crimson-700);
+}
+
+/* ==========================================================================
+   12. Responsive Breakpoints
+   ========================================================================== */
+
+/* ==========================================================================
+   Phase 2: Shell, Header, Sidebar Drawer, Navigation & Footer
+   Scoped strictly under body.bn-layout and .bn-layout
+   ========================================================================== */
+
+/* Body Drawer Lock */
+body.bn-layout.bn-drawer-open {
+  overflow: hidden;
+}
+
+/* 1. Header Component */
+.bn-layout .bn-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: rgba(253, 251, 247, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--bn-border-light);
+  box-shadow: 0 1px 2px 0 rgba(28, 25, 23, 0.02);
+}
+
+.bn-layout .bn-header-inner {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.bn-layout .bn-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+/* Mobile Hamburger Button */
+.bn-layout .bn-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: var(--bn-radius-md);
+  border: 1px solid var(--bn-border-light);
+  background: var(--bn-bg-surface);
+  color: var(--bn-text-secondary);
+  cursor: pointer;
+  transition: var(--bn-transition);
+  flex-shrink: 0;
+}
+
+.bn-layout .bn-menu-btn:hover {
+  background: var(--bn-bg-soft);
+  color: var(--bn-crimson-700);
+  border-color: var(--bn-border-strong);
+}
+
+.bn-layout .bn-menu-btn:focus-visible {
+  outline: 2px solid var(--bn-crimson-700);
+  outline-offset: 2px;
+}
+
+.bn-layout .bn-menu-icon {
+  stroke: currentColor;
+  stroke-width: 2;
+  display: block;
+}
+
+/* Brand Logo & Title */
+.bn-layout .bn-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.bn-layout .bn-brand-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--bn-radius-md);
+  background-color: var(--bn-crimson-700);
+  color: #ffffff;
+  font-family: var(--bn-font-mono);
+  font-weight: 700;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: var(--bn-shadow-xs);
+  flex-shrink: 0;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .bn-brand-link:hover .bn-brand-mark {
+  background-color: var(--bn-crimson-800);
+  transform: scale(1.03);
+}
+
+.bn-layout .bn-brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bn-layout .bn-brand-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--bn-font-sans);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--bn-text-primary);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.bn-layout .bn-brand-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--bn-radius-full);
+  background: var(--bn-crimson-tint);
+  color: var(--bn-crimson-700);
+  border: 1px solid var(--bn-crimson-border);
+  line-height: 1.3;
+}
+
+.bn-layout .bn-brand-subtitle {
+  font-size: 0.725rem;
+  color: var(--bn-text-tertiary);
+  line-height: 1.2;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bn-layout .bn-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Modernized Language Switcher in Header */
+.bn-layout .lang-switcher {
+  position: relative;
+  font-family: var(--bn-font-sans);
+}
+
+.bn-layout .lang-switcher summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--bn-radius-md);
+  border: 1px solid var(--bn-border-light);
+  background: var(--bn-bg-surface);
+  color: var(--bn-text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--bn-shadow-xs);
+  transition: var(--bn-transition);
+  user-select: none;
+}
+
+.bn-layout .lang-switcher summary::-webkit-details-marker {
+  display: none;
+}
+
+.bn-layout .lang-switcher summary::after {
+  content: " ▾";
+  font-size: 0.75rem;
+  color: var(--bn-text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.bn-layout .lang-switcher[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.bn-layout .lang-switcher summary:hover {
+  background: var(--bn-bg-soft);
+  border-color: var(--bn-border-strong);
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .lang-switcher summary:focus-visible {
+  outline: 2px solid var(--bn-crimson-700);
+  outline-offset: 2px;
+}
+
+.bn-layout .lang-switcher ul {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.35rem);
+  z-index: 60;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  background: var(--bn-bg-surface);
+  border: 1px solid var(--bn-border-light);
+  border-radius: var(--bn-radius-md);
+  box-shadow: var(--bn-shadow-lg);
+  min-width: 10.5rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.bn-layout .lang-switcher li a {
+  display: block;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  color: var(--bn-text-primary);
+  text-decoration: none;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .lang-switcher li a:hover {
+  background: var(--bn-bg-soft);
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .lang-switcher li a[aria-current="true"] {
+  font-weight: 700;
+  color: var(--bn-crimson-700);
+  background: var(--bn-crimson-tint);
+}
+
+/* 2. Shell Container */
+.bn-layout .bn-shell {
+  display: flex;
+  flex-direction: row;
+  max-width: 82rem;
+  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  position: relative;
+}
+
+/* 3. Sidebar Navigation */
+.bn-layout .bn-sidebar {
+  width: 18.5rem;
+  flex-shrink: 0;
+  position: sticky;
+  top: 4rem;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+  background: var(--bn-bg-soft);
+  border-right: 1px solid var(--bn-border-light);
+  padding: 1.5rem 1.15rem 2.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Sleek Scrollbar */
+.bn-layout .bn-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.bn-layout .bn-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(120, 113, 108, 0.25);
+  border-radius: 4px;
+}
+
+.bn-layout .bn-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 113, 108, 0.45);
+}
+
+.bn-layout .bn-sidebar-top {
+  flex: 1;
+}
+
+.bn-layout .bn-sidebar-mobile-header {
+  display: none;
+}
+
+.bn-layout .bn-sidebar-desktop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  padding: 0 0.35rem;
+}
+
+.bn-layout .bn-sidebar-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bn-text-tertiary);
+}
+
+.bn-layout .bn-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.bn-layout .bn-sidebar-group {
+  margin-bottom: 0.15rem;
+}
+
+.bn-layout .bn-sidebar-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--bn-radius-md);
+  font-size: 0.885rem;
+  font-weight: 500;
+  color: var(--bn-text-primary);
+  text-decoration: none;
+  transition: var(--bn-transition);
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+
+.bn-layout .bn-sidebar-item:hover {
+  background: rgba(28, 25, 23, 0.05);
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .bn-sidebar-item.is-active {
+  background: var(--bn-crimson-700);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: var(--bn-shadow-xs);
+}
+
+.bn-layout .bn-sidebar-item.is-active:hover {
+  background: var(--bn-crimson-800);
+  color: #ffffff;
+}
+
+.bn-layout .bn-sidebar-item-text {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Sub-sections tree */
+.bn-layout .bn-sidebar-sections {
+  list-style: none;
+  margin: 0.25rem 0 0.5rem 0.85rem;
+  padding: 0.25rem 0 0.25rem 0.75rem;
+  border-left: 2px solid var(--bn-crimson-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.bn-layout .bn-sidebar-section-item {
+  margin: 0;
+  padding: 0;
+}
+
+.bn-layout .bn-sidebar-section-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.25rem 0.45rem;
+  border-radius: var(--bn-radius-sm);
+  font-size: 0.815rem;
+  color: var(--bn-text-secondary);
+  text-decoration: none;
+  transition: var(--bn-transition);
+  line-height: 1.35;
+}
+
+.bn-layout .bn-sidebar-section-link:hover {
+  color: var(--bn-crimson-700);
+  background: var(--bn-crimson-tint);
+}
+
+.bn-layout .bn-tree-arrow {
+  color: var(--bn-crimson-600);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.bn-layout .bn-section-name {
+  word-break: break-word;
+}
+
+/* Sidebar Footer Note */
+.bn-layout .bn-sidebar-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bn-border-light);
+}
+
+.bn-layout .bn-sidebar-credit {
+  font-size: 0.725rem;
+  color: var(--bn-text-tertiary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.bn-layout .bn-sidebar-credit a {
+  color: var(--bn-text-secondary);
+  text-decoration: underline;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .bn-sidebar-credit a:hover {
+  color: var(--bn-crimson-700);
+}
+
+/* 4. Backdrop for Mobile */
+.bn-layout .bn-sidebar-backdrop {
+  display: none;
+}
+
+/* 5. Modern Chapter Pager */
+.bn-layout .bn-tutorial-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1.25rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--bn-border-light);
+}
+
+.bn-layout .bn-tutorial-pager .previous,
+.bn-layout .bn-tutorial-pager .next {
+  flex: 1;
+  display: flex;
+}
+
+.bn-layout .bn-pager-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--bn-border-light);
+  border-radius: var(--bn-radius-md);
+  background: var(--bn-bg-surface);
+  text-decoration: none;
+  box-shadow: var(--bn-shadow-xs);
+  transition: var(--bn-transition);
+  box-sizing: border-box;
+}
+
+.bn-layout .bn-pager-card:hover {
+  border-color: var(--bn-crimson-700);
+  box-shadow: var(--bn-shadow-md);
+  transform: translateY(-2px);
+}
+
+.bn-layout .bn-pager-prev {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.bn-layout .bn-pager-next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.bn-layout .bn-pager-direction {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bn-crimson-700);
+  margin-bottom: 0.35rem;
+}
+
+.bn-layout .bn-pager-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--bn-text-primary);
+  line-height: 1.35;
+}
+
+.bn-layout .bn-pager-placeholder {
+  flex: 1;
+}
+
+/* 6. Footer Component */
+.bn-layout .bn-footer {
+  border-top: 1px solid var(--bn-border-light);
+  background: var(--bn-bg-soft);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.bn-layout .bn-footer-inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.bn-layout .bn-footer-text {
+  font-size: 0.825rem;
+  color: var(--bn-text-secondary);
+  line-height: 1.65;
+  margin-bottom: 0.65rem;
+}
+
+.bn-layout .bn-footer-subtext {
+  font-size: 0.775rem;
+  color: var(--bn-text-tertiary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bn-layout .bn-footer a {
+  color: var(--bn-text-primary);
+  text-decoration: underline;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .bn-footer a:hover {
+  color: var(--bn-crimson-700);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints for Shell & Sidebar
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .bn-layout .bn-menu-btn {
+    display: inline-flex;
+  }
+
+  .bn-layout .bn-shell {
+    display: block;
+    width: 100%;
+  }
+
+  /* Off-canvas mobile drawer */
+  .bn-layout .bn-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 19rem;
+    max-width: 85vw;
+    height: 100vh;
+    z-index: 50;
+    background: var(--bn-bg-surface);
+    border-right: 1px solid var(--bn-border-light);
+    transform: translateX(-100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--bn-shadow-lg);
+    padding: 1.25rem 1.15rem 2rem;
+  }
+
+  .bn-layout .bn-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .bn-layout .bn-sidebar-desktop-header {
+    display: none;
+  }
+
+  .bn-layout .bn-sidebar-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--bn-border-light);
+  }
+
+  .bn-layout .bn-sidebar-mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .bn-layout .bn-brand-mark-sm {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--bn-radius-sm);
+    background: var(--bn-crimson-700);
+    color: #ffffff;
+    font-family: var(--bn-font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .bn-layout .bn-sidebar-mobile-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--bn-text-primary);
+  }
+
+  .bn-layout .bn-sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border-radius: var(--bn-radius-md);
+    border: 1px solid var(--bn-border-light);
+    background: var(--bn-bg-soft);
+    color: var(--bn-text-secondary);
+    cursor: pointer;
+    transition: var(--bn-transition);
+  }
+
+  .bn-layout .bn-sidebar-close-btn:hover {
+    color: var(--bn-crimson-700);
+    border-color: var(--bn-border-strong);
+  }
+
+  /* Backdrop */
+  .bn-layout .bn-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 25, 23, 0.5);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 45;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .bn-layout .bn-sidebar-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.bn-layout #column,
+  body.bn-layout .bn-main {
+    max-width: 100%;
+    padding: 2rem 1.5rem 4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .bn-layout .bn-brand-subtitle {
+    display: none;
+  }
+
+  .bn-layout .bn-header-inner {
+    padding: 0 1rem;
+    height: 3.5rem;
+  }
+
+  .bn-layout .bn-menu-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .bn-layout .bn-brand-mark {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .bn-layout .bn-brand-title {
+    font-size: 1rem;
+  }
+
+  .bn-layout .bn-brand-badge {
+    font-size: 0.7rem;
+    padding: 0.05rem 0.4rem;
+  }
+
+  .bn-layout h1 {
+    font-size: 1.85rem;
+  }
+
+  .bn-layout h2 {
+    font-size: 1.45rem;
+  }
+
+  .bn-layout p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .bn-layout .tutorial-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .bn-layout .bn-pager-card {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .bn-layout .bn-pager-next {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  body.bn-layout #column,
+  body.bn-layout .bn-main {
+    padding: 1.25rem 1rem 3.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   Phase 3: Chapter Reading Experience, Hero, Breadcrumbs & Content Blocks
+   Scoped strictly under body.bn-layout and .bn-layout
+   ========================================================================== */
+
+/* 1. Sticky Navigation Scroll Offset */
+.bn-layout h1,
+.bn-layout h2,
+.bn-layout h3,
+.bn-layout h4,
+.bn-layout h5,
+.bn-layout h6,
+.bn-layout a[name],
+.bn-layout [id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* 2. Chapter Article Container */
+.bn-layout .bn-tutorial-article {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Chapter Hero & Breadcrumbs */
+.bn-layout .bn-chapter-hero {
+  margin-bottom: 2.75rem;
+  padding-bottom: 0.5rem;
+}
+
+.bn-layout .bn-breadcrumbs {
+  margin-bottom: 1.25rem;
+}
+
+.bn-layout .bn-breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--bn-font-sans);
+  font-size: 0.825rem;
+  color: var(--bn-text-tertiary);
+}
+
+.bn-layout .bn-breadcrumbs-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+}
+
+.bn-layout .bn-breadcrumbs-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--bn-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .bn-breadcrumbs-link:hover {
+  color: var(--bn-crimson-700);
+}
+
+.bn-layout .bn-breadcrumbs-icon {
+  stroke: currentColor;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.bn-layout .bn-breadcrumbs-separator {
+  color: var(--bn-text-tertiary);
+  font-size: 0.75rem;
+  user-select: none;
+  opacity: 0.6;
+}
+
+.bn-layout .bn-breadcrumbs-current {
+  color: var(--bn-text-primary);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 22rem;
+}
+
+.bn-layout .bn-chapter-eyebrow {
+  margin-bottom: 0.75rem;
+}
+
+.bn-layout .bn-chapter-badge {
+  display: inline-block;
+  font-family: var(--bn-font-sans);
+  font-size: 0.785rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bn-crimson-700);
+  background-color: var(--bn-crimson-tint);
+  border: 1px solid var(--bn-crimson-border);
+  border-radius: var(--bn-radius-full);
+  padding: 0.2rem 0.75rem;
+}
+
+.bn-layout .bn-chapter-title {
+  font-family: var(--bn-font-sans);
+  font-size: 2.35rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--bn-text-primary);
+  letter-spacing: -0.025em;
+  margin: 0 0 1.15rem 0;
+}
+
+.bn-layout .bn-chapter-blurb {
+  font-family: var(--bn-font-serif);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--bn-text-secondary);
+  margin: 0 0 1.75rem 0;
+  max-width: 44rem;
+}
+
+.bn-layout .bn-chapter-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--bn-border-strong), var(--bn-border-light), transparent);
+  margin-top: 1.75rem;
+}
+
+/* 4. Reading Prose & Typography */
+.bn-layout .bn-chapter-body.prose-book {
+  color: var(--bn-text-primary);
+}
+
+.bn-layout .bn-chapter-body p {
+  font-family: var(--bn-font-serif);
+  font-size: 1.0625rem;
+  line-height: var(--bn-lh-body);
+  color: var(--bn-text-primary);
+  margin-bottom: 1.35rem;
+  text-rendering: optimizeLegibility;
+}
+
+.bn-layout .bn-chapter-body h2 {
+  font-family: var(--bn-font-sans);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: var(--bn-lh-heading);
+  color: var(--bn-text-primary);
+  letter-spacing: -0.02em;
+  margin-top: 3.25rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--bn-border-light);
+}
+
+.bn-layout .bn-chapter-body h3 {
+  font-family: var(--bn-font-sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: var(--bn-lh-heading);
+  color: var(--bn-text-primary);
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.bn-layout .bn-chapter-body h4 {
+  font-family: var(--bn-font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--bn-text-secondary);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.bn-layout .bn-chapter-body ul,
+.bn-layout .bn-chapter-body ol {
+  font-family: var(--bn-font-serif);
+  font-size: 1.05rem;
+  line-height: var(--bn-lh-body);
+  margin: 1.25rem 0 1.5rem 1.75rem;
+  padding: 0;
+  color: var(--bn-text-primary);
+}
+
+.bn-layout .bn-chapter-body li {
+  margin-bottom: 0.65rem;
+  padding-left: 0.25rem;
+}
+
+.bn-layout .bn-chapter-body li > p {
+  margin-bottom: 0.5rem;
+}
+
+.bn-layout .bn-chapter-body a:not(.bn-sidebar-item):not(.bn-brand-link):not(.bn-pager-card):not(.bn-breadcrumbs-link) {
+  color: var(--bn-crimson-700);
+  text-decoration: underline;
+  text-decoration-color: var(--bn-crimson-border);
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: var(--bn-transition);
+}
+
+.bn-layout .bn-chapter-body a:not(.bn-sidebar-item):not(.bn-brand-link):not(.bn-pager-card):not(.bn-breadcrumbs-link):hover {
+  color: var(--bn-crimson-800);
+  text-decoration-color: var(--bn-crimson-700);
+  text-decoration-thickness: 1.5px;
+}
+
+/* 5. Educational Content Blocks */
+
+/* Blockquotes */
+.bn-layout blockquote {
+  margin: 2rem 0;
+  padding: 1.15rem 1.5rem;
+  background-color: var(--bn-bg-soft);
+  border-left: 4px solid var(--bn-crimson-700);
+  border-radius: 0 var(--bn-radius-md) var(--bn-radius-md) 0;
+  color: var(--bn-text-secondary);
+  font-family: var(--bn-font-serif);
+  font-size: 1.025rem;
+  line-height: var(--bn-lh-body);
+  box-shadow: var(--bn-shadow-xs);
+}
+
+.bn-layout blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Sidenotes */
+.bn-layout .sideNote {
+  margin: 2.25rem 0;
+  padding: 1.35rem 1.6rem;
+  background-color: var(--bn-bg-surface);
+  border: 1px solid var(--bn-border-card);
+  border-left: 4.5px solid var(--bn-crimson-600);
+  border-radius: var(--bn-radius-md);
+  box-shadow: var(--bn-shadow-xs);
+  font-size: 0.965rem;
+  line-height: 1.8;
+  position: relative;
+}
+
+.bn-layout .sideNote h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-family: var(--bn-font-sans);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--bn-crimson-700);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bn-layout .sideNote h3::before {
+  content: "ℹ";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--bn-radius-full);
+  background: var(--bn-crimson-tint);
+  color: var(--bn-crimson-700);
+  font-size: 0.75rem;
+  font-family: var(--bn-font-mono);
+  flex-shrink: 0;
+}
+
+.bn-layout .sideNote p {
+  font-family: var(--bn-font-serif);
+  font-size: 0.965rem;
+  color: var(--bn-text-secondary);
+  margin-bottom: 0.85rem;
+}
+
+.bn-layout .sideNote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Images */
+.bn-layout .bn-chapter-body img,
+.bn-layout .content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2.25rem auto;
+  border-radius: var(--bn-radius-md);
+  border: 1px solid var(--bn-border-light);
+  box-shadow: var(--bn-shadow-sm);
+  background-color: #ffffff;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Tables & Query Data Tables */
+.bn-layout .datatable,
+.bn-layout table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  border: 1px solid var(--bn-border-light);
+  border-radius: var(--bn-radius-md);
+  overflow: hidden;
+  box-shadow: var(--bn-shadow-xs);
+  background-color: var(--bn-bg-surface);
+}
+
+.bn-layout .datatable thead,
+.bn-layout table thead {
+  background-color: var(--bn-bg-soft);
+}
+
+.bn-layout .datatable th,
+.bn-layout table th {
+  padding: 0.7rem 0.95rem;
+  font-family: var(--bn-font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bn-text-secondary);
+  text-align: left;
+  border-bottom: 1.5px solid var(--bn-border-light);
+  white-space: nowrap;
+}
+
+.bn-layout .datatable td,
+.bn-layout table td {
+  padding: 0.65rem 0.95rem;
+  font-family: var(--bn-font-mono);
+  font-size: 0.85rem;
+  color: var(--bn-text-primary);
+  border-bottom: 1px solid var(--bn-border-light);
+  line-height: 1.4;
+}
+
+.bn-layout .datatable tr:last-child td,
+.bn-layout table tr:last-child td {
+  border-bottom: none;
+}
+
+.bn-layout .datatable tr:hover td,
+.bn-layout table tr:hover td {
+  background-color: rgba(28, 25, 23, 0.025);
+}
+
+.bn-layout .sqlExOutputArea,
+.bn-layout .resultTable,
+.bn-layout .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin: 1rem 0;
+  border-radius: var(--bn-radius-md);
+}
+
+/* Code Blocks & Monospace */
+.bn-layout code:not(pre code),
+.bn-layout .codeblock {
+  font-family: var(--bn-font-mono);
+  font-size: 0.875em;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--bn-radius-sm);
+  background-color: var(--bn-crimson-tint);
+  color: var(--bn-crimson-700);
+  border: 1px solid var(--bn-crimson-border);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.bn-layout pre {
+  font-family: var(--bn-font-mono);
+  background-color: #1e222a;
+  color: #f8fafc;
+  border: 1px solid #2d3748;
+  border-radius: var(--bn-radius-md);
+  padding: 1.15rem 1.4rem;
+  overflow-x: auto;
+  font-size: 0.885rem;
+  line-height: 1.6;
+  margin: 1.75rem 0;
+  box-shadow: var(--bn-shadow-sm);
+}
+
+.bn-layout pre code {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ==========================================================================
+   SQL Practice Interface & Quiz Design System (Modern Developer IDE)
+   Scoped strictly under .bn-layout and body.bn-layout
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. PRIMARY EXERCISE CONTAINER
+   -------------------------------------------------------------------------- */
+.bn-layout .sqlExHomeDiv {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 20px -4px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  margin: 2.25rem 0;
+  max-width: 100%;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bn-layout .sqlExHomeDiv:focus-within {
+  border-color: #cbd5e1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 12px 24px -6px rgba(0, 0, 0, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   2. EXERCISE HEADER & BILINGUAL QUESTION SECTION
+   -------------------------------------------------------------------------- */
+.bn-layout .sqlExQuestionSection {
+  background: #f8f4ec;
+  border-bottom: 1px solid #e7e5e4;
+  padding: 18px 22px;
+}
+
+.bn-layout .sqlExCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bn-layout .sqlExBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #991b1b;
+}
+
+.bn-layout .sqlExBadge svg {
+  color: #991b1b;
+}
+
+.bn-layout .sqlExBilingualQuestion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bn-layout .sqlExLangBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.bn-layout .sqlExQuestionBn .sqlExLangBadge {
+  color: #991b1b;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+}
+
+.bn-layout .sqlExQuestionBn .sqlExQuestionText {
+  font-family: var(--bn-font-ui, "Hind Siliguri", -apple-system, sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #1c1917;
+  word-break: break-word;
+}
+
+.bn-layout .sqlExQuestionDivider {
+  height: 1px;
+  border-top: 1px dashed #d6d3d1;
+  margin: 6px 0;
+}
+
+.bn-layout .sqlExQuestionEn .sqlExLangBadge {
+  color: #475569;
+  font-family: var(--bn-font-sans, "Inter", sans-serif);
+  font-size: 10.5px;
+}
+
+.bn-layout .sqlExQuestionEn .sqlExQuestionText {
+  font-family: var(--bn-font-sans, "Inter", -apple-system, sans-serif);
+  font-size: 0.925rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #57534e;
+  word-break: break-word;
+}
+
+.bn-layout .sqlExCommentText {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 0.885rem;
+  line-height: 1.55;
+  color: #78716c;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.bn-layout .sqlExCommentText svg {
+  shrink: 0;
+  margin-top: 3px;
+  color: #a8a29e;
+}
+
+/* Fallback non-bilingual question */
+.bn-layout .sqlExQuestion {
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1c1917;
+  padding: 18px 22px;
+  background: #f8f4ec;
+  border-bottom: 1px solid #e7e5e4;
+}
+
+.bn-layout .sqlExComment {
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 0.885rem;
+  color: #78716c;
+  padding: 10px 22px;
+  background: #f8f4ec;
+  border-bottom: 1px solid #e7e5e4;
+}
+
+/* --------------------------------------------------------------------------
+   3. SQL EDITOR SECTION (DARK CHARCOAL WORKSPACE #16191f)
+   -------------------------------------------------------------------------- */
+.bn-layout .sqlExEditorHeader {
+  background: #111418;
+  border-bottom: 1px solid #282f3c;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bn-layout .sqlExEditorTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.bn-layout .sqlExEngineBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #282f3c;
+  color: #cbd5e1;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.bn-layout .sqlExEngineDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.bn-layout .sqlExInputArea {
+  position: relative;
+  background: #16191f;
+  border: none;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* CodeMirror Surface Dark Charcoal #16191f */
+.bn-layout .CodeMirror {
+  font-family: var(--bn-font-mono, "JetBrains Mono", "Fira Code", monospace) !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  height: auto !important;
+  min-height: 120px !important;
+  max-width: 100% !important;
+  background-color: #16191f !important;
+  color: #e2e8f0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Override neat.css light blue (#eaf4f7) */
+.bn-layout .cm-s-neat.CodeMirror,
+.bn-layout .cm-s-neat .CodeMirror-sizer,
+.bn-layout .cm-s-neat .CodeMirror-lines {
+  background: #16191f !important;
+  color: #e2e8f0 !important;
+}
+
+.bn-layout .cm-s-neat .CodeMirror-lines {
+  padding: 10px 0 !important;
+}
+
+.bn-layout .cm-s-neat pre {
+  color: #e2e8f0 !important;
+}
+
+/* Clean Gutter and Line Numbers */
+.bn-layout .CodeMirror-gutters {
+  background-color: #111418 !important;
+  border-right: 1px solid #282f3c !important;
+  padding-right: 4px !important;
+}
+
+.bn-layout .CodeMirror-linenumber {
+  color: #64748b !important;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace) !important;
+  font-size: 12px !important;
+  padding: 0 10px 0 6px !important;
+}
+
+.bn-layout .CodeMirror-cursor {
+  border-left: 2px solid #38bdf8 !important;
+}
+
+.bn-layout .CodeMirror-selected,
+.bn-layout .CodeMirror-focused .CodeMirror-selected {
+  background: #334155 !important;
+}
+
+.bn-layout .CodeMirror-line {
+  padding: 0 12px !important;
+}
+
+/* Syntax Highlighting on Dark Charcoal Canvas */
+.bn-layout .cm-s-neat span.cm-keyword {
+  color: #c084fc !important;
+  font-weight: 600 !important;
+}
+
+.bn-layout .cm-s-neat span.cm-comment {
+  color: #94a3b8 !important;
+  font-style: italic !important;
+}
+
+.bn-layout .cm-s-neat span.cm-special {
+  color: #2dd4bf !important;
+  font-weight: 600 !important;
+}
+
+.bn-layout .cm-s-neat span.cm-string {
+  color: #fbbf24 !important;
+}
+
+.bn-layout .cm-s-neat span.cm-atom {
+  color: #38bdf8 !important;
+  font-weight: 500 !important;
+}
+
+.bn-layout .cm-s-neat span.cm-variable-2 {
+  color: #e2e8f0 !important;
+}
+
+.bn-layout .cm-s-neat span.cm-operator {
+  color: #94a3b8 !important;
+}
+
+/* Custom Sleek Scrollbar */
+.bn-layout .CodeMirror-scroll::-webkit-scrollbar,
+.bn-layout .sqlTableWrapper::-webkit-scrollbar,
+.bn-layout .sqlExOutputArea::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.bn-layout .CodeMirror-scroll::-webkit-scrollbar-track {
+  background: #16191f;
+}
+
+.bn-layout .CodeMirror-scroll::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+.bn-layout .CodeMirror-scroll::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.bn-layout .sqlTableWrapper::-webkit-scrollbar-track,
+.bn-layout .sqlExOutputArea::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.bn-layout .sqlTableWrapper::-webkit-scrollbar-thumb,
+.bn-layout .sqlExOutputArea::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.bn-layout .sqlTableWrapper::-webkit-scrollbar-thumb:hover,
+.bn-layout .sqlExOutputArea::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   4. RECONSTRUCTED ACTION TOOLBAR & BUTTON SYSTEM
+   -------------------------------------------------------------------------- */
+.bn-layout .sqlExToolbar {
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bn-layout .sqlExToolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bn-layout .sqlExToolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Primary Button: Run Query */
+.bn-layout button.sqlBtnPrimary,
+.bn-layout input.sql-exercise-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #991b1b !important;
+  color: #ffffff !important;
+  border: 1px solid #991b1b !important;
+  border-radius: 6px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 18px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(153, 27, 27, 0.25);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  outline: none;
+}
+
+.bn-layout button.sqlBtnPrimary svg {
+  color: #ffffff;
+}
+
+.bn-layout button.sqlBtnPrimary .sqlBtnKbdHint {
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  opacity: 0.8;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.bn-layout button.sqlBtnPrimary:hover:not(:disabled),
+.bn-layout input.sql-exercise-submit:hover:not(:disabled) {
+  background: #7f1d1d !important;
+  border-color: #7f1d1d !important;
+  box-shadow: 0 2px 5px rgba(153, 27, 27, 0.35);
+}
+
+.bn-layout button.sqlBtnPrimary:active:not(:disabled),
+.bn-layout input.sql-exercise-submit:active:not(:disabled) {
+  background: #6b1414 !important;
+  transform: translateY(1px);
+}
+
+.bn-layout button.sqlBtnPrimary:focus-visible,
+.bn-layout input.sql-exercise-submit:focus-visible {
+  outline: 2px solid #f87171 !important;
+  outline-offset: 2px;
+}
+
+.bn-layout button.sqlBtnPrimary:disabled,
+.bn-layout input.sql-exercise-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Secondary Button: Show Solution */
+.bn-layout button.sqlBtnSecondary,
+.bn-layout input[name="solution"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  outline: none;
+}
+
+.bn-layout button.sqlBtnSecondary svg {
+  color: #4b5563;
+}
+
+.bn-layout button.sqlBtnSecondary:hover,
+.bn-layout input[name="solution"]:hover {
+  background: #f9fafb !important;
+  border-color: #9ca3af !important;
+  color: #111827 !important;
+}
+
+.bn-layout button.sqlBtnSecondary:active,
+.bn-layout input[name="solution"]:active {
+  background: #f3f4f6 !important;
+  transform: translateY(1px);
+}
+
+.bn-layout button.sqlBtnSecondary:focus-visible,
+.bn-layout input[name="solution"]:focus-visible {
+  outline: 2px solid #94a3b8 !important;
+  outline-offset: 2px;
+}
+
+/* Tertiary Button: Reset */
+.bn-layout button.sqlBtnTertiary,
+.bn-layout input[name="reset"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #ffffff !important;
+  color: #6b7280 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 6px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  outline: none;
+}
+
+.bn-layout button.sqlBtnTertiary svg {
+  color: #6b7280;
+}
+
+.bn-layout button.sqlBtnTertiary:hover,
+.bn-layout input[name="reset"]:hover {
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+  color: #1f2937 !important;
+}
+
+.bn-layout button.sqlBtnTertiary:active,
+.bn-layout input[name="reset"]:active {
+  background: #e5e7eb !important;
+  transform: translateY(1px);
+}
+
+.bn-layout button.sqlBtnTertiary:focus-visible,
+.bn-layout input[name="reset"]:focus-visible {
+  outline: 2px solid #94a3b8 !important;
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. PROFESSIONAL DATABASE RESULT VIEWER & TABLES
+   -------------------------------------------------------------------------- */
+.bn-layout .sqlExOutputArea {
+  background: #ffffff;
+  border-top: 1px solid #e7e5e4;
+  max-width: 100%;
+}
+
+.bn-layout .sqlResultHeader {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bn-layout .sqlResultMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bn-layout .sqlResultTitle {
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.bn-layout .sqlRowCountBadge {
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.bn-layout .sqlVerdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.bn-layout .sqlVerdict.verdictCorrect {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.bn-layout .sqlVerdict.verdictIncorrect {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+
+.bn-layout .sqlVerdictChecking {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+/* Contained Scrollable Table Wrapper */
+.bn-layout .sqlTableWrapper {
+  max-height: 380px;
+  overflow: auto;
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+}
+
+/* Database Data Table Styling */
+.bn-layout table.datatable {
+  width: 100%;
+  border-collapse: collapse !important;
+  border: none !important;
+  font-size: 13.5px;
+  text-align: left;
+  margin: 0;
+}
+
+.bn-layout table.datatable thead {
+  background: #f1f5f9;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.bn-layout table.datatable th {
+  padding: 10px 14px;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #334155;
+  border-bottom: 2px solid #cbd5e1;
+  border-right: 1px solid #e2e8f0;
+  white-space: nowrap;
+  background: #f1f5f9;
+}
+
+.bn-layout table.datatable th:last-child {
+  border-right: none;
+}
+
+.bn-layout table.datatable td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f8fafc;
+  color: #1e2937;
+  line-height: 1.5;
+  font-family: var(--bn-font-sans, "Inter", "Hind Siliguri", sans-serif);
+}
+
+.bn-layout table.datatable td:last-child {
+  border-right: none;
+}
+
+.bn-layout table.datatable tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.bn-layout table.datatable tbody tr:nth-child(odd) {
+  background-color: #fafaf9;
+}
+
+.bn-layout table.datatable tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.bn-layout table.datatable td.cell-null {
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-style: italic;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* Empty Result & Error States */
+.bn-layout .sqlEmptyResult {
+  padding: 18px 22px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 14px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+}
+
+.bn-layout .returnError {
+  padding: 16px 20px;
+  background: #fff1f2;
+  border-top: 1px solid #fecdd3;
+  color: #9f1239;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 13px;
+}
+
+.bn-layout .sqlErrorHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  color: #be123c;
+}
+
+/* --------------------------------------------------------------------------
+   6. RECONSTRUCTED QUIZ COMPONENT
+   -------------------------------------------------------------------------- */
+.bn-layout sql-quiz .sqlQuizHomeDiv {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 20px -4px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  margin: 2.25rem 0;
+  max-width: 100%;
+}
+
+.bn-layout sql-quiz .sqlQuizCardHeader {
+  background: #f8f4ec;
+  border-bottom: 1px solid #e7e5e4;
+  padding: 18px 22px;
+}
+
+.bn-layout sql-quiz .sqlQuizBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #991b1b;
+}
+
+.bn-layout sql-quiz .sqlQuizBilingualQuestion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 22px;
+  background: #f8f4ec;
+  border-bottom: 1px solid #e7e5e4;
+}
+
+.bn-layout sql-quiz .sqlQuizLangBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.bn-layout sql-quiz .sqlQuizQuestionBn .sqlQuizLangBadge {
+  color: #991b1b;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+}
+
+.bn-layout sql-quiz .sqlQuizQuestionBn .sqlQuizQuestionText {
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #1c1917;
+  word-break: break-word;
+}
+
+.bn-layout sql-quiz .sqlQuizQuestionDivider {
+  height: 1px;
+  border-top: 1px dashed #d6d3d1;
+  margin: 6px 0;
+}
+
+.bn-layout sql-quiz .sqlQuizQuestionEn .sqlQuizLangBadge {
+  color: #475569;
+  font-family: var(--bn-font-sans, "Inter", sans-serif);
+  font-size: 10.5px;
+}
+
+.bn-layout sql-quiz .sqlQuizQuestionEn .sqlQuizQuestionText {
+  font-family: var(--bn-font-sans, "Inter", sans-serif);
+  font-size: 0.925rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #57534e;
+  word-break: break-word;
+}
+
+.bn-layout sql-quiz .sqlQuizDescription {
+  padding: 10px 22px;
+  background: #f8f4ec;
+  border-bottom: 1px solid #e7e5e4;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 0.885rem;
+  color: #78716c;
+}
+
+.bn-layout sql-quiz .sqlQuizOptions {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #ffffff;
+}
+
+.bn-layout sql-quiz .sqlOption {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.bn-layout sql-quiz .sqlOption:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.bn-layout sql-quiz .sqlOption:focus-within {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.bn-layout sql-quiz .sqlOption label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.bn-layout sql-quiz .sqlOption input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #991b1b;
+  cursor: pointer;
+}
+
+.bn-layout sql-quiz .optionText {
+  font-family: var(--bn-font-mono, "JetBrains Mono", monospace);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+.bn-layout sql-quiz .hintSpan {
+  display: none;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+/* Quiz Toolbar */
+.bn-layout .sqlQuizToolbar {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.bn-layout sql-quiz .sqlQuizInputArea {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bn-layout sql-quiz input[name="check"],
+.bn-layout sql-quiz .sqlQuizSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #991b1b !important;
+  color: #ffffff !important;
+  border: 1px solid #991b1b !important;
+  border-radius: 6px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 18px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bn-layout sql-quiz input[name="check"]:hover,
+.bn-layout sql-quiz .sqlQuizSubmit:hover {
+  background: #7f1d1d !important;
+}
+
+.bn-layout sql-quiz input[name="hint"],
+.bn-layout sql-quiz .sqlQuizHint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bn-layout sql-quiz input[name="hint"]:hover,
+.bn-layout sql-quiz .sqlQuizHint:hover {
+  background: #f9fafb !important;
+  border-color: #9ca3af !important;
+}
+
+.bn-layout sql-quiz .sqlQuizOutputArea .returnOkay {
+  margin: 14px 22px 20px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-family: var(--bn-font-ui, "Hind Siliguri", sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bn-layout sql-quiz .sqlQuizOutputArea .returnOkay.quizVerdictSuccess {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.bn-layout sql-quiz .sqlQuizOutputArea .returnOkay.quizVerdictError {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE BREAKPOINTS (Mobile & Tablet)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .bn-layout .sqlExQuestionSection,
+  .bn-layout sql-quiz .sqlQuizBilingualQuestion,
+  .bn-layout sql-quiz .sqlQuizOptions {
+    padding: 14px 16px;
+  }
+
+  .bn-layout .sqlBtnKbdHint {
+    display: none !important;
+  }
+
+  .bn-layout .sqlExToolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
+  }
+
+  .bn-layout .sqlExToolbarLeft {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .bn-layout .sqlExToolbarLeft button.sqlBtnPrimary,
+  .bn-layout .sqlExToolbarLeft input.sql-exercise-submit {
+    width: 100% !important;
+    height: 44px !important;
+  }
+
+  .bn-layout .sqlExToolbarRight {
+    display: flex !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .bn-layout .sqlExToolbarLeft button.sqlBtnSecondary,
+  .bn-layout .sqlExToolbarRight button.sqlBtnTertiary,
+  .bn-layout .sqlExToolbarRight input {
+    flex: 1 !important;
+    height: 44px !important;
+    min-height: 44px !important;
+  }
+
+  .bn-layout .sqlQuizToolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 12px 16px !important;
+  }
+
+  .bn-layout .sqlQuizToolbar button {
+    width: 100% !important;
+    height: 44px !important;
+  }
+
+  .bn-layout .sqlResultHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+
+  /* Quiz Toolbar */
+.bn-layout .sqlQuizToolbar {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.bn-layout sql-quiz .sqlQuizInputArea {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+  }
+
+  .bn-layout sql-quiz input[name="check"],
+  .bn-layout sql-quiz input[name="hint"] {
+    width: 100%;
+  }
+}
