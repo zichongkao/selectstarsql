@@ -30,9 +30,19 @@
     </script>
     <title>{{ page.title }}</title>
     {% include bn_seo_tags.html lang="bn" %}
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('selectstar_bn_theme');
+          if (t === 'dark') {
+            document.documentElement.classList.add('bn-theme-dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
 
-  <body class="bn-layout">
+  <body class="bn-layout" data-db-file="{{ page.dbFile }}">
     {% include bn_header.html %}
     <div class="bn-shell">
       {% include bn_sidebar.html %}
@@ -44,6 +54,8 @@
       </main>
     </div>
     {% include bn_footer.html %}
+    {% include bn_schema_modal.html %}
+    {% include bn_sandbox_modal.html %}
     <script src="{{ '/scripts/bn-modern.js' | relative_url }}"></script>
   </body>
 </html>

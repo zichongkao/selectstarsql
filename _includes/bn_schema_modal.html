@@ -1,0 +1,547 @@
+<!-- Database Schema & Technical Glossary Modal (Bengali Modern UI Phase 5) -->
+<div id="bnSchemaModalOverlay" class="bn-modal-overlay" aria-hidden="true">
+  <div id="bnSchemaBackdrop" class="bn-modal-backdrop"></div>
+
+  <div id="bnSchemaModal" class="bn-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bnSchemaModalTitle" tabindex="-1">
+
+    <!-- Modal Header -->
+    <div class="bn-modal-header">
+      <div class="bn-modal-header-text">
+        <div class="bn-modal-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+          <span>SELECT STAR SQL • ডেটাবেস নির্দেশিকা</span>
+        </div>
+        <h2 id="bnSchemaModalTitle" class="bn-modal-title">ডাটাবেস স্কিমা ও প্রযুক্তিগত শব্দকোষ</h2>
+        <p class="bn-modal-subtitle">কোর্সে ব্যবহৃত বাস্তব SQLite ডেটাসেটগুলোর প্রকৃত কাঠামো ও প্রয়োজনীয় SQL পরিভাষার সরল বাংলা ব্যাখ্যা।</p>
+      </div>
+
+      <button type="button" id="bnSchemaCloseBtn" class="bn-modal-close-btn" aria-label="মডাল বন্ধ করুন" title="বন্ধ করুন (Esc)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Tabs Navigation -->
+    <div class="bn-modal-tabs" role="tablist" aria-label="স্কিমা ও শব্দকোষ ট্যাব">
+      <button type="button" class="bn-modal-tab is-active" role="tab" id="bnTabBtnTx" aria-selected="true" aria-controls="bnTabPanelTx" data-tab="dataset-tx">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+        </svg>
+        <span>টেক্সাস ডেটাসেট (অধ্যায় ১–৪)</span>
+      </button>
+
+      <button type="button" class="bn-modal-tab" role="tab" id="bnTabBtnCongress" aria-selected="false" aria-controls="bnTabPanelCongress" data-tab="dataset-congress">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>কংগ্রেস ডেটাসেট (অধ্যায় ৫)</span>
+      </button>
+
+      <button type="button" class="bn-modal-tab" role="tab" id="bnTabBtnGlossary" aria-selected="false" aria-controls="bnTabPanelGlossary" data-tab="glossary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span>প্রযুক্তিগত শব্দকোষ (Glossary)</span>
+      </button>
+    </div>
+
+    <!-- Modal Body / Content -->
+    <div class="bn-modal-body">
+
+      <!-- Panel 1: Texas Death Row Dataset -->
+      <div id="bnTabPanelTx" class="bn-modal-panel is-active" role="tabpanel" aria-labelledby="bnTabBtnTx">
+        <div class="bn-dataset-card">
+          <div class="bn-dataset-meta">
+            <div>
+              <span class="bn-dataset-badge">SQLite Dataset • অধ্যায় ১, ২, ৩ ও ৪</span>
+              <h3 class="bn-dataset-title">Texas Department of Criminal Justice Executions</h3>
+              <p class="bn-dataset-desc">টেক্সাসে ১৯৮২ থেকে কার্যকর হওয়া মৃত্যুদণ্ডের তথ্য নিয়ে গঠিত ডেটাসেট। Beazley, Hiatuses, Innocence এবং The Long Tail অধ্যায়গুলোতে এই টেবিলটি ব্যবহৃত হয়েছে।</p>
+            </div>
+            <div class="bn-dataset-stats">
+              <div class="bn-stat-item">
+                <span class="bn-stat-val">553</span>
+                <span class="bn-stat-label">মোট সারি (Rows)</span>
+              </div>
+              <div class="bn-stat-item">
+                <span class="bn-stat-val">7</span>
+                <span class="bn-stat-label">কলাম (Columns)</span>
+              </div>
+              <div class="bn-stat-item">
+                <span class="bn-stat-val">executions</span>
+                <span class="bn-stat-label">টেবিলের নাম</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-schema-table-wrapper">
+            <table class="bn-schema-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 22%;">কলামের নাম</th>
+                  <th scope="col" style="width: 14%;">ডেটা টাইপ</th>
+                  <th scope="col" style="width: 18%;">শর্ত (Constraints)</th>
+                  <th scope="col" style="width: 46%;">বিবরণ ও কোর্সে ভূমিকা</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="bn-col-code">first_name</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">NULL গ্রহণযোগ্য</span></td>
+                  <td>বন্দির প্রথম নাম (First name)। সাধারণ টেক্সট হিসেবে সংরক্ষিত।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">last_name</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">NULL গ্রহণযোগ্য</span></td>
+                  <td>বন্দির শেষ নাম বা পদবি (Last name)। ফিল্টারিং ও সাজানোর কাজে ব্যবহৃত হয়।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">ex_number</code></td>
+                  <td><span class="bn-type-pill">INT</span></td>
+                  <td><span class="bn-constraint-pill">Sequential Integer</span></td>
+                  <td>মৃত্যুদণ্ড কার্যকরের ধারাবাহিক ক্রমিক সংখ্যা (১ থেকে ৫৫৩ পর্যন্ত)।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">ex_age</code></td>
+                  <td><span class="bn-type-pill">INT</span></td>
+                  <td><span class="bn-constraint-pill">Numeric Value</span></td>
+                  <td>মৃত্যুদণ্ড কার্যকরের সময় বন্দির বয়স। গাণিতিক হিসাব এবং গড় (AVG) নির্ণয়ে ব্যবহৃত হয়।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">ex_date</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">Date ISO (YYYY-MM-DD)</span></td>
+                  <td>মৃত্যুদণ্ড কার্যকরের তারিখ। SQLite ডেট ফাংশন (যেমন <code>julianday()</code>) দিয়ে দিন হিসাব করা হয়।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">county</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">Category String</span></td>
+                  <td>যে কাউন্টিতে সাজা হয়েছিল (যেমন Harris, Dallas, Bexar)। <code>GROUP BY</code> অনুশীলনে ব্যবহৃত।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">last_statement</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill bn-pill-null">NULL অনুমোদিত</span></td>
+                  <td>মৃত্যুদণ্ড কার্যকরের আগে বন্দির শেষ জবানবন্দি। যারা কোনো বক্তব্য দেননি সেখানে <code>NULL</code> বিদ্যমান।</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: 114th Congress Dataset -->
+      <div id="bnTabPanelCongress" class="bn-modal-panel" role="tabpanel" aria-labelledby="bnTabBtnCongress">
+        <div class="bn-dataset-card">
+          <div class="bn-dataset-meta">
+            <div>
+              <span class="bn-dataset-badge">SQLite Dataset • অধ্যায় ৫</span>
+              <h3 class="bn-dataset-title">114th United States Congress Legislation Co-sponsorship</h3>
+              <p class="bn-dataset-desc">১১৪তম মার্কিন কংগ্রেসে উত্থাপিত বিল এবং সংশ্লিষ্ট স্পন্সর ও কো-স্পন্সরদের সম্পর্কের ডেটাসেট। Questions অধ্যায়ে Self Join ও Relational বিশ্লেষণের জন্য ব্যবহৃত।</p>
+            </div>
+            <div class="bn-dataset-stats">
+              <div class="bn-stat-item">
+                <span class="bn-stat-val">15,894</span>
+                <span class="bn-stat-label">মোট সারি (Rows)</span>
+              </div>
+              <div class="bn-stat-item">
+                <span class="bn-stat-val">5</span>
+                <span class="bn-stat-label">কলাম (Columns)</span>
+              </div>
+              <div class="bn-stat-item">
+                <span class="bn-stat-val">cosponsors</span>
+                <span class="bn-stat-label">টেবিলের নাম</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bn-schema-table-wrapper">
+            <table class="bn-schema-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 22%;">কলামের নাম</th>
+                  <th scope="col" style="width: 14%;">ডেটা টাইপ</th>
+                  <th scope="col" style="width: 18%;">শর্ত (Constraints)</th>
+                  <th scope="col" style="width: 46%;">বিবরণ ও কোর্সে ভূমিকা</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="bn-col-code">bill_number</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">Bill Code Identifier</span></td>
+                  <td>কংগ্রেসীয় বিলের স্বতন্ত্র সাংকেতিক নম্বর (যেমন <code>hr1-114</code>, <code>s1-114</code>)।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">sponsor_name</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">Official String</span></td>
+                  <td>বিলের মূল প্রস্তাবক বা স্পন্সরের নাম (যেমন Rep. Ryan, Paul D.)।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">sponsor_state</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">2-Letter Postal Code</span></td>
+                  <td>মূল স্পন্সরের মার্কিন অঙ্গরাজ্যের দুই অক্ষরের কোড (যেমন WI, TX, CA)।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">cosponsor_name</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">Official String</span></td>
+                  <td>বিলের সহ-প্রস্তাবক বা কো-স্পন্সরের নাম। একটি বিলে একাধিক কো-স্পন্সর থাকতে পারেন।</td>
+                </tr>
+                <tr>
+                  <td><code class="bn-col-code">cosponsor_state</code></td>
+                  <td><span class="bn-type-pill">TEXT</span></td>
+                  <td><span class="bn-constraint-pill">2-Letter Postal Code</span></td>
+                  <td>সহ-প্রস্তাবকের মার্কিন অঙ্গরাজ্যের দুই অক্ষরের কোড।</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Technical Glossary -->
+      <div id="bnTabPanelGlossary" class="bn-modal-panel" role="tabpanel" aria-labelledby="bnTabBtnGlossary">
+        <div class="bn-glossary-header">
+          <div class="bn-glossary-search-box">
+            <svg class="bn-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="bnGlossarySearch" class="bn-glossary-input" placeholder="ইংরেজি পরিভাষা বা বাংলা অর্থ দিয়ে খুঁজুন... (e.g. JOIN, NULL, GROUP BY, সারি)" aria-label="শব্দকোষে পরিভাষা খুঁজুন">
+            <button type="button" id="bnGlossaryClearBtn" class="bn-search-clear-btn" aria-label="অনুসন্ধান মুছুন" style="display:none;">&times;</button>
+          </div>
+          <div id="bnGlossaryCount" class="bn-glossary-count" aria-live="polite">৩৬টি পরিভাষা প্রদর্শিত হচ্ছে</div>
+        </div>
+
+        <div id="bnGlossaryEmpty" class="bn-glossary-empty" style="display: none;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <p class="bn-empty-title">কোনো পরিভাষা পাওয়া যায়নি</p>
+          <p class="bn-empty-hint">অনুগ্রহ করে ভিন্ন কোনো বানান বা ইংরেজি/বাংলা শব্দ দিয়ে চেষ্টা করুন।</p>
+        </div>
+
+        <div id="bnGlossaryGrid" class="bn-glossary-grid">
+
+          <div class="bn-glossary-card" data-term="SQL" data-bn="স্ট্রাকচার্ড কুয়েরি ল্যাঙ্গুয়েজ">
+            <div class="bn-term-top">
+              <span class="bn-term-name">SQL</span>
+              <span class="bn-term-category">Core</span>
+            </div>
+            <p class="bn-term-desc">Structured Query Language। রিলেশনাল ডাটাবেস পরিচালনা, কুয়েরি করা এবং ডেটা বিশ্লেষণের আন্তর্জাতিক প্রমিত প্রোগ্রামিং ভাষা।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Database" data-bn="ডাটাবেস ডেটা তথ্যভাণ্ডার">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Database</span>
+              <span class="bn-term-category">Concept</span>
+            </div>
+            <p class="bn-term-desc">সুনির্দিষ্ট নিয়মে সাজানো ডেটার সুসংহত ইলেকট্রনিক ভাণ্ডার। রিলেশনাল ডাটাবেসে তথ্য টেবিল আকারে সংরক্ষিত থাকে।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Table" data-bn="টেবিল সারণি কাঠামো">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Table</span>
+              <span class="bn-term-category">Structure</span>
+            </div>
+            <p class="bn-term-desc">নির্দিষ্ট সংখ্যক কলাম (Attributes) এবং সারি (Rows) নিয়ে গঠিত রিলেশনাল ডাটাবেসের মৌলিক দ্বি-মাত্রিক কাঠামো।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Row / Record" data-bn="সারি রেকর্ড রো">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Row / Record</span>
+              <span class="bn-term-category">Structure</span>
+            </div>
+            <p class="bn-term-desc">একটি টেবিলের একক আনুভূমিক এন্ট্রি, যা একটি নির্দিষ্ট ব্যক্তি, বস্তু বা বিষয়ের পূর্ণাঙ্গ তথ্য ধারণ করে।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Column / Attribute" data-bn="কলাম বৈশিষ্ট্য অ্যাট্রিবিউট">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Column / Attribute</span>
+              <span class="bn-term-category">Structure</span>
+            </div>
+            <p class="bn-term-desc">একটি টেবিলের উল্লম্ব অংশ যা নির্দিষ্ট ডেটা টাইপের সমজাতীয় বৈশিষ্ট্য ধারণ করে (যেমন: first_name, ex_age)।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Query" data-bn="কুয়েরি অনুসন্ধান স্টেটমেন্ট">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Query</span>
+              <span class="bn-term-category">Core</span>
+            </div>
+            <p class="bn-term-desc">ডাটাবেস থেকে তথ্য খোঁজা, ফিল্টার করা বা বিশ্লেষণ করার উদ্দেশ্যে SQL ভাষায় লেখা আনুষ্ঠানিক নির্দেশ বা স্টেটমেন্ট।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Schema" data-bn="স্কিমা ডেটাবেস নকশা কাঠামো ব্লুপ্রিন্ট">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Schema</span>
+              <span class="bn-term-category">Structure</span>
+            </div>
+            <p class="bn-term-desc">একটি সম্পূর্ণ ডেটাবেসের সামগ্রিক নকশা, টেবিলসমূহের পারস্পরিক সম্পর্ক, কলামের নাম, ডেটা টাইপ এবং কনস্ট্রেইন্টের কাঠামোগত ব্লুপ্রিন্ট।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="SQLite" data-bn="এসকিউলাইট ইঞ্জিন ডাটাবেস">
+            <div class="bn-term-top">
+              <span class="bn-term-name">SQLite</span>
+              <span class="bn-term-category">Engine</span>
+            </div>
+            <p class="bn-term-desc">একটি স্বয়ংসম্পূর্ণ, সার্ভারবিহীন, জিরো-কনফিগারেশন বিশিষ্ট সি-লাইব্রেরি ডাটাবেস ইঞ্জিন। এই কোর্সের কুয়েরিগুলো ব্রাউজারেই SQLite-এ চলে।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Primary Key" data-bn="প্রাইমারি কি প্রধান চাবি অনন্য">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Primary Key</span>
+              <span class="bn-term-category">Constraint</span>
+            </div>
+            <p class="bn-term-desc">একটি টেবিলের প্রতিটি Row-কে অদ্বিতীয়ভাবে (uniquely) শনাক্তকারী কলাম। এতে কোনো ডুপ্লিকেট মান বা NULL থাকতে পারে না।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Foreign Key" data-bn="ফরেন কি সম্পর্ক রেফারেন্স">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Foreign Key</span>
+              <span class="bn-term-category">Constraint</span>
+            </div>
+            <p class="bn-term-desc">একটি টেবিলের কলাম যা অন্য টেবিলের Primary Key-কে নির্দেশ করে, দুটি টেবিলের মধ্যে নির্ভরযোগ্য সম্পর্ক রক্ষা করে।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="NULL" data-bn="নাল অনুপস্থিত অজানা মান">
+            <div class="bn-term-top">
+              <span class="bn-term-name">NULL</span>
+              <span class="bn-term-category">Data</span>
+            </div>
+            <p class="bn-term-desc">ডাটাবেসে missing, unknown বা unavailable value নির্দেশক বিশেষ মার্কার। এটি সংখ্যা শূন্য (0) বা ফাঁকা টেক্সটের সমান নয়।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="SELECT" data-bn="সিলেক্ট নির্বাচন কলাম প্রদর্শন">
+            <div class="bn-term-top">
+              <span class="bn-term-name">SELECT</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">টেবিল থেকে কোন কোন কলাম বা এক্সপ্রেশন আউটপুট আকারে ফিরিয়ে আনা হবে তা নির্ধারণ করার মৌলিক SQL স্টেটমেন্ট।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="FROM" data-bn="ফ্রম উৎস টেবিল">
+            <div class="bn-term-top">
+              <span class="bn-term-name">FROM</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">কুয়েরিটি কোন টেবিল, ভিউ বা সাবকুয়েরি থেকে ডেটা সংগ্রহ করবে তা সুনির্দিষ্ট করার SQL ক্লজ।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="WHERE" data-bn="হোয়্যার শর্ত ফিল্টার">
+            <div class="bn-term-top">
+              <span class="bn-term-name">WHERE</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">নির্দিষ্ট লজিক্যাল শর্ত পূরণকারী একক সারিগুলো নির্বাচন করার জন্য ফিল্টারিং ক্লজ।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="LIMIT" data-bn="লিমিট সীমাবদ্ধ সারি সংখ্যা">
+            <div class="bn-term-top">
+              <span class="bn-term-name">LIMIT</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">কুয়েরির ফলাফলে সর্বোচ্চ কতটি সারি প্রদর্শিত হবে তা নির্দিষ্ট করার ক্লজ (যেমন: <code>LIMIT 3</code>)।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="ORDER BY" data-bn="অর্ডার বাই সাজানো ক্রমিক">
+            <div class="bn-term-top">
+              <span class="bn-term-name">ORDER BY</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">ফলাফলকে এক বা একাধিক কলামের মানের ভিত্তিতে ছোট থেকে বড় (ASC) বা বড় থেকে ছোট (DESC) ক্রমে সাজানোর ক্লজ।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="GROUP BY" data-bn="গ্রুপ বাই দলবদ্ধ শ্রেণিবিভাগ">
+            <div class="bn-term-top">
+              <span class="bn-term-name">GROUP BY</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">এক বা একাধিক কলামের অভিন্ন মানের ভিত্তিতে সারিগুলোকে দলবদ্ধ করে প্রতি গ্রুপের জন্য সারসংক্ষেপ গণনার ক্লজ।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="HAVING" data-bn="হ্যাভিং গ্রুপ ফিল্টার শর্ত">
+            <div class="bn-term-top">
+              <span class="bn-term-name">HAVING</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">GROUP BY-এর মাধ্যমে প্রস্তুতকৃত গ্রুপগুলোর ওপর শর্ত আরোপ করে গ্রুপ ফিল্টার করার ক্লজ।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Aggregation" data-bn="অ্যাগ্রিগেশন একত্রীকরণ সারসংক্ষেপ">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Aggregation</span>
+              <span class="bn-term-category">Operation</span>
+            </div>
+            <p class="bn-term-desc">একাধিক সারির ডেটার ওপর গণনামূলক কাজ সম্পন্ন করে একটি একক সারসংক্ষেপ মান (Summary value) তৈরি করার প্রক্রিয়া।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="COUNT" data-bn="কাউন্ট গণনা সারি সংখ্যা">
+            <div class="bn-term-top">
+              <span class="bn-term-name">COUNT</span>
+              <span class="bn-term-category">Aggregate</span>
+            </div>
+            <p class="bn-term-desc">টেবিল বা গ্রুপের অন্তর্ভুক্ত মোট সারির সংখ্যা গণনা করার বহুল ব্যবহৃত অ্যাগ্রিগেট ফাংশন।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="SUM" data-bn="সাম যোগফল যোগ">
+            <div class="bn-term-top">
+              <span class="bn-term-name">SUM</span>
+              <span class="bn-term-category">Aggregate</span>
+            </div>
+            <p class="bn-term-desc">কোনো নির্দিষ্ট সংখ্যাসূচক কলামের সমস্ত মানগুলোর মোট যোগফল নির্ণয়কারী ফাংশন।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="AVG" data-bn="এভারেজ গড় গাণিতিক গড়">
+            <div class="bn-term-top">
+              <span class="bn-term-name">AVG</span>
+              <span class="bn-term-category">Aggregate</span>
+            </div>
+            <p class="bn-term-desc">কোনো নির্দিষ্ট সংখ্যাসূচক কলামের বৈধ মানগুলোর গাণিতিক গড় (Average) বের করার ফাংশন।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="MAX / MIN" data-bn="ম্যাক্স মিন সর্বোচ্চ সর্বনিম্ন">
+            <div class="bn-term-top">
+              <span class="bn-term-name">MAX / MIN</span>
+              <span class="bn-term-category">Aggregate</span>
+            </div>
+            <p class="bn-term-desc">কোনো কলাম বা এক্সপ্রেশন থেকে যথাক্রমে সর্বোচ্চ (Maximum) এবং সর্বনিম্ন (Minimum) মান খুঁজে বের করার ফাংশন।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="JOIN" data-bn="জয়েন সংযুক্তি টেবিল সংযোগ">
+            <div class="bn-term-top">
+              <span class="bn-term-name">JOIN</span>
+              <span class="bn-term-category">Relation</span>
+            </div>
+            <p class="bn-term-desc">একাধিক টেবিলের মধ্যবর্তী সাধারণ কলামের সম্পর্কের ভিত্তিতে সংশ্লিষ্ট সারিগুলোকে পাশাপাশি একত্র করার SQL কৌশল।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="INNER JOIN" data-bn="ইনার জয়েন উভয়েই মিল">
+            <div class="bn-term-top">
+              <span class="bn-term-name">INNER JOIN</span>
+              <span class="bn-term-category">Relation</span>
+            </div>
+            <p class="bn-term-desc">উভয় টেবিলেই শর্ত অনুযায়ী মিল থাকা সারিগুলোকেই কেবল ফলাফল টেবিলে যুক্ত করে; গরমিল থাকা সারি বাদ দেয়।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="LEFT JOIN" data-bn="লেফট জয়েন বাম পাশের সব">
+            <div class="bn-term-top">
+              <span class="bn-term-name">LEFT JOIN</span>
+              <span class="bn-term-category">Relation</span>
+            </div>
+            <p class="bn-term-desc">বাম পাশের টেবিলের সব সারি ফিরিয়ে আনে এবং ডান পাশের টেবিল থেকে কেবল ম্যাচিং সারি আনে; অমিল স্থানে NULL বসায়।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Self Join" data-bn="সেলফ জয়েন নিজের সাথে জয়েন">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Self Join</span>
+              <span class="bn-term-category">Relation</span>
+            </div>
+            <p class="bn-term-desc">একটি টেবিলকে তার নিজের সাথেই ভিন্ন ভিন্ন অ্যালিয়াস দিয়ে জয়েন করার বিশেষ পদ্ধতি (যেমন সহ-প্রস্তাবকদের সম্পর্ক বিশ্লেষণ)।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Subquery" data-bn="সাবকুয়েরি অভ্যন্তরীণ কুয়েরি সাব-কুয়েরি">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Subquery</span>
+              <span class="bn-term-category">Advanced</span>
+            </div>
+            <p class="bn-term-desc">আরেকটি মূল SQL কুয়েরির ভেতর বন্ধনীযুক্ত অবস্থায় লিখিত অভ্যন্তরীণ কুয়েরি (Nested Query)।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Alias / AS" data-bn="অ্যালিয়াস ছদ্মনাম বিকল্প নাম">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Alias / AS</span>
+              <span class="bn-term-category">Clause</span>
+            </div>
+            <p class="bn-term-desc">কুয়েরির ফলাফলে কোনো কলাম বা টেবিলকে সাময়িকভাবে সহজ ও অর্থপূর্ণ নাম দেওয়ার বিশেষ কি-ওয়ার্ড।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Filtering" data-bn="ফিল্টারিং বাছাই শর্তযুক্ত নির্বাচন">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Filtering</span>
+              <span class="bn-term-category">Concept</span>
+            </div>
+            <p class="bn-term-desc">বৃহৎ ডেটাসেট থেকে অপ্রয়োজনীয় রেকর্ড বাদ দিয়ে নির্দিষ্ট শর্ত অনুযায়ী কাঙ্ক্ষিত ডেটা আলাদা করার পদ্ধতি।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Sorting" data-bn="সর্টিং বিন্যাস ক্রমানুসার">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Sorting</span>
+              <span class="bn-term-category">Concept</span>
+            </div>
+            <p class="bn-term-desc">অক্ষর, সংখ্যা বা তারিখের ক্রমানুসারে ডেটাকে নির্দিষ্ট বিন্যাসে সাজানো।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Execution" data-bn="এক্সিকিউশন সম্পাদন চালনা">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Execution</span>
+              <span class="bn-term-category">Concept</span>
+            </div>
+            <p class="bn-term-desc">ডাটাবেস ইঞ্জিনে একটি SQL কুয়েরি প্রেরণ করে ফলাফল প্রক্রিয়াকরণ ও আউটপুট পাওয়ার সামগ্রিক প্রক্রিয়া।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Result Set" data-bn="রেজাল্ট সেট ফলাফল টেবিল">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Result Set</span>
+              <span class="bn-term-category">Output</span>
+            </div>
+            <p class="bn-term-desc">কোনো SQL কুয়েরি সফলভাবে সম্পন্ন হওয়ার পর ডাটাবেস ইঞ্জিন যে টেবিল বা ডেটার সমষ্টি ফেরত পাঠায়।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Data Type" data-bn="ডেটা টাইপ প্রকারভেদ মান রূপ">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Data Type</span>
+              <span class="bn-term-category">Schema</span>
+            </div>
+            <p class="bn-term-desc">কলামের মানের প্রকৃতি বা ধরন (যেমন: SQLite-এ TEXT, INTEGER, REAL, BLOB ও NULL)।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Constraint" data-bn="কনস্ট্রেইন্ট শর্ত নিয়মকানুন">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Constraint</span>
+              <span class="bn-term-category">Schema</span>
+            </div>
+            <p class="bn-term-desc">টেবিলের তথ্যের নির্ভুলতা ও নির্ভরযোগ্যতা বজায় রাখার উদ্দেশ্যে কলামের ওপর প্রযোজ্য বিধিনিষেধ (যেমন: NOT NULL, UNIQUE)।</p>
+          </div>
+
+          <div class="bn-glossary-card" data-term="Index" data-bn="ইনডেক্স দ্রুত সন্ধান সূচক">
+            <div class="bn-term-top">
+              <span class="bn-term-name">Index</span>
+              <span class="bn-term-category">Performance</span>
+            </div>
+            <p class="bn-term-desc">ডাটাবেসে অনুসন্ধান কার্যক্রমের গতি উল্লেখযোগ্যভাবে বৃদ্ধি করার উদ্দেশ্যে তৈরি বিশেষ লুক-আপ ডেটা কাঠামো।</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="bn-modal-footer">
+      <div class="bn-modal-footer-note">
+        <span>💡 টিপস: কোর্সের যেকোনো পৃষ্ঠা থেকে কীবোর্ডের <code>Esc</code> চেপে এই মডাল বন্ধ করতে পারেন।</span>
+      </div>
+      <button type="button" id="bnModalCloseBottomBtn" class="bn-modal-done-btn">সম্পন্ন (Done)</button>
+    </div>
+
+  </div>
+</div>

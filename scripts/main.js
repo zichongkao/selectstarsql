@@ -1,47 +1,163 @@
-// Set up DB
+// ==========================================
+// Centralized Web Worker Dispatcher & DB Setup
+// ==========================================
+var _queryIdCounter = 0;
+var _pendingCallbacks = new Map();
+
+function _initWorkerDispatcher(w) {
+  if (!w) return;
+
+  w.onmessage = function (event) {
+    var data = event.data;
+    if (!data) return;
+
+    var reqId = data.id;
+    if (reqId && _pendingCallbacks.has(reqId)) {
+      var entry = _pendingCallbacks.get(reqId);
+      _pendingCallbacks.delete(reqId);
+
+      if (data.error) {
+        if (entry.err_cb) {
+          try {
+            entry.err_cb(data.error);
+          } catch (callbackErr) {
+            console.error('Error in error callback for request', reqId, callbackErr);
+          }
+        } else {
+          console.error('Unhandled SQL Error for request', reqId, data.error);
+        }
+      } else {
+        if (entry.cb) {
+          try {
+            entry.cb(data.results !== undefined ? data.results : data);
+          } catch (callbackErr) {
+            console.error('Error in success callback for request', reqId, callbackErr);
+          }
+        }
+      }
+    }
+  };
+
+  w.onerror = function (e) {
+    console.error('Fatal Web Worker Error:', e);
+    _pendingCallbacks.forEach(function (entry, id) {
+      if (entry.err_cb) {
+        try {
+          entry.err_cb({ message: e && e.message ? e.message : 'Fatal Web Worker Error' });
+        } catch (err) {}
+      }
+    });
+    _pendingCallbacks.clear();
+  };
+}
+
 function loadData(dbFile) {
   if (!dbFile) { return; }
   window.worker = new Worker("/scripts/worker.sql.js");
+  _initWorkerDispatcher(window.worker);
+
   var xhr = new XMLHttpRequest();
   xhr.open('GET', dbFile, true);
   xhr.responseType = 'arraybuffer';
   xhr.onload = () => {
     var uInt8Array = new Uint8Array(xhr.response);
-    worker.onmessage = event => {
-       if (event.data.ready) {
-         query('SELECT 1', (e) => {
-           console.log('DB initialization successful');
-           document.querySelectorAll("input.sql-exercise-submit, button.sql-exercise-submit").forEach(
-             (button) => {button.disabled = false;});
-         });
-       } else {
-         console.log('DB initialization failed');
-       }
-    }
+
+    var openReqId = ++_queryIdCounter;
+    _pendingCallbacks.set(openReqId, {
+      cb: function (eventData) {
+        if (eventData && eventData.ready) {
+          query('SELECT 1', (e) => {
+            console.log('DB initialization successful');
+            window.SELECT_STAR_DB_READY = true;
+            document.querySelectorAll("input.sql-exercise-submit, button.sql-exercise-submit").forEach(
+              (button) => { button.disabled = false; });
+            document.dispatchEvent(new CustomEvent('selectstar:db-ready', { detail: { dbFile: dbFile } }));
+          });
+        } else {
+          console.log('DB initialization failed');
+        }
+      },
+      err_cb: function (err) {
+        console.error('DB initialization failed:', err);
+      }
+    });
 
     worker.postMessage({
-      id:1,
-      action:'open',
+      id: openReqId,
+      action: 'open',
       buffer: uInt8Array,
     });
-  }
+  };
   xhr.send();
 }
 
 function query(sql, cb, err_cb) {
-  if (err_cb) {
-    worker.onerror = e => err_cb(e);
-  } else {
-    worker.onerror = e => { throw new Error(e.message); }
+  if (!window.worker) {
+    if (err_cb) err_cb({ message: 'Database engine not initialized' });
+    return;
   }
+  var qId = ++_queryIdCounter;
+  _pendingCallbacks.set(qId, {
+    cb: cb,
+    err_cb: err_cb || function (e) { throw new Error(e && e.message ? e.message : String(e)); }
+  });
 
-  worker.onmessage = event => {
-    cb(event.data.results);
-  }
   worker.postMessage({
-      id: 2,
-      action: 'exec',
-      sql: sql
+    id: qId,
+    action: 'exec',
+    sql: sql
+  });
+}
+
+function querySandbox(sql, cb, err_cb) {
+  if (!window.worker) {
+    if (err_cb) err_cb({ message: 'Database engine not initialized' });
+    return;
+  }
+  var qId = ++_queryIdCounter;
+  _pendingCallbacks.set(qId, {
+    cb: cb,
+    err_cb: err_cb || function (e) { console.error('Sandbox SQL Error:', e); }
+  });
+
+  worker.postMessage({
+    id: qId,
+    action: 'sandbox_exec',
+    sql: sql
+  });
+}
+
+function openSandboxDb(cb, err_cb) {
+  if (!window.worker) {
+    if (err_cb) err_cb({ message: 'Database engine not initialized' });
+    return;
+  }
+  var qId = ++_queryIdCounter;
+  _pendingCallbacks.set(qId, {
+    cb: cb,
+    err_cb: err_cb || function (e) { console.error('Sandbox Open Error:', e); }
+  });
+
+  worker.postMessage({
+    id: qId,
+    action: 'sandbox_open'
+  });
+}
+
+function resetSandboxDb(cb, err_cb) {
+  if (!window.worker) {
+    if (err_cb) err_cb({ message: 'Database engine not initialized' });
+    return;
+  }
+  var qId = ++_queryIdCounter;
+  _pendingCallbacks.set(qId, {
+    cb: cb,
+    err_cb: err_cb || function (e) { console.error('Sandbox Reset Error:', e); }
+  });
+
+  worker.postMessage({
+    id: qId,
+    action: 'sandbox_reset'
   });
 }
 
