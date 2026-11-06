@@ -163,9 +163,10 @@ function resetSandboxDb(cb, err_cb) {
 
 function datatable (data) {
   var tbl = document.createElement("table");
-  tbl.className = 'datatable'
+  tbl.className = 'datatable';
 
-  var header_labels = data[0].columns;
+  var isBn = (document.documentElement && document.documentElement.lang === 'bn');
+  var header_labels = (data && data[0] && data[0].columns) ? data[0].columns : [];
   for (var idx in header_labels) {
     var col = document.createElement('col');
     col.className = header_labels[idx];
@@ -175,9 +176,15 @@ function datatable (data) {
   // create header row
   var thead = tbl.createTHead();
   var row = thead.insertRow(0);
-  for (var idx in header_labels) {
-    var cell = row.insertCell(idx);
-    cell.innerHTML = header_labels[idx];
+  for (var idx = 0; idx < header_labels.length; idx++) {
+    var th = document.createElement('th');
+    th.scope = 'col';
+    th.textContent = header_labels[idx];
+    if (!isBn) {
+      th.style.padding = '5px';
+      th.style.border = 'solid 1px grey';
+    }
+    row.appendChild(th);
   }
 
   // fill table body
@@ -218,9 +225,7 @@ var I18N = {
     showExplanations: 'ব্যাখ্যা দেখুন',
     allCorrect: 'সব উত্তর সঠিক!',
     mistakeCount: function(n) {
-      var bnDigits = '০১২৩৪৫৬৭৮৯';
-      var bnNum = String(n).replace(/\d/g, function(d) { return bnDigits[d]; });
-      return bnNum + 'টি ভুল';
+      return toBnNum(n) + 'টি ভুল';
     },
     run: '▷  চালান',
     correct: 'সঠিক উত্তর',
@@ -230,6 +235,14 @@ var I18N = {
     reset: '↺  রিসেট'
   }
 };
+
+function toBnNum(value) {
+  var bnDigits = '০১২৩৪৫৬৭৮৯';
+  return String(value).replace(/\d/g, function(d) { return bnDigits[d]; });
+}
+if (typeof window !== 'undefined') {
+  window.toBnNum = toBnNum;
+}
 
 function getLocale() {
   var lang = (document.documentElement && document.documentElement.lang) || 'en';
@@ -289,6 +302,7 @@ class sqlQuiz extends HTMLElement {
   }
 
   connectedCallback() {
+    var quizEl = this;
     var t = getLocale();
     var title = this.getAttribute('data-title') || '';
     var enTitle = this.getAttribute('data-en-title') || '';
@@ -396,7 +410,7 @@ class sqlQuiz extends HTMLElement {
         <span>ব্যাখ্যা দেখুন</span>
       `;
       hintButton.onclick = (e) => {
-        document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'block');
+        quizEl.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'block');
       };
       toolbar.appendChild(hintButton);
       form.appendChild(toolbar);
@@ -421,7 +435,7 @@ class sqlQuiz extends HTMLElement {
       hintButton.className = 'sqlQuizHint';
       hintButton.value = t.showExplanations;
       hintButton.onclick = (e) => {
-        document.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'table-row');
+        quizEl.querySelectorAll('.hintSpan').forEach(i => i.style.display = 'table-row');
       };
       inputArea.appendChild(hintButton);
       form.appendChild(inputArea);
@@ -465,6 +479,7 @@ class sqlExercise extends HTMLElement {
   }
 
   connectedCallback() {
+    var quizEl = this;
     var t = getLocale();
     var question = this.getAttribute('data-question') || '';
     var enQuestion = this.getAttribute('data-en-question') || '';
@@ -683,7 +698,8 @@ class sqlExercise extends HTMLElement {
 
           var resultMeta = document.createElement('div');
           resultMeta.className = 'sqlResultMeta';
-          resultMeta.innerHTML = `<span class="sqlResultTitle">QUERY RESULT</span> <span class="sqlRowCountBadge">${rowCount} ROWS</span>`;
+          var displayRowCount = isBn ? toBnNum(rowCount) : rowCount;
+          resultMeta.innerHTML = `<span class="sqlResultTitle">QUERY RESULT</span> <span class="sqlRowCountBadge">${displayRowCount} ROWS</span>`;
           resultHeader.appendChild(resultMeta);
 
           if (solution) {

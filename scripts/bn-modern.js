@@ -136,6 +136,53 @@
   }
 
   /* --------------------------------------------------------------------------
+     2.5 REUSABLE MODAL ACCESSIBILITY HELPERS (WCAG 2.2 AA)
+     -------------------------------------------------------------------------- */
+  function setBackgroundInert(isInert) {
+    var bgSelectors = ['.bn-header', '.bn-shell', '.bn-footer'];
+    bgSelectors.forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (!el) return;
+      if (isInert) {
+        el.setAttribute('inert', '');
+        el.setAttribute('aria-hidden', 'true');
+      } else {
+        el.removeAttribute('inert');
+        el.removeAttribute('aria-hidden');
+      }
+    });
+  }
+
+  function trapModalFocus(modalEl, evt) {
+    if (evt.key !== 'Tab') return;
+    var selector = 'button:not([disabled]):not([hidden]), [href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    var all = Array.prototype.slice.call(modalEl.querySelectorAll(selector));
+    var visible = all.filter(function (el) {
+      var isCmTextarea = el.tagName === 'TEXTAREA' && el.closest('.CodeMirror');
+      return isCmTextarea || (el.offsetParent !== null && window.getComputedStyle(el).visibility !== 'hidden');
+    });
+    if (visible.length === 0) {
+      evt.preventDefault();
+      modalEl.focus();
+      return;
+    }
+    var first = visible[0];
+    var last = visible[visible.length - 1];
+
+    if (evt.shiftKey) {
+      if (document.activeElement === first || document.activeElement === modalEl) {
+        evt.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        evt.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  /* --------------------------------------------------------------------------
      3. DATABASE SCHEMA & TECHNICAL GLOSSARY MODAL
      -------------------------------------------------------------------------- */
   function initBnSchemaModal() {
@@ -164,6 +211,7 @@
       overlay.classList.add('is-open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.classList.add('bn-modal-open');
+      setBackgroundInert(true);
       modal.focus();
     }
 
@@ -171,6 +219,7 @@
       overlay.classList.remove('is-open');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('bn-modal-open');
+      setBackgroundInert(false);
       if (lastFocusedElem && typeof lastFocusedElem.focus === 'function') {
         lastFocusedElem.focus();
       }
@@ -224,22 +273,7 @@
       }
 
       if (e.key === 'Tab') {
-        var focusables = modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])');
-        if (focusables.length === 0) return;
-        var first = focusables[0];
-        var last = focusables[focusables.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
+        trapModalFocus(modal, e);
       }
     });
 
@@ -471,6 +505,7 @@
       overlay.classList.add('is-open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.classList.add('bn-modal-open');
+      setBackgroundInert(true);
 
       ensureEditor();
 
@@ -493,6 +528,7 @@
       overlay.classList.remove('is-open');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('bn-modal-open');
+      setBackgroundInert(false);
 
       if (confirmBanner) confirmBanner.style.display = 'none';
 
@@ -523,8 +559,23 @@
     }
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
-        closeModal();
+      if (!overlay.classList.contains('is-open')) {
+        return;
+      }
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        if (confirmBanner && confirmBanner.style.display !== 'none') {
+          confirmBanner.style.display = 'none';
+          if (resetDataBtn) resetDataBtn.focus();
+        } else {
+          closeModal();
+        }
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        trapModalFocus(modal, e);
       }
     });
 

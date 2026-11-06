@@ -6,7 +6,7 @@ dbFile: data/tx_deathrow_small.db
 
 <a name="hiatuses"></a>
 ## বিরতিসমূহ
-এই গ্রাফটি সময়ের সাথে সাথে মৃত্যুদণ্ড কার্যকরের সংখ্যা প্রদর্শন করছে।<img src="/imgs/exno_time.png"> লক্ষ্য করুন যে বেশ কয়েকটি দীর্ঘ সময়কাল রয়েছে যখন কোনো মৃত্যুদণ্ড কার্যকর হয়নি। আমাদের লক্ষ্য হলো এই বিরতিগুলো ঠিক কখন ঘটেছিল তা বের করা এবং সেগুলোর পেছনের কারণ অনুসন্ধান করা।
+এই গ্রাফটি সময়ের সাথে সাথে মৃত্যুদণ্ড কার্যকরের সংখ্যা প্রদর্শন করছে।<img src="/imgs/exno_time.png" alt="সময়ের সাথে টেক্সাসে মৃত্যুদণ্ড কার্যকরের সংখ্যার লেখচিত্র (টাইম সিরিজ গ্রাফ)"> লক্ষ্য করুন যে বেশ কয়েকটি দীর্ঘ সময়কাল রয়েছে যখন কোনো মৃত্যুদণ্ড কার্যকর হয়নি। আমাদের লক্ষ্য হলো এই বিরতিগুলো ঠিক কখন ঘটেছিল তা বের করা এবং সেগুলোর পেছনের কারণ অনুসন্ধান করা।
 
 আমাদের কৌশল হলো টেবিলটিকে এমন একটি অবস্থায় নিয়ে আসা যাতে প্রতিটি সারিতে তার ঠিক পূর্ববর্তী মৃত্যুদণ্ড কার্যকরের তারিখটিও অন্তর্ভুক্ত থাকে। এরপর আমরা দুটি তারিখের মধ্যে সময়ের ব্যবধান (দিন হিসেবে) বের করতে পারি, সেগুলোকে বড় থেকে ছোট (descending) ক্রমে সাজাতে পারি, এবং সবচেয়ে দীর্ঘ বিরতিগুলো সহজেই চিহ্নিত করতে পারি।
 
@@ -27,7 +27,7 @@ dbFile: data/tx_deathrow_small.db
     ORDER BY day_difference DESC
     LIMIT 10
 
-এই অধ্যায়ের মূল কেন্দ্রবিন্দু হলো `JOIN` ব্লক। এটিকে একক একটি লাইন হিসেবে দেখার চেয়ে এভাবে দেখা প্রায়শই বেশি সহায়ক: <img src="/imgs/join_correctview.png"> এটি স্পষ্টভাবে তুলে ধরে কীভাবে `JOIN` একটি বড় যৌথ টেবিল তৈরি করে যা অন্য যেকোনো টেবিলের মতোই `FROM` ব্লকে প্রবেশ করানো হয়।
+এই অধ্যায়ের মূল কেন্দ্রবিন্দু হলো `JOIN` ব্লক। এটিকে একক একটি লাইন হিসেবে দেখার চেয়ে এভাবে দেখা প্রায়শই বেশি সহায়ক: <img src="/imgs/join_correctview.png" alt="JOIN এবং FROM ব্লকের সমন্বিত টেবিল ধারণার ডায়াগ্রাম"> এটি স্পষ্টভাবে তুলে ধরে কীভাবে `JOIN` একটি বড় যৌথ টেবিল তৈরি করে যা অন্য যেকোনো টেবিলের মতোই `FROM` ব্লকে প্রবেশ করানো হয়।
 <a name="disam_cols"></a>
 <div class="sideNote">
   <h3>কলাম দ্ব্যর্থতাহীন করা (Disambiguating Columns)</h3>
@@ -38,23 +38,23 @@ dbFile: data/tx_deathrow_small.db
 <a name="join_types"></a>
 ## জয়েনের প্রকারভেদ
 `JOIN` ব্লকের সাধারণ গঠন হলো <code class='codeblock'>&lt;table1&gt; JOIN &lt;table2&gt; ON &lt;clause&gt;</code>। এই ক্লজটি ঠিক <code class='codeblock'>WHERE &lt;clause&gt;</code>-এর মতোই কাজ করে। অর্থাৎ, এটি এমন একটি উক্তি যা সত্য (true) বা মিথ্যা (false) হিসেবে মূল্যায়িত হয়; এবং যখনই প্রথম টেবিলের একটি সারি এবং দ্বিতীয় টেবিলের আরেকটি সারি ক্লজের শর্ত পূরণ করে সত্য হয়, তখন সেই দুটি সারি পরস্পরের সাথে মেলানো (matched) হয়:
-<img src="/imgs/join_base.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="/imgs/join_base.png" alt="দুটি টেবিলের মধ্যে শর্ত অনুযায়ী সারি মেলানোর মৌলিক জয়েন চিত্র" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 কিন্তু যেসব সারির কোনো মিল পাওয়া যায় না তাদের ক্ষেত্রে কী ঘটে? এই পরিস্থিতিতে, ১ নম্বর মৃত্যুদণ্ডের জন্য `previous` টেবিলে কোনো সারি ছিল না, কারণ এর পূর্বে কোনো মৃত্যুদণ্ড কার্যকর হয়নি।
-<img src="/imgs/join_unmatched.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="/imgs/join_unmatched.png" alt="টেবিলে অমিল থাকা (unmatched) সারির চিত্র" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 ডিফল্টভাবে <code>JOIN</code> কমান্ড তথাকথিত "ইনার জয়েন" (inner join) সম্পাদন করে, যাতে অমিল থাকা (unmatched) সারিগুলো বাদ দেওয়া হয়।
-<img src="/imgs/join_inner.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="/imgs/join_inner.png" alt="ইনার জয়েন (INNER JOIN): কেবল মিল থাকা সারি সংরক্ষণের চিত্র" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 বামপাশের টেবিলের সমস্ত সারি অক্ষুণ্ণ রাখতে, আমরা সাধারণ <code>JOIN</code>-এর পরিবর্তে <code>LEFT JOIN</code> ব্যবহার করি। সারির খালি অংশগুলো অপরিবর্তিত থাকে, যার অর্থ হলো সেগুলোর মান <code>NULL</code> হিসেবে মূল্যায়িত হয়।
-<img src="/imgs/join_left.png" style="width:80%; display:block; margin-left:auto; margin-right:auto">
+<img src="/imgs/join_left.png" alt="লেফট জয়েন (LEFT JOIN): বাম টেবিলের সব সারি সংরক্ষণ ও ডানে NULL মান প্রদর্শনের চিত্র" style="width:80%; display:block; margin-left:auto; margin-right:auto">
 
 ডানপাশের টেবিলে অমিল থাকা সারিগুলো সংরক্ষণ করার জন্য <code>RIGHT JOIN</code> ব্যবহার করা যেতে পারে, এবং উভয় টেবিলেরই অমিল থাকা সারিগুলো সংরক্ষণ করতে <code>OUTER JOIN</code> ব্যবহার করা যেতে পারে।
 
 সর্বশেষ সূক্ষ্ম বিষয়টি হলো একাধিক মিল (multiple matches) পরিচালনা করা। ধরা যাক আমাদের কাছে একটি `duplicated_previous` টেবিল রয়েছে যাতে `previous` টেবিলের প্রতিটি সারির দুটি করে প্রতিলিপি (copy) বিদ্যমান। ফলে `executions`-এর প্রতিটি সারি এখন `duplicated_previous`-এর দুটি সারির সাথে মিলে যায়।
-<img src="/imgs/join_dup_pre.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
+<img src="/imgs/join_dup_pre.png" alt="একাধিক মিল থাকা সারির ক্ষেত্রে ডুপ্লিকেট টেবিলের প্রাথমিক অবস্থা" style="width:90%; display:block; margin-left:auto; margin-right:auto">
 এই জয়েনটি `executions`-এর পর্যাপ্ত সারি তৈরি করে যাতে `duplicated_previous`-এর প্রতিটি মিল থাকা সারি তার নিজস্ব সঙ্গী খুঁজে পায়। এইভাবে, জয়েন এমন যৌথ টেবিল তৈরি করতে পারে যা তাদের মূল গঠনকারী উপাদান টেবিলগুলোর চেয়েও আকারে বড়।
-<img src="/imgs/join_dup_post.png" style="width:90%; display:block; margin-left:auto; margin-right:auto">
+<img src="/imgs/join_dup_post.png" alt="একাধিক মিল থাকা সারির জয়েন পরবর্তী সম্প্রসারিত টেবিলের চিত্র" style="width:90%; display:block; margin-left:auto; margin-right:auto">
 
 <sql-quiz
   data-title="যে বাক্যগুলো সত্য সেগুলোতে টিক চিহ্ন দিন।"
@@ -197,7 +197,7 @@ ORDER BY day_difference DESC
 LIMIT 10"
 ></sql-exercise>
 
-এখন বিরতিগুলোর সুনির্দিষ্ট তারিখ ব্যবহার করে আমরা প্রতিটি সময়কালে আসলে কী ঘটেছিল তা অনুসন্ধান করতে পারি। মৃত্যুদণ্ডের ওপর থেকে নিষেধাজ্ঞা প্রত্যাহারের পরপরই শুরুর বছরগুলোতে মৃত্যুদণ্ড কার্যকরের সংখ্যার মধ্যে দীর্ঘ বিরতি দেখা গিয়েছিল, যার কারণ ছিল মৃত্যুদণ্ডের রায়ের স্বল্প সংখ্যা এবং সেই সাথে নতুন আইনের বিরুদ্ধে আইনি চ্যালেঞ্জ। তাই আমরা ১৯৯৩ সালের পূর্ববর্তী বিরতিগুলোকে বাদ দিয়ে এর পরবর্তী দুটি প্রধান বিরতির ওপর দৃষ্টি নিবদ্ধ করি।<img src="/imgs/exno_time_annotated.png">
+এখন বিরতিগুলোর সুনির্দিষ্ট তারিখ ব্যবহার করে আমরা প্রতিটি সময়কালে আসলে কী ঘটেছিল তা অনুসন্ধান করতে পারি। মৃত্যুদণ্ডের ওপর থেকে নিষেধাজ্ঞা প্রত্যাহারের পরপরই শুরুর বছরগুলোতে মৃত্যুদণ্ড কার্যকরের সংখ্যার মধ্যে দীর্ঘ বিরতি দেখা গিয়েছিল, যার কারণ ছিল মৃত্যুদণ্ডের রায়ের স্বল্প সংখ্যা এবং সেই সাথে নতুন আইনের বিরুদ্ধে আইনি চ্যালেঞ্জ। তাই আমরা ১৯৯৩ সালের পূর্ববর্তী বিরতিগুলোকে বাদ দিয়ে এর পরবর্তী দুটি প্রধান বিরতির ওপর দৃষ্টি নিবদ্ধ করি।<img src="/imgs/exno_time_annotated.png" alt="মৃত্যুদণ্ড কার্যকরের বিরতিসমূহ চিহ্নিত করে ঐতিহাসিক প্রেক্ষাপটের টীকাযুক্ত লেখচিত্র">
 
 ১ম বিরতিটির কারণ ছিল <a href="https://en.wikipedia.org/wiki/Antiterrorism_and_Effective_Death_Penalty_Act_of_1996">Antiterrorism and Effective Death Penalty Act of 1996</a>-এর বিরুদ্ধে আইনি চ্যালেঞ্জ, যা ১৯৯৩ সালের ওয়ার্ল্ড ট্রেড সেন্টার এবং ১৯৯৫ সালের ওকলাহোমা সিটি বোমা হামলার প্রতিক্রিয়ায় প্রণয়ন করা হয়েছিল। আইনটি বিশেষ করে সন্ত্রাসবাদের মামলায় মৃত্যুদণ্ডকে আরও কার্যকর করার উদ্দেশ্যে আপিল প্রক্রিয়াকে সীমিত করেছিল (<a href="https://deathpenaltyinfo.org/documents/1996YearEndRpt.pdf">উৎস</a>)।
 
