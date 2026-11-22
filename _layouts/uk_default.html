@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="uk">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/imgs/favicon.ico">
+    <!-- thanks to https://favicon.io/ -->
+    <link rel="stylesheet" href='/css/codemirror.css'>
+    <link rel="stylesheet" href='/css/neat.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto:700,500,300|Roboto+Condensed">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
+    <script src="/scripts/codemirror.js"></script>
+    <script src="/scripts/codemirrorsql.js"></script>
+    <script src="/scripts/autorefresh.js"></script>
+    <script src="/scripts/uk-main.js"></script>
+    <script>
+      {% if page.dbFile %}
+      window.onload = () => loadData('/{{ page.dbFile }}');
+      {% endif %}
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46601509-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46601509-2');
+    </script>
+    <title>{{ page.title }}</title>
+
+    <meta name="description" content="Безкоштовний інтерактивний підручник SQL українською: пояснення, практичні вправи й запити до реальних даних.">
+    {% assign english_path = page.url | remove_first: '/uk' %}
+    <link rel="alternate" hreflang="en" href="{{ site.url }}{{ english_path }}">
+    <link rel="alternate" hreflang="uk" href="{{ site.url }}{{ page.url }}">
+
+  </head>
+
+  <body>
+    <div id="column">
+      <div class="header">
+        <a href="/uk/"><img class="logo" src="/imgs/favicon-256.png" alt="Select Star SQL"></a>
+        <a href="/uk/"><div class="title">Select Star SQL</div></a>
+        {% include language_switcher.html lang="uk" %}
+      </div>
+      <div class="content">
+        {{content}}
+      </div>
+      <div class="footer">
+        Текст <a href="/uk/">SelectStarSql.com</a> авторства <a href="https://kaomorphism.com/">Zi Chong Kao</a> поширюється за ліцензією <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA 4.0</a>. Український переклад поширюється за тією самою ліцензією. Код і дані передано в суспільне надбання за умовами <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons CC0</a>.
+      </div>
+    </div>
+  </body>
+</html>

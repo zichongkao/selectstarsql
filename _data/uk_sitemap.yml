@@ -1,0 +1,125 @@
+contents:
+- title: Передмова
+  url: frontmatter.html
+  blurb: Ідеї, підхід до навчання та технічна основа проєкту.
+  sections:
+  - name: Задум
+    url: '#impetus'
+  - name: Підхід до навчання
+    url: '#pedagogy'
+  - name: Набір даних
+    url: '#dataset'
+  - name: Технічні подробиці
+    url: '#technicals'
+  - name: Подяки та контакти
+    url: '#contact'
+  english_url: /frontmatter.html
+- title: Останні слова Бізлі
+  url: beazley.html
+  blurb: 'Розділ 1: аргументи Наполеона Бізлі проти смертної кари. Вивчаємо структуру SQL-запиту та операції над рядками таблиці.'
+  sections:
+  - name: Справа Бізлі
+    url: '#beazley_case'
+  - name: Перший SQL-запит
+    url: '#first'
+  - name: Частина SELECT
+    url: '#select'
+  - name: Коментарі в SQL
+    url: '#comments'
+    sidenote: true
+  - name: Частина FROM
+    url: '#from'
+  - name: Регістр літер
+    url: '#capitalization'
+    sidenote: true
+  - name: Пробільні символи
+    url: '#whitespace'
+    sidenote: true
+  - name: Частина WHERE
+    url: '#where'
+  - name: Лапки
+    url: '#quotes'
+    sidenote: true
+  - name: Висновки та підсумок
+    url: '#recap'
+  english_url: /beazley.html
+- title: Заяви про невинуватість
+  url: innocence.html
+  blurb: 'Розділ 2: оцінюємо частоту заяв про невинуватість серед страчених. Вивчаємо агрегування даних усієї таблиці.'
+  sections:
+  - name: Можлива невинуватість
+    url: '#possible_innocence'
+  - name: Агрегатні функції
+    url: '#aggregations'
+  - name: Функція COUNT
+    url: '#count'
+  - name: Значення NULL
+    url: '#nulls'
+    sidenote: true
+  - name: Варіанти використання COUNT
+    url: '#count_var'
+  - name: Робота з документацією
+    url: '#documentation'
+    sidenote: true
+  - name: Дивний запит
+    url: '#strange'
+  - name: Діалекти SQL і бази даних
+    url: '#dialects'
+    sidenote: true
+  - name: Висновки та підсумок
+    url: '#recap'
+  english_url: /innocence.html
+- title: Довгий хвіст
+  url: longtail.html
+  blurb: 'Розділ 3: досліджуємо округи з незвично великою кількістю страт. Застосовуємо агрегатні функції до груп рядків.'
+  sections:
+  - name: Довгі хвости
+    url: '#long_tails'
+  - name: Частина GROUP BY
+    url: '#groupby'
+  - name: Частина HAVING
+    url: '#having'
+  - name: Вкладені запити
+    url: '#nested'
+  - name: Округ Гарріс
+    url: '#harris'
+  - name: Висновки та підсумок
+    url: '#recap'
+  - name: MapReduce
+    url: '#mapreduce'
+    sidenote: true
+  english_url: /longtail.html
+- title: Перерви між стратами
+  url: hiatuses.html
+  blurb: 'Розділ 4: знаходимо тривалі періоди без страт. Вивчаємо з’єднання таблиць і роботу з датами.'
+  sections:
+  - name: Перерви між стратами
+    url: '#hiatuses'
+  - name: Як розуміти з’єднання таблиць
+    url: '#joins'
+  - name: Однозначні посилання на стовпці
+    url: '#disam_cols'
+    sidenote: true
+  - name: Типи з’єднань
+    url: '#join_types'
+  - name: Дати
+    url: '#dates'
+  - name: Самоз’єднання
+    url: '#self_joins'
+  - name: Висновки та підсумок
+    url: '#recap'
+  english_url: /hiatuses.html
+- title: Прикінцеві зауваги та складні завдання
+  url: questions.html
+  blurb: 'Розділ 5: підсумовуємо вивчене та розв’язуємо складніші практичні задачі.'
+  sections:
+  - name: Прикінцеві зауваги
+    url: '#closing_remarks'
+  - name: Завдання підвищеної складності
+    url: '#challenge_questions'
+  - name: Запропонуйте власне завдання
+    url: '#call_for_problems'
+    sidenote: true
+  - name: Набір даних про співавторство законопроєктів у Сенаті
+    url: '#senate_cosponsorship'
+  english_url: /questions.html

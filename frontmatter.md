@@ -58,5 +58,6 @@ The book has been generously translated by volunteers. Please reach out to them 
 - <a href="/it/">Italian</a>: Stefano Caglio
 - <a href="/nl/">Dutch</a>: Jowan Vogel
 - <a href="/pt-br/">Brazilian Portuguese</a>: Samuel Capetinga Bomtempo
+- <a href="/uk/">Українська</a>: Зірка Андрій
 
 Much thanks to Sonja Lea Heinze, Quinn Batten, and <a href="https://nickretallack.com">Nicholas Retallack</a> for providing valuable feedback.

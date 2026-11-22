@@ -1,0 +1,64 @@
+---
+layout: uk_default
+---
+{% assign current_filename = page.url | split: '/' | last %}
+{% for tutorial in site.data.uk_sitemap.contents %}
+{% if tutorial.url == current_filename %}
+    {% assign tutorial_index = forloop.index0 %}
+    {% assign content_length = forloop.length %}
+    {% assign previous = tutorial_index | minus: 1 %}
+    {% assign next = tutorial_index | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+<div class="section-nav">
+  <a href="/uk/">Головна</a>
+  {% if previous >= 0 %}
+    {% assign previous_tutorial = site.data.uk_sitemap.contents[previous] %}
+    <div class="section-sib">
+      &#x21b3; <a href="{{ previous_tutorial.url }}">{{ previous_tutorial.title }}</a>
+    </div>
+  {% endif %}
+
+  {% assign english_url = site.data.uk_sitemap.contents[tutorial_index].english_url %}
+  <div class="section-sib">&#x21b3; <div class="cur-text">{{ page.title }}
+    {%if english_url %}
+      <a href="{{english_url}}" class="language_switcher">(Англійською)  </a>
+    {% endif %}
+  </div></div>
+
+  {% for tutorial in site.data.uk_sitemap.contents %}
+  {% if tutorial.url == current_filename %}
+      {% for section in tutorial.sections %}
+        {% unless section.sidenote %}
+          <div class="childlinks">
+            &#x21b3; <a href="{{ section.url }}">{{ section.name }}</a>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if site.data.uk_sitemap.contents[next].title %}
+    {% assign next_tutorial = site.data.uk_sitemap.contents[next] %}
+    <div class="section-sib">
+      &#x21b3; <a href="{{ next_tutorial.url }}">{{ next_tutorial.title }}</a>
+    </div>
+  {% endif %}
+</div>
+
+{{content}}
+
+<div class="tutorial-nav">
+    {% if site.data.uk_sitemap.contents[next].title %}
+      {% assign next_tutorial = site.data.uk_sitemap.contents[next] %}
+      <div class="next">Далі<a href="{{ next_tutorial.url }}">
+      {{ next_tutorial.title }}</a></div>
+    {% endif %}
+
+  {% if previous >= 0 %}
+    {% assign previous_tutorial = site.data.uk_sitemap.contents[previous] %}
+    <div class="previous">Назад<a href="{{ previous_tutorial.url }}">
+    {{ previous_tutorial.title }}</a></div>
+  {% endif %}
+</div>

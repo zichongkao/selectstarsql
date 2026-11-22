@@ -361,3 +361,7 @@ sql-exercise .sqlExInputArea input {
     border: thin solid black;
     border-radius: 4px;
 }
+
+html[lang="uk"] .section-nav .cur-text {
+    display: inline;
+}
