@@ -1,0 +1,52 @@
+# Terminology for the Ukrainian translation. SQL keywords and identifiers remain unchanged.
+# Reference: https://www.e-helper.com.ua/mysql-functions-view
+# Dialect behavior: https://www.sqlite.org/docs.html
+terms:
+  database: база даних
+  database management system: система керування базами даних (СКБД)
+  dataset: набір даних
+  table: таблиця
+  row: рядок
+  column: стовпець
+  record: запис
+  query: запит
+  subquery: підзапит
+  nested query: вкладений запит
+  clause: частина запиту
+  condition: умова
+  expression: вираз
+  statement: SQL-оператор
+  keyword: ключове слово
+  operator: оператор
+  operand: операнд
+  aggregate function: агрегатна функція
+  aggregation: агрегування
+  grouping: групування
+  sorting: сортування
+  ascending: за зростанням
+  descending: за спаданням
+  alias: псевдонім
+  join: з’єднання
+  inner join: внутрішнє з’єднання
+  left outer join: ліве зовнішнє з’єднання
+  right outer join: праве зовнішнє з’єднання
+  full outer join: повне зовнішнє з’єднання
+  self join: самоз’єднання
+  string: текстовий рядок
+  empty string: порожній рядок
+  integer: ціле число
+  integer division: цілочисельне ділення
+  floating-point number: число з рухомою крапкою
+  boolean expression: логічний вираз
+  "true": істина
+  "false": хибність
+  "null": відсутнє або невідоме значення (NULL)
+  wildcard: символ підстановки
+  whitespace: пробільні символи
+  case-sensitive: чутливий до регістру
+  comment: коментар
+  identifier: ідентифікатор
+  SQL dialect: діалект SQL
+  window function: віконна функція
+  common table expression: загальний табличний вираз (CTE)
+  result set: набір результатів

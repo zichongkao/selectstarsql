@@ -21,3 +21,6 @@
 - code: pt-br
   name: Português (Brasil)
   path: /pt-br/
+- code: uk
+  name: Українська
+  path: /uk/

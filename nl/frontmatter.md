@@ -58,5 +58,6 @@ Het boek is genereus vertaald door vrijwilligers. Neem gerust contact met hen op
 - <a href="/it/">Italiaans</a>: Stefano Caglio
 - <a href="/nl/">Nederlands</a>: Jowan Vogel
 - <a href="/pt-br/">Braziliaans-Portugees</a>: Samuel Capetinga Bomtempo
+- <a href="/uk/">Українська</a>: Зірка Андрій
 
 Veel dank aan Sonja Lea Heinze, Quinn Batten en <a href="https://nickretallack.com">Nicholas Retallack</a> voor hun waardevolle feedback.
